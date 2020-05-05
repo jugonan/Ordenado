@@ -1,29 +1,27 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Authorization;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class CategoriasController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoriasService _categoriasService;
 
-        public CategoriasController(ApplicationDbContext context)
+        public CategoriasController(ICategoriasService categoriasService)
         {
-            _context = context;
+            _categoriasService = categoriasService;
         }
 
         // GET: Categorias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categoria.ToListAsync());
+            return View(await _categoriasService.GetCategorias());
         }
 
         // GET: Categorias/Details/5
@@ -33,9 +31,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var categoria = await _context.Categoria
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Categoria categoria = await _categoriasService.DetailsCategoria(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -61,8 +57,7 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoria);
-                await _context.SaveChangesAsync();
+                await _categoriasService.CreateCategoria(categoria);
                 return RedirectToAction(nameof(Index));
             }
             return View(categoria);
@@ -76,8 +71,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var categoria = await _context.Categoria.FindAsync(id);
+            Categoria categoria = await _categoriasService.EditCategoriaGet(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -102,8 +96,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(categoria);
-                    await _context.SaveChangesAsync();
+                    await _categoriasService.EditCategoriaPost(categoria);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -130,8 +123,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categoria
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Categoria categoria = await _categoriasService.DeleteCategoriaGet(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -146,15 +138,14 @@ namespace DEFINITIVO.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categoria = await _context.Categoria.FindAsync(id);
-            _context.Categoria.Remove(categoria);
-            await _context.SaveChangesAsync();
+            await _categoriasService.DeleteCategoriaPost(id);
             return RedirectToAction(nameof(Index));
         }
+        
 
         private bool CategoriaExists(int id)
         {
-            return _context.Categoria.Any(e => e.Id == id);
+            return _categoriasService.ExistCategoria(id);
         }
     }
 }

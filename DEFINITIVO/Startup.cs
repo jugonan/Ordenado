@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DEFINITIVO.Services;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Heldu.Logic.Interfaces;
+using Heldu.Logic.Services;
 
 namespace DEFINITIVO
 {
@@ -64,6 +66,7 @@ namespace DEFINITIVO
             services.AddTransient<HelperService>();
             //Añadido con Alberto
             services.AddScoped<Manejo_Productos>();
+            services.AddTransient<ICategoriasService, CategoriasService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
