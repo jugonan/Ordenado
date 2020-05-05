@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Galo\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Galo\\.nuget\\packages"
+    ]
+  }
+}
