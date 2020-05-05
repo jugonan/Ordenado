@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using DEFINITIVO.Models;
+﻿using System.Collections.Generic;
+using Heldu.Entities.Models;
 
 namespace DEFINITIVO.ViewModel
 {

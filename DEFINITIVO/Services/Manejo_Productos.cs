@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DEFINITIVO.Data;
-using DEFINITIVO.Models;
+using Heldu.Database.Data;
+using Heldu.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DEFINITIVO.Services

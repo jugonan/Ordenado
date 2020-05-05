@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DEFINITIVO.Models;
+﻿using System.Collections.Generic;
+using Heldu.Entities.Models;
 
 namespace DEFINITIVO.Services
 {

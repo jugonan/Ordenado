@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DEFINITIVO.Data;
-using DEFINITIVO.Models;
+using Heldu.Database.Data;
+using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using DEFINITIVO.Services;
 

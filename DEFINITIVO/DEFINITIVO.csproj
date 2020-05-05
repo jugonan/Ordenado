@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Cualquiera.cs" />
+    <Compile Remove="Data\**" />
+    <Compile Remove="Migrations\**" />
+    <Compile Remove="Models\**" />
+    <Content Remove="Data\**" />
+    <Content Remove="Migrations\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Data\**" />
+    <None Remove="Migrations\**" />
+    <None Remove="Models\**" />
   </ItemGroup>
 
 
@@ -79,5 +90,9 @@
     <Folder Include="ViewModel\" />
     <Folder Include="Frames\" />
     <Folder Include="wwwroot\ImagenesUsuarios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Heldu.Entities\Heldu.Entities.csproj" />
+    <ProjectReference Include="..\Heldu.Logic\Heldu.Logic.csproj" />
   </ItemGroup>
 </Project>
