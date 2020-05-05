@@ -575,6 +575,7 @@ C:/Users/Galo/Source/Repos/UnoMasVenga/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINI
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINITIVO.dll
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINITIVO.pdb
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINITIVO.genruntimeconfig.cache
+<<<<<<< Updated upstream
 C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -871,3 +872,6 @@ C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\staticweb
 C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.dll
 C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.pdb
 C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.genruntimeconfig.cache
+=======
+/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Home/JasFASFAS.cshtml.g.cs
+>>>>>>> Stashed changes
