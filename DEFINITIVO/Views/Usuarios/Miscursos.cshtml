@@ -1,0 +1,31 @@
+﻿@model DEFINITIVO.Models.Usuario
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+    <div class="row" style="margin-top:10%;">
+        @foreach (Mercado mercado in Model.Mercados)
+        {
+            <div class="card col-sm-4">
+                <img class="card-img-top" src="@mercado.Producto.ImagenProducto" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@mercado.Producto.Titulo</h5>
+                    <p class="card-text">@mercado.Producto.Descripcion</p>
+                    <p class="card-text"> class="text-muted">@mercado.Producto.FechaValidez</p>
+                    <p class="card-text"></p>
+                    <p class="card-text">@mercado.Producto.Precio</p>
+                </div>
+                @if (UserManager.GetUserId(User) == Model.IdentityUserId)
+                {
+                    <a asp-controller="Mercados" asp-action="Delete" asp-route-id="@mercado.Id">Desinscribirme</a>
+                    @*<a asp-action="Edit" asp-route-id="@productoVendedor.Producto.Id">Editar</a>
+                    <a asp-action="Details" asp-route-id="@productoVendedor.Producto.Id">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@productoVendedor.Producto.Id">Eliminar</a>*@
+                }
+            </div>
+        }
+    </div>

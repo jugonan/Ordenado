@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DEFINITIVO.Models.Mercado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Código</p>
+            </th>
+            <th>
+                <p>Usuario</p>
+            </th>
+            <th>
+                <p>Producto</p>
+            </th>
+            <th>
+                <p>Fecha de inicio</p>
+            </th>
+            <th>
+                <p>Darse de baja</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.FechaValidez)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Desinscribirme</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

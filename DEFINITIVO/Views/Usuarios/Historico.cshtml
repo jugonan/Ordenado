@@ -1,0 +1,115 @@
+﻿@model DEFINITIVO.Models.Usuario
+
+@using Microsoft.AspNetCore.Identity
+@using DEFINITIVO.Services;
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject Manejo_Productos myManejadorDeProductos
+@inject Manejo_Productos servicios
+@{
+    List<Producto> comprados = servicios.GetProductosComprados(Model.Id);
+    List<Producto> disponibles = servicios.GetProductosDisponibles(Model.Id);
+    //List<Producto> canjeados = servicios.GetProductosCanjeados(Model.Id);
+}
+
+
+
+<div class="row" style="margin-top:10%;">
+    <partial name="_MiperfilPV" />
+    <div class="col-8 offset-1" style="width: 66%;background-color: aquamarine;">
+        <h3>Histórico</h3>
+        @*Cuadro blanco*@
+        <label for="cupones-en-perfil">Tus cupones</label>
+        <select class="form-control" id="cupones-en-perfil">
+            <option value="">Seleccionar</option>
+            <option value="1">Disponibles</option>
+            <option value="2">Comprados</option>
+            <option value="3">Utilizados</option>
+        </select>
+        <div>
+            <!-- Bucle para crear una línea de cupón por cada cupón COMPRADO -->
+            @foreach (Producto comprado in comprados)
+            {
+                <div class="row seccion-comprados d-none seccion-cupones" style="margin:0px;">
+                    <div class="col-3">
+                        <h6><strong>Fecha de validez: </strong></h6>
+                        <br />
+                        <p>@comprado.FechaValidez</p>
+                    </div>
+                    <div class="col-3">
+                        <img style="width:60%;" src="@comprado.ImagenProducto" />
+                    </div>
+                    <div class="col-3">
+                        <h6>Comprado el: </h6>
+                        <p style="color:red;">Pendiente de añadir a la tabla</p>
+                    </div>
+                    <div class="col-3">
+                        <a class="btn">Boton para detalles</a>
+                        <a> Link para el documento</a>
+                    </div>
+                </div>
+            }
+            <!-- Fin del bucle para crear una línea de cupón por cada cupón -->
+            <!-- Bucle para crear una línea de cupón por cada cupón DISPONIBLE -->
+            @foreach (Producto disponible in disponibles)
+            {
+                <div class="row seccion-disponibles d-none seccion-cupones" style="margin:0px;">
+                    <div class="col-3">
+                        <h6><strong>Fecha de validez: </strong></h6>
+                        <br />
+                        <p>@disponible.FechaValidez</p>
+                    </div>
+                    <div class="col-3">
+                        <img style="width:60%;" src="@disponible.ImagenProducto" />
+                    </div>
+                    <div class="col-3">
+                        <h6>Comprado el: </h6>
+                        <p style="color:red;">Pendiente de añadir a la tabla</p>
+                    </div>
+                    <div class="col-3">
+                        <a class="btn">Boton para detalles</a>
+                        <a> Link para el documento</a>
+                    </div>
+                </div>
+            }
+            <!-- Fin del bucle para crear una línea de cupón por cada cupón -->
+        </div>
+    </div>
+</div>
+<!------ Carousel productos recomendados y consumidos por amigos ---------->
+<div>
+    <div class="row">
+        <div class="col-6">
+            <div>
+                <h2>Productos que has visto</h2>
+            </div>
+            <div class="row">
+
+                @{
+                    List<Transaccion> vistos = ViewBag.ProductosVistos;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        <div class="card col-4" style="width: 18rem;">
+                            <div class="row" style="justify-content:space-around">
+                                <div>
+                                    <h5 style="text-decoration:line-through">@vistos[i].Producto.Precio €</h5>
+                                </div>
+                                <div>
+                                    <h5>@vistos[i].Producto.PrecioFinal €</h5>
+                                </div>
+                            </div>
+                            <img src="@vistos[i].Producto.ImagenProducto" class="card-img-top" alt="@vistos[i].Producto.Titulo">
+                            <div class="card-body">
+                                <h5 class="card-title">@vistos[i].Producto.Titulo"</h5>
+                                <p class="card-text">@vistos[i].Producto.Descripcion"</p>
+                                <a href="#" class="btn btn-primary">Inactivo</a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/Historico.js"></script>

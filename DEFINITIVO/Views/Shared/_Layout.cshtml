@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@using Microsoft.AspNetCore.Identity
+@using DEFINITIVO.Services
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject HelperService HelperService
+@inject MessagesService MessagesService
+@{
+    ViewData["Title"] = "Productos";
+    IdentityUser activeUser = await UserManager.GetUserAsync(User);
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Heldu</title>
+    <!-- Code for the favicon in every browser, size and OS  -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="~/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="~/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="~/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="~/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="~/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="~/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="~/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="~/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="~/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Heldu" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="~/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="~/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="~/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="~/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="~/mstile-310x310.png" />
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <!-- Añadida una S al http-->
+    @*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="//fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap" rel="stylesheet">
+    <!-- CSS propio-->
+    <link href="/css/Carrito_Layout.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body id="mainDiv">
+    <header>
+        <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3" id="navbarPrincipal">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img id="navbar-logo" src="~/img/LogoMakr_5fDIiz.png" alt="Navigation home logo" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1" style="width:130%">
+                        <li class="nav-item">
+                            <a class="nav-link textType1" data-toggle="collapse" href="#divCategorias" aria-controls="divCategorias" aria-expanded="false" aria-label="Toggle navigation">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link textType1" data-toggle="collapse" href="#divDetallesHeldu" aria-controls="divDetallesHeldu" aria-expanded="false" aria-label="Toggle navigation">Conócenos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link textType1" data-toggle="collapse" href="#divBuscador" aria-controls="divBuscador" aria-expanded="false" aria-label="Toggle navigation">Buscar</a>
+                        </li>
+                        <li class="nav-item">
+                            <h4 class="nav-link textType1" id="pipe">  |  </h4>
+                        </li>
+                        @if (User.IsInRole("cliente"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link textType1" asp-area="" asp-controller="Usuarios" asp-action="Micuenta">Mi perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link textType1" asp-area="" asp-controller="Usuarios" asp-action="Historico">Mis Cupones</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("vendedor"))
+                        {
+                            <li class="nav-item">
+                                <a class="textType1" asp-area="" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
+                            </li>
+                            @*<li class="nav-item">
+                                    <a class="textType1" asp-area="" asp-controller="Vendedores" asp-action="Misproductos">Mis productos</a>
+                                </li>*@
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="textType1" asp-area="" asp-controller="Usuarios" asp-action="Index">Gestionar usuarios</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            @if (User.IsInRole("cliente"))
+            {
+                <div style="width:10%;" id="div-del-carrito">
+                    <img id="imagen-carrito" style="width:20%;" src="https://image.flaticon.com/icons/svg/1124/1124199.svg" />
+                    <span style="width:12%;" class="badge badge-success" id="numero-productos-carrito"></span>
+                    <div id="carrito" class="row" style="position:absolute; background-color: white; width:18%; top:100%; right:5%; justify-content:space-around;">
+                        <table id="carrito-lleno" class="d-none">
+                            <thead>
+                                <tr id="tabla-carrito">
+                                    <th style="font-size:small;">Nombre</th>
+                                    <th style="font-size:small;">Precio</th>
+                                    <th></th>
+                                    <th style="font-size:small;">EL</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <caption style="width:100%;"><a href="#" id="vaciar-carrito" class="col-6 offset-3 button u-full-width">Vaciar Carrito</a></caption>
+                        </table>
+                        <div id="carrito-vacio" class="d-none">
+                            <p>Tu carrito está vacío</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:10%;" id="div-de-favorito">
+                    <img id="imagen-favorito" style="width:20%;" src="https://image.flaticon.com/icons/svg/1216/1216649.svg" />
+                    <div id="favorito" class="row" style="position:absolute; background-color: white; width:18%; top:100%; right:5%; justify-content:space-around;">
+                        <table id="favorito-lleno" class="d-none">
+                            <thead>
+                                <tr id="tabla-favorito">
+                                    <th style="font-size:small;">Nombre</th>
+                                    <th style="font-size:small;">Precio</th>
+                                    <th></th>
+                                    <th style="font-size:small;">EL</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <caption style="width:100%;"><a href="#" id="vaciar-favorito" class="col-6 offset-3 button u-full-width">Vaciar Favoritos</a></caption>
+                        </table>
+                        <div id="favorito-vacio" class="d-none">
+                            <p>Tu lista de favoritos está vacía</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (User.IsInRole("vendedor"))
+            {
+                Vendedor vendedor = await HelperService.ObtenerVendedor(activeUser.Id);
+                if (vendedor.ProductoVendedor == null)
+                {
+                    <div style="width:10%;" id="div-del-vendedor">
+                        <div id="producto-vendedor-vacio" class="d-none">
+                            <p>Aún no has añadido ningún producto</p>
+                            <a asp-action="Create" asp-controller="Productos">Añadir producto</a>
+                        </div>
+                    </div>
+                }
+            }
+        </nav>
+
+        <!-- Categorias ocultas que se despliegan al hacer click en "Categorías" -->
+        @{
+            List<Categoria> listaCategorias = await HelperService.ListaCategorias();
+        }
+        <div class="collapse" id="divCategorias">
+            <ul class="row subMenuCat">
+                @foreach (Categoria categoria in listaCategorias)
+                {
+                    <li class="col itemCategoria">
+                        <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3">@categoria.Nombre.ToUpper()</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <!-- Formulario de contacto con su CSS -->
+        <link href="/css/ContactFormModal.css" rel="stylesheet" type="text/css">
+        <input type="checkbox" name="showForm" id="showForm" class="showForm">
+        <div class="formContacto">
+            <h2>Contáctanos!</h2>
+            <form asp-controller="Home" asp-action="Contacto">
+                <div class="left section">
+                    <input type="text" name="nombre" placeholder="Nombre(s) y Apellido(s)" required>
+                    <input type="email" name="email" placeholder="E-Mail" required>
+                    <input type="tel" name="tel" placeholder="Teléfono">
+                    @if (activeUser != null)
+                    {
+                        <input type="hidden" name="userId" value="@activeUser.Id">
+                    }
+                </div>
+                <div class="right section">
+                    <textarea name="mensaje" placeholder="Escribe tu mensaje aquí" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="sendForm left" id="contactoSubmit">ENVIAR</button>
+                <label for="showForm" class="closeFormLabel left">CANCELAR</label>
+            </form>
+        </div>
+
+        <!-- Detalles de Heldu ocultos. Se muestran al hacer click en "Conocenos!"-->
+        <div class="collapse" id="divDetallesHeldu">
+            <ul class="row subMenuCon">
+                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
+                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
+                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
+                @*<li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Contacto">Contáctanos</a></li>*@
+                <li class="col itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
+
+            </ul>
+        </div>
+
+        <!-- Buscador oculto que se desplega al hacer click en "Buscar" -->
+        <div class="collapse" id="divBuscador">
+            <form asp-controller="Productos" asp-action="Search" id="formBuscador" class="form-inline">
+                <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="Ingrese lo que desea buscar" aria-label="Search" />
+                <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>
+            </form>
+        </div>
+
+    </header>
+
+
+    <div class="container" style="margin-top: 7vw">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-dark">
+        <div class="container">
+            Copyright &copy; Heldu 2020 - <a href="https://www.linkedin.com/in/jon-ander-fidalgo/"> JAF </a> & <a href="https://www.linkedin.com/in/galo-garcia-pugliese/"> GGP </a> - <a asp-area="" asp-controller="Home" asp-action="Privacy">Políticas de privacidad</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="/js/Carrito_Layout.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

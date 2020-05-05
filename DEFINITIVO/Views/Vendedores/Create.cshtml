@@ -1,0 +1,104 @@
+@model DEFINITIVO.Models.Vendedor
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>¡Bienvenido/a a Heldu!</h3>
+<br />
+<p>Cada vez más gente en situación de desempleo puede manteniener hábitos de consumo gracias a gente como tú.</p>
+<p>Todos los campos marcados con * son <strong>obligatorios</strong></p>
+<hr />
+<br />
+<h4>Nos gustaría conocer mejor tu negocio</h4>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreDeEmpresa" class="control-label">¿Cuál es el nombre de la empresa?</label>
+                <input asp-for="NombreDeEmpresa" class="form-control" />
+                <span asp-validation-for="NombreDeEmpresa" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Direccion" class="control-label">Dirección de la calle*</label>
+                <input placeholder="ej: Avenida Urquijo 33" asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <label asp-for="Ciudad" class="control-label">Ciudad*</label>
+                    <input asp-for="Ciudad" class="form-control" />
+                    <span asp-validation-for="Ciudad" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label asp-for="CodigoPostal" class="control-label">Código Postal*</label>
+                    <input type="number" asp-for="CodigoPostal" class="form-control" />
+                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <label asp-for="Paginaweb" class="control-label">Página web</label>
+                <input asp-for="Paginaweb" class="form-control" />
+                <span asp-validation-for="Paginaweb" class="text-danger"></span>
+            </div>
+            <br />
+            <h4>Cuéntanos, ¿cuántas tiendas tienes?</h4>
+            <div>
+                <div class="row">
+                    <label class="col-2" for="male">Una</label>
+                    <input type="radio" asp-for="NumeroTiendas" value="una" class="form-control col-1">
+                    <br>
+                </div>
+                <div class="row">
+                    <label class="col-2" for="female">Múltiples</label><br>
+                    <input type="radio" asp-for="NumeroTiendas" value="varias" class="form-control col-1">
+                </div>
+                <div class="row">
+                    <label class="col-2" for="other">Ninguna (e.g. sólo online</label>
+                    <input type="radio" asp-for="NumeroTiendas" value="online" class="form-control col-1">
+                </div>
+                <span asp-validation-for="NumeroTiendas" class="text-danger"></span>
+            </div>
+            <br />
+            <h4>Y para terminar, nos gustaría saber algo más acerca de ti</h4>
+            <br />
+            <p>
+                <i>
+                    ¿Sabías que los negocios con descripción fidelizan hasta un <strong>47% más</strong>
+                    que los negocios sin ella?
+                </i>
+            </p>
+            <div>
+                <label asp-for="DescripcionEmpresa" class="control-label">Descripción de empresa</label>
+                <input asp-for="DescripcionEmpresa" class="form-control" />
+                <span asp-validation-for="DescripcionEmpresa" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="Telefono" class="control-label">Teléfono de contacto</label>
+                <input type="number" asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

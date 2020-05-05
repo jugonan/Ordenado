@@ -1,0 +1,204 @@
+﻿
+/*h1,
+p {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 1em 0;
+}
+
+p {
+    padding: 0.5em 0;
+}*/
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+@media (max-width: 35em) {
+    .left,
+    .right {
+        float: left;
+        clear: left;
+    }
+}
+
+.formContacto {
+    width: 0;
+    height: auto;
+    max-height: 75vh;
+    margin-left: 5%;
+    background: #d9d9d9;
+    overflow: hidden;
+    position: fixed;
+    z-index: 999;
+    -webkit-transition: height 0.5s ease, width 0.5s ease 0.5s;
+    transition: height 0.5s ease, width 0.5s ease 0.5s;
+}
+
+    .formContacto h2 {
+        width: 100%;
+        text-align: center;
+        color: #333;
+        font-size: 2rem;
+        margin: 1.5rem 0 3rem;
+    }
+
+    .formContacto formContacto {
+        max-height: 90%;
+        height: 75vh;
+        z-index:999;
+    }
+
+@media (max-width: 35em) {
+    .formContacto formContacto {
+        height: auto;
+    }
+}
+
+.formContacto .section {
+    width: 40%;
+    margin: 0 5%;
+    height: calc(100% - 5rem);
+    max-height: 100%;
+}
+
+@media (max-width: 35em) {
+    .formContacto .section {
+        width: 90%;
+        height: auto;
+    }
+}
+
+.formContacto ::-webkit-input-placeholder,
+.formContacto :-moz-placeholder,
+.formContacto ::-moz-placeholder,
+.formContacto :-ms-input-placeholder {
+    color: #999;
+}
+
+.formContacto input[type="text"],
+.formContacto input[type="email"],
+.formContacto input[type="tel"],
+.formContacto textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+    color: #333;
+    -webkit-transition: border-color 0.5s ease;
+    transition: border-color 0.5s ease;
+}
+
+    .formContacto input[type="text"]:focus,
+    .formContacto input[type="email"]:focus,
+    .formContacto input[type="tel"]:focus,
+    .formContacto textarea:focus {
+        border-color: #333;
+    }
+
+    .formContacto input[type="text"]::invalid,
+    .formContacto input[type="email"]::invalid,
+    .formContacto input[type="tel"]::invalid,
+    .formContacto textarea::invalid {
+        border-color: #b31b1b;
+    }
+
+.formContacto input[type="text"],
+.formContacto input[type="email"],
+.formContacto input[type="tel"] {
+    height: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.formContacto textarea {
+    resize: none;
+    height: 10rem;
+    line-height: 1.5rem;
+}
+
+@media (max-width: 35em) {
+    .formContacto textarea {
+        height: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 2rem;
+    }
+}
+
+.formContacto .closeFormLabel,
+.formContacto .sendForm {
+    position: absolute;
+    bottom: 1rem;
+    width: 40%;
+    margin: 0 5%;
+    right: 0;
+    text-align: center;
+    border: 1px solid #999;
+    padding: 0.5rem;
+    background: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-transition: background-color 0.5s ease, border-color 0.5s ease;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+    .formContacto .closeFormLabel:hover, .formContacto .closeFormLabel:focus,
+    .formContacto .sendForm:hover,
+    .formContacto .sendForm:focus {
+        background-color: #cccccc;
+        border-color: #333;
+    }
+
+@media (max-width: 35em) {
+    .formContacto .closeFormLabel,
+    .formContacto .sendForm {
+        position: relative;
+        width: 90%;
+        left: 0;
+        margin-top: 1em;
+    }
+}
+
+.formContacto .closeFormLabel {
+    left: 0;
+}
+
+@media (max-width: 35em) {
+    .formContacto .closeFormLabel {
+        bottom: 1rem;
+    }
+}
+
+input.showForm {
+    display: none;
+}
+
+    input.showForm:checked + .formContacto {
+        width: 90%;
+        height: 85%;
+        box-shadow: 4px 5px 5px 5px #a6a6a6;
+        overflow: auto;
+        -webkit-transition: width 0.5s ease, height 0.5s ease 0.5s;
+        transition: width 0.5s ease, height 0.5s ease 0.5s;
+    }
+
+.showFormLabel {
+    margin:0;
+    cursor: pointer;
+    background: inherit;
+    z-index: 91;
+}
+
+
+@media (max-width: 35em) {
+    .showFormLabel {
+        width: 90%;
+        left: 5%;
+    }
+}

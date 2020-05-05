@@ -1,0 +1,244 @@
+﻿
+
+.cta-100 {
+    /*margin-top: 100px;*/
+    padding-left: 6%;
+    padding-bottom: 3%;
+}
+
+.col-md-4 {
+    padding-bottom: 20px;
+}
+
+.white {
+    color: #fff !important;
+}
+
+.mt {
+    float: left;
+    margin-top: -20px;
+    padding-top: 20px;
+}
+
+.bg-blue-ui {
+    background-color: #708198 !important;
+}
+
+figure img {
+    width: 300px;
+}
+
+#blogCarousel {
+    padding-bottom: 10px;
+}
+
+.blog .carousel-indicators {
+    left: 0;
+    top: -35px;
+    height: 50%;
+}
+
+
+    /* The colour of the indicators */
+
+    .blog .carousel-indicators li {
+        background: #708198;
+        border-radius: 50%;
+        height: 3px;
+    }
+
+    .blog .carousel-indicators .active {
+        background: #FF0;
+    }
+
+
+
+
+.item-carousel-blog-block {
+    outline: medium none;
+    padding: 15px;
+}
+
+.item-box{
+    height:25rem;
+    padding-bottom:0;
+    padding-top:0;
+}
+
+.item-box-blog {
+    border: 1px solid #dadada;
+    text-align: center;
+    z-index: 4;
+    padding:5px;
+    padding-top: 20px;
+    padding-bottom:20px;
+    height:inherit
+}
+
+.item-box-blog-image {
+    position: relative;
+    height:12rem;
+
+}
+
+    .item-box-blog-image figure img {
+        width: auto;
+        max-width: 100%;
+        max-height: 12rem;
+    }
+
+.item-box-blog-date {
+    position: absolute;
+    z-index: 5;
+    padding: 4px 20px;
+    top: -20px;
+    right: 8px;
+    background-color: #41cb52;
+}
+
+    .item-box-blog-date span {
+        color: #fff;
+        display: block;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+        .item-box-blog-date span.mon {
+            font-size: 18px;
+        }
+
+        .item-box-blog-date span.day {
+            font-size: 16px;
+        }
+
+.item-box-blog-body {
+    padding: 2px;
+}
+
+.item-heading-blog a h5 {
+    margin: 0;
+    line-height: 1;
+    text-decoration: none;
+    transition: color 0.3s;
+    margin-bottom:0.3rem;
+}
+
+.item-box-blog-heading a {
+    text-decoration: none;
+}
+
+.item-box-blog-data p {
+    font-size: 0.75rem;
+}
+
+    .item-box-blog-data p i {
+        font-size: 12px;
+    }
+
+.item-box-blog-text {
+    max-height: 6rem;
+    overflow: hidden;
+    text-align:justify;
+}
+
+.mt-10 {
+    float: left;
+    margin-top: -10px;
+    padding-top: 10px;
+}
+
+.btn.bg-blue-ui.white.read {
+    cursor: pointer;
+    padding: 4px 20px;
+    float: left;
+    position:absolute;
+    right:2rem;
+    bottom:-0.1rem;
+}
+
+    .btn.bg-blue-ui.white.read:hover {
+        box-shadow: 0px 5px 15px inset #4d5f77;
+    }
+
+.category_name {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 2rem;
+    color: #FF0 !important;
+    opacity: 0.7;
+}
+
+    .category_name:hover {
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-size: 2.1rem;
+        color: #FF0 !important;
+        opacity: 1;
+    }
+
+
+/*
+    Botón de "Agregar producto"
+*/
+.floating-button {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #FF0;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    opacity: 0.7;
+}
+
+    .floating-button:hover {
+        opacity: 1;
+    }
+
+.my-float {
+    margin-top: 22px;
+    opacity: 0.7;
+    color: red;
+    z-index:99;
+}
+
+    .my-float:hover {
+        color: ghostwhite;
+        opacity: 1;
+    }
+
+.label-container {
+    position: fixed;
+    bottom: 48px;
+    right: 105px;
+    display: table;
+    visibility: hidden;
+}
+
+.label-text {
+    color: #FFF;
+    background: rgba(51,51,51,0.5);
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.label-arrow {
+    display: table-cell;
+    vertical-align: middle;
+    color: #333;
+    opacity: 0.5;
+}
+
+a.floating-button + div.label-container {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease;
+}
+
+a.floating-button:hover + div.label-container {
+    visibility: visible;
+    opacity: 1;
+}

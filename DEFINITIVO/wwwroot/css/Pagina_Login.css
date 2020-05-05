@@ -1,0 +1,13 @@
+﻿.container {
+    display: flex !important;
+    justify-content: center;
+    text-align: center !important;
+}
+
+.form-group {
+    justify-content:space-between;
+    width: 100%;
+}
+#div-boton-login {
+    justify-content: space-between;
+}

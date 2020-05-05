@@ -1,0 +1,42 @@
+@model IEnumerable<DEFINITIVO.Models.Vendedor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Lista de vendedores de Heldu</h1>
+<div class="row">
+    @foreach (Vendedor vendedor in Model)
+    {
+        <div class="card col-sm-3">
+            <div class="card-body">
+                <h5>Nombre de empresa:</h5>
+                <h6 class="card-title">@vendedor.NombreDeEmpresa</h6>
+                <br />
+                <h5>Tipo de empresa:</h5>
+                <h6 class="card-text"></h6>
+                <br />
+                <h5>NºRegistro:</h5>
+                <h6 class="card-text"></h6>
+                <br />
+                @foreach (ProductoVendedor productoVendedor in vendedor.ProductoVendedor)
+                {
+                    <h5>Nombre del producto:</h5>
+                    <p class="card-text">@productoVendedor.Producto.Titulo</p>
+                    <br />
+                    <h5>Descripción:</h5>
+                    <p class="card-text">@productoVendedor.Producto.Descripcion</p>
+                    <br />
+                    <p style="color:green;">Precio:</p>
+                    <p class="card-text">@productoVendedor.Producto.Precio €</p>
+                    <br />
+                }
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@vendedor.Id">Editar</a>
+                    <a asp-action="Details" asp-route-id="@vendedor.Id">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@vendedor.Id">Eliminar</a>
+                }
+            </div>
+        </div>
+    }
+</div>

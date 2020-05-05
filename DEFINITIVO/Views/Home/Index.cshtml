@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (User.IsInRole("vendedor"))
+{
+    <div class="row">
+        <div class="card-deck col-sm-4">
+            <div class="card" style="border: 0px;">
+                <img class="card-img-top" src="https://image.flaticon.com/icons/svg/535/535845.svg" alt="Card image cap">
+                <div style="text-align: center;" class="card-body">
+                    <a style="text-align: center;" asp-controller="Usuarios" asp-action="Index">Ver usuarios</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck col-sm-4">
+            <div class="card" style="border: 0px;">
+                <img class="card-img-top" src="https://image.flaticon.com/icons/svg/2232/2232483.svg" alt="Card image cap">
+                <div style="text-align: center;" class="card-body">
+                    <a style="text-align: center;" asp-controller="Productos" asp-action="Index">Cursos</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck col-sm-4">
+            <div class="card" style="border: 0px;">
+                <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1524/1524832.svg" alt="Card image cap">
+                <div style="text-align: center;" class="card-body">
+                    <a style="text-align: center;" asp-controller="Vendedores" asp-action="Misproductos">Ver mis productos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (User.IsInRole("cliente"))
+{
+    <div class="row">
+        <div class="card-deck col-sm-4">
+            <div class="card" style="border: 0px;">
+                <img class="card-img-top" src="https://image.flaticon.com/icons/svg/2422/2422618.svg" alt="Card image cap">
+                <div style="text-align: center;" class="card-body">
+                    <a style="text-align: center;" asp-controller="Vendedores" asp-action="Index">Ver vendedores</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck col-sm-4">
+            <div class="card" style="border: 0px;">
+                <img class="card-img-top" src="https://image.flaticon.com/icons/svg/2196/2196585.svg" alt="Card image cap">
+                <div style="text-align: center;" class="card-body">
+                    <a style="text-align: center;" asp-controller="Productos" asp-action="Index">Ver cursos</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck col-sm-4">
+            <div class="card" style="border: 0px;">
+                <img class="card-img-top" src="https://image.flaticon.com/icons/svg/1651/1651586.svg" alt="Card image cap">
+                <div style="text-align: center;" class="card-body">
+                    <a style="text-align: center;" asp-controller="Usuarios" asp-action="Miscursos">Ver mis cursos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (User.IsInRole("admin"))
+{
+    <div>
+        <h3>Bienvenido al área de administrador</h3>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTjYhc34IuX--elmS3YmyMmXzBbbrYyUiaGHoi4a1cf2IxcNpjx&usqp=CAU" alt="Stupid Boss" />
+    </div>
+}
+
+
+
+
+@if (!User.IsInRole("admin") && !User.IsInRole("cliente") && !User.IsInRole("vendedor"))
+{
+    <div class="text-center">
+        <img src="https://cdn.memegenerator.es/imagenes/memes/full/31/43/31433197.jpg" />
+    </div>
+
+}
+

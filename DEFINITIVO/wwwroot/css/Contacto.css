@@ -1,0 +1,17 @@
+﻿.formContacto{
+    width: 90%;
+    max-width:800px;
+    position:center;
+}
+
+.firstRow{
+
+}
+.inputText{
+    width:45%;
+    align-self:center;
+}
+.inputMessage {
+    width: 90%;
+    align-self: center;
+}

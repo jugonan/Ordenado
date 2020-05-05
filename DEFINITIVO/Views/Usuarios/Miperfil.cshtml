@@ -1,0 +1,18 @@
+﻿@model DEFINITIVO.Models.Usuario
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<h1> Hola @Model.Nombre @Model.Apellido</h1>
+<container>
+    <div id="columna1">
+        <a asp-action="MiCuenta" asp-route-id="@Model.Id" class="btn btn-primary">Mi cuenta</a>
+        <a asp-action="Historico" asp-route-id="@Model.Id" class="btn btn-primary">Histórico</a>
+        <a asp-action="Rewards" asp-route-id="@Model.Id" class="btn btn-primary">Rewards</a>
+    </div>
+    <div id="columna2">
+
+    </div>
+</container>

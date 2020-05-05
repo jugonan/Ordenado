@@ -1,0 +1,26 @@
+git remote add origin https://github.com/galol130/HelduPomeloOnline.git
+
+git push -u origin master
+
+BBDD
+C:\ProgramData\MySQL\MySQL Server 8.0\Data\heldupomelo>
+
+Solucion
+C:\Users\Galo\source\repos\HelduMySQLPomelo
+
+Username: PpR2pvnNWX
+
+Database name: PpR2pvnNWX
+
+Password: eQrXOosqbb
+
+Server: remotemysql.com
+
+Port: 3306
+
+/DEFINITIVO/obj/Debug
+/DEFINITIVO/obj/Release
+/DEFINITIVO/obj/DEFINITIVO.csproj.nuget.cache
+/DEFINITIVO/obj/DEFINITIVO.csproj.nuget.dgspec.json
+/DEFINITIVO/obj/DEFINITIVO.csproj.nuget.g.props
+/DEFINITIVO/obj/DEFINITIVO.csproj.nuget.g.targets

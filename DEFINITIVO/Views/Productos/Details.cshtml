@@ -1,0 +1,219 @@
+@model DEFINITIVO.Models.Producto
+@using Microsoft.AspNetCore.Identity
+@using DEFINITIVO.Services
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject HelperService HelperService
+@{
+    Vendedor vendedor = await HelperService.ObtenerVendedorDesdeProducto(Model.Id);
+    ViewData["Title"] = "Details";
+    IdentityUser activeUser = await UserManager.GetUserAsync(User);
+    Usuario usuario = await HelperService.ObtenerUsuario(activeUser.Id);
+    List<Review> reviews = await HelperService.ObtenerReviews(Model.Id);
+    int totalComentarios = await HelperService.ObtenerTotalComentarios(reviews);
+    int valoracionMedia = await HelperService.ObtenerValoracionMedia(reviews, totalComentarios);
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+<link href="~/css/Producto_Details.css" rel="stylesheet" type="text/css">
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css">*@
+
+
+<div class="card">
+    <div class="container-fliud">
+        <div class="wrapper row">
+            <div class="preview col-md-7">
+                <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="@Model.ImagenProducto" class="d-block w-100" alt="...">
+                        </div>
+                        @if (Model.ImagenProducto2 != null)
+                        {
+                            <div class="carousel-item">
+                                <img src="@Model.ImagenProducto2" class="d-block w-100" alt="...">
+                            </div>
+                        }
+                        @if (Model.ImagenProducto3 != null)
+                        {
+                            <div class="carousel-item">
+                                <img src="@Model.ImagenProducto3" class="d-block w-100" alt="...">
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="row">
+                    <img src="@Model.ImagenProducto" style="width:150px; height:150px;" alt="..." class="img-thumbnail">
+                    @if (Model.ImagenProducto2 != null)
+                    {
+                        <img src="@Model.ImagenProducto2" style="width:150px; height:150px;" alt="..." class="img-thumbnail">
+                    }
+                    @if (Model.ImagenProducto3 != null)
+                    {
+                        <img src="@Model.ImagenProducto3" style="width:150px; height:150px;" alt="..." class="img-thumbnail">
+                    }
+                </div>
+                <div>
+                    <h5>El producto</h5>
+                    <p>@Model.Descripcion</p>
+                </div>
+                <div style="align-self:center; margin-bottom:5%;">
+                    <h5>Condiciones</h5>
+                    <p><strong>Fecha de validez: </strong>@Model.FechaValidez</p><br />
+                </div>
+                <!-- Div que incluye todos los comentarios existentes-->
+                @foreach (Review review in reviews)
+                {
+                    <div>
+                        <div class="row">
+                            <div class="col-2">
+                                <img style="width:60%; border-radius:50%;" class="img-responsive user-photo" src="data:image/png;base64,@System.Convert.ToBase64String(review.Usuario.FotoUsuario)">
+                            </div>
+                            <div class="col-3">
+                                <h6>@review.Usuario.NombreUsuario</h6>
+                                <p>Miembro desde: 01/01/2020</p>
+                            </div>
+                        </div>
+                        <div class="row" style="justify-content:start;">
+                            <div title="@review.Valoracion" class="stars-comentarios col-3">
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <div class="col-4">
+                                <p>@review.Fecha</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>@review.Comentario</p>
+                        </div>
+                    </div>
+                }
+                @if (reviews.Count == 0)
+                {
+                    <div>
+                        <h4>Aún no hay comentarios. ¡Sé el primero!</h4>
+                    </div>
+                }
+                <div class='container'>
+                    <div class="row media comment-box">
+                        <div class="media-left col-3">
+                            <a href="#">
+                                <img style="width:80%" class="img-responsive user-photo" src="data:image/png;base64,@System.Convert.ToBase64String(usuario.FotoUsuario)">
+                            </a>
+                        </div>
+                        <div class="media-body col-9">
+                            <h4 class="media-heading">@usuario.NombreUsuario</h4>
+                            <div>
+                                <p>¿Has probado este producto?</p>
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Añadir comentario</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="details col-md-5">
+                <div>
+                    <h6>@vendedor.NombreDeEmpresa</h6>
+                    <div class="rating row">
+                        <div class="col-4">
+                            <p>(nº de visitas)</p>
+                        </div>
+                        @if (valoracionMedia != 0)
+                        {
+                            <div title="@valoracionMedia" class="stars-fijas col-8">
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <p>@totalComentarios reviews</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="stars-fijas col-8">
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <p>0 reviews</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <h4 style="text-transform:capitalize" id="activeProductTitle">@Model.Titulo</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 offset-6">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6" style="display:flex;">
+                                        <h4 id="precio-inicial"><strike>@Model.Precio</strike></h4>
+                                        <h4 id="precio-inicial"><strike>€</strike></h4>
+                                    </div>
+                                    <div class="col-6" style="display:flex;">
+                                        <h4 id="precio-final" style="color: green;"><strong>@Model.PrecioFinal</strong></h4>
+                                        <h4 id="precio-final" style="color: green;"><strong>€</strong></h4>
+                                    </div>
+                                </div>
+                                <p id="resultado-descuento">50% descuento</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:grid">
+                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-carrito" class="btn btn-outline-success">Agregar a carrito</a>
+                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-favorito" class="btn btn-outline-danger">Añadir a favoritos<img style="width:6%; margin-left: 4%;" id="imagen-favorito" class="d-none" /></a>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PARA AÑADIR COMENTARIOS-->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="background: white;">
+        <p>¿Qué te ha parecido el producto?</p>
+        <div class="modal-content" style="display:flex; flex-direction:row;" id="div-estrellas-modal">
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <div class="modal-content">
+            <form method="post" asp-action="CrearReview" asp-route-ProductoId="@Model.Id" asp-route-UsuarioId="@usuario.IdentityUserId">
+                <input type="text" placeholder="Añada su comentario" name="ComentarioUsuario" asp-action="CrearReview" rows="6" style="width:100%" />
+                <input class="d-none" name="valoracionUsuario" type="text" id="incluir-valoracion" asp-action="CrearReview" />
+                <input type="submit" value="Enviar comentario" />
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (User.IsInRole("admin"))
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index2">Volver</a>
+    </div>
+}
+<script src="~/js/Producto_Details.js"></script>

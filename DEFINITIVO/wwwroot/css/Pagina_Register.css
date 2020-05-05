@@ -1,0 +1,66 @@
+﻿#div-opciones-acceso {
+    justify-content: space-evenly;
+}
+
+#div-inicial-register {
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex !important;
+    justify-content: center;
+    text-align: center !important;
+}
+
+.form-group {
+    justify-content: space-between;
+    width: 100%;
+}
+
+#div-boton-register {
+    justify-content: space-between;
+}
+
+#opcion-comprar {
+    width: 100%;
+    height: 14em;
+    background-size: 100%;
+    background-image: url("https://images.jpost.com/image/upload/f_auto,fl_lossy/t_JD_ArticleMainImage/252949");
+    transition: transform .7s;
+}
+
+#opcion-comprar:hover {
+    background-size: 100%;
+    background-image: url("https://i.ytimg.com/vi/DQ69l3OW-ts/maxresdefault.jpg");
+    transform: scale(1.1);
+}
+
+#opcion-vender {
+    width: 100%;
+    height: 14em;
+    /*background-color: lightblue;*/
+    background-size: 100%;
+    background-image: url("https://okdiario.com/img/2020/01/20/disfrazarse-de-donald-trump.jpg");
+    transition: transform .7s;
+}
+#opcion-vender:hover {
+        background-size: 100%;
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg");
+        transform: scale(1.1);
+}
+
+/*#div-de-usuario {
+    border: 2px solid lightgreen;
+    border-radius: 10%;
+    height: 12em;
+}
+#div-de-vendedor {
+    border: 2px solid lightblue;
+    border-radius: 10%;
+    height: 12em;
+}*/
+

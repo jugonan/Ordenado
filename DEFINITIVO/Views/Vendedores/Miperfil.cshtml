@@ -1,0 +1,42 @@
+﻿@model DEFINITIVO.Models.Vendedor
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<div>
+    <div class="row">
+        <h3 class="col-4 offset-4">Mis Datos</h3>
+        <a class="col-3" asp-action="Edit" asp-route-id="@Model.Id" ><img  style="max-width:10%;" align="right" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
+    </div>
+    <div class="row">
+        <partial name="_MiperfilPV" model="Model" />
+        <div class="col-7 offset-1" style="width: 66%;background-color: white;">
+            @*Cuadro blanco*@
+            <div class="row" style="margin:0px; justify-content:space-around;">
+                <div col-5 style="width:35%;">
+                    <h5>Tipo de empresa</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil"></p>
+                    </div>
+                </div>
+                <div col-6 offset-1 style="width:60%;">
+                    <h5>Número de registro</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin:0px;">
+                <div col-5 style="width:35%;">
+                    <h5>Nombre de Empresa</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

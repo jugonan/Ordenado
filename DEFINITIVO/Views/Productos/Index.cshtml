@@ -1,0 +1,107 @@
+@model IEnumerable<DEFINITIVO.Models.Producto>
+@using Microsoft.AspNetCore.Identity
+@using DEFINITIVO.Services
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject MessagesService MessagesService
+
+@{
+    ViewData["Title"] = "Index";
+    IdentityUser activeUser = await UserManager.GetUserAsync(User);
+}
+
+<h1>Productos y Servicios</h1>
+@if (User.IsInRole("admin"))
+{
+    <a asp-action="Create">Cargar producto</a>
+}
+
+<div class="row">
+    @foreach (Producto producto in Model)
+    {
+        <div class="card col-sm-4">
+            <img class="card-img-top" src="@producto.ImagenProducto" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@producto.Titulo</h5>
+                <p class="card-text">@producto.Descripcion</p>
+                <p class="card-text">@producto.FechaValidez</p>
+                @foreach (ProductoCategoria productoCategoria in producto.ProductoCategoria)
+                {
+                    <p class="card-text">@productoCategoria.Categoria.Nombre</p>
+                }
+                @foreach (ProductoVendedor productoVendedor in producto.ProductoVendedor)
+                {
+                    <p class="card-text">@productoVendedor.Vendedor.NombreDeEmpresa</p>
+                }
+                <p class="card-text">@producto.Precio €</p>
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@producto.Id">Editar</a>
+                    <a asp-action="Details" asp-route-id="@producto.Id">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@producto.Id">Eliminar</a>
+                }
+                @if (User.IsInRole("vendedor"))
+                {
+                    foreach (ProductoVendedor productoVendedor in producto.ProductoVendedor)
+                    {
+                        if (productoVendedor.Vendedor.IdentityUserId == activeUser.Id)
+                        {
+                            <a asp-action="Edit" asp-route-id="@producto.Id">Editar</a>
+                            <a asp-action="Details" asp-route-id="@producto.Id">Detalles</a>
+                            <a asp-action="Delete" asp-route-id="@producto.Id">Eliminar</a>
+                        }
+                    }
+                }
+                @if (User.IsInRole("cliente"))
+                {
+                    <a asp-controller="Mercados" asp-action="Create" asp-route-ProductoId="@producto.Id">Inscribirme</a>
+                }
+            </div>
+        </div>
+    }
+    @if (MessagesService.GetShowMessage())
+    {
+        MessagesService.SetShowMessage(false);
+        //https://love2dev.com/blog/custom-javascript-alert/
+        <script type="x-template" id="banner-template">
+            <div class="banner banner-top alert-primary active" role="alert">
+                @MessagesService.GetMessage()
+                <span class="banner-close"></span>
+            </div>
+        </script>
+        <script>
+            function getBannerTemplate() {
+                var template = document.querySelector("#banner-template");
+                return template.innerHTML;
+            }
+
+            function createFragment(htmlStr) {
+                var frag = document.createDocumentFragment(),
+                    temp = document.createElement('div');
+                temp.innerHTML = htmlStr;
+                while (temp.firstChild) {
+                    frag.appendChild(temp.firstChild);
+                }
+                return frag;
+            }
+
+            function injectTemplate(template) {
+                document.body.appendChild(createFragment(template));
+            }
+            var simpleAlert = document.querySelector(".simple-alert");
+            injectTemplate(getBannerTemplate());
+            var btnClose = document.querySelector(".banner-close");
+            btnClose.addEventListener("click", function (closeEvt) {
+                var banner = document.querySelector(".banner");
+                banner.parentNode.removeChild(banner);
+            });
+
+        </script>
+    }
+</div>
+
+@section Scripts {
+
+    <link href="@Url.Content("~/css/popup_banner.css")" rel="stylesheet" type="text/css" />
+    <link href="~/css/popup_banner.css" rel="stylesheet" type="text/css" />
+}

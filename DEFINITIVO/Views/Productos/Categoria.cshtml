@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using DEFINITIVO.Services
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject MessagesService MessagesService
+@inject HelperService HelperService
+@{
+    ViewData["Title"] = "Productos";
+    IdentityUser activeUser = await UserManager.GetUserAsync(User);
+    List<Producto> nuevaLista = await HelperService.ProductosDesdeCategoria(ViewBag.CategoriaId);
+    Categoria categoria = ViewBag.Categoria;
+}
+<link href="~/css/Producto_Categoria.css" rel="stylesheet" type="text/css">
+
+<h1>Productos @categoria.Nombre</h1>
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-xl-3">
+    @foreach (Producto producto in nuevaLista)
+    {
+        <div class="col-3 contenedor-carta">
+            <div class="card h-100">
+                <img src="@producto.ImagenProducto" class="imagen-carta" alt="Imagen_1">
+                <div class="item-box-blog-date bg-blue-ui white">
+                    <span class="mon"> <strike style="opacity:0.7;">&#8364 @producto.Precio</strike><span class="precio-destacado"> &#8364 @producto.PrecioFinal</span></span>
+                </div>
+                <div class="cuerpo-carta">
+                    <h5 class="card-title">@producto.Titulo</h5>
+                    <p class="texto-carta">@producto.Descripcion</p>
+                    <div class="row">
+                        <div class="texto-stock">
+                            <p>Quedan @producto.UnidadesStock!!</p>
+                        </div>
+                        <div class="mt">
+                            <a asp-action="Details" asp-route-id="@producto.Id" class="btn bg-blue-ui white read">Comprar!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/js/Producto_Categoria.js"></script>
+
+
+

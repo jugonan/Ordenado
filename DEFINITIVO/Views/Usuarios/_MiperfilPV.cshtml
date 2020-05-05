@@ -1,0 +1,22 @@
+﻿@model DEFINITIVO.Models.Usuario
+
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="col-3">
+    <img style="border-radius:50%; max-height:160px;" src="data:image/png;base64,@System.Convert.ToBase64String(Model.FotoUsuario)" />
+    <h3>@Model.NombreUsuario</h3>
+    <br />
+    <div style="width:50%; margin: 10px 0px;">
+        <a style="width:100%;" asp-action="MiCuenta" asp-route-id="@Model.Id" class="btn btn-primary">Mi cuenta</a>
+    </div>
+    <div style="width:50%; margin: 10px 0px;">
+        <a style="width:100%;" asp-action="Historico" asp-route-id="@Model.Id" class="btn btn-primary">Histórico</a>
+    </div>
+    <div style="width:50%; margin: 10px 0px;">
+        <a style="width:100%;" asp-action="Rewards" asp-route-id="@Model.Id" class="btn btn-primary">Rewards</a>
+    </div>
+</div>
