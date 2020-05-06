@@ -52,9 +52,7 @@ namespace DEFINITIVO.Controllers
         // GET: Mercados/Create
         public IActionResult Create(int? ProductoId)
         {
-            //ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion");
             ViewData["ProductoId"] = new SelectList(_context.Producto.Where(x => x.Id == ProductoId), "Id", "Titulo");
-            //ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Apellido");
             ViewData["UsuarioId"] = new SelectList(_context.Usuario.Where(x => x.IdentityUserId == _userManager.GetUserId(User)), "Id", "NombreUsuario");
             return View();
         }
@@ -73,9 +71,7 @@ namespace DEFINITIVO.Controllers
             mercado.Codigo = Convert.ToString(codigo);
             if (ModelState.IsValid)
             {
-                _context.Add(mercado);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
+                await _mercadosService.CreateMercadoPost(mercado);
                 return RedirectToAction("Inscrito", "Usuarios");
             }
             ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion", mercado.ProductoId);
@@ -91,7 +87,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var mercado = await _context.Mercado.FindAsync(id);
+            Mercado mercado = await _mercadosService.EditMercadoGet(id);
             if (mercado == null)
             {
                 return NotFound();
@@ -117,8 +113,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(mercado);
-                    await _context.SaveChangesAsync();
+                    await _mercadosService.EditMercadoPost(mercado);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -146,10 +141,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var mercado = await _context.Mercado
-                .Include(m => m.Producto)
-                .Include(m => m.Usuario)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Mercado mercado = await _mercadosService.DeleteMercadoGet(id);
             if (mercado == null)
             {
                 return NotFound();
@@ -162,16 +154,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var mercado = await _context.Mercado.FindAsync(id);
-            _context.Mercado.Remove(mercado);
-            await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
+            await _mercadosService.DeleteMercadoPost(id);
             return RedirectToAction("Desinscrito", "Usuarios");
         }
 
         private bool MercadoExists(int id)
         {
-            return _context.Mercado.Any(e => e.Id == id);
+            return _mercadosService.ExistMercado(id);
         }
     }
 }
