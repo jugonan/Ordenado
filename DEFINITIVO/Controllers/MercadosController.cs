@@ -5,30 +5,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class MercadosController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IMercadosService _mercadosService;
 
-        public MercadosController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public MercadosController(SignInManager<IdentityUser> signInManager,
+                                  UserManager<IdentityUser> userManager,
+                                  IMercadosService mercadosService)
         {
-            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _mercadosService = mercadosService;
         }
 
         // GET: Mercados
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Mercado.Include(m => m.Producto).Include(m => m.Usuario);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _mercadosService.GetMercados());
         }
 
         // GET: Mercados/Details/5
@@ -39,10 +40,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var mercado = await _context.Mercado
-                .Include(m => m.Producto)
-                .Include(m => m.Usuario)
-                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (mercado == null)
             {
                 return NotFound();

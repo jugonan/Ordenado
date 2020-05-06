@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,29 +7,37 @@ using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     //[Authorize(Roles = "admin")]
     public class GustoUsuariosController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IGustosUsuariosService _gustosUsuariosService;
+        private readonly ICategoriasService _categoriasService;
+        private readonly IUsuariosService _usuariosService;
 
-        public GustoUsuariosController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public GustoUsuariosController(UserManager<IdentityUser> userManager,
+                                       SignInManager<IdentityUser> signInManager,
+                                       IGustosUsuariosService gustosUsuariosService,
+                                       ICategoriasService categoriasService,
+                                       IUsuariosService usuariosService)
         {
-            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _gustosUsuariosService = gustosUsuariosService;
+            _categoriasService = categoriasService;
+            _usuariosService = usuariosService;
         }
 
         // GET: GustoUsuarios
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.GustoUsuario.Include(g => g.Categoria).Include(g => g.Usuario);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _gustosUsuariosService.GetGustosUsuarios());
         }
 
         // GET: GustoUsuarios/Details/5
@@ -43,10 +49,8 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var gustoUsuario = await _context.GustoUsuario
-                .Include(g => g.Categoria)
-                .Include(g => g.Usuario)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            GustoUsuario gustoUsuario = await _gustosUsuariosService.DetailsGustoUsuario(id);
+
             if (gustoUsuario == null)
             {
                 return NotFound();
@@ -56,10 +60,9 @@ namespace DEFINITIVO.Controllers
         }
 
         // GET: GustoUsuarios/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
-            //ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "NombreUsuario");
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
             ViewData["UsuarioId"] = new SelectList(_context.Usuario.Where(x => x.IdentityUserId == _userManager.GetUserId(User)), "Id", "NombreUsuario");
             return View();
         }
@@ -73,12 +76,11 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(gustoUsuario);
-                await _context.SaveChangesAsync();
+                await _gustosUsuariosService.CreateGustoUsuarioPost(gustoUsuario);
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Inscrito", "Usuarios");
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre", gustoUsuario.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre", gustoUsuario.CategoriaId);
             ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "NombreUsuario", gustoUsuario.UsuarioId);
             return RedirectToAction("Index2", "Productos");
         }
@@ -91,12 +93,12 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var gustoUsuario = await _context.GustoUsuario.FindAsync(id);
+            GustoUsuario gustoUsuario = await _gustosUsuariosService.EditGustoUsuarioGet(id);
             if (gustoUsuario == null)
             {
                 return NotFound();
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", gustoUsuario.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre", gustoUsuario.CategoriaId);
             ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Apellido", gustoUsuario.UsuarioId);
             return View(gustoUsuario);
         }
@@ -117,8 +119,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(gustoUsuario);
-                    await _context.SaveChangesAsync();
+                    await _gustosUsuariosService.EditGustoUsuarioPost(gustoUsuario);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -133,7 +134,7 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", gustoUsuario.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre", gustoUsuario.CategoriaId);
             ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Apellido", gustoUsuario.UsuarioId);
             return View(gustoUsuario);
         }
@@ -146,10 +147,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var gustoUsuario = await _context.GustoUsuario
-                .Include(g => g.Categoria)
-                .Include(g => g.Usuario)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            GustoUsuario gustoUsuario = await _gustosUsuariosService.DeleteGustoUsuarioGet(id);
             if (gustoUsuario == null)
             {
                 return NotFound();
@@ -163,15 +161,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var gustoUsuario = await _context.GustoUsuario.FindAsync(id);
-            _context.GustoUsuario.Remove(gustoUsuario);
-            await _context.SaveChangesAsync();
+            await _gustosUsuariosService.DeleteGustoUsuarioPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool GustoUsuarioExists(int id)
         {
-            return _context.GustoUsuario.Any(e => e.Id == id);
+            return _gustosUsuariosService.ExistGustoUsuario(id);
         }
     }
 }

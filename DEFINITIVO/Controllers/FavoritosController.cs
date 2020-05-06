@@ -7,23 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class FavoritosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IFavoritosService _favoritosService;
+        private readonly IProductosService _productosService;
+        private readonly IUsuariosService _usuariosService;
+        private readonly IVendedoresService _vendedoresService;
 
-        public FavoritosController(ApplicationDbContext context)
+        public FavoritosController(IFavoritosService favoritosService,
+                                   IProductosService productosService,
+                                   IUsuariosService usuariosService,
+                                   IVendedoresService vendedoresService)
         {
-            _context = context;
+            _favoritosService = favoritosService;
+            _productosService = productosService;
+            _productosService = productosService;
+            _usuariosService = usuariosService;
+            _vendedoresService = vendedoresService;
         }
 
         // GET: Favoritos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Favorito.Include(f => f.Producto).Include(f => f.Usuario).Include(f => f.Vendedor);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _favoritosService.GetFavoritos());
         }
 
         // GET: Favoritos/Details/5
@@ -33,12 +44,8 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
+            Favorito favorito = await _favoritosService.DetailsFavorito(id);
 
-            var favorito = await _context.Favorito
-                .Include(f => f.Producto)
-                .Include(f => f.Usuario)
-                .Include(f => f.Vendedor)
-                .FirstOrDefaultAsync(m => m.Id == id);
             if (favorito == null)
             {
                 return NotFound();
@@ -48,11 +55,11 @@ namespace DEFINITIVO.Controllers
         }
 
         // GET: Favoritos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Apellido");
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "Ciudad");
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion");
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido");
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad");
             return View();
         }
 
@@ -65,13 +72,12 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(favorito);
-                await _context.SaveChangesAsync();
+                await _favoritosService.CreateFavoritoPost(favorito);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", favorito.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Apellido", favorito.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "Ciudad", favorito.VendedorId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", favorito.ProductoId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido", favorito.UsuarioId);
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad", favorito.VendedorId);
             return View(favorito);
         }
 
@@ -83,14 +89,14 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var favorito = await _context.Favorito.FindAsync(id);
+            Favorito favorito = await _favoritosService.EditFavoritoGet(id);
             if (favorito == null)
             {
                 return NotFound();
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", favorito.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Apellido", favorito.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "Ciudad", favorito.VendedorId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", favorito.ProductoId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido", favorito.UsuarioId);
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad", favorito.VendedorId);
             return View(favorito);
         }
 
@@ -110,8 +116,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(favorito);
-                    await _context.SaveChangesAsync();
+                    await _favoritosService.EditFavoritoPost(favorito);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -126,9 +131,9 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", favorito.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Apellido", favorito.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "Ciudad", favorito.VendedorId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", favorito.ProductoId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido", favorito.UsuarioId);
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad", favorito.VendedorId);
             return View(favorito);
         }
 
@@ -140,11 +145,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var favorito = await _context.Favorito
-                .Include(f => f.Producto)
-                .Include(f => f.Usuario)
-                .Include(f => f.Vendedor)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Favorito favorito = await _favoritosService.DeleteFavoritoGet(id);
             if (favorito == null)
             {
                 return NotFound();
@@ -158,15 +159,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var favorito = await _context.Favorito.FindAsync(id);
-            _context.Favorito.Remove(favorito);
-            await _context.SaveChangesAsync();
+            await _favoritosService.DeleteFavoritoPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool FavoritoExists(int id)
         {
-            return _context.Favorito.Any(e => e.Id == id);
+            return _favoritosService.ExistFavorito(id);
         }
     }
 }
