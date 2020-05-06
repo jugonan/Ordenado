@@ -13,92 +13,25 @@ using DEFINITIVO.Services;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUsuariosService _usuariosService;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly Manejo_Productos _myManejadorDeProductos;
-        private readonly HelperService _helperService;
-        private readonly Usuario _usuario;
 
-        public UsuariosController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, Manejo_Productos myManejadorDeProductos, HelperService helperService)
+
+        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+            _usuariosService = usuariosService;
             _userManager = userManager;
-            _signInManager = signInManager;
-            _myManejadorDeProductos = myManejadorDeProductos;
-            _helperService = helperService;
         }
-
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Usuario
-                                                       .Include(u => u.IdentityUser)
-                                                       .Include(u => u.Mercados)
-                                                            .ThenInclude(m => m.Producto)
-                                                       .Include(u => u.Categorias)
-                                                            .ThenInclude(c => c.Categoria);
-            return View(await applicationDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> Miperfil()
-        {
-            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == _userManager.GetUserId(User));
-            return View(usuario);
-
-        }
-
-        public IActionResult Carrito()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Micuenta()
-        {
-            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == _userManager.GetUserId(User));
-            return View(usuario);
-        }
-
-        public async Task<IActionResult> Historico()
-        {
-            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == _userManager.GetUserId(User));
-            ViewData["ProductosVistos"] = await _context.Transaccion
-                                                                    .Include(x => x.Producto)
-                                                                    .Include(x => x.Vendedor)
-                                                                    .Where(x => x.Unidades == 0).ToListAsync();
-            return View(usuario);
-        }
-
-
-        public async Task<IActionResult> Rewards()
-        {
-            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == _userManager.GetUserId(User));
-            return View(usuario);
-        }
-
-        public async Task<IActionResult> Miscursos()
-        {
-            Usuario usuario = await _context.Usuario
-                                                        .Include(v => v.Mercados)
-                                                            .ThenInclude(p => p.Producto)
-                                                        .FirstOrDefaultAsync(x => x.IdentityUserId == _userManager.GetUserId(User));
-            return View(usuario);
-        }
-
-        public IActionResult Desinscrito()
-        {
-            return View();
-        }
-
-        // Acción casi inútil que sólo devuelve la vista
-        public IActionResult Inscrito()
-        {
-            return View();
+            return View(await _usuariosService.GetUsuario());
         }
 
         // GET: Usuarios/Details/5
@@ -108,15 +41,11 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var usuario = await _context.Usuario
-                .Include(u => u.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Usuario usuario = await _usuariosService.DetailsUsuario(id);
             if (usuario == null)
             {
                 return NotFound();
             }
-
             return View(usuario);
         }
 
@@ -133,24 +62,21 @@ namespace DEFINITIVO.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Usuario usuario, List<IFormFile> FotoUsuario)
         {
-            foreach (var item in FotoUsuario)
-            {
-                if (item.Length > 0)
-                {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        usuario.FotoUsuario = stream.ToArray();
-                    }
-                }
-            }
             if (ModelState.IsValid)
             {
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
+                foreach (var item in FotoUsuario)
+                {
+                    if (item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            usuario.FotoUsuario = stream.ToArray();
+                        }
+                    }
+                }
+                await _usuariosService.CreateUsuario(usuario);
             }
-            //return View(usuario);
             return RedirectToAction("Create", "GustoUsuarios");
         }
 
@@ -161,8 +87,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var usuario = await _context.Usuario.FindAsync(id);
+            Usuario usuario = await _usuariosService.EditUsuarioGet(id);
             if (usuario == null)
             {
                 return NotFound();
@@ -186,8 +111,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
+                    await _usuariosService.EditUsuarioPost(usuario);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -212,15 +136,11 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var usuario = await _context.Usuario
-                .Include(u => u.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Usuario usuario = await _usuariosService.DeleteUsuarioGet(id);
             if (usuario == null)
             {
                 return NotFound();
             }
-
             return View(usuario);
         }
 
@@ -229,15 +149,69 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var usuario = await _context.Usuario.FindAsync(id);
-            _context.Usuario.Remove(usuario);
-            await _context.SaveChangesAsync();
+            await _usuariosService.DeleteUsuarioPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool UsuarioExists(int id)
         {
-            return _context.Usuario.Any(e => e.Id == id);
+            return _usuariosService.ExistUsuario(id);
+        }
+
+        public async Task<IActionResult> Miperfil()
+        {
+            string userManagerId = _userManager.GetUserId(User);
+            Usuario usuario = await _usuariosService.MiPerfilUsuario(userManagerId);
+            return View(usuario);
+        }
+
+        public IActionResult Carrito()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Micuenta()
+        {
+            string userManagerId = _userManager.GetUserId(User);
+            Usuario usuario = await _usuariosService.MicuentaUsuario(userManagerId);
+            return View(usuario);
+        }
+
+        public async Task<IActionResult> Historico()
+        {
+            string userManagerId = _userManager.GetUserId(User);
+            Usuario usuario = await _usuariosService.MicuentaUsuario(userManagerId);
+            //ViewData["ProductosVistos"] = await _context.MTransaccion
+            //                                                        .Include(x => x.Producto)
+            //                                                        .Include(x => x.Vendedor)
+            //                                                        .Where(x => x.Unidades == 0).ToListAsync();
+            return View(usuario);
+        }
+
+
+        public async Task<IActionResult> Rewards()
+        {
+            string userManagerId = _userManager.GetUserId(User);
+            Usuario usuario = await _usuariosService.RewardsUsuario(userManagerId);
+            return View(usuario);
+        }
+
+        public async Task<IActionResult> Miscursos()
+        {
+            string userManagerId = _userManager.GetUserId(User);
+            Usuario usuario = await _usuariosService.MiscursosUsuario(userManagerId);
+            return View(usuario);
+        }
+
+        public IActionResult Desinscrito()
+        {
+            return View();
+        }
+
+        // Acción casi inútil que sólo devuelve la vista
+        public IActionResult Inscrito()
+        {
+            return View();
         }
     }
 }

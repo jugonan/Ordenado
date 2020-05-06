@@ -8,68 +8,26 @@ using Microsoft.EntityFrameworkCore;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class VendedoresController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IVendedoresService _vendedoresService;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public VendedoresController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+
+        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+            _vendedoresService = vendedoresService;
             _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         // GET: Vendedores
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Vendedor
-                                                        .Include(v => v.IdentityUser)
-                                                        .Include(v => v.ProductoVendedor)
-                                                            .ThenInclude(a => a.Producto);
-            return View(await applicationDbContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> Miperfil()
-        {
-            Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == _userManager.GetUserId(User));
-            return View(vendedor);
-        }
-
-        public async Task<IActionResult> Estadisticas()
-        {
-
-            Vendedor vendedor = await _context.Vendedor.Include(v=>v.ProductoVendedor).ThenInclude(a=>a.Producto).FirstOrDefaultAsync(x => x.IdentityUserId == _userManager.GetUserId(User));
-            return View(vendedor);
-        }
-
-        public async Task<IActionResult> Opiniones()
-        {
-            Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == _userManager.GetUserId(User));
-            return View(vendedor);
-        }
-
-        public async Task<IActionResult> Misproductos()
-        {
-            Vendedor vendedor = await _context.Vendedor
-                                                        .Include(v => v.ProductoVendedor)
-                                                            .ThenInclude(p => p.Producto)
-                                                        .FirstOrDefaultAsync(x => x.IdentityUserId == _userManager.GetUserId(User));
-            return View(vendedor);
-        }
-
-        public IActionResult Modificado()
-        {
-            return View();
-        }
-
-        public IActionResult Eliminado()
-        {
-            return View();
+            return View(await _vendedoresService.GetVendedor());
         }
 
         // GET: Vendedores/Details/5
@@ -80,21 +38,18 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var vendedor = await _context.Vendedor
-                .Include(v => v.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Vendedor vendedor = await _vendedoresService.DetailsVendedor(id);
             if (vendedor == null)
             {
                 return NotFound();
             }
-
             return View(vendedor);
         }
 
         // GET: Vendedores/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
+            //ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
             return View();
 
         }
@@ -108,11 +63,10 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vendedor);
-                await _context.SaveChangesAsync();
+                await _vendedoresService.CreateVendedor(vendedor);
                 return RedirectToAction("Inscrito", "Vendedores");
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
+            //ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
             return RedirectToAction("Inscrito", "Vendedores");
 
             //NOTA: Tenemos que añadir una página error a la que enviar al vendedor si se da algún problema en la creación del mismo
@@ -126,13 +80,12 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var vendedor = await _context.Vendedor.FindAsync(id);
+            Vendedor vendedor = await _vendedoresService.EditVendedorGet(id);
             if (vendedor == null)
             {
                 return NotFound();
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", vendedor.IdentityUserId);
+            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", vendedor.IdentityUserId);
             return View(vendedor);
         }
 
@@ -152,8 +105,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(vendedor);
-                    await _context.SaveChangesAsync();
+                    await _vendedoresService.EditVendedorPost(vendedor);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -166,10 +118,9 @@ namespace DEFINITIVO.Controllers
                         throw;
                     }
                 }
-                //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index", "Home");
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", vendedor.IdentityUserId);
+            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", vendedor.IdentityUserId);
             return View(vendedor);
         }
 
@@ -180,10 +131,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var vendedor = await _context.Vendedor
-                .Include(v => v.IdentityUser)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Vendedor vendedor = await _vendedoresService.DeleteVendedorGet(id);
             if (vendedor == null)
             {
                 return NotFound();
@@ -197,15 +145,51 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var vendedor = await _context.Vendedor.FindAsync(id);
-            _context.Vendedor.Remove(vendedor);
-            await _context.SaveChangesAsync();
+            await _vendedoresService.DeleteVendedorPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool VendedorExists(int id)
         {
-            return _context.Vendedor.Any(e => e.Id == id);
+            return _vendedoresService.ExistVendedor(id);
+        }
+
+        public async Task<IActionResult> Miperfil()
+        {
+            string vendedorId = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.MiperfilVendedor(vendedorId);
+            return View(vendedor);
+        }
+
+        public async Task<IActionResult> Estadisticas()
+        {
+            string vendedorId = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.EstadisticasVendedor(vendedorId);
+            return View(vendedor);
+        }
+
+        public async Task<IActionResult> Opiniones()
+        {
+            string vendedorId = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.OpinionesVendedor(vendedorId);
+            return View(vendedor);
+        }
+
+        public async Task<IActionResult> Misproductos()
+        {
+            string vendedorId = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.MisproductosVendedor(vendedorId);
+            return View(vendedor);
+        }
+
+        public IActionResult Modificado()
+        {
+            return View();
+        }
+
+        public IActionResult Eliminado()
+        {
+            return View();
         }
 
         // Acción casi inútil que sólo devuelve la vista

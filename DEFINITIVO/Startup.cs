@@ -68,6 +68,10 @@ namespace DEFINITIVO
             services.AddScoped<Manejo_Productos>();
             services.AddTransient<ICategoriasService, CategoriasService>();
             services.AddTransient<IFavoritosService, FavoritosService>();
+            services.AddTransient<IReviewsService, ReviewsService>();
+            services.AddTransient<ITransaccionesService, TransaccionesService>();
+            services.AddTransient<IUbicacionesService, UbicacionesService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
