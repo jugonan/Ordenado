@@ -2,10 +2,13 @@
 <html lang="en">
 @using Microsoft.AspNetCore.Identity
 @using DEFINITIVO.Services
+@using Heldu.Logic.Interfaces
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject HelperService HelperService
 @inject MessagesService MessagesService
+@inject IVendedoresService VendedorService
+@inject ICategoriasService CategoriasService
 @{
     ViewData["Title"] = "Productos";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
@@ -148,7 +151,7 @@
             }
             @if (User.IsInRole("vendedor"))
             {
-                Vendedor vendedor = await HelperService.ObtenerVendedor(activeUser.Id);
+                Vendedor vendedor = await VendedorService.GetVendedorByIdentityUserId(activeUser.Id);
                 if (vendedor.ProductoVendedor == null)
                 {
                     <div style="width:10%;" id="div-del-vendedor">
@@ -163,7 +166,7 @@
 
         <!-- Categorias ocultas que se despliegan al hacer click en "Categorías" -->
         @{
-            List<Categoria> listaCategorias = await HelperService.ListaCategorias();
+            List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
         }
         <div class="collapse" id="divCategorias">
             <ul class="row subMenuCat">

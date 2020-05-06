@@ -1,9 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Heldu.Logic.Interfaces
+@using Heldu.Logic.Services
 @using DEFINITIVO.Services
+
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
-@inject HelperService HelperService
+@inject IHelperService HelperService
+@inject IProductosService ProductosService
 @{
     ViewData["Title"] = "Index2";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
@@ -30,7 +34,7 @@
     List<Categoria> cats = ViewBag.Categorias;
     foreach (Categoria categoria in cats)
     {
-        List<Producto> productos = await HelperService.ProductosDesdeCategoria(categoria.Id);
+        List<Producto> productos = await ProductosService.GetProductosByCategoriaId(categoria.Id);
         var cantProductos = productos.Count();
         List<int> randomProducto = HelperService.RandomProductos(cantProductos);
         @if (cantProductos > 0)

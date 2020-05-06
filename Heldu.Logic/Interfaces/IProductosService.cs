@@ -17,5 +17,7 @@ namespace Heldu.Logic.Interfaces
         public Task<Producto> GetProductoById(int? id);
         public Task AddCantidadVisitasProductoById(int? id);
         public Task<List<Producto>> BuscarProductosPorString(string inputBuscar);
+        public Task<List<Producto>> GetProductosByCategoriaId(int categoriaId);
+
     }
 }

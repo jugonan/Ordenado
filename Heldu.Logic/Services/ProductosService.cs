@@ -85,5 +85,19 @@ namespace Heldu.Logic.Services
             }
             return listaProductosEncontrados;
         }
+        //Listar productos para una categoria determinada
+        public async Task<List<Producto>> GetProductosByCategoriaId(int categoriaId)
+        {
+            List<Producto> productos = new List<Producto>();
+            List<ProductoCategoria> productoCategorias = await _context.ProductoCategoria.Where(x => x.CategoriaId == categoriaId).ToListAsync();
+
+            foreach (ProductoCategoria productoCategoria in productoCategorias)
+            {
+                int idProducto = productoCategoria.ProductoId;
+                Producto nuevoProducto = _context.Producto.FirstOrDefault(x => x.Id == idProducto);
+                productos.Add(nuevoProducto);
+            }
+            return productos;
+        }
     }
 }

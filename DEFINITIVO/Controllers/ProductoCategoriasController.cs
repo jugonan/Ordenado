@@ -47,7 +47,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create()
         {
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion");
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Id", productoCategoria.CategoriaId);
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoCategoria.ProductoId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", productoCategoria.ProductoId);
             return View(productoCategoria);
         }
 
@@ -82,7 +82,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Id", productoCategoria.CategoriaId);
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoCategoria.ProductoId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", productoCategoria.ProductoId);
             return View(productoCategoria);
         }
 
@@ -118,7 +118,7 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Id", productoCategoria.CategoriaId);
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoCategoria.ProductoId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", productoCategoria.ProductoId);
             return View(productoCategoria);
         }
 

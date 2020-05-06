@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 
@@ -13,17 +8,17 @@ namespace DEFINITIVO.Controllers
 {
     public class UbicacionesController : Controller
     {
-        private readonly IUbicacionesService _ubicaciones;
+        private readonly IUbicacionesService _ubicacionesService;
 
-        public UbicacionesController(IUbicacionesService ubicaciones)
+        public UbicacionesController(IUbicacionesService ubicacionesService)
         {
-            _ubicaciones = ubicaciones;
+            _ubicacionesService = ubicacionesService;
         }
 
         // GET: Ubicaciones
         public async Task<IActionResult> Index()
         {
-            return View(await _ubicaciones.GetUbiacaciones());
+            return View(await _ubicacionesService.GetUbicacion());
         }
 
         // GET: Ubicaciones/Details/5
@@ -33,7 +28,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Ubicacion ubicacion = await _ubicaciones.DetailsUbicacion(id);
+            Ubicacion ubicacion = await _ubicacionesService.DetailsUbicacion(id);
             if (ubicacion == null)
             {
                 return NotFound();
@@ -56,7 +51,7 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _ubicaciones.CreateUbicacion(ubicacion);
+                await _ubicacionesService.CreateUbicacion(ubicacion);
                 return RedirectToAction(nameof(Index));
             }
             return View(ubicacion);
@@ -69,7 +64,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Ubicacion ubicacion = await _ubicaciones.EditUbicacionGet(id);
+            Ubicacion ubicacion = await _ubicacionesService.EditUbicacionGet(id);
             if (ubicacion == null)
             {
                 return NotFound();
@@ -93,7 +88,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    await _ubicaciones.EditUbicacionPost(ubicacion);
+                    await _ubicacionesService.EditUbicacionPost(ubicacion);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -118,7 +113,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Ubicacion ubicacion = await _ubicaciones.DeleteUbicacionGet(id);
+            Ubicacion ubicacion = await _ubicacionesService.DeleteUbicacionGet(id);
             if (ubicacion == null)
             {
                 return NotFound();
@@ -132,13 +127,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _ubicaciones.DeleteUbicacionPost(id);
+            await _ubicacionesService.DeleteUbicacionPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool UbicacionExists(int id)
         {
-            return _ubicaciones.ExistUbicacion(id);
+            return _ubicacionesService.ExistUbicacion(id);
         }
     }
 }

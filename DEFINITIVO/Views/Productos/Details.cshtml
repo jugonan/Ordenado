@@ -1,17 +1,21 @@
 @model Heldu.Entities.Models.Producto
 @using Microsoft.AspNetCore.Identity
-@using DEFINITIVO.Services
+@using Heldu.Logic.Interfaces
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
-@inject HelperService HelperService
+@inject IHelperService HelperService
+@inject IVendedoresService VendedoresService
+@inject IUsuariosService UsuariosService
+@inject IUsuariosService UsuariosService
+@inject IReviewsService ReviewsService
 @{
-    Vendedor vendedor = await HelperService.ObtenerVendedorDesdeProducto(Model.Id);
+    Vendedor vendedor = await VendedoresService.ObtenerVendedorDesdeProducto(Model.Id);
     ViewData["Title"] = "Details";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
-    Usuario usuario = await HelperService.ObtenerUsuario(activeUser.Id);
-    List<Review> reviews = await HelperService.ObtenerReviews(Model.Id);
-    int totalComentarios = await HelperService.ObtenerTotalComentarios(reviews);
-    int valoracionMedia = await HelperService.ObtenerValoracionMedia(reviews, totalComentarios);
+    Usuario usuario = await UsuariosService.GetUsuarioByActiveIdentityUser(activeUser.Id);
+    List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
+    int totalComentarios = await ReviewsService.CantidadComentariosByReviewList(reviews);
+    int valoracionMedia = await ReviewsService.ObtenerValoracionMediaByProductoId(Model.Id);
 }
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

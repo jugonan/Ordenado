@@ -192,7 +192,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Miscursos()
         {
             string userManagerId = _userManager.GetUserId(User);
-            Usuario usuario = await _usuariosService.MiscursosUsuario(userManagerId);
+            Usuario usuario = await _usuariosService.MisCursosUsuario(userManagerId);
             return View(usuario);
         }
 

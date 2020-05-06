@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Heldu.Logic.Interfaces;
+using System.Collections.Generic;
 
 namespace DEFINITIVO.Controllers
 {
@@ -57,7 +58,11 @@ namespace DEFINITIVO.Controllers
         // GET: Mercados/Create
         public async Task<IActionResult> Create(int? ProductoId)
         {
-            ViewData["ProductoId"] = new SelectList(_context.Producto.Where(x => x.Id == ProductoId), "Id", "Titulo");
+            List<Producto> listaProductos = new List<Producto>()
+            {
+                await _productosService.DetailsProducto(ProductoId)
+            };
+            ViewData["ProductoId"] = new SelectList(listaProductos, "Id", "Titulo");
             ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "NombreUsuario");
             return View();
         }
@@ -79,7 +84,7 @@ namespace DEFINITIVO.Controllers
                 await _mercadosService.CreateMercadoPost(mercado);
                 return RedirectToAction("Inscrito", "Usuarios");
             }
-            ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion", mercado.ProductoId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", mercado.ProductoId);
             ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "NombreUsuario", mercado.UsuarioId);
             return RedirectToAction("Inscrito", "Usuarios");
         }
@@ -97,7 +102,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion", mercado.ProductoId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", mercado.ProductoId);
             ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "Apellido", mercado.UsuarioId);
             return View(mercado);
         }
@@ -133,7 +138,7 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion", mercado.ProductoId);
+            ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", mercado.ProductoId);
             ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "Apellido", mercado.UsuarioId);
             return View(mercado);
         }

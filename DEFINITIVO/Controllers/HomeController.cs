@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,8 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using DEFINITIVO.Services;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
@@ -20,22 +19,25 @@ namespace DEFINITIVO.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly HelperService _helperService;
         private readonly MessagesService _messagesService;
+        private readonly IHelperService _helperService;
+        private readonly IUsuariosService _usuariosService;
 
         public HomeController(ILogger<HomeController> logger,
             ApplicationDbContext context,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            HelperService helperService,
-            MessagesService messagesService)
+            MessagesService messagesService,
+            IHelperService helperService,
+            IUsuariosService usuariosService)
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
-            _helperService = helperService;
             _messagesService = messagesService;
+            _helperService = helperService;
+            _usuariosService = usuariosService;
         }
 
         public async Task<IActionResult> Index()
@@ -102,7 +104,7 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Contacto(string userId, string nombre, string email, string tel, string mensaje)
         {
-            Usuario usuario = await _helperService.ObtenerUsuario(userId);
+            Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(userId);
             string asunto = "[No especificado] ha enviado un mensaje desde la web";
             if (!String.IsNullOrEmpty(nombre))
             {
