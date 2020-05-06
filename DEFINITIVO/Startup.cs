@@ -12,7 +12,6 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.Services;
 using HelperService = Heldu.Logic.Services.HelperService;
-using HelperServiceOld = DEFINITIVO.Services.HelperService;
 
 namespace DEFINITIVO
 {
@@ -82,8 +81,6 @@ namespace DEFINITIVO
             services.AddTransient<IUbicacionesService, UbicacionesService>();
             services.AddTransient<IUsuariosService, UsuariosService>();
             services.AddTransient<IVendedoresService, VendedoresService>();
-
-            services.AddTransient<HelperServiceOld>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

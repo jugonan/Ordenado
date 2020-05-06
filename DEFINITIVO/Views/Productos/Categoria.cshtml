@@ -1,13 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Heldu.Logic.Interfaces
 @using DEFINITIVO.Services
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
-@inject HelperService HelperService
+@inject IProductosService ProductosService
 @{
     ViewData["Title"] = "Productos";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
-    List<Producto> nuevaLista = await HelperService.ProductosDesdeCategoria(ViewBag.CategoriaId);
+    List<Producto> nuevaLista = await ProductosService.GetProductosByCategoriaId(ViewBag.CategoriaId);
     Categoria categoria = ViewBag.Categoria;
 }
 <link href="~/css/Producto_Categoria.css" rel="stylesheet" type="text/css">

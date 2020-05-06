@@ -27,10 +27,6 @@ namespace Heldu.Logic.Services
                             .Include(g => g.Usuario)
                             .FirstOrDefaultAsync(m => m.Id == id);
         }
-        public async Task CreateGustoUsuarioGet()
-        {
-
-        }
         public async Task CreateGustoUsuarioPost(GustoUsuario gustoUsuario)
         {
             _context.Add(gustoUsuario);

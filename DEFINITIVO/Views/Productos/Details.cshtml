@@ -14,7 +14,7 @@
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
     Usuario usuario = await UsuariosService.GetUsuarioByActiveIdentityUser(activeUser.Id);
     List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
-    int totalComentarios = await ReviewsService.CantidadComentariosByReviewList(reviews);
+    int totalComentarios = ReviewsService.CantidadComentariosByReviewList(reviews);
     int valoracionMedia = await ReviewsService.ObtenerValoracionMediaByProductoId(Model.Id);
 }
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

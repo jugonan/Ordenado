@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 
@@ -13,7 +9,6 @@ namespace DEFINITIVO.Controllers
 {
     public class FavoritosController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly IFavoritosService _favoritosService;
         private readonly IProductosService _productosService;
         private readonly IUsuariosService _usuariosService;

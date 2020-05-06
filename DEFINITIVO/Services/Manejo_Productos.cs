@@ -11,13 +11,10 @@ namespace DEFINITIVO.Services
     public class Manejo_Productos : IManejo_Productos
     {
         private readonly ApplicationDbContext _context;
-        private readonly HelperService _helperService;
 
-        public Manejo_Productos(ApplicationDbContext context, HelperService helperService)
+        public Manejo_Productos(ApplicationDbContext context)
         {
             _context = context;
-            _helperService = helperService;
-
         }
 
         public List<Producto> GetProductosComprados(int id)

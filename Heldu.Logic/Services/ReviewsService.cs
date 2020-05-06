@@ -59,7 +59,7 @@ namespace Heldu.Logic.Services
             return await _context.Review.Where(x => x.ProductoId == Id).ToListAsync();
         }
         // Función simple que recibe la lista de Reviews del modelo Producto
-        public async Task<int> CantidadComentariosByReviewList(List<Review> reviews)
+        public int CantidadComentariosByReviewList(List<Review> reviews)
         {
             return reviews.Count();
         }
@@ -68,7 +68,7 @@ namespace Heldu.Logic.Services
         {
             List<Review> reviews = await ObtenerReviewsByProductoId(id);
             int mediaValoracion;
-            int totalComentarios = await CantidadComentariosByReviewList(reviews);
+            int totalComentarios = CantidadComentariosByReviewList(reviews);
             if (totalComentarios == 0)
             {
                 mediaValoracion = 0;

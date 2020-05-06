@@ -19,7 +19,6 @@ namespace DEFINITIVO.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly MessagesService _messagesService;
-        private readonly HelperService _helperService;
         private readonly IProductosService _productosService;
         private readonly ITransaccionesService _transaccionesService;
         private readonly ICategoriasService _categoriasService;
@@ -34,7 +33,6 @@ namespace DEFINITIVO.Controllers
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             MessagesService messagesService,
-            HelperService helperService,
             IProductosService productosService,
             ITransaccionesService transaccionesService,
             ICategoriasService categoriasService,
@@ -47,7 +45,6 @@ namespace DEFINITIVO.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _messagesService = messagesService;
-            _helperService = helperService;
             _productosService = productosService;
             _transaccionesService = transaccionesService;
             _categoriasService = categoriasService;

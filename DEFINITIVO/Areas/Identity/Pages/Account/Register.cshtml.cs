@@ -20,13 +20,6 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
-
-        //public RegisterModel(ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
