@@ -19,12 +19,12 @@ namespace Heldu.Logic.Services
         public async Task<List<Transaccion>> GetTransaccion()
         {
             return await _context.Transaccion.Include(t => t.Producto)
-                                                       .ThenInclude(u => u.Id)
-                                                   .Include(t => t.Usuario)
-                                                       .ThenInclude(u => u.IdentityUser)
-                                                   .Include(t => t.Vendedor)
-                                                       .ThenInclude(u => u.IdentityUser)
-                                                       .ToListAsync();
+                                .ThenInclude(u => u.Id)
+                                .Include(t => t.Usuario)
+                                .ThenInclude(u => u.IdentityUser)
+                                .Include(t => t.Vendedor)
+                                .ThenInclude(u => u.IdentityUser)
+                                .ToListAsync();
         }
         public async Task<Transaccion> DetailsTransaccion(int? id)
         {

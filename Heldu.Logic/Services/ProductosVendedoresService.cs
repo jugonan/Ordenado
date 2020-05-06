@@ -52,6 +52,11 @@ namespace Heldu.Logic.Services
         {
             return _context.ProductoVendedor.Any(e => e.Id == id);
         }
+        //Obtener el ProductoVendedor desde el ID del Producto
+        public async Task<ProductoVendedor> ProductoVendedorByProductoId(int? id)
+        {
+            return await _context.ProductoVendedor.FirstOrDefaultAsync(x => x.ProductoId == id);
+        }
     }
 }
 

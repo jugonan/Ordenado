@@ -82,7 +82,7 @@ namespace DEFINITIVO.Controllers
             {
                 //Genero una nueva transacción con los datos del usuario, el producto y el vendedor
                 Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
-                ProductoVendedor productoVendedor = await _productosVendedoresService.DetailsProductoVendedor(id);
+                ProductoVendedor productoVendedor = await _productosVendedoresService.ProductoVendedorByProductoId(id);
                 await _transaccionesService.CreateTransaccionWithUsuarioAndProductoVendedor(usuario, productoVendedor);
             }
 
