@@ -7,28 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class TransaccionesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ITransaccionesService _transaccionesService;
 
-        public TransaccionesController(ApplicationDbContext context)
+        public TransaccionesController(ITransaccionesService transaccionesService)
         {
-            _context = context;
+            _transaccionesService = transaccionesService;
         }
 
         // GET: Transacciones
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Transaccion.Include(t => t.Producto)
-                                                                .ThenInclude(u => u.Id)
-                                                            .Include(t => t.Usuario)
-                                                                .ThenInclude(u => u.IdentityUser)
-                                                            .Include(t => t.Vendedor)
-                                                                .ThenInclude(u => u.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _transaccionesService.GetTransaccion());
         }
 
         // GET: Transacciones/Details/5
@@ -38,12 +33,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var transaccion = await _context.Transaccion
-                .Include(t => t.Producto)
-                .Include(t => t.Usuario)
-                .Include(t => t.Vendedor)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Transaccion transaccion = await _transaccionesService.DetailsTransaccion(id);
             if (transaccion == null)
             {
                 return NotFound();
@@ -55,9 +45,6 @@ namespace DEFINITIVO.Controllers
         // GET: Transacciones/Create
         public IActionResult Create()
         {
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Titulo");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "NombreUsuario");
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "NombreDeEmpresa");
             return View();
         }
 
@@ -70,13 +57,9 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(transaccion);
-                await _context.SaveChangesAsync();
+                await _transaccionesService.CreateTransaccion(transaccion);
                 return RedirectToAction("Index2", "Productos");
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Titulo", transaccion.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "NombreUsuario", transaccion.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "NombreDeEmpresa", transaccion.VendedorId);
             return View(transaccion);
         }
 
@@ -88,14 +71,11 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var transaccion = await _context.Transaccion.FindAsync(id);
+            Transaccion transaccion = await _transaccionesService.EditTransaccionGet(id);
             if (transaccion == null)
             {
                 return NotFound();
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", transaccion.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Apellido", transaccion.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "Ciudad", transaccion.VendedorId);
             return View(transaccion);
         }
 
@@ -115,8 +95,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(transaccion);
-                    await _context.SaveChangesAsync();
+                    await _transaccionesService.EditTransaccionPost(transaccion);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -131,9 +110,6 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", transaccion.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Apellido", transaccion.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(_context.Vendedor, "Id", "Ciudad", transaccion.VendedorId);
             return View(transaccion);
         }
 
@@ -145,11 +121,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var transaccion = await _context.Transaccion
-                .Include(t => t.Producto)
-                .Include(t => t.Usuario)
-                .Include(t => t.Vendedor)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Transaccion transaccion = await _transaccionesService.DeleteTransaccionGet(id);
             if (transaccion == null)
             {
                 return NotFound();
@@ -163,15 +135,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var transaccion = await _context.Transaccion.FindAsync(id);
-            _context.Transaccion.Remove(transaccion);
-            await _context.SaveChangesAsync();
+            await _transaccionesService.DeleteTransaccionPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool TransaccionExists(int id)
         {
-            return _context.Transaccion.Any(e => e.Id == id);
+            return _transaccionesService.ExistTransaccion(id);
         }
     }
 }

@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class UbicacionesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUbicacionesService _ubicaciones;
 
-        public UbicacionesController(ApplicationDbContext context)
+        public UbicacionesController(IUbicacionesService ubicaciones)
         {
-            _context = context;
+            _ubicaciones = ubicaciones;
         }
 
         // GET: Ubicaciones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Ubicacion.ToListAsync());
+            return View(await _ubicaciones.GetUbiacaciones());
         }
 
         // GET: Ubicaciones/Details/5
@@ -32,14 +33,11 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var ubicacion = await _context.Ubicacion
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Ubicacion ubicacion = await _ubicaciones.DetailsUbicacion(id);
             if (ubicacion == null)
             {
                 return NotFound();
             }
-
             return View(ubicacion);
         }
 
@@ -58,8 +56,7 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(ubicacion);
-                await _context.SaveChangesAsync();
+                await _ubicaciones.CreateUbicacion(ubicacion);
                 return RedirectToAction(nameof(Index));
             }
             return View(ubicacion);
@@ -72,8 +69,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var ubicacion = await _context.Ubicacion.FindAsync(id);
+            Ubicacion ubicacion = await _ubicaciones.EditUbicacionGet(id);
             if (ubicacion == null)
             {
                 return NotFound();
@@ -97,8 +93,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(ubicacion);
-                    await _context.SaveChangesAsync();
+                    await _ubicaciones.EditUbicacionPost(ubicacion);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -123,9 +118,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var ubicacion = await _context.Ubicacion
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Ubicacion ubicacion = await _ubicaciones.DeleteUbicacionGet(id);
             if (ubicacion == null)
             {
                 return NotFound();
@@ -139,15 +132,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ubicacion = await _context.Ubicacion.FindAsync(id);
-            _context.Ubicacion.Remove(ubicacion);
-            await _context.SaveChangesAsync();
+            await _ubicaciones.DeleteUbicacionPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool UbicacionExists(int id)
         {
-            return _context.Ubicacion.Any(e => e.Id == id);
+            return _ubicaciones.ExistUbicacion(id);
         }
     }
 }

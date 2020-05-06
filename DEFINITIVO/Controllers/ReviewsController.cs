@@ -9,31 +9,22 @@ using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using DEFINITIVO.Services;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class ReviewsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly Manejo_Productos _myManejadorDeProductos;
-        private readonly HelperService _helperService;
-        private readonly Usuario _usuario;
+        private readonly IReviewsService _reviewsService;
 
-        public ReviewsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, Manejo_Productos myManejadorDeProductos, HelperService helperService)
+        public ReviewsController(IReviewsService reviewsService)
         {
-            _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _myManejadorDeProductos = myManejadorDeProductos;
-            _helperService = helperService;
+            _reviewsService = reviewsService;
         }
-
         // GET: Reviews
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Review.ToListAsync());
+            return View(await _reviewsService.GetReviews());
         }
 
         // GET: Reviews/Details/5
@@ -44,13 +35,11 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var review = await _context.Review
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Review review = await _reviewsService.DetailsReview(id);
             if (review == null)
             {
                 return NotFound();
             }
-
             return View(review);
         }
 
@@ -69,8 +58,7 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(review);
-                await _context.SaveChangesAsync();
+                await _reviewsService.CreateReview(review);
                 return RedirectToAction(nameof(Index));
             }
             return View(review);
@@ -84,7 +72,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var review = await _context.Review.FindAsync(id);
+            Review review = await _reviewsService.EditReviewGet(id);
             if (review == null)
             {
                 return NotFound();
@@ -108,8 +96,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(review);
-                    await _context.SaveChangesAsync();
+                   await _reviewsService.EditReviewPost(review);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -134,14 +121,11 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-
-            var review = await _context.Review
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Review review = await _reviewsService.DeleteReviewGet(id);
             if (review == null)
             {
                 return NotFound();
             }
-
             return View(review);
         }
 
@@ -150,15 +134,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var review = await _context.Review.FindAsync(id);
-            _context.Review.Remove(review);
-            await _context.SaveChangesAsync();
+            await _reviewsService.DeleteReviewPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ReviewExists(int id)
         {
-            return _context.Review.Any(e => e.Id == id);
+            return _reviewsService.ExistReview(id);
         }
     }
 }

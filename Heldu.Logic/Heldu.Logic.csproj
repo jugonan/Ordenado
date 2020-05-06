@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Heldu.Entities\Heldu.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Services\UsuariosServicio.cs" />
+    <Compile Remove="Services\ProductosServicio.cs" />
+  </ItemGroup>
 </Project>
