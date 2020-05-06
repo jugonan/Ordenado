@@ -880,3 +880,12 @@ C:/Users/Galo/Source/Repos/Ordenado/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINITIV
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/bin/Debug/netcoreapp3.1/Heldu.Entities.pdb
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/bin/Debug/netcoreapp3.1/Heldu.Logic.pdb
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/bin/Debug/netcoreapp3.1/Heldu.Database.pdb
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.csprojAssemblyReference.cache
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.RazorAssemblyInfo.cache
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.RazorAssemblyInfo.cs
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.AssemblyInfoInputs.cache
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.AssemblyInfo.cs
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.dll
+C:\Users\Galo\Source\Repos\Ordenado\DEFINITIVO\obj\Debug\netcoreapp3.1\DEFINITIVO.pdb

@@ -58,8 +58,8 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create()
         {
             ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion");
-            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido");
-            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad");
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuario(), "Id", "Apellido");
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedor(), "Id", "Ciudad");
             return View();
         }
 
@@ -76,8 +76,8 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", favorito.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido", favorito.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad", favorito.VendedorId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuario(), "Id", "Apellido", favorito.UsuarioId);
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedor(), "Id", "Ciudad", favorito.VendedorId);
             return View(favorito);
         }
 
@@ -95,8 +95,8 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
             ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", favorito.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido", favorito.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad", favorito.VendedorId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuario(), "Id", "Apellido", favorito.UsuarioId);
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedor(), "Id", "Ciudad", favorito.VendedorId);
             return View(favorito);
         }
 
@@ -132,8 +132,8 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductoId"] = new SelectList(await _productosService.GetProductos(), "Id", "Descripcion", favorito.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarios(), "Id", "Apellido", favorito.UsuarioId);
-            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedores(), "Id", "Ciudad", favorito.VendedorId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuario(), "Id", "Apellido", favorito.UsuarioId);
+            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedor(), "Id", "Ciudad", favorito.VendedorId);
             return View(favorito);
         }
 
