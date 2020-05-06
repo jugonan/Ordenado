@@ -7,23 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class ProductoVendedoresController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductosVendedoresService _productosVendedoresService;
 
-        public ProductoVendedoresController(ApplicationDbContext context)
+        public ProductoVendedoresController(IProductosVendedoresService productosVendedoresService)
         {
-            _context = context;
+            _productosVendedoresService = productosVendedoresService;
         }
-
         // GET: ProductoVendedores
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ProductoVendedor.Include(p => p.Producto).Include(p => p.Vendedor);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _productosVendedoresService.GetProductoVendedor());
         }
 
         // GET: ProductoVendedores/Details/5
@@ -34,10 +33,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var productoVendedor = await _context.ProductoVendedor
-                .Include(p => p.Producto)
-                .Include(p => p.Vendedor)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            ProductoVendedor productoVendedor = await _productosVendedoresService.DetailsProductoVendedor(id);
             if (productoVendedor == null)
             {
                 return NotFound();
@@ -49,8 +45,8 @@ namespace DEFINITIVO.Controllers
         // GET: ProductoVendedores/Create
         public IActionResult Create()
         {
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Titulo");
-            ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa");
+            //ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Titulo");
+            //ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa");
             return View();
         }
 
@@ -63,12 +59,11 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(productoVendedor);
-                await _context.SaveChangesAsync();
+                await _productosVendedoresService.CreateProductoVendedor(productoVendedor);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoVendedor.ProductoId);
-            ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa", productoVendedor.VendedorId);
+            //ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoVendedor.ProductoId);
+            //ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa", productoVendedor.VendedorId);
             return View(productoVendedor);
         }
 
@@ -80,13 +75,13 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var productoVendedor = await _context.ProductoVendedor.FindAsync(id);
+            ProductoVendedor productoVendedor = await _productosVendedoresService.EditProductoVendedorGet(id);
             if (productoVendedor == null)
             {
                 return NotFound();
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoVendedor.ProductoId);
-            ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa", productoVendedor.VendedorId);
+            //ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoVendedor.ProductoId);
+            //ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa", productoVendedor.VendedorId);
             return View(productoVendedor);
         }
 
@@ -106,8 +101,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(productoVendedor);
-                    await _context.SaveChangesAsync();
+                    await _productosVendedoresService.EditProductoVendedorPost(productoVendedor);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,8 +116,8 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoVendedor.ProductoId);
-            ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa", productoVendedor.VendedorId);
+            //ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoVendedor.ProductoId);
+            //ViewData["VendedorId"] = new SelectList(_context.Set<Vendedor>(), "Id", "NombreDeEmpresa", productoVendedor.VendedorId);
             return View(productoVendedor);
         }
 
@@ -135,10 +129,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var productoVendedor = await _context.ProductoVendedor
-                .Include(p => p.Producto)
-                .Include(p => p.Vendedor)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            ProductoVendedor productoVendedor = await _productosVendedoresService.DeleteProductoVendedorGet(id);
             if (productoVendedor == null)
             {
                 return NotFound();
@@ -152,15 +143,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var productoVendedor = await _context.ProductoVendedor.FindAsync(id);
-            _context.ProductoVendedor.Remove(productoVendedor);
-            await _context.SaveChangesAsync();
+            await _productosVendedoresService.DeleteProductoVendedorPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductoVendedorExists(int id)
         {
-            return _context.ProductoVendedor.Any(e => e.Id == id);
+            return _productosVendedoresService.ExistProductoVendedor(id);
         }
     }
 }
