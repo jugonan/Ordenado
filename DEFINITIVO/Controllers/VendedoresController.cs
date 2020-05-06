@@ -157,7 +157,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Miperfil()
         {
             string vendedorId = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.MiperfilVendedor(vendedorId);
+            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
             return View(vendedor);
         }
 
@@ -171,7 +171,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Opiniones()
         {
             string vendedorId = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.OpinionesVendedor(vendedorId);
+            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
             return View(vendedor);
         }
 

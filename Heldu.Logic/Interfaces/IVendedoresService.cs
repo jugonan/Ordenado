@@ -19,5 +19,7 @@ namespace Heldu.Logic.Interfaces
         public Task<Vendedor> EstadisticasVendedor(string vendedorId);
         public Task<Vendedor> OpinionesVendedor(string vendedorId);
         public Task<Vendedor> MisproductosVendedor(string vendedorId);
+        public Task<Vendedor> ObtenerVendedorDesdeProducto(int Id);
+        public Task<Vendedor> ObtenerVendedorDesdedIdentity(string identityId);
     }
 }

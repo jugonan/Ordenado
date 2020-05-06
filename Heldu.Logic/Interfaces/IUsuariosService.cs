@@ -19,5 +19,6 @@ namespace Heldu.Logic.Interfaces
         public Task<Usuario> HistoricoUsuario(string userManagerId);
         public Task<Usuario> RewardsUsuario(string userManagerId);
         public Task<Usuario> MiscursosUsuario(string userManagerId);
+        public Task<Usuario> ObtenerUsuarioDesdedIdentity(string identityId);
     }
 }

@@ -52,6 +52,14 @@ namespace Heldu.Logic.Services
         {
             return _context.Categoria.Any(e => e.Id == id);
         }
+
+        //Devuelve el listado de categorias existentes (para usarlo en el navbar del Layout)
+        public async Task<List<Categoria>> ListaCategorias()
+        {
+            List<Categoria> listaCategorias = await _context.Categoria.ToListAsync();
+
+            return listaCategorias;
+        }
     }
 }
 

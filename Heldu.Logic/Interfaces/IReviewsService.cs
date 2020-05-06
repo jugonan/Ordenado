@@ -15,5 +15,8 @@ namespace Heldu.Logic.Interfaces
         public Task<Review> DeleteReviewGet(int? id);
         public Task<Review> DeleteReviewPost(int id);
         public bool ExistReview(int id);
+        public Task<List<Review>> ObtenerReviews(int Id);
+        public Task<int> ObtenerTotalComentarios(List<Review> reviews);
+        public Task<int> ObtenerValoracionMedia(List<Review> reviews, int totalComentarios);
     }
 }

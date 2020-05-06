@@ -17,6 +17,12 @@ namespace Heldu.Logic.Services
             _context = context;
         }
 
+        public async Task<Vendedor> ObtenerVendedorDesdedIdentity(string identityId)
+        {
+            Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == identityId);
+            return vendedor;
+        }
+
         public async Task<List<Vendedor>> GetVendedor()
         {
             return await _context.Vendedor.ToListAsync();
@@ -54,11 +60,6 @@ namespace Heldu.Logic.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Vendedor> MiperfilVendedor(string vendedorId)
-        {
-            Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
-            return vendedor;
-        }
 
         public async Task<Vendedor> EstadisticasVendedor(string vendedorId)
         {
@@ -66,11 +67,18 @@ namespace Heldu.Logic.Services
             return vendedor;
         }
 
-        public async Task<Vendedor> OpinionesVendedor(string vendedorId)
-        {
-            Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
-            return vendedor;
-        }
+        //Estos dos métodos hacen exactamente lo mismo que ObtenerVendedorMedianteIdentity
+        //public async Task<Vendedor> OpinionesVendedor(string vendedorId)
+        //{
+        //    Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
+        //    return vendedor;
+        //}
+
+        //public async Task<Vendedor> MiperfilVendedor(string vendedorId)
+        //{
+        //    Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
+        //    return vendedor;
+        //}
 
         public async Task<Vendedor> MisproductosVendedor(string vendedorId)
         {
@@ -80,6 +88,16 @@ namespace Heldu.Logic.Services
                                                         .FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
             return vendedor;
         }
+
+        // Devuelve el objeto vendedor pasándole el Id del producto
+        public async Task<Vendedor> ObtenerVendedorDesdeProducto(int Id)
+        {
+            ProductoVendedor productoVendedor = await _context.ProductoVendedor
+                                                                          .Include(v => v.Vendedor)
+                                                                          .FirstOrDefaultAsync(x => x.ProductoId == Id);
+            return productoVendedor.Vendedor;
+        }
+
 
         Task<Vendedor> IVendedoresService.CreateVendedor(Vendedor vendedor)
         {

@@ -60,6 +60,38 @@ namespace Heldu.Logic.Services
             return _context.Review.Any(e => e.Id == id);
         }
 
+        // Obtenemos Lista de reviews enviándole un Producto ID
+        public async Task<List<Review>> ObtenerReviews(int Id)
+        {
+            List<Review> reviews = await _context.Review.Where(x => x.ProductoId == Id).ToListAsync();
+            return reviews;
+        }
+        // Función simple que recibe la lista de Reviews del modelo Producto
+        public async Task<int> ObtenerTotalComentarios(List<Review> reviews)
+        {
+            int totalComentarios = reviews.Count();
+            return totalComentarios;
+        }
+        // Acompaña a la anterior para sacar la valoración media
+        public async Task<int> ObtenerValoracionMedia(List<Review> reviews, int totalComentarios)
+        {
+            int mediaValoracion;
+            if (totalComentarios == 0)
+            {
+                mediaValoracion = 0;
+            }
+            else
+            {
+                int totalValoracion = 0;
+                foreach (Review review in reviews)
+                {
+                    totalValoracion += review.Valoracion;
+                }
+                mediaValoracion = totalValoracion / totalComentarios;
+            }
+            return mediaValoracion;
+        }
+
         Task<Review> IReviewsService.CreateReview(Review review)
         {
             throw new NotImplementedException();
