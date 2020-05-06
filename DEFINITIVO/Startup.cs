@@ -11,6 +11,7 @@ using DEFINITIVO.Services;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.Services;
+using HelperService = Heldu.Logic.Services.HelperService;
 
 namespace DEFINITIVO
 {
@@ -63,15 +64,23 @@ namespace DEFINITIVO
                         facebookOptions.AppId = "2246956105601249";
                         facebookOptions.AppSecret = "bfc93921a19a84bd39781ee8685c692b";
                     });
-            services.AddTransient<HelperService>();
             //Añadido con Alberto
             services.AddScoped<Manejo_Productos>();
+            //Nueva Arquitectura
             services.AddTransient<ICategoriasService, CategoriasService>();
             services.AddTransient<IFavoritosService, FavoritosService>();
+            services.AddTransient<IGustosUsuariosService, GustosUsuariosService>();
+            services.AddTransient<IHelperService, HelperService>();
+            services.AddTransient<IMercadosService, MercadosService>();
+            services.AddTransient<IOpcionesProductosService, OpcionesProductosService>();
+            services.AddTransient<IProductoCategoriasService, ProductoCategoriasService>();
+            services.AddTransient<IProductosService, ProductosService>();
+            services.AddTransient<IProductosVendedoresService, ProductosVendedoresService>();
             services.AddTransient<IReviewsService, ReviewsService>();
             services.AddTransient<ITransaccionesService, TransaccionesService>();
             services.AddTransient<IUbicacionesService, UbicacionesService>();
-
+            services.AddTransient<IUsuariosService, UsuariosService>();
+            services.AddTransient<IVendedoresService, VendedoresService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

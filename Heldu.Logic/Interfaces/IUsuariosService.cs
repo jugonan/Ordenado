@@ -8,21 +8,15 @@ namespace Heldu.Logic.Interfaces
     {
         public Task<List<Usuario>> GetUsuario();
         public Task<Usuario> DetailsUsuario(int? id);
-        public Task<Usuario> CreateUsuario(Usuario usuario);
+        public Task CreateUsuario(Usuario usuario);
         public Task<Usuario> EditUsuarioGet(int? id);
         public Task EditUsuarioPost(Usuario usuario);
         public Task<Usuario> DeleteUsuarioGet(int? id);
-        public Task<Usuario> DeleteUsuarioPost(int id);
+        public Task DeleteUsuarioPost(int id);
         public bool ExistUsuario(int id);
-        public Task<Usuario> MiPerfilUsuario(string userManagerId);
-        public Task<Usuario> MicuentaUsuario(string userManagerId);
-        public Task<Usuario> HistoricoUsuario(string userManagerId);
-        public Task<Usuario> RewardsUsuario(string userManagerId);
-        public Task<Usuario> MiscursosUsuario(string userManagerId);
+        public Task<Usuario> MisCursosUsuario(string userManagerId);
         public Task<List<Usuario>> GetUsuariosListByActiveIdentityUser(string usuarioId);
         public Task<Usuario> GetUsuarioByActiveIdentityUser(string usuarioId);
-
-        public Task<Usuario> MiscursosUsuario(string userManagerId);
         public Task<Usuario> ObtenerUsuarioDesdedIdentity(string identityId);
     }
 }

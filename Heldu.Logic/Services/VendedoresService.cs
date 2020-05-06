@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Heldu.Database.Data;
@@ -16,18 +15,15 @@ namespace Heldu.Logic.Services
         {
             _context = context;
         }
-
         public async Task<Vendedor> ObtenerVendedorDesdedIdentity(string identityId)
         {
             Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == identityId);
             return vendedor;
         }
-
         public async Task<List<Vendedor>> GetVendedor()
         {
             return await _context.Vendedor.ToListAsync();
         }
-
         public async Task<Vendedor> DetailsVendedor(int? id)
         {
             return await _context.Vendedor.FirstOrDefaultAsync(x => x.Id == id);
@@ -41,30 +37,27 @@ namespace Heldu.Logic.Services
         {
             return await _context.Vendedor.FirstOrDefaultAsync(x => x.Id == id);
         }
-
         public async Task EditVendedorPost(Vendedor vendedor)
         {
             _context.Update(vendedor);
             await _context.SaveChangesAsync();
         }
-
         public async Task<Vendedor> DeleteVendedorGet(int? id)
         {
             return await _context.Vendedor.FirstOrDefaultAsync(m => m.Id == id);
         }
-
         public async Task DeleteVendedorPost(int id)
         {
-            Vendedor vendedor = await _context.Vendedor.FindAsync(id);
-            _context.Vendedor.Remove(vendedor);
+            _context.Vendedor.Remove(await _context.Vendedor.FindAsync(id));
             await _context.SaveChangesAsync();
         }
-
-
+        public bool ExistVendedor(int id)
+        {
+            return _context.Vendedor.Any(e => e.Id == id);
+        }
         public async Task<Vendedor> EstadisticasVendedor(string vendedorId)
         {
-            Vendedor vendedor = await _context.Vendedor.Include(v => v.ProductoVendedor).ThenInclude(a => a.Producto).FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
-            return vendedor;
+            return await _context.Vendedor.Include(v => v.ProductoVendedor).ThenInclude(a => a.Producto).FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
         }
 
         //Estos dos métodos hacen exactamente lo mismo que ObtenerVendedorMedianteIdentity
@@ -82,11 +75,10 @@ namespace Heldu.Logic.Services
 
         public async Task<Vendedor> MisproductosVendedor(string vendedorId)
         {
-            Vendedor vendedor = await _context.Vendedor
-                                                        .Include(v => v.ProductoVendedor)
-                                                            .ThenInclude(p => p.Producto)
-                                                        .FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
-            return vendedor;
+            return await _context.Vendedor
+                                .Include(v => v.ProductoVendedor)
+                                .ThenInclude(p => p.Producto)
+                                .FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
         }
 
         // Devuelve el objeto vendedor pasándole el Id del producto
@@ -97,21 +89,9 @@ namespace Heldu.Logic.Services
                                                                           .FirstOrDefaultAsync(x => x.ProductoId == Id);
             return productoVendedor.Vendedor;
         }
-
-
-        Task<Vendedor> IVendedoresService.CreateVendedor(Vendedor vendedor)
+        public async Task<Vendedor> GetVendedorByIdentityUserId(string id)
         {
-            throw new NotImplementedException();
-        }
-
-        Task<Vendedor> IVendedoresService.DeleteVendedorPost(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool ExistVendedor(int id)
-        {
-            throw new NotImplementedException();
+            return await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == id);
         }
     }
 }

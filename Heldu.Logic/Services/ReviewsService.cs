@@ -12,17 +12,14 @@ namespace Heldu.Logic.Services
     public class ReviewsService : IReviewsService
     {
         private readonly ApplicationDbContext _context;
-
         public ReviewsService(ApplicationDbContext context)
         {
             _context = context;
         }
-
         public async Task<List<Review>> GetReviews()
         {
             return await _context.Review.ToListAsync();
         }
-
         public async Task<Review> DetailsReview(int? id)
         {
             return await _context.Review.FirstOrDefaultAsync(x => x.Id == id);
@@ -36,46 +33,42 @@ namespace Heldu.Logic.Services
         {
             return await _context.Review.FirstOrDefaultAsync(x => x.Id == id);
         }
-
         public async Task EditReviewPost(Review review)
         {
             _context.Update(review);
             await _context.SaveChangesAsync();
         }
-
         public async Task<Review> DeleteReviewGet(int? id)
         {
             return await _context.Review.FirstOrDefaultAsync(m => m.Id == id);
         }
-
         public async Task DeleteReviewPost(int id)
         {
             Review review = await _context.Review.FindAsync(id);
             _context.Review.Remove(review);
             await _context.SaveChangesAsync();
         }
-
         public bool ExistReview(int id)
         {
             return _context.Review.Any(e => e.Id == id);
         }
 
         // Obtenemos Lista de reviews enviándole un Producto ID
-        public async Task<List<Review>> ObtenerReviews(int Id)
+        public async Task<List<Review>> ObtenerReviewsByProductoId(int Id)
         {
-            List<Review> reviews = await _context.Review.Where(x => x.ProductoId == Id).ToListAsync();
-            return reviews;
+            return await _context.Review.Where(x => x.ProductoId == Id).ToListAsync();
         }
         // Función simple que recibe la lista de Reviews del modelo Producto
-        public async Task<int> ObtenerTotalComentarios(List<Review> reviews)
+        public async Task<int> CantidadComentariosByReviewList(List<Review> reviews)
         {
-            int totalComentarios = reviews.Count();
-            return totalComentarios;
+            return reviews.Count();
         }
         // Acompaña a la anterior para sacar la valoración media
-        public async Task<int> ObtenerValoracionMedia(List<Review> reviews, int totalComentarios)
+        public async Task<int> ObtenerValoracionMediaByProductoId(int id)
         {
+            List<Review> reviews = await ObtenerReviewsByProductoId(id);
             int mediaValoracion;
+            int totalComentarios = await CantidadComentariosByReviewList(reviews);
             if (totalComentarios == 0)
             {
                 mediaValoracion = 0;
@@ -91,15 +84,20 @@ namespace Heldu.Logic.Services
             }
             return mediaValoracion;
         }
-
-        Task<Review> IReviewsService.CreateReview(Review review)
+        public async Task CreateReviewByUsuarioAndProducto(Usuario usuario, Producto producto, string ComentarioUsuario, string valoracionUsuario)
         {
-            throw new NotImplementedException();
-        }
-
-        Task<Review> IReviewsService.DeleteReviewPost(int id)
-        {
-            throw new NotImplementedException();
+            Review review = new Review
+            {
+                UsuarioId = usuario.IdentityUserId,
+                Usuario = usuario,
+                ProductoId = producto.Id,
+                Producto = producto,
+                Comentario = ComentarioUsuario,
+                Fecha = DateTime.Now,
+                Valoracion = Convert.ToInt32(valoracionUsuario),
+            };
+            _context.Add(review);
+            await _context.SaveChangesAsync();
         }
     }
 }

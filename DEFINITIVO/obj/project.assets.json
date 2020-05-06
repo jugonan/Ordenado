@@ -2919,7 +2919,10 @@
         },
         "runtime": {
           "bin/placeholder/Heldu.Logic.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -9191,11 +9194,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
+      "projectUniqueName": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
       "projectName": "DEFINITIVO",
-      "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
+      "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
       "packagesPath": "C:\\Users\\Galo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\obj\\",
+      "outputPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Galo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9211,11 +9214,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
-              "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
+            "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
+              "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
             },
-            "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj": {
-              "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj"
+            "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj": {
+              "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj"
             }
           }
         }

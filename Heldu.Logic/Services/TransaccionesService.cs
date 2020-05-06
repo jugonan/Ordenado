@@ -16,7 +16,6 @@ namespace Heldu.Logic.Services
         {
             _context = context;
         }
-
         public async Task<List<Transaccion>> GetTransaccion()
         {
             return await _context.Transaccion.Include(t => t.Producto)
@@ -27,7 +26,6 @@ namespace Heldu.Logic.Services
                                                        .ThenInclude(u => u.IdentityUser)
                                                        .ToListAsync();
         }
-
         public async Task<Transaccion> DetailsTransaccion(int? id)
         {
             return await _context.Transaccion.FirstOrDefaultAsync(x => x.Id == id);
@@ -41,37 +39,23 @@ namespace Heldu.Logic.Services
         {
             return await _context.Transaccion.FirstOrDefaultAsync(x => x.Id == id);
         }
-
         public async Task EditTransaccionPost(Transaccion transaccion)
         {
             _context.Update(transaccion);
             await _context.SaveChangesAsync();
         }
-
         public async Task<Transaccion> DeleteTransaccionGet(int? id)
         {
             return await _context.Transaccion.FirstOrDefaultAsync(m => m.Id == id);
         }
-
         public async Task DeleteTransaccionPost(int id)
         {
             _context.Transaccion.Remove(await _context.Transaccion.FindAsync(id));
             await _context.SaveChangesAsync();
         }
-
         public bool ExistTransaccion(int id)
         {
             return _context.Transaccion.Any(e => e.Id == id);
-        }
-
-        Task<Transaccion> ITransaccionesService.CreateTransaccion(Transaccion transaccion)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Transaccion> ITransaccionesService.DeleteTransaccionPost(int id)
-        {
-            throw new NotImplementedException();
         }
         public async Task CreateTransaccionWithUsuarioAndProductoVendedor(Usuario usuario, ProductoVendedor productoVendedor)
         {

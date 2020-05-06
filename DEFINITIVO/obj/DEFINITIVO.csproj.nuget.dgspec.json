@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj": {}
+    "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj": {
+    "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
+        "projectUniqueName": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
         "projectName": "DEFINITIVO",
-        "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
+        "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
         "packagesPath": "C:\\Users\\Galo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\DEFINITIVO\\obj\\",
+        "outputPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Galo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,11 +27,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
-                "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
+              "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
+                "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
               },
-              "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj": {
-                "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj"
+              "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj": {
+                "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj"
               }
             }
           }
@@ -126,14 +126,14 @@
         }
       }
     },
-    "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj": {
+    "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj",
+        "projectUniqueName": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj",
         "projectName": "Heldu.Database",
-        "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj",
+        "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj",
         "packagesPath": "C:\\Users\\Galo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Database\\obj\\",
+        "outputPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Database\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Galo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -149,8 +149,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
-                "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
+              "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
+                "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
               }
             }
           }
@@ -188,14 +188,14 @@
         }
       }
     },
-    "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
+    "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj",
         "projectName": "Heldu.Entities",
-        "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj",
+        "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj",
         "packagesPath": "C:\\Users\\Galo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\obj\\",
+        "outputPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Galo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -250,14 +250,14 @@
         }
       }
     },
-    "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj": {
+    "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj",
+        "projectUniqueName": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj",
         "projectName": "Heldu.Logic",
-        "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj",
+        "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj",
         "packagesPath": "C:\\Users\\Galo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Logic\\obj\\",
+        "outputPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Galo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -273,11 +273,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj": {
-                "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj"
+              "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj": {
+                "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Database\\Heldu.Database.csproj"
               },
-              "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
-                "projectPath": "C:\\Users\\Galo\\source\\repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
+              "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
+                "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
               }
             }
           }
@@ -315,6 +315,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

@@ -9,14 +9,15 @@ namespace Heldu.Logic.Interfaces
     {
         public Task<List<Review>> GetReviews();
         public Task<Review> DetailsReview(int? id);
-        public Task<Review> CreateReview(Review review);
+        public Task CreateReview(Review review);
         public Task<Review> EditReviewGet(int? id);
         public Task EditReviewPost(Review review);
         public Task<Review> DeleteReviewGet(int? id);
-        public Task<Review> DeleteReviewPost(int id);
+        public Task DeleteReviewPost(int id);
         public bool ExistReview(int id);
-        public Task<List<Review>> ObtenerReviews(int Id);
-        public Task<int> ObtenerTotalComentarios(List<Review> reviews);
-        public Task<int> ObtenerValoracionMedia(List<Review> reviews, int totalComentarios);
+        public Task<List<Review>> ObtenerReviewsByProductoId(int Id);
+        public Task<int> CantidadComentariosByReviewList(List<Review> reviews);
+        public Task<int> ObtenerValoracionMediaByProductoId(int id);
+        public Task CreateReviewByUsuarioAndProducto(Usuario usuario, Producto producto, string ComentarioUsuario, string valoracionUsuario);
     }
 }

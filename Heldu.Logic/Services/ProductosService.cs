@@ -38,19 +38,22 @@ namespace Heldu.Logic.Services
         }
         public async Task<Producto> EditProductoGet (int? id)
         {
-
+            return await _context.Producto.FindAsync(id);
         }
         public async Task EditProductoPost(Producto producto)
         {
-
+           _context.Update(producto);
+            await _context.SaveChangesAsync();
         }
         public async Task<Producto> DeleteProductoGet (int? id)
         {
-
+            return await _context.Producto
+                                .FirstOrDefaultAsync(m => m.Id == id);
         }
         public async Task DeleteProductoPost (int id)
         {
-
+            _context.Producto.Remove(await _context.Producto.FindAsync(id));
+            await _context.SaveChangesAsync();
         }
         public bool ExistProducto(int id)
         {
@@ -66,6 +69,21 @@ namespace Heldu.Logic.Services
             productoActual.CantidadVisitas++;
             _context.Update(productoActual);
             await _context.SaveChangesAsync();
+        }
+        //Método que devuelve una lista de productos que contienen un string en su título o descripción
+        public async Task<List<Producto>> BuscarProductosPorString(string inputBuscar)
+        {
+            List<Producto> listaProductos = await GetProductos();
+            List<Producto> listaProductosEncontrados = new List<Producto>();
+
+            foreach (Producto producto in listaProductos)
+            {
+                if (producto.Titulo.ToLower().Contains(inputBuscar.ToLower()) || producto.Descripcion.ToLower().Contains(inputBuscar.ToLower()))
+                {
+                    listaProductosEncontrados.Add(producto);
+                }
+            }
+            return listaProductosEncontrados;
         }
     }
 }

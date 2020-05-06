@@ -17,17 +17,14 @@ namespace Heldu.Logic.Services
         {
             _context = context;
         }
-
         public async Task<Usuario> ObtenerUsuarioDesdedIdentity(string identityId)
         {
             return await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == identityId);
         }
-
         public async Task<List<Usuario>> GetUsuario()
         {
             return await _context.Usuario.ToListAsync();
         }
-
         public async Task<Usuario> DetailsUsuario(int? id)
         {
             return await _context.Usuario.FirstOrDefaultAsync(x => x.Id == id);
@@ -41,22 +38,18 @@ namespace Heldu.Logic.Services
         {
             return await _context.Usuario.FirstOrDefaultAsync(x => x.Id == id);
         }
-
         public async Task EditUsuarioPost(Usuario usuario)
         {
             _context.Update(usuario);
             await _context.SaveChangesAsync();
         }
-
         public async Task<Usuario> DeleteUsuarioGet(int? id)
         {
             return await _context.Usuario.FirstOrDefaultAsync(m => m.Id == id);
         }
-
         public async Task DeleteUsuarioPost(int id)
         {
-            Usuario usuario = await _context.Usuario.FindAsync(id);
-            _context.Usuario.Remove(usuario);
+            _context.Usuario.Remove(await _context.Usuario.FindAsync(id));
             await _context.SaveChangesAsync();
         }
 
@@ -80,28 +73,16 @@ namespace Heldu.Logic.Services
         //{
         //    return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
         //}
-
-        public async Task<Usuario> MiscursosUsuario(string userManagerId)
+        public async Task<Usuario> MisCursosUsuario(string userManagerId)
         {
             return await _context.Usuario
-                                                        .Include(v => v.Mercados)
-                                                            .ThenInclude(p => p.Producto)
-                                                        .FirstOrDefaultAsync(x => x.IdentityUserId == userManagerId);
+                                .Include(v => v.Mercados)
+                                .ThenInclude(p => p.Producto)
+                                .FirstOrDefaultAsync(x => x.IdentityUserId == userManagerId);
         }
-
         public bool ExistUsuario(int id)
         {
             return _context.Usuario.Any(e => e.Id == id);
-        }
-
-        Task<Usuario> IUsuariosService.CreateUsuario(Usuario usuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Usuario> IUsuariosService.DeleteUsuarioPost(int id)
-        {
-            throw new NotImplementedException();
         }
         public async Task<List<Usuario>> GetUsuariosListByActiveIdentityUser(string usuarioId)
         {
@@ -110,26 +91,6 @@ namespace Heldu.Logic.Services
         public async Task<Usuario> GetUsuarioByActiveIdentityUser(string usuarioId)
         {
             return await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == usuarioId);
-        }
-
-        public Task<Usuario> MiPerfilUsuario(string userManagerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Usuario> MicuentaUsuario(string userManagerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Usuario> HistoricoUsuario(string userManagerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Usuario> RewardsUsuario(string userManagerId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
