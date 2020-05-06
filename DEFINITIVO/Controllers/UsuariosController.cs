@@ -154,7 +154,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Miperfil()
         {
             string userManagerId = _userManager.GetUserId(User);
-            Usuario usuario = await _usuariosService.MiPerfilUsuario(userManagerId);
+            Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
             return View(usuario);
         }
 
@@ -166,14 +166,14 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Micuenta()
         {
             string userManagerId = _userManager.GetUserId(User);
-            Usuario usuario = await _usuariosService.MicuentaUsuario(userManagerId);
+            Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
             return View(usuario);
         }
 
         public async Task<IActionResult> Historico()
         {
             string userManagerId = _userManager.GetUserId(User);
-            Usuario usuario = await _usuariosService.MicuentaUsuario(userManagerId);
+            Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
             //ViewData["ProductosVistos"] = await _context.MTransaccion
             //                                                        .Include(x => x.Producto)
             //                                                        .Include(x => x.Vendedor)
@@ -185,7 +185,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Rewards()
         {
             string userManagerId = _userManager.GetUserId(User);
-            Usuario usuario = await _usuariosService.RewardsUsuario(userManagerId);
+            Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
             return View(usuario);
         }
 

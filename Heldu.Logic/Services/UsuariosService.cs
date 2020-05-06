@@ -18,6 +18,11 @@ namespace Heldu.Logic.Services
             _context = context;
         }
 
+        public async Task<Usuario> ObtenerUsuarioDesdedIdentity(string identityId)
+        {
+            return await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == identityId);
+        }
+
         public async Task<List<Usuario>> GetUsuario()
         {
             return await _context.Usuario.ToListAsync();
@@ -55,25 +60,26 @@ namespace Heldu.Logic.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Usuario> MiPerfilUsuario(string userManagerId)
-        {
-           return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        }
+        // Los 4 métodos hacen lo mismo que ObtenerUsuarioDesdedIdentity(string identityId);
+        //public async Task<Usuario> MiPerfilUsuario(string userManagerId)
+        //{
+        //   return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
+        //}
 
-        public async Task<Usuario> MicuentaUsuario(string userManagerId)
-        {
-            return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        }
+        //public async Task<Usuario> MicuentaUsuario(string userManagerId)
+        //{
+        //    return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
+        //}
 
-        public async Task<Usuario> HistoricoUsuario(string userManagerId)
-        {
-            return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        }
+        //public async Task<Usuario> HistoricoUsuario(string userManagerId)
+        //{
+        //    return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
+        //}
 
-        public async Task<Usuario> RewardsUsuario(string userManagerId)
-        {
-            return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        }
+        //public async Task<Usuario> RewardsUsuario(string userManagerId)
+        //{
+        //    return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
+        //}
 
         public async Task<Usuario> MiscursosUsuario(string userManagerId)
         {
@@ -104,6 +110,26 @@ namespace Heldu.Logic.Services
         public async Task<Usuario> GetUsuarioByActiveIdentityUser(string usuarioId)
         {
             return await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == usuarioId);
+        }
+
+        public Task<Usuario> MiPerfilUsuario(string userManagerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Usuario> MicuentaUsuario(string userManagerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Usuario> HistoricoUsuario(string userManagerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Usuario> RewardsUsuario(string userManagerId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

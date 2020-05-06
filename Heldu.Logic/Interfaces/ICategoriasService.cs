@@ -14,6 +14,7 @@ namespace Heldu.Logic.Interfaces
         public Task<Categoria> DeleteCategoriaGet(int? id);
         public Task DeleteCategoriaPost(int? id);
         public bool ExistCategoria(int id);
+        public Task<List<Categoria>> ListaCategorias();
     }
 }
  
