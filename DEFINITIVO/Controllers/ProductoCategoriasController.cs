@@ -1,29 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Heldu.Database.Data;
 using Heldu.Entities.Models;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class ProductoCategoriasController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductoCategoriasService _productoCategoriasService;
+        private readonly ICategoriasService _categoriasService;
+        private readonly IProductosService _productosService;
 
-        public ProductoCategoriasController(ApplicationDbContext context)
+        public ProductoCategoriasController(IProductoCategoriasService productoCategoriasService, ICategoriasService categoriasService, IProductosService productosService)
         {
-            _context = context;
+            _productoCategoriasService = productoCategoriasService;
+            _categoriasService = categoriasService;
+            _productosService = productosService;
         }
 
         // GET: ProductoCategorias
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ProductoCategoria.Include(p => p.Categoria).Include(p => p.Producto);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _productoCategoriasService.GetProductosCategorias());
         }
 
         // GET: ProductoCategorias/Details/5
@@ -34,10 +34,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var productoCategoria = await _context.ProductoCategoria
-                .Include(p => p.Categoria)
-                .Include(p => p.Producto)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            ProductoCategoria productoCategoria = await _productoCategoriasService.DetailsProductoCategoria(id);
             if (productoCategoria == null)
             {
                 return NotFound();
@@ -47,9 +44,9 @@ namespace DEFINITIVO.Controllers
         }
 
         // GET: ProductoCategorias/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
             ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion");
             return View();
         }
@@ -63,11 +60,10 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(productoCategoria);
-                await _context.SaveChangesAsync();
+                await _productoCategoriasService.CreateProductoCategoriaPost(productoCategoria);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", productoCategoria.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Id", productoCategoria.CategoriaId);
             ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoCategoria.ProductoId);
             return View(productoCategoria);
         }
@@ -80,12 +76,12 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var productoCategoria = await _context.ProductoCategoria.FindAsync(id);
+            ProductoCategoria productoCategoria = await _productoCategoriasService.EditProductoCategoriaGet(id);
             if (productoCategoria == null)
             {
                 return NotFound();
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", productoCategoria.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Id", productoCategoria.CategoriaId);
             ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoCategoria.ProductoId);
             return View(productoCategoria);
         }
@@ -106,8 +102,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(productoCategoria);
-                    await _context.SaveChangesAsync();
+                    await _productoCategoriasService.EditProductoCategoriaPost(productoCategoria);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,7 +117,7 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Id", productoCategoria.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Id", productoCategoria.CategoriaId);
             ViewData["ProductoId"] = new SelectList(_context.Producto, "Id", "Descripcion", productoCategoria.ProductoId);
             return View(productoCategoria);
         }
@@ -135,10 +130,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var productoCategoria = await _context.ProductoCategoria
-                .Include(p => p.Categoria)
-                .Include(p => p.Producto)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            ProductoCategoria productoCategoria = await _productoCategoriasService.DeleteProductoCategoriaGet(id);
             if (productoCategoria == null)
             {
                 return NotFound();
@@ -152,15 +144,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var productoCategoria = await _context.ProductoCategoria.FindAsync(id);
-            _context.ProductoCategoria.Remove(productoCategoria);
-            await _context.SaveChangesAsync();
+            await _productoCategoriasService.DeleteProductoCategoriaPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductoCategoriaExists(int id)
         {
-            return _context.ProductoCategoria.Any(e => e.Id == id);
+            return _productoCategoriasService.ExistProductoCategoria(id);
         }
     }
 }

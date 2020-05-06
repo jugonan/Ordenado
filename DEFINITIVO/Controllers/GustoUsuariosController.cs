@@ -63,7 +63,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create()
         {
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario.Where(x => x.IdentityUserId == _userManager.GetUserId(User)), "Id", "NombreUsuario");
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarioByACtiveIdentityUser(_userManager.GetUserId(User)), "Id", "NombreUsuario");
             return View();
         }
 
@@ -81,7 +81,7 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction("Inscrito", "Usuarios");
             }
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre", gustoUsuario.CategoriaId);
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "NombreUsuario", gustoUsuario.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarioByACtiveIdentityUser(_userManager.GetUserId(User)), "Id", "NombreUsuario", gustoUsuario.UsuarioId);
             return RedirectToAction("Index2", "Productos");
         }
 
@@ -99,7 +99,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre", gustoUsuario.CategoriaId);
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Apellido", gustoUsuario.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarioByACtiveIdentityUser(_userManager.GetUserId(User)), "Id", "Apellido", gustoUsuario.UsuarioId);
             return View(gustoUsuario);
         }
 
@@ -135,7 +135,7 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre", gustoUsuario.CategoriaId);
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Apellido", gustoUsuario.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuarioByACtiveIdentityUser(_userManager.GetUserId(User)), "Id", "Apellido", gustoUsuario.UsuarioId);
             return View(gustoUsuario);
         }
 

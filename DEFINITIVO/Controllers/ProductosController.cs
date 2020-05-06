@@ -10,36 +10,53 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using DEFINITIVO.Services;
 using System;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class ProductosController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly MessagesService _messagesService;
         private readonly HelperService _helperService;
+        private readonly IProductosService _productosService;
+        private readonly ITransaccionesService _transaccionesService;
+        private readonly ICategoriasService _categoriasService;
+        private readonly IProductoCategoriasService _productoCategoriasService;
+        private readonly IVendedoresService _vendedoresService;
+        private readonly IUsuariosService _usuariosService;
 
-        public ProductosController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, MessagesService messagesService, HelperService helperService)
+        public ProductosController(
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            MessagesService messagesService,
+            HelperService helperService,
+            IProductosService productosService,
+            ITransaccionesService transaccionesService,
+            ICategoriasService categoriasService,
+            IProductoCategoriasService productoCategoriasService,
+            IVendedoresService vendedoresService,
+            IUsuariosService usuariosService)
         {
-            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _messagesService = messagesService;
             _helperService = helperService;
+            _productosService = productosService;
+            _transaccionesService = transaccionesService;
+            _categoriasService = categoriasService;
+            _productoCategoriasService = productoCategoriasService;
+            _vendedoresService = vendedoresService;
+            _usuariosService = usuariosService;
         }
 
         // GET: Productos
         public async Task<IActionResult> Index2()
         {
-            ViewData["Categorias"] = await _context.Categoria.ToListAsync();
-            return View(await _context.Producto
-                                                .Include(p => p.ProductoCategoria)
-                                                    .ThenInclude(a => a.Categoria)
-                                                .Include(p => p.ProductoVendedor)
-                                                    .ThenInclude(a => a.Vendedor)
-                                                .ToListAsync());
+            ViewData["Categorias"] = await _categoriasService.GetCategorias();
+            return View(await _productosService.GetProductos());
         }
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -49,41 +66,46 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var producto = await _context.Producto
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Producto producto = await _productosService.DetailsProducto(id);
             if (producto == null)
             {
                 return NotFound();
             }
 
             // Añadirlo a la listas de transacciones como "visto" por el usuario logueado
+            //if (User.IsInRole("cliente"))
+            //{
+            //    Transaccion transaccion = new Transaccion();
+            //    await GenerarTransaccion(transaccion);
+            //    _context.Add(transaccion);
+            //    await _context.SaveChangesAsync();
+            //}
+            //async Task<Transaccion> GenerarTransaccion(Transaccion transaccion)
+            //{
+            //    Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
+            //    ProductoVendedor productoParaSumar = await _context.ProductoVendedor.FirstOrDefaultAsync(x => x.ProductoId == id);
+            //    transaccion.UsuarioId = usuario.Id;
+            //    transaccion.ProductoId = productoParaSumar.ProductoId;
+            //    transaccion.VendedorId = productoParaSumar.VendedorId;
+            //    transaccion.Unidades = 0;
+            //    transaccion.FechaTransaccion = DateTime.Today;
+            //    return (transaccion);
+            //}
+
             if (User.IsInRole("cliente"))
             {
-                Transaccion transaccion = new Transaccion();
-                await GenerarTransaccion(transaccion);
-                _context.Add(transaccion);
-                await _context.SaveChangesAsync();
-            }
-            async Task<Transaccion> GenerarTransaccion(Transaccion transaccion)
-            {
-                Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == _userManager.GetUserId(User));
-                ProductoVendedor productoParaSumar = await _context.ProductoVendedor.FirstOrDefaultAsync(x => x.ProductoId == id);
-                transaccion.UsuarioId = usuario.Id;
-                transaccion.ProductoId = productoParaSumar.ProductoId;
-                transaccion.VendedorId = productoParaSumar.VendedorId;
-                transaccion.Unidades = 0;
-                transaccion.FechaTransaccion = DateTime.Today;
-                return (transaccion);
+                //Genero una nueva transacción con los datos del usuario, el producto y el vendedor
+                Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
+                ProductoVendedor productoVendedor = await _context.ProductoVendedor.FirstOrDefaultAsync(x => x.ProductoId == id);
+                await _transaccionesService.CreateTransaccionWithUsuarioAndProductoVendedor(usuario, productoVendedor);
             }
 
-            //agrego a la columa "CantidadVisitas" de la tabla Producto una unidad
-            Producto productoActual = await _context.Producto.FirstAsync(x => x.Id == id);
-            productoActual.CantidadVisitas++;
-            _context.Update(productoActual);
-            await _context.SaveChangesAsync();
+            //Modifico el producto actual agregando una unidad a la columa "CantidadVisitas" de la tabla
+            await _productosService.AddCantidadVisitasProductoById(id);
+
             return View(producto);
         }
-        
+
         //Agregar review desde el detalle del producto mediante un modal. Retorna a la vista de detalle del producto.
         public async Task<IActionResult> CrearReview(string UsuarioId, int ProductoId, string ComentarioUsuario, string valoracionUsuario)
         {
@@ -101,7 +123,7 @@ namespace DEFINITIVO.Controllers
             };
             _context.Add(review);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details","Productos",new {id = producto.Id });
+            return RedirectToAction("Details", "Productos", new { id = producto.Id });
         }
 
         // GET: Productos/Create
@@ -122,8 +144,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create(ProductoCategoria productoCategoria, int? idVendedor)
         {
             Producto producto = productoCategoria.Producto;
-            _context.Add(producto);
-            await _context.SaveChangesAsync();
+            await _productosService.CreateProductoPost(producto);
 
             ProductoCategoria prodCat = new ProductoCategoria();
             prodCat.CategoriaId = productoCategoria.CategoriaId;
@@ -150,7 +171,8 @@ namespace DEFINITIVO.Controllers
             {
                 _context.Add(productoVendedor);
                 await _context.SaveChangesAsync();
-                _context.Add(prodCat);
+                await _
+                    _context.Add(prodCat);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index2));
             }
@@ -244,8 +266,8 @@ namespace DEFINITIVO.Controllers
 
         private bool ProductoExists(int id)
         {
-            return _context.Producto.Any(e => e.Id == id);
-        }
+            return
+            }
         public async Task<IActionResult> Categoria(int id)
         {
             ViewData["Categoria"] = await _context.Categoria.FirstOrDefaultAsync(x => x.Id == id);
@@ -253,7 +275,7 @@ namespace DEFINITIVO.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Search (string inputBuscar)
+        public async Task<IActionResult> Search(string inputBuscar)
         {
             List<Producto> listaProductos = await _context.Producto.ToListAsync();
             List<Producto> listaProductosEncontrados = new List<Producto>();

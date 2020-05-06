@@ -97,7 +97,11 @@ namespace Heldu.Logic.Services
         {
             throw new NotImplementedException();
         }
-        public async Task<Usuario> GetUsuarioByACtiveIdentityUser(string usuarioId)
+        public async Task<List<Usuario>> GetUsuariosListByActiveIdentityUser(string usuarioId)
+        {
+            return await _context.Usuario.Where(x => x.IdentityUserId == usuarioId).ToListAsync();
+        }
+        public async Task<Usuario> GetUsuarioByActiveIdentityUser(string usuarioId)
         {
             return await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == usuarioId);
         }

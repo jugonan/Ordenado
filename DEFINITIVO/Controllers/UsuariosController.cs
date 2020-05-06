@@ -1,19 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
-using DEFINITIVO.ViewModel;
-using DEFINITIVO.Services;
-using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Heldu.Logic.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DEFINITIVO.Controllers
 {

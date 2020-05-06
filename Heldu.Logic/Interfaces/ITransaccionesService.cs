@@ -15,5 +15,6 @@ namespace Heldu.Logic.Interfaces
         public Task<Transaccion> DeleteTransaccionGet(int? id);
         public Task<Transaccion> DeleteTransaccionPost(int id);
         public bool ExistTransaccion(int id);
+        public Task CreateTransaccionWithUsuarioAndProductoVendedor(Usuario usuario, ProductoVendedor productoVendedor);
     }
 }

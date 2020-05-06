@@ -19,14 +19,13 @@ namespace Heldu.Logic.Services
 
         public async Task<List<Transaccion>> GetTransaccion()
         {
-            var transacciones = await _context.Transaccion.Include(t => t.Producto)
+            return await _context.Transaccion.Include(t => t.Producto)
                                                        .ThenInclude(u => u.Id)
                                                    .Include(t => t.Usuario)
                                                        .ThenInclude(u => u.IdentityUser)
                                                    .Include(t => t.Vendedor)
                                                        .ThenInclude(u => u.IdentityUser)
                                                        .ToListAsync();
-            return transacciones;
         }
 
         public async Task<Transaccion> DetailsTransaccion(int? id)
@@ -56,8 +55,7 @@ namespace Heldu.Logic.Services
 
         public async Task DeleteTransaccionPost(int id)
         {
-            Transaccion transaccion = await _context.Transaccion.FindAsync(id);
-            _context.Transaccion.Remove(transaccion);
+            _context.Transaccion.Remove(await _context.Transaccion.FindAsync(id));
             await _context.SaveChangesAsync();
         }
 
@@ -74,6 +72,18 @@ namespace Heldu.Logic.Services
         Task<Transaccion> ITransaccionesService.DeleteTransaccionPost(int id)
         {
             throw new NotImplementedException();
+        }
+        public async Task CreateTransaccionWithUsuarioAndProductoVendedor(Usuario usuario, ProductoVendedor productoVendedor)
+        {
+            Transaccion transaccion = new Transaccion()
+            {
+                UsuarioId = usuario.Id,
+                ProductoId = productoVendedor.ProductoId,
+                VendedorId = productoVendedor.VendedorId,
+                Unidades = 0,
+                FechaTransaccion = DateTime.Today,
+            };
+            await CreateTransaccion(transaccion);
         }
     }
 }

@@ -1,28 +1,26 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Heldu.Database.Data;
 using Heldu.Entities.Models;
+using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
     public class OpcionesProductosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IOpcionesProductosService _opcionesProductosService;
 
-        public OpcionesProductosController(ApplicationDbContext context)
+        public OpcionesProductosController(IOpcionesProductosService opcionesProductosService)
         {
-            _context = context;
+            _opcionesProductosService = opcionesProductosService;
         }
 
         // GET: OpcionesProductos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.OpcionProducto.ToListAsync());
+            return View(await _opcionesProductosService.GetOpcionesProductos());
         }
 
         // GET: OpcionesProductos/Details/5
@@ -33,8 +31,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var opcionProducto = await _context.OpcionProducto
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var opcionProducto = await _opcionesProductosService.DetailsOpcionProducto(id);
             if (opcionProducto == null)
             {
                 return NotFound();
@@ -58,8 +55,7 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(opcionProducto);
-                await _context.SaveChangesAsync();
+                await _opcionesProductosService.CreateOpcionProductoPost(opcionProducto);
                 return RedirectToAction(nameof(Index));
             }
             return View(opcionProducto);
@@ -73,7 +69,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var opcionProducto = await _context.OpcionProducto.FindAsync(id);
+            OpcionProducto opcionProducto = await _opcionesProductosService.EditOpcionProductoGet(id);
             if (opcionProducto == null)
             {
                 return NotFound();
@@ -97,8 +93,7 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    _context.Update(opcionProducto);
-                    await _context.SaveChangesAsync();
+                    await _opcionesProductosService.EditOpcionProductoPost(opcionProducto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,8 +119,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var opcionProducto = await _context.OpcionProducto
-                .FirstOrDefaultAsync(m => m.Id == id);
+            OpcionProducto opcionProducto = await _opcionesProductosService.DeleteOpcionProductoGet(id);
             if (opcionProducto == null)
             {
                 return NotFound();
@@ -139,15 +133,13 @@ namespace DEFINITIVO.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var opcionProducto = await _context.OpcionProducto.FindAsync(id);
-            _context.OpcionProducto.Remove(opcionProducto);
-            await _context.SaveChangesAsync();
+            await _opcionesProductosService.DeleteOpcionProductoPost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool OpcionProductoExists(int id)
         {
-            return _context.OpcionProducto.Any(e => e.Id == id);
+            return _opcionesProductosService.ExistOpcionProducto(id);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -16,14 +15,20 @@ namespace DEFINITIVO.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IMercadosService _mercadosService;
+        private readonly IUsuariosService _usuariosService;
+        private readonly IProductosService _productosService;
 
         public MercadosController(SignInManager<IdentityUser> signInManager,
                                   UserManager<IdentityUser> userManager,
-                                  IMercadosService mercadosService)
+                                  IMercadosService mercadosService,
+                                  IUsuariosService usuariosService,
+                                  IProductosService productosService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mercadosService = mercadosService;
+            _usuariosService = usuariosService;
+            _productosService = productosService;
         }
 
         // GET: Mercados
@@ -50,10 +55,10 @@ namespace DEFINITIVO.Controllers
         }
 
         // GET: Mercados/Create
-        public IActionResult Create(int? ProductoId)
+        public async Task<IActionResult> Create(int? ProductoId)
         {
             ViewData["ProductoId"] = new SelectList(_context.Producto.Where(x => x.Id == ProductoId), "Id", "Titulo");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario.Where(x => x.IdentityUserId == _userManager.GetUserId(User)), "Id", "NombreUsuario");
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "NombreUsuario");
             return View();
         }
 
@@ -66,7 +71,7 @@ namespace DEFINITIVO.Controllers
         {
             Random random = new Random();
             string codigo = Convert.ToString(random.Next(1001, 9999));
-            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == _userManager.GetUserId(User));
+            Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
             mercado.UsuarioId = usuario.Id;
             mercado.Codigo = Convert.ToString(codigo);
             if (ModelState.IsValid)
@@ -75,7 +80,7 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction("Inscrito", "Usuarios");
             }
             ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion", mercado.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "NombreUsuario", mercado.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "NombreUsuario", mercado.UsuarioId);
             return RedirectToAction("Inscrito", "Usuarios");
         }
 
@@ -93,7 +98,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
             ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion", mercado.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Apellido", mercado.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "Apellido", mercado.UsuarioId);
             return View(mercado);
         }
 
@@ -129,7 +134,7 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductoId"] = new SelectList(_context.Set<Producto>(), "Id", "Descripcion", mercado.ProductoId);
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "Id", "Apellido", mercado.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "Apellido", mercado.UsuarioId);
             return View(mercado);
         }
 
