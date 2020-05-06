@@ -2919,10 +2919,7 @@
         },
         "runtime": {
           "bin/placeholder/Heldu.Logic.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },
@@ -9189,36 +9186,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Galo\\.nuget\\packages\\": {}
+    "/Users/jonanderfidalgo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
+      "projectUniqueName": "/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/DEFINITIVO.csproj",
       "projectName": "DEFINITIVO",
-      "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\DEFINITIVO.csproj",
-      "packagesPath": "C:\\Users\\Galo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\DEFINITIVO\\obj\\",
+      "projectPath": "/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/DEFINITIVO.csproj",
+      "packagesPath": "/Users/jonanderfidalgo/.nuget/packages/",
+      "outputPath": "/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Galo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/jonanderfidalgo/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj": {
-              "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Entities\\Heldu.Entities.csproj"
+            "/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/Heldu.Entities/Heldu.Entities.csproj": {
+              "projectPath": "/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/Heldu.Entities/Heldu.Entities.csproj"
             },
-            "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj": {
-              "projectPath": "C:\\Users\\Galo\\Source\\Repos\\Ordenado\\Heldu.Logic\\Heldu.Logic.csproj"
+            "/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/Heldu.Logic/Heldu.Logic.csproj": {
+              "projectPath": "/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/Heldu.Logic/Heldu.Logic.csproj"
             }
           }
         }
@@ -9309,7 +9304,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
       }
     }
   }
