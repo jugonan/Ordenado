@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Heldu.Logic.Services
@@ -12,9 +13,11 @@ namespace Heldu.Logic.Services
     public class UsuariosService : IUsuariosService
     {
         private readonly ApplicationDbContext _context;
-        public UsuariosService(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public UsuariosService(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<List<Usuario>> GetUsuario()
@@ -100,6 +103,11 @@ namespace Heldu.Logic.Services
         Task<Usuario> IUsuariosService.DeleteUsuarioPost(int id)
         {
             throw new NotImplementedException();
+        }
+        public async Task<Usuario> GetUsuarioByACtiveIdentityUser()
+        {
+            _userManager.GetUserId(User);
+            return await _context.Usuario.Where(x => x.IdentityUserId == _userManager.GetUserId(User));
         }
     }
 }
