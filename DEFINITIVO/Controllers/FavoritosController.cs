@@ -39,7 +39,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Favorito favorito = await _favoritosService.DetailsFavorito(id);
+            Favorito favorito = await _favoritosService.GetFavoritoById(id);
 
             if (favorito == null)
             {
@@ -140,7 +140,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Favorito favorito = await _favoritosService.DetailsFavorito(id);
+            Favorito favorito = await _favoritosService.GetFavoritoById(id);
             if (favorito == null)
             {
                 return NotFound();

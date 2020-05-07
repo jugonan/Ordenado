@@ -49,7 +49,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            GustoUsuario gustoUsuario = await _gustosUsuariosService.DetailsGustoUsuario(id);
+            GustoUsuario gustoUsuario = await _gustosUsuariosService.GetGustoUsuarioById(id);
 
             if (gustoUsuario == null)
             {
@@ -147,7 +147,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            GustoUsuario gustoUsuario = await _gustosUsuariosService.DetailsGustoUsuario(id);
+            GustoUsuario gustoUsuario = await _gustosUsuariosService.GetGustoUsuarioById(id);
             if (gustoUsuario == null)
             {
                 return NotFound();

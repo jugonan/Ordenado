@@ -8,7 +8,7 @@ namespace Heldu.Logic.Interfaces
     public interface ITransaccionesService
     {
         public Task<List<Transaccion>> GetTransaccion();
-        public Task<Transaccion> DetailsTransaccion(int? id);
+        public Task<Transaccion> GetTransaccionById(int? id);
         public Task CreateTransaccion(Transaccion transaccion);
         public Task<Transaccion> EditTransaccionGet(int? id);
         public Task EditTransaccionPost(Transaccion transaccion);

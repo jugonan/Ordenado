@@ -33,7 +33,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Transaccion transaccion = await _transaccionesService.DetailsTransaccion(id);
+            Transaccion transaccion = await _transaccionesService.GetTransaccionById(id);
             if (transaccion == null)
             {
                 return NotFound();
@@ -121,7 +121,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Transaccion transaccion = await _transaccionesService.DetailsTransaccion(id);
+            Transaccion transaccion = await _transaccionesService.GetTransaccionById(id);
             if (transaccion == null)
             {
                 return NotFound();

@@ -7,7 +7,7 @@ namespace Heldu.Logic.Interfaces
     public interface IProductoCategoriasService
     {
         public Task<List<ProductoCategoria>> GetProductosCategorias();
-        public Task<ProductoCategoria> DetailsProductoCategoria(int? id);
+        public Task<ProductoCategoria> GetProductoCategoriaById(int? id);
         public Task CreateProductoCategoriaPost(ProductoCategoria productoCategoria);
         public Task<ProductoCategoria> EditProductoCategoriaGet(int? id);
         public Task EditProductoCategoriaPost(ProductoCategoria productoCategoria);

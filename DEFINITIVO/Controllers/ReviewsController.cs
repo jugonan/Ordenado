@@ -35,7 +35,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Review review = await _reviewsService.DetailsReview(id);
+            Review review = await _reviewsService.GetReviewById(id);
             if (review == null)
             {
                 return NotFound();
@@ -121,7 +121,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Review review = await _reviewsService.DetailsReview(id);
+            Review review = await _reviewsService.GetReviewById(id);
             if (review == null)
             {
                 return NotFound();

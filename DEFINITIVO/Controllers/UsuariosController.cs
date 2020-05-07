@@ -34,7 +34,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Usuario usuario = await _usuariosService.DetailsUsuario(id);
+            Usuario usuario = await _usuariosService.GetUsuarioById(id);
             if (usuario == null)
             {
                 return NotFound();
@@ -129,7 +129,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Usuario usuario = await _usuariosService.DetailsUsuario(id);
+            Usuario usuario = await _usuariosService.GetUsuarioById(id);
             if (usuario == null)
             {
                 return NotFound();

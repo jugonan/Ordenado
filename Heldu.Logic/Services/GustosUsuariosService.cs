@@ -20,7 +20,7 @@ namespace Heldu.Logic.Services
             return await _context.GustoUsuario.Include(g => g.Categoria).Include(g => g.Usuario).ToListAsync();
 
         }
-        public async Task<GustoUsuario> DetailsGustoUsuario(int? id)
+        public async Task<GustoUsuario> GetGustoUsuarioById(int? id)
         {
             return await _context.GustoUsuario
                             .Include(g => g.Categoria)

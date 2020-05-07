@@ -19,7 +19,7 @@ namespace Heldu.Logic.Services
         {
             return await _context.Favorito.Include(f => f.Producto).Include(f => f.Usuario).Include(f => f.Vendedor).ToListAsync();
         }
-        public async Task<Favorito> DetailsFavorito(int? id)
+        public async Task<Favorito> GetFavoritoById(int? id)
         {
             return await _context.Favorito
                         .Include(f => f.Producto)

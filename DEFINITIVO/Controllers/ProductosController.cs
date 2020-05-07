@@ -69,7 +69,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Producto producto = await _productosService.DetailsProducto(id);
+            Producto producto = await _productosService.GetProductoById(id);
             if (producto == null)
             {
                 return NotFound();
@@ -93,7 +93,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> CrearReview(string UsuarioId, int ProductoId, string ComentarioUsuario, string valoracionUsuario)
         {
             Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(UsuarioId);
-            Producto producto = await _productosService.DetailsProducto(ProductoId);
+            Producto producto = await _productosService.GetProductoById(ProductoId);
             await _reviewsService.CreateReviewByUsuarioAndProducto(usuario, producto, ComentarioUsuario, valoracionUsuario);
 
             return RedirectToAction("Details", "Productos", new { id = producto.Id });
@@ -211,7 +211,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Producto producto = await _productosService.DetailsProducto(id);
+            Producto producto = await _productosService.GetProductoById(id);
             if (producto == null)
             {
                 return NotFound();
@@ -226,7 +226,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _productosService.DeleteProductoPost(id);
-            Producto producto = await _productosService.DetailsProducto(id);
+            Producto producto = await _productosService.GetProductoById(id);
             _messagesService.SetShowMessage(true);
             _messagesService.SetMessage($"El producto '{producto.Titulo.ToUpper()}' ha sido eliminado!");
             return RedirectToAction(nameof(Index2));
@@ -238,7 +238,7 @@ namespace DEFINITIVO.Controllers
             }
         public async Task<IActionResult> Categoria(int id)
         {
-            ViewData["Categoria"] = await _categoriasService.DetailsCategoria(id);
+            ViewData["Categoria"] = await _categoriasService.GetCategoriaById(id);
             ViewData["CategoriaId"] = id;
             return View();
         }

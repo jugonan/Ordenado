@@ -21,7 +21,7 @@ namespace Heldu.Logic.Services
         {
             return await _context.ProductoCategoria.Include(p => p.Categoria).Include(p => p.Producto).ToListAsync();
         }
-        public async Task<ProductoCategoria> DetailsProductoCategoria(int? id)
+        public async Task<ProductoCategoria> GetProductoCategoriaById(int? id)
         {
             return await _context.ProductoCategoria
                                 .Include(p => p.Categoria)

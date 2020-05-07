@@ -64,8 +64,7 @@ namespace DEFINITIVO
                         facebookOptions.AppId = "2246956105601249";
                         facebookOptions.AppSecret = "bfc93921a19a84bd39781ee8685c692b";
                     });
-            //Añadido con Alberto
-            services.AddScoped<Manejo_Productos>();
+
             //Nueva Arquitectura
             services.AddTransient<ICategoriasService, CategoriasService>();
             services.AddTransient<IFavoritosService, FavoritosService>();

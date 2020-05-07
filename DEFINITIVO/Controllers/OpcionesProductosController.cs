@@ -31,7 +31,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            var opcionProducto = await _opcionesProductosService.DetailsOpcionProducto(id);
+            var opcionProducto = await _opcionesProductosService.GetOpcionProductoById(id);
             if (opcionProducto == null)
             {
                 return NotFound();
@@ -119,7 +119,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            OpcionProducto opcionProducto = await _opcionesProductosService.DetailsOpcionProducto(id);
+            OpcionProducto opcionProducto = await _opcionesProductosService.GetOpcionProductoById(id);
             if (opcionProducto == null)
             {
                 return NotFound();

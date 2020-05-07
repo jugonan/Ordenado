@@ -28,7 +28,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Ubicacion ubicacion = await _ubicacionesService.DetailsUbicacion(id);
+            Ubicacion ubicacion = await _ubicacionesService.GetUbicacionById(id);
             if (ubicacion == null)
             {
                 return NotFound();
@@ -113,7 +113,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Ubicacion ubicacion = await _ubicacionesService.DetailsUbicacion(id);
+            Ubicacion ubicacion = await _ubicacionesService.GetUbicacionById(id);
             if (ubicacion == null)
             {
                 return NotFound();

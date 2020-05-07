@@ -8,7 +8,7 @@ namespace Heldu.Logic.Interfaces
     public interface IUbicacionesService
     {
         public Task<List<Ubicacion>> GetUbicacion();
-        public Task<Ubicacion> DetailsUbicacion(int? id);
+        public Task<Ubicacion> GetUbicacionById(int? id);
         public Task CreateUbicacion(Ubicacion ubicacion);
         public Task<Ubicacion> EditUbicacionGet(int? id);
         public Task EditUbicacionPost(Ubicacion ubicacion);

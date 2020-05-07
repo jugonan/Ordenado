@@ -8,7 +8,7 @@ namespace Heldu.Logic.Interfaces
     public interface IVendedoresService
     {
         public Task<List<Vendedor>> GetVendedor();
-        public Task<Vendedor> DetailsVendedor(int? id);
+        public Task<Vendedor> GetVendedorById(int? id);
         public Task CreateVendedor(Vendedor vendedor);
         public Task<Vendedor> EditVendedorGet(int? id);
         public Task EditVendedorPost(Vendedor vendedor);

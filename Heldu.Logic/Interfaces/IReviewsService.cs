@@ -8,7 +8,7 @@ namespace Heldu.Logic.Interfaces
     public interface IReviewsService
     {
         public Task<List<Review>> GetReviews();
-        public Task<Review> DetailsReview(int? id);
+        public Task<Review> GetReviewById(int? id);
         public Task CreateReview(Review review);
         public Task<Review> EditReviewGet(int? id);
         public Task EditReviewPost(Review review);

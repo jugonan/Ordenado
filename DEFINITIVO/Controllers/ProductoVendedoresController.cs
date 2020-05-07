@@ -33,7 +33,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            ProductoVendedor productoVendedor = await _productosVendedoresService.DetailsProductoVendedor(id);
+            ProductoVendedor productoVendedor = await _productosVendedoresService.GetProductoVendedorById(id);
             if (productoVendedor == null)
             {
                 return NotFound();
@@ -129,7 +129,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            ProductoVendedor productoVendedor = await _productosVendedoresService.DetailsProductoVendedor(id);
+            ProductoVendedor productoVendedor = await _productosVendedoresService.GetProductoVendedorById(id);
             if (productoVendedor == null)
             {
                 return NotFound();

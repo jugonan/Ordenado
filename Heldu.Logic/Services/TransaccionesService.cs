@@ -26,7 +26,7 @@ namespace Heldu.Logic.Services
                                 .ThenInclude(u => u.IdentityUser)
                                 .ToListAsync();
         }
-        public async Task<Transaccion> DetailsTransaccion(int? id)
+        public async Task<Transaccion> GetTransaccionById(int? id)
         {
             return await _context.Transaccion.FirstOrDefaultAsync(x => x.Id == id);
         }

@@ -8,17 +8,30 @@
 
   <ItemGroup>
     <Compile Remove="Data\**" />
+    <Compile Remove="Frames\**" />
     <Compile Remove="Migrations\**" />
     <Compile Remove="Models\**" />
+    <Compile Remove="ViewModel\**" />
     <Content Remove="Data\**" />
+    <Content Remove="Frames\**" />
     <Content Remove="Migrations\**" />
     <Content Remove="Models\**" />
+    <Content Remove="ViewModel\**" />
     <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Frames\**" />
     <EmbeddedResource Remove="Migrations\**" />
     <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="ViewModel\**" />
     <None Remove="Data\**" />
+    <None Remove="Frames\**" />
     <None Remove="Migrations\**" />
     <None Remove="Models\**" />
+    <None Remove="ViewModel\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\HelperServiceOld.cs" />
+    <Compile Remove="Services\Manejo_Productos.cs" />
   </ItemGroup>
 
 
@@ -87,8 +100,6 @@
     <Content Remove="wwwroot\css\Vendedor_Create.css" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="Frames\" />
     <Folder Include="wwwroot\ImagenesUsuarios\" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace Heldu.Logic.Services
         {
             return await _context.Ubicacion.ToListAsync();
         }
-        public async Task<Ubicacion> DetailsUbicacion(int? id)
+        public async Task<Ubicacion> GetUbicacionById(int? id)
         {
             return await _context.Ubicacion.FirstOrDefaultAsync(x => x.Id == id);
         }

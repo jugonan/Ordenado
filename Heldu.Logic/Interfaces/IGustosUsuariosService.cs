@@ -7,7 +7,7 @@ namespace Heldu.Logic.Interfaces
     public interface IGustosUsuariosService
     {
         public Task<IEnumerable<GustoUsuario>> GetGustosUsuarios();
-        public Task<GustoUsuario> DetailsGustoUsuario(int? id);
+        public Task<GustoUsuario> GetGustoUsuarioById(int? id);
         public Task CreateGustoUsuarioPost(GustoUsuario gustoUsuario);
         public Task<GustoUsuario> EditGustoUsuarioGet(int? id);
         public Task EditGustoUsuarioPost(GustoUsuario gustoUsuario);

@@ -26,10 +26,9 @@ namespace Heldu.Logic.Services
                             .ThenInclude(a => a.Vendedor)
                             .ToListAsync();
         }
-        public async Task<Producto> DetailsProducto(int? id)
+        public async Task<Producto> GetProductoById(int? id)
         {
-            return await _context.Producto
-                                .FirstOrDefaultAsync(m => m.Id == id);
+            return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task CreateProductoPost(Producto producto)
         {
@@ -53,10 +52,6 @@ namespace Heldu.Logic.Services
         public bool ExistProducto(int id)
         {
             return _context.Producto.Any(e => e.Id == id);
-        }
-        public async Task<Producto> GetProductoById(int? id)
-        {
-            return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task AddCantidadVisitasProductoById(int? id)
         {

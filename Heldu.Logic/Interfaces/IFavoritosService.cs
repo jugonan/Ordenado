@@ -9,7 +9,7 @@ namespace Heldu.Logic.Interfaces
     public interface IFavoritosService
     {
         public Task<List<Favorito>> GetFavoritos();
-        public Task<Favorito> DetailsFavorito(int? id);
+        public Task<Favorito> GetFavoritoById(int? id);
         public Task CreateFavoritoPost(Favorito favorito);
         public Task<Favorito> EditFavoritoGet(int? id);
         public Task EditFavoritoPost(Favorito favorito);

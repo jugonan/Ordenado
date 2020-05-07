@@ -19,7 +19,7 @@ namespace Heldu.Logic.Services
         {
             return await _context.Mercado.Include(m => m.Producto).Include(m => m.Usuario).ToListAsync();
         }
-        public async Task<Mercado> DetailsMercado(int? id)
+        public async Task<Mercado> GetMercadoById(int? id)
         {
             return await _context.Mercado
                         .Include(m => m.Producto)

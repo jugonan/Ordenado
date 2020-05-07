@@ -31,7 +31,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Categoria categoria = await _categoriasService.DetailsCategoria(id);
+            Categoria categoria = await _categoriasService.GetCategoriaById(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Categoria categoria = await _categoriasService.DetailsCategoria(id);
+            Categoria categoria = await _categoriasService.GetCategoriaById(id);
             if (categoria == null)
             {
                 return NotFound();

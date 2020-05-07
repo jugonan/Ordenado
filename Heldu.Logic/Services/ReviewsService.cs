@@ -20,7 +20,7 @@ namespace Heldu.Logic.Services
         {
             return await _context.Review.ToListAsync();
         }
-        public async Task<Review> DetailsReview(int? id)
+        public async Task<Review> GetReviewById(int? id)
         {
             return await _context.Review.FirstOrDefaultAsync(x => x.Id == id);
         }

@@ -34,7 +34,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            ProductoCategoria productoCategoria = await _productoCategoriasService.DetailsProductoCategoria(id);
+            ProductoCategoria productoCategoria = await _productoCategoriasService.GetProductoCategoriaById(id);
             if (productoCategoria == null)
             {
                 return NotFound();
@@ -130,7 +130,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            ProductoCategoria productoCategoria = await _productoCategoriasService.DetailsProductoCategoria(id);
+            ProductoCategoria productoCategoria = await _productoCategoriasService.GetProductoCategoriaById(id);
             if (productoCategoria == null)
             {
                 return NotFound();

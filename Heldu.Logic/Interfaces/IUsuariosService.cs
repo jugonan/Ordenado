@@ -7,7 +7,7 @@ namespace Heldu.Logic.Interfaces
     public interface IUsuariosService
     {
         public Task<List<Usuario>> GetUsuario();
-        public Task<Usuario> DetailsUsuario(int? id);
+        public Task<Usuario> GetUsuarioById(int? id);
         public Task CreateUsuario(Usuario usuario);
         public Task<Usuario> EditUsuarioGet(int? id);
         public Task EditUsuarioPost(Usuario usuario);

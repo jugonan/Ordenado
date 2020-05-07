@@ -20,7 +20,7 @@ namespace Heldu.Logic.Services
         {
             return await _context.ProductoVendedor.ToListAsync();
         }
-        public async Task<ProductoVendedor> DetailsProductoVendedor(int? id)
+        public async Task<ProductoVendedor> GetProductoVendedorById(int? id)
         {
             return await _context.ProductoVendedor.FirstOrDefaultAsync(x => x.Id == id);
         }

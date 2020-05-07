@@ -46,7 +46,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Mercado mercado = await _mercadosService.DetailsMercado(id);
+            Mercado mercado = await _mercadosService.GetMercadoById(id);
             if (mercado == null)
             {
                 return NotFound();
@@ -60,7 +60,7 @@ namespace DEFINITIVO.Controllers
         {
             List<Producto> listaProductos = new List<Producto>()
             {
-                await _productosService.DetailsProducto(ProductoId)
+                await _productosService.GetProductoById(ProductoId)
             };
             ViewData["ProductoId"] = new SelectList(listaProductos, "Id", "Titulo");
             ViewData["UsuarioId"] = new SelectList(await _usuariosService.GetUsuariosListByActiveIdentityUser(_userManager.GetUserId(User)), "Id", "NombreUsuario");
@@ -151,7 +151,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Mercado mercado = await _mercadosService.DetailsMercado(id);
+            Mercado mercado = await _mercadosService.GetMercadoById(id);
             if (mercado == null)
             {
                 return NotFound();

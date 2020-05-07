@@ -7,7 +7,7 @@ namespace Heldu.Logic.Interfaces
     public interface IMercadosService
     {
         public Task<List<Mercado>> GetMercados();
-        public Task<Mercado> DetailsMercado(int? id);
+        public Task<Mercado> GetMercadoById(int? id);
         public Task CreateMercadoPost(Mercado mercado);
         public Task<Mercado> EditMercadoGet(int? id);
         public Task EditMercadoPost(Mercado mercado);
