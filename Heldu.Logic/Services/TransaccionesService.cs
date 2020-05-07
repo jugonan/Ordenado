@@ -44,10 +44,6 @@ namespace Heldu.Logic.Services
             _context.Update(transaccion);
             await _context.SaveChangesAsync();
         }
-        public async Task<Transaccion> DeleteTransaccionGet(int? id)
-        {
-            return await _context.Transaccion.FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteTransaccionPost(int id)
         {
             _context.Transaccion.Remove(await _context.Transaccion.FindAsync(id));

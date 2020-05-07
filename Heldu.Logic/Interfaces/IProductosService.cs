@@ -11,7 +11,6 @@ namespace Heldu.Logic.Interfaces
         public Task CreateProductoPost(Producto producto);
         public Task<Producto> EditProductoGet(int? id);
         public Task EditProductoPost(Producto producto);
-        public Task<Producto> DeleteProductoGet(int? id);
         public Task DeleteProductoPost(int id);
         public bool ExistProducto(int id);
         public Task<Producto> GetProductoById(int? id);

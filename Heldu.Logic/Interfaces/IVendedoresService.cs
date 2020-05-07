@@ -12,7 +12,6 @@ namespace Heldu.Logic.Interfaces
         public Task CreateVendedor(Vendedor vendedor);
         public Task<Vendedor> EditVendedorGet(int? id);
         public Task EditVendedorPost(Vendedor vendedor);
-        public Task<Vendedor> DeleteVendedorGet(int? id);
         public Task DeleteVendedorPost(int id);
         public bool ExistVendedor(int id);
         public Task<Vendedor> EstadisticasVendedor(string vendedorId);

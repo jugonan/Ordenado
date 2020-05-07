@@ -130,7 +130,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            ProductoCategoria productoCategoria = await _productoCategoriasService.DeleteProductoCategoriaGet(id);
+            ProductoCategoria productoCategoria = await _productoCategoriasService.DetailsProductoCategoria(id);
             if (productoCategoria == null)
             {
                 return NotFound();

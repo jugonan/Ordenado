@@ -1,9 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Heldu.Logic.Interfaces
 @using DEFINITIVO.Services
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
-@inject HelperService HelperService
+@inject IHelperService HelperService
 @model IEnumerable<Producto>
 @{
     ViewData["Title"] = "Productos";

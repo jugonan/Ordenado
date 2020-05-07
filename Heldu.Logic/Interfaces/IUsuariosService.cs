@@ -11,7 +11,6 @@ namespace Heldu.Logic.Interfaces
         public Task CreateUsuario(Usuario usuario);
         public Task<Usuario> EditUsuarioGet(int? id);
         public Task EditUsuarioPost(Usuario usuario);
-        public Task<Usuario> DeleteUsuarioGet(int? id);
         public Task DeleteUsuarioPost(int id);
         public bool ExistUsuario(int id);
         public Task<Usuario> MisCursosUsuario(string userManagerId);

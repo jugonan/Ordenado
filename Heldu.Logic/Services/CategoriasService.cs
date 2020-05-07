@@ -38,10 +38,6 @@ namespace Heldu.Logic.Services
             _context.Update(categoria);
             await _context.SaveChangesAsync();
         }
-        public async Task<Categoria> DeleteCategoriaGet(int? id)
-        {
-            return await _context.Categoria.FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteCategoriaPost(int? id)
         {
             Categoria categoria = await _context.Categoria.FindAsync(id);

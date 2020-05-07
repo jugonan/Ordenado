@@ -11,7 +11,6 @@ namespace Heldu.Logic.Interfaces
         public Task CreateGustoUsuarioPost(GustoUsuario gustoUsuario);
         public Task<GustoUsuario> EditGustoUsuarioGet(int? id);
         public Task EditGustoUsuarioPost(GustoUsuario gustoUsuario);
-        public Task<GustoUsuario> DeleteGustoUsuarioGet(int? id);
         public Task DeleteGustoUsuarioPost(int id);
         public bool ExistGustoUsuario(int id);
     }

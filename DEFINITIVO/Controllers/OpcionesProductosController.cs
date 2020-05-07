@@ -119,7 +119,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            OpcionProducto opcionProducto = await _opcionesProductosService.DeleteOpcionProductoGet(id);
+            OpcionProducto opcionProducto = await _opcionesProductosService.DetailsOpcionProducto(id);
             if (opcionProducto == null)
             {
                 return NotFound();

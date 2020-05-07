@@ -151,7 +151,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Mercado mercado = await _mercadosService.DeleteMercadoGet(id);
+            Mercado mercado = await _mercadosService.DetailsMercado(id);
             if (mercado == null)
             {
                 return NotFound();

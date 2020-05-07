@@ -211,7 +211,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Producto producto = await _productosService.DeleteProductoGet(id);
+            Producto producto = await _productosService.DetailsProducto(id);
             if (producto == null)
             {
                 return NotFound();

@@ -113,7 +113,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Ubicacion ubicacion = await _ubicacionesService.DeleteUbicacionGet(id);
+            Ubicacion ubicacion = await _ubicacionesService.DetailsUbicacion(id);
             if (ubicacion == null)
             {
                 return NotFound();

@@ -45,14 +45,6 @@ namespace Heldu.Logic.Services
             _context.Update(favorito);
             await _context.SaveChangesAsync();
         }
-        public async Task<Favorito> DeleteFavoritoGet(int? id)
-        {
-            return await _context.Favorito
-                        .Include(f => f.Producto)
-                        .Include(f => f.Usuario)
-                        .Include(f => f.Vendedor)
-                        .FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteFavoritoPost(int id)
         {
             Favorito favorito = await _context.Favorito.FindAsync(id);

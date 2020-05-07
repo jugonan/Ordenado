@@ -42,13 +42,6 @@ namespace Heldu.Logic.Services
             _context.Update(gustoUsuario);
             await _context.SaveChangesAsync();
         }
-        public async Task<GustoUsuario> DeleteGustoUsuarioGet(int? id)
-        {
-            return await _context.GustoUsuario
-                            .Include(g => g.Categoria)
-                            .Include(g => g.Usuario)
-                            .FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteGustoUsuarioPost(int id)
         {
             GustoUsuario gustoUsuario = await _context.GustoUsuario.FindAsync(id);

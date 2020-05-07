@@ -131,7 +131,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Vendedor vendedor = await _vendedoresService.DeleteVendedorGet(id);
+            Vendedor vendedor = await _vendedoresService.DetailsVendedor(id);
             if (vendedor == null)
             {
                 return NotFound();

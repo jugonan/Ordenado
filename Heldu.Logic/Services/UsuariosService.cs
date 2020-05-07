@@ -43,36 +43,12 @@ namespace Heldu.Logic.Services
             _context.Update(usuario);
             await _context.SaveChangesAsync();
         }
-        public async Task<Usuario> DeleteUsuarioGet(int? id)
-        {
-            return await _context.Usuario.FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteUsuarioPost(int id)
         {
             _context.Usuario.Remove(await _context.Usuario.FindAsync(id));
             await _context.SaveChangesAsync();
         }
 
-        // Los 4 métodos hacen lo mismo que ObtenerUsuarioDesdedIdentity(string identityId);
-        //public async Task<Usuario> MiPerfilUsuario(string userManagerId)
-        //{
-        //   return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        //}
-
-        //public async Task<Usuario> MicuentaUsuario(string userManagerId)
-        //{
-        //    return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        //}
-
-        //public async Task<Usuario> HistoricoUsuario(string userManagerId)
-        //{
-        //    return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        //}
-
-        //public async Task<Usuario> RewardsUsuario(string userManagerId)
-        //{
-        //    return await _context.Usuario.FirstOrDefaultAsync(u => u.IdentityUserId == userManagerId);
-        //}
         public async Task<Usuario> MisCursosUsuario(string userManagerId)
         {
             return await _context.Usuario

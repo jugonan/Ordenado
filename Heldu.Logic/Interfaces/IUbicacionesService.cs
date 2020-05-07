@@ -12,7 +12,6 @@ namespace Heldu.Logic.Interfaces
         public Task CreateUbicacion(Ubicacion ubicacion);
         public Task<Ubicacion> EditUbicacionGet(int? id);
         public Task EditUbicacionPost(Ubicacion ubicacion);
-        public Task<Ubicacion> DeleteUbicacionGet(int? id);
         public Task DeleteUbicacionPost(int id);
         public bool ExistUbicacion(int id);
     }

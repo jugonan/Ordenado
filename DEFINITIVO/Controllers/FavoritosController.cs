@@ -140,7 +140,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Favorito favorito = await _favoritosService.DeleteFavoritoGet(id);
+            Favorito favorito = await _favoritosService.DetailsFavorito(id);
             if (favorito == null)
             {
                 return NotFound();

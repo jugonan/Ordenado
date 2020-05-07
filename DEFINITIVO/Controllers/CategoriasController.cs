@@ -123,7 +123,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Categoria categoria = await _categoriasService.DeleteCategoriaGet(id);
+            Categoria categoria = await _categoriasService.DetailsCategoria(id);
             if (categoria == null)
             {
                 return NotFound();

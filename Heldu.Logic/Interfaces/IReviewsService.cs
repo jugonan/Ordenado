@@ -12,7 +12,6 @@ namespace Heldu.Logic.Interfaces
         public Task CreateReview(Review review);
         public Task<Review> EditReviewGet(int? id);
         public Task EditReviewPost(Review review);
-        public Task<Review> DeleteReviewGet(int? id);
         public Task DeleteReviewPost(int id);
         public bool ExistReview(int id);
         public Task<List<Review>> ObtenerReviewsByProductoId(int Id);

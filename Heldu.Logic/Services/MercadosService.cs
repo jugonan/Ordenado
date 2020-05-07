@@ -40,13 +40,6 @@ namespace Heldu.Logic.Services
             _context.Update(mercado);
             await _context.SaveChangesAsync();
         }
-        public async Task<Mercado> DeleteMercadoGet(int? id)
-        {
-            return await _context.Mercado
-                            .Include(m => m.Producto)
-                            .Include(m => m.Usuario)
-                            .FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteMercadoPost(int id)
         { 
             _context.Mercado.Remove(await _context.Mercado.FindAsync(id));

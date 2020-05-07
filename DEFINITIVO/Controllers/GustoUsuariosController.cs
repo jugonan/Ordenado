@@ -147,7 +147,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            GustoUsuario gustoUsuario = await _gustosUsuariosService.DeleteGustoUsuarioGet(id);
+            GustoUsuario gustoUsuario = await _gustosUsuariosService.DetailsGustoUsuario(id);
             if (gustoUsuario == null)
             {
                 return NotFound();

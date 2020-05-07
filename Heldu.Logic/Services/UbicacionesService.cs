@@ -37,10 +37,6 @@ namespace Heldu.Logic.Services
             _context.Update(ubicacion);
             await _context.SaveChangesAsync();
         }
-        public async Task<Ubicacion> DeleteUbicacionGet(int? id)
-        {
-            return await _context.Ubicacion.FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteUbicacionPost(int id)
         {
             _context.Ubicacion.Remove(await _context.Ubicacion.FindAsync(id));

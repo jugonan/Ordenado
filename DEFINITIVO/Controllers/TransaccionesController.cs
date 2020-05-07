@@ -121,7 +121,7 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Transaccion transaccion = await _transaccionesService.DeleteTransaccionGet(id);
+            Transaccion transaccion = await _transaccionesService.DetailsTransaccion(id);
             if (transaccion == null)
             {
                 return NotFound();

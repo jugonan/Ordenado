@@ -129,7 +129,7 @@ namespace DEFINITIVO.Controllers
             {
                 return NotFound();
             }
-            Usuario usuario = await _usuariosService.DeleteUsuarioGet(id);
+            Usuario usuario = await _usuariosService.DetailsUsuario(id);
             if (usuario == null)
             {
                 return NotFound();

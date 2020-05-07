@@ -38,10 +38,6 @@ namespace Heldu.Logic.Services
             _context.Update(review);
             await _context.SaveChangesAsync();
         }
-        public async Task<Review> DeleteReviewGet(int? id)
-        {
-            return await _context.Review.FirstOrDefaultAsync(m => m.Id == id);
-        }
         public async Task DeleteReviewPost(int id)
         {
             Review review = await _context.Review.FindAsync(id);
