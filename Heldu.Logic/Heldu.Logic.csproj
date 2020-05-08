@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Heldu.Database\Heldu.Database.csproj" />
     <ProjectReference Include="..\Heldu.Entities\Heldu.Entities.csproj" />
   </ItemGroup>

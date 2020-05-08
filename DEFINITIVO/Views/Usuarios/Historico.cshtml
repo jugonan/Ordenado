@@ -5,13 +5,13 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@inject Manejo_Productos myManejadorDeProductos
+@*@inject Manejo_Productos myManejadorDeProductos
 @inject Manejo_Productos servicios
 @{
     List<Producto> comprados = servicios.GetProductosComprados(Model.Id);
     List<Producto> disponibles = servicios.GetProductosDisponibles(Model.Id);
     //List<Producto> canjeados = servicios.GetProductosCanjeados(Model.Id);
-}
+}*@
 
 
 

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using DEFINITIVO.Services;
 using System;
 using Heldu.Logic.Interfaces;
+using Heldu.Logic.ViewModels;
 
 namespace DEFINITIVO.Controllers
 {
@@ -56,10 +57,17 @@ namespace DEFINITIVO.Controllers
         }
 
         // GET: Productos
-        public async Task<IActionResult> Index2()
+        public async Task<ProductosForIndex2VM> Index2()
         {
-            ViewData["Categorias"] = await _categoriasService.GetCategorias();
-            return View(await _productosService.GetProductos());
+            //ViewData["Categorias"] = await _categoriasService.GetCategorias();
+            //return View(await _productosService.GetProductos());
+
+            List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
+            List<Producto> listaProductos = await _productosService.GetProductos();
+            List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
+
+            return await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+
         }
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
