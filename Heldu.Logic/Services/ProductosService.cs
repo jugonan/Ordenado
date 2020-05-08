@@ -27,7 +27,31 @@ namespace Heldu.Logic.Services
                             .ThenInclude(a => a.Vendedor)
                             .ToListAsync();
         }
+<<<<<<< Updated upstream
         public async Task<Producto> GetProductoById(int? id)
+=======
+
+        public async Task<List<List<Producto>>> Index2VM(List<Categoria> categorias)
+        {
+            List<ProductoCategoria> productoCategorias = await _context.ProductoCategoria.ToListAsync();
+            List<List<Producto>> productos = new List<List<Producto>>();
+            foreach (Categoria categoria in categorias)
+            {
+                List<Producto> productosAdd = new List<Producto>();
+                foreach (ProductoCategoria item in productoCategorias)
+                {
+                    if (item.CategoriaId == categoria.Id)
+                    {
+                        productosAdd.Add(item.Producto);
+                    }
+                }
+                productos.Add(productosAdd);
+            }
+            return productos;
+        }
+
+        public async Task<Producto> DetailsProducto(int? id)
+>>>>>>> Stashed changes
         {
             return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
         }

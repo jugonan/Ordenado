@@ -510,7 +510,6 @@ C:/Users/Galo/Source/Repos/UnoMasVenga/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINI
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Productos/Delete.cshtml.g.cs
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Productos/Details.cshtml.g.cs
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Productos/Edit.cshtml.g.cs
-/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Productos/Index.cshtml.g.cs
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Productos/Index2.cshtml.g.cs
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Productos/Search.cshtml.g.cs
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/ProductoVendedores/Create.cshtml.g.cs
@@ -872,7 +871,6 @@ C:/Users/Galo/Source/Repos/Ordenado/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINITIV
 C:/Users/Galo/Source/Repos/Ordenado/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINITIVO.pdb
 C:/Users/Galo/Source/Repos/Ordenado/DEFINITIVO/obj/Debug/netcoreapp3.1/DEFINITIVO.genruntimeconfig.cache
 =======
-/Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/obj/Debug/netcoreapp3.1/Razor/Views/Home/JasFASFAS.cshtml.g.cs
 >>>>>>> Stashed changes
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/bin/Debug/netcoreapp3.1/Heldu.Database.dll
 /Users/jonanderfidalgo/Desktop/UnoMasVenga(30-04-20)/DEFINITIVO/bin/Debug/netcoreapp3.1/Heldu.Entities.dll
