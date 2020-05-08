@@ -26,17 +26,13 @@
     <None Remove="Frames\**" />
     <None Remove="Migrations\**" />
     <None Remove="Models\**" />
-<<<<<<< Updated upstream
     <None Remove="ViewModel\**" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Remove="Services\HelperServiceOld.cs" />
     <Compile Remove="Services\Manejo_Productos.cs" />
-=======
     <Content Remove="Views\Home\JasFASFAS.cshtml" />
     <Content Remove="Views\Productos\Index.cshtml" />
->>>>>>> Stashed changes
   </ItemGroup>
 
 
@@ -44,6 +40,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">

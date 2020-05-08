@@ -1,18 +1,17 @@
 ﻿@model Heldu.Entities.Models.Usuario
 
 @using Microsoft.AspNetCore.Identity
-@using DEFINITIVO.Services;
+@using Heldu.Logic.Interfaces
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@*@inject Manejo_Productos myManejadorDeProductos
-@inject Manejo_Productos servicios
+@inject IManejoProductosService ManejoProductosService
 @{
-    List<Producto> comprados = servicios.GetProductosComprados(Model.Id);
-    List<Producto> disponibles = servicios.GetProductosDisponibles(Model.Id);
+    List<Producto> comprados = ManejoProductosService.GetProductosComprados(Model.Id);
+    List<Producto> disponibles = ManejoProductosService.GetProductosDisponibles(Model.Id);
     // Pendiente de añadir productos canjeados
     //List<Producto> canjeados = servicios.GetProductosCanjeados(Model.Id);
-}*@
+}
 
 
 

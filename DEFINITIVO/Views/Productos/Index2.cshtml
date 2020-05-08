@@ -3,9 +3,7 @@
 @using Heldu.Logic.Interfaces
 @using Heldu.Logic.ViewModels
 @using DEFINITIVO.Services
-@using DEFINITIVO.ViewModel
 
-@inject Index2ViewModel viewModel
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
@@ -14,6 +12,7 @@
 @{
     ViewData["Title"] = "Index2";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
+    List<Categoria> categorias = ViewBag.Categoria;
 }
 <!-- CSS particular para esta vista. Los script están en el layout-->
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
@@ -32,29 +31,32 @@
 }
 
 <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SINO EL CARROUSEL NO FUNCIONA!!!!-->
-    @{
-        List<Categoria> cats = ViewBag.Categorias;
-        foreach (Categoria categoria in viewModel.Categorias)
+@{
+    List<Categoria> cats = ViewBag.Categorias;
+    foreach (List<Producto> listaProducto in Model.ListasProductos)
+    {
+        int indexCategorias = 0;
+        var cantProductos = listaProducto.Count();
+        List<int> randomProducto = HelperService.RandomProductos(cantProductos);
+
+        @if (cantProductos > 0)
         {
-            List<Producto> productos = await ProductosService.GetProductosByCategoriaId(categoria.Id);
-            var cantProductos = productos.Count();
-            List<int> randomProducto = HelperService.RandomProductos(cantProductos);
-            @if (cantProductos > 0)
-            {
-                <div class="container cta-100 ">
-                    <div class="container">
-                        <a asp-action="Categoria" asp-route-id="@categoria.Id" class="category_name">@categoria.Nombre</a>
-                        <div class="row blog">
-                            <div class="col-md-12">
-                                <div id="blogCarousel" class="carousel slide container-blog" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                                        <li data-target="#blogCarousel" data-slide-to="1"></li>
-                                    </ol>
+            <div class="container cta-100 ">
+                <div class="container">
+                    <a asp-action="Categoria" asp-route-id="@categorias[indexCategorias].Id" class="category_name">@categorias[indexCategorias].Nombre</a>
+                    @indexCategorias++;
+                    <div class="row blog">
+                        <div class="col-md-12">
+                            <div id="blogCarousel" class="carousel slide container-blog" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#blogCarousel" data-slide-to="1"></li>
+                                </ol>
                                     <!-- Carousel items -->
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
                                             <div class="row">
+
                                                 @for (int index1 = 0; index1 < 3; index1++)
                                                 {
                                                     int j = randomProducto[index1];
@@ -62,28 +64,28 @@
                                                         <div class="item-box-blog">
                                                             <div class="item-box-blog-image">
                                                                 <!--Date-->
-                                                                <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @productos[j].Precio</strike> EUR @productos[j].PrecioFinal</span> </div>
+                                                                <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @listaProducto[j].Precio</strike> EUR @listaProducto[j].PrecioFinal</span> </div>
                                                                 <!--Image-->
-                                                                <a class="item-image" asp-action="Details" asp-route-id="@productos[j].Id">
-                                                                    <figure> <img alt="Producto @productos[j].Titulo" src="@productos[j].ImagenProducto"> </figure>
+                                                                <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                    <figure> <img alt="Producto @listaProducto[j].Titulo" src="@listaProducto[j].ImagenProducto"> </figure>
                                                                 </a>
                                                             </div>
                                                             <div class="item-box-blog-body">
                                                                 <!--Heading-->
                                                                 <div class="item-box-blog-heading">
-                                                                    <a asp-action="Details" asp-route-id="@productos[j].Id">
-                                                                        <h5>@productos[j].Titulo</h5>
+                                                                    <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                        <h5>@listaProducto[j].Titulo</h5>
                                                                     </a>
                                                                 </div>
                                                                 <!--Data-->
                                                                 <div class="item-box-blog-data">
-                                                                    <p>Quedan: @productos[j].UnidadesStock unidades</p>
+                                                                    <p>Quedan: @listaProducto[j].UnidadesStock unidades</p>
                                                                 </div>
                                                                 <!--Text-->
                                                                 <div class="item-box-blog-text">
-                                                                    <p>@productos[j].Descripcion</p>
+                                                                    <p>@listaProducto[j].Descripcion</p>
                                                                 </div>
-                                                                <div class="mt"> <a asp-action="Details" asp-route-id="@productos[j].Id" class="btn bg-blue-ui white read">Lo quiero!</a> </div>
+                                                                <div class="mt"> <a asp-action="Details" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read">Lo quiero!</a> </div>
                                                                 <!--Read More Button-->
                                                             </div>
                                                         </div>
@@ -102,28 +104,28 @@
                                                         <div class="item-box-blog">
                                                             <div class="item-box-blog-image">
                                                                 <!--Date-->
-                                                                <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @productos[j].Precio</strike> EUR @productos[j].PrecioFinal</span> </div>
+                                                                <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @listaProducto[j].Precio</strike> EUR @listaProducto[j].PrecioFinal</span> </div>
                                                                 <!--Image-->
-                                                                <a class="item-image" asp-action="Details" asp-route-id="@productos[j].Id">
-                                                                    <figure> <img alt="Producto @productos[j].Titulo" src="@productos[j].ImagenProducto"> </figure>
+                                                                <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                    <figure> <img alt="Producto @listaProducto[j].Titulo" src="@listaProducto[j].ImagenProducto"> </figure>
                                                                 </a>
                                                             </div>
                                                             <div class="item-box-blog-body">
                                                                 <!--Heading-->
                                                                 <div class="item-box-blog-heading">
-                                                                    <a asp-action="Details" asp-route-id="@productos[j].Id">
-                                                                        <h5>@productos[j].Titulo</h5>
+                                                                    <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                        <h5>@listaProducto[j].Titulo</h5>
                                                                     </a>
                                                                 </div>
                                                                 <!--Data-->
                                                                 <div class="item-box-blog-data">
-                                                                    <p>Quedan: @productos[j].UnidadesStock unidades</p>
+                                                                    <p>Quedan: @listaProducto[j].UnidadesStock unidades</p>
                                                                 </div>
                                                                 <!--Text-->
                                                                 <div class="item-box-blog-text">
-                                                                    <p>@productos[j].Descripcion</p>
+                                                                    <p>@listaProducto[j].Descripcion</p>
                                                                 </div>
-                                                                <div class="mt"> <a asp-action="Details" asp-route-id="@productos[j].Id" class="btn bg-blue-ui white read">Comprar!</a> </div>
+                                                                <div class="mt"> <a asp-action="Details" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read">Comprar!</a> </div>
                                                                 <!--Read More Button-->
                                                             </div>
                                                         </div>
@@ -135,60 +137,62 @@
                                         <!--.item-->
                                     </div>
                                     <!--.carousel-inner-->
-                                </div>
-                                <!--.Carousel-->
                             </div>
+                            <!--.Carousel-->
                         </div>
                     </div>
                 </div>
-            }
+            </div>
         }
     }
+}
 
-    @if (MessagesService.GetShowMessage())
-    {
-        MessagesService.SetShowMessage(false);
-        //https://love2dev.com/blog/custom-javascript-alert/
-        <script type="x-template" id="banner-template">
-            <div class="banner banner-top alert-primary active" role="alert">
-                @MessagesService.GetMessage()
-                <span class="banner-close"></span>
-            </div>
-        </script>
-        <script>function getBannerTemplate() {
-                var template = document.querySelector("#banner-template");
-                return template.innerHTML;
+@if (MessagesService.GetShowMessage())
+{
+    MessagesService.SetShowMessage(false);
+    //https://love2dev.com/blog/custom-javascript-alert/
+    <script type="x-template" id="banner-template">
+        <div class="banner banner-top alert-primary active" role="alert">
+            @MessagesService.GetMessage()
+            <span class="banner-close"></span>
+        </div>
+    </script>
+    <script>
+        function getBannerTemplate() {
+            var template = document.querySelector("#banner-template");
+            return template.innerHTML;
+        }
+
+        function createFragment(htmlStr) {
+            var frag = document.createDocumentFragment(),
+                temp = document.createElement('div');
+            temp.innerHTML = htmlStr;
+            while (temp.firstChild) {
+                frag.appendChild(temp.firstChild);
             }
+            return frag;
+        }
 
-            function createFragment(htmlStr) {
-                var frag = document.createDocumentFragment(),
-                    temp = document.createElement('div');
-                temp.innerHTML = htmlStr;
-                while (temp.firstChild) {
-                    frag.appendChild(temp.firstChild);
-                }
-                return frag;
-            }
+        function injectTemplate(template) {
+            document.body.appendChild(createFragment(template));
+        }
+        var simpleAlert = document.querySelector(".simple-alert");
+        injectTemplate(getBannerTemplate());
+        var btnClose = document.querySelector(".banner-close");
+        btnClose.addEventListener("click", function (closeEvt) {
+            var banner = document.querySelector(".banner");
+            banner.parentNode.removeChild(banner);
+        });</script>
+}
+<script>
+    ifUserVendedor()
+    function ifUserVendedor() {
+        let div = document.getElementById('producto-vendedor-vacio');
+        div.classList.remove('d-none');
+    }</script>
 
-            function injectTemplate(template) {
-                document.body.appendChild(createFragment(template));
-            }
-            var simpleAlert = document.querySelector(".simple-alert");
-            injectTemplate(getBannerTemplate());
-            var btnClose = document.querySelector(".banner-close");
-            btnClose.addEventListener("click", function (closeEvt) {
-                var banner = document.querySelector(".banner");
-                banner.parentNode.removeChild(banner);
-            });</script>
-    }
-    <script>ifUserVendedor()
-        function ifUserVendedor() {
-            let div = document.getElementById('producto-vendedor-vacio');
-            div.classList.remove('d-none');
-        }</script>
+@section Scripts {
 
-    @section Scripts {
-
-        <link href="@Url.Content("~/css/popup_banner.css")" rel="stylesheet" type="text/css" />
-        <link href="~/css/popup_banner.css" rel="stylesheet" type="text/css" />
-    }
+    <link href="@Url.Content("~/css/popup_banner.css")" rel="stylesheet" type="text/css" />
+    <link href="~/css/popup_banner.css" rel="stylesheet" type="text/css" />
+}

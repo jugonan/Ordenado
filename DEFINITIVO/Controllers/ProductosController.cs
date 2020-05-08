@@ -59,14 +59,14 @@ namespace DEFINITIVO.Controllers
         // GET: Productos
         public async Task<ProductosForIndex2VM> Index2()
         {
-            //ViewData["Categorias"] = await _categoriasService.GetCategorias();
             //return View(await _productosService.GetProductos());
 
             List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
+            ViewData["Categorias"] = listaCategorias;
             List<Producto> listaProductos = await _productosService.GetProductos();
             List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
 
-            return await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+            return _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
 
         }
         // GET: Productos/Details/5

@@ -27,10 +27,10 @@ namespace Heldu.Logic.Services
                             .ThenInclude(a => a.Vendedor)
                             .ToListAsync();
         }
-<<<<<<< Updated upstream
         public async Task<Producto> GetProductoById(int? id)
-=======
-
+        {
+            return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
+        }
         public async Task<List<List<Producto>>> Index2VM(List<Categoria> categorias)
         {
             List<ProductoCategoria> productoCategorias = await _context.ProductoCategoria.ToListAsync();
@@ -48,12 +48,6 @@ namespace Heldu.Logic.Services
                 productos.Add(productosAdd);
             }
             return productos;
-        }
-
-        public async Task<Producto> DetailsProducto(int? id)
->>>>>>> Stashed changes
-        {
-            return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task CreateProductoPost(Producto producto)
         {
@@ -115,20 +109,18 @@ namespace Heldu.Logic.Services
             return productos;
         }
         //Método que devuelve n listas de Productos por Categoria. Solo 6 productos en cada lista
-        public async Task<ProductosForIndex2VM> GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias)
+        public ProductosForIndex2VM GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias)
         {
             ProductosForIndex2VM listasProductosForIndex2 = new ProductosForIndex2VM();
+            listasProductosForIndex2.ListasProductos = new List<List<Producto>>();
+
             foreach (Categoria categoria in listaCategorias)
             {
-                int cont = 0;
                 List<Producto> newListaProducto = new List<Producto>();
                 foreach (ProductoCategoria productoCategoria in listaProductosCategorias)
                 {
                     if (productoCategoria.CategoriaId == categoria.Id)
                         newListaProducto.Add(productoCategoria.Producto);
-                    cont++;
-                    if (cont < 6)
-                        break;
                 }
                 listasProductosForIndex2.ListasProductos.Add(newListaProducto);
             }
