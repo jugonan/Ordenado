@@ -12,7 +12,7 @@
 @{
     ViewData["Title"] = "Index2";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
-    List<Categoria> categorias = ViewBag.Categoria;
+    List<Categoria> categorias = ViewBag.Categorias;
 }
 <!-- CSS particular para esta vista. Los script están en el layout-->
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
@@ -33,9 +33,9 @@
 <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SINO EL CARROUSEL NO FUNCIONA!!!!-->
 @{
     List<Categoria> cats = ViewBag.Categorias;
+    int indexCategorias = 0;
     foreach (List<Producto> listaProducto in Model.ListasProductos)
     {
-        int indexCategorias = 0;
         var cantProductos = listaProducto.Count();
         List<int> randomProducto = HelperService.RandomProductos(cantProductos);
 
@@ -44,7 +44,7 @@
             <div class="container cta-100 ">
                 <div class="container">
                     <a asp-action="Categoria" asp-route-id="@categorias[indexCategorias].Id" class="category_name">@categorias[indexCategorias].Nombre</a>
-                    @indexCategorias++;
+                    @{indexCategorias++;}
                     <div class="row blog">
                         <div class="col-md-12">
                             <div id="blogCarousel" class="carousel slide container-blog" data-ride="carousel">
@@ -52,91 +52,91 @@
                                     <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
                                     <li data-target="#blogCarousel" data-slide-to="1"></li>
                                 </ol>
-                                    <!-- Carousel items -->
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <div class="row">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="row">
 
-                                                @for (int index1 = 0; index1 < 3; index1++)
-                                                {
-                                                    int j = randomProducto[index1];
-                                                    <div class="col-md-4 item-box">
-                                                        <div class="item-box-blog">
-                                                            <div class="item-box-blog-image">
-                                                                <!--Date-->
-                                                                <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @listaProducto[j].Precio</strike> EUR @listaProducto[j].PrecioFinal</span> </div>
-                                                                <!--Image-->
-                                                                <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                    <figure> <img alt="Producto @listaProducto[j].Titulo" src="@listaProducto[j].ImagenProducto"> </figure>
+                                            @for (int index1 = 0; index1 < 3; index1++)
+                                            {
+                                                int j = randomProducto[index1];
+                                                <div class="col-md-4 item-box">
+                                                    <div class="item-box-blog">
+                                                        <div class="item-box-blog-image">
+                                                            <!--Date-->
+                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @listaProducto[j].Precio</strike> EUR @listaProducto[j].PrecioFinal</span> </div>
+                                                            <!--Image-->
+                                                            <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                <figure> <img alt="Producto @listaProducto[j].Titulo" src="@listaProducto[j].ImagenProducto"> </figure>
+                                                            </a>
+                                                        </div>
+                                                        <div class="item-box-blog-body">
+                                                            <!--Heading-->
+                                                            <div class="item-box-blog-heading">
+                                                                <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                    <h5>@listaProducto[j].Titulo</h5>
                                                                 </a>
                                                             </div>
-                                                            <div class="item-box-blog-body">
-                                                                <!--Heading-->
-                                                                <div class="item-box-blog-heading">
-                                                                    <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                        <h5>@listaProducto[j].Titulo</h5>
-                                                                    </a>
-                                                                </div>
-                                                                <!--Data-->
-                                                                <div class="item-box-blog-data">
-                                                                    <p>Quedan: @listaProducto[j].UnidadesStock unidades</p>
-                                                                </div>
-                                                                <!--Text-->
-                                                                <div class="item-box-blog-text">
-                                                                    <p>@listaProducto[j].Descripcion</p>
-                                                                </div>
-                                                                <div class="mt"> <a asp-action="Details" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read">Lo quiero!</a> </div>
-                                                                <!--Read More Button-->
+                                                            <!--Data-->
+                                                            <div class="item-box-blog-data">
+                                                                <p>Quedan: @listaProducto[j].UnidadesStock unidades</p>
                                                             </div>
+                                                            <!--Text-->
+                                                            <div class="item-box-blog-text">
+                                                                <p>@listaProducto[j].Descripcion</p>
+                                                            </div>
+                                                            <div class="mt"> <a asp-action="Details" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read">Lo quiero!</a> </div>
+                                                            <!--Read More Button-->
                                                         </div>
                                                     </div>
-                                                }
-                                                <!--.row-->
-                                            </div>
-                                        </div>
-                                        <!--.item-->
-                                        <div class="carousel-item ">
-                                            <div class="row">
-                                                @for (int index2 = 3; index2 < 6; index2++)
-                                                {
-                                                    int j = randomProducto[index2];
-                                                    <div class="col-md-4 item-box">
-                                                        <div class="item-box-blog">
-                                                            <div class="item-box-blog-image">
-                                                                <!--Date-->
-                                                                <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @listaProducto[j].Precio</strike> EUR @listaProducto[j].PrecioFinal</span> </div>
-                                                                <!--Image-->
-                                                                <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                    <figure> <img alt="Producto @listaProducto[j].Titulo" src="@listaProducto[j].ImagenProducto"> </figure>
-                                                                </a>
-                                                            </div>
-                                                            <div class="item-box-blog-body">
-                                                                <!--Heading-->
-                                                                <div class="item-box-blog-heading">
-                                                                    <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                        <h5>@listaProducto[j].Titulo</h5>
-                                                                    </a>
-                                                                </div>
-                                                                <!--Data-->
-                                                                <div class="item-box-blog-data">
-                                                                    <p>Quedan: @listaProducto[j].UnidadesStock unidades</p>
-                                                                </div>
-                                                                <!--Text-->
-                                                                <div class="item-box-blog-text">
-                                                                    <p>@listaProducto[j].Descripcion</p>
-                                                                </div>
-                                                                <div class="mt"> <a asp-action="Details" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read">Comprar!</a> </div>
-                                                                <!--Read More Button-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            </div>
+                                                </div>
+                                            }
                                             <!--.row-->
                                         </div>
-                                        <!--.item-->
                                     </div>
-                                    <!--.carousel-inner-->
+                                    <!--.item-->
+                                    <div class="carousel-item ">
+                                        <div class="row">
+                                            @for (int index2 = 3; index2 < 6; index2++)
+                                            {
+                                                int j = randomProducto[index2];
+                                                <div class="col-md-4 item-box">
+                                                    <div class="item-box-blog">
+                                                        <div class="item-box-blog-image">
+                                                            <!--Date-->
+                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;">EUR @listaProducto[j].Precio</strike> EUR @listaProducto[j].PrecioFinal</span> </div>
+                                                            <!--Image-->
+                                                            <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                <figure> <img alt="Producto @listaProducto[j].Titulo" src="@listaProducto[j].ImagenProducto"> </figure>
+                                                            </a>
+                                                        </div>
+                                                        <div class="item-box-blog-body">
+                                                            <!--Heading-->
+                                                            <div class="item-box-blog-heading">
+                                                                <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
+                                                                    <h5>@listaProducto[j].Titulo</h5>
+                                                                </a>
+                                                            </div>
+                                                            <!--Data-->
+                                                            <div class="item-box-blog-data">
+                                                                <p>Quedan: @listaProducto[j].UnidadesStock unidades</p>
+                                                            </div>
+                                                            <!--Text-->
+                                                            <div class="item-box-blog-text">
+                                                                <p>@listaProducto[j].Descripcion</p>
+                                                            </div>
+                                                            <div class="mt"> <a asp-action="Details" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read">Comprar!</a> </div>
+                                                            <!--Read More Button-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <!--.row-->
+                                    </div>
+                                    <!--.item-->
+                                </div>
+                                <!--.carousel-inner-->
                             </div>
                             <!--.Carousel-->
                         </div>

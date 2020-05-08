@@ -47,11 +47,11 @@ namespace DEFINITIVO
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-        //        .AddNewtonsoftJson
-        //    (options =>
-        //        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-        //);
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson
+                (options =>
+                    options.SerializerSettings.MaxDepth = null
+                );
             services.AddRazorPages();
             services.AddSingleton<MessagesService>();
             services.AddAuthentication()

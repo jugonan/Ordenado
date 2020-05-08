@@ -3,6 +3,7 @@ using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,11 +117,17 @@ namespace Heldu.Logic.Services
 
             foreach (Categoria categoria in listaCategorias)
             {
+                int cont = 0;
                 List<Producto> newListaProducto = new List<Producto>();
                 foreach (ProductoCategoria productoCategoria in listaProductosCategorias)
                 {
                     if (productoCategoria.CategoriaId == categoria.Id)
+                    {
                         newListaProducto.Add(productoCategoria.Producto);
+                        cont++;
+                    }
+                    if (cont > 5)
+                        break;
                 }
                 listasProductosForIndex2.ListasProductos.Add(newListaProducto);
             }
