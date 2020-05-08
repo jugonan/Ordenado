@@ -16,6 +16,6 @@ namespace Heldu.Logic.Interfaces
         public Task AddCantidadVisitasProductoById(int? id);
         public Task<List<Producto>> BuscarProductosPorString(string inputBuscar);
         public Task<List<Producto>> GetProductosByCategoriaId(int categoriaId);
-
+        public Task<List<List<Producto>>> Index2VM(List<Categoria> categorias);
     }
 }

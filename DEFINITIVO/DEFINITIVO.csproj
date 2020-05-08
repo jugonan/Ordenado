@@ -26,12 +26,17 @@
     <None Remove="Frames\**" />
     <None Remove="Migrations\**" />
     <None Remove="Models\**" />
+<<<<<<< Updated upstream
     <None Remove="ViewModel\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Services\HelperServiceOld.cs" />
     <Compile Remove="Services\Manejo_Productos.cs" />
+=======
+    <Content Remove="Views\Home\JasFASFAS.cshtml" />
+    <Content Remove="Views\Productos\Index.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
 
 
