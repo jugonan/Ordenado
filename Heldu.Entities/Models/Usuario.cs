@@ -19,8 +19,6 @@ namespace Heldu.Entities.Models
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         public DateTime FechaNacimiento { get; set; }
         public byte[] FotoUsuario { get; set; }
-        //public byte[] FotoPerfil { get; set; }
-        //public byte[] Image { get; set; }
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
         public Ubicacion Ubicacion { get; set; }
