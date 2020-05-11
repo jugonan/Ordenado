@@ -14,7 +14,7 @@ namespace Heldu.Entities.Models
         public string Calle { get; set; }
         public string Numero { get; set; }
         public string Letra { get; set; }
-        public int? UsuarioId { get; set; }
-        public int? VendedorId { get; set; }
+        public int UsuarioId { get; set; }
+        public int VendedorId { get; set; }
     }
 }

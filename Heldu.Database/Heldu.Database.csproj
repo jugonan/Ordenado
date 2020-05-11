@@ -7,6 +7,24 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200511083359_UbicacionModificado.cs" />
     <Compile Remove="Migrations\20200511083359_UbicacionModificado.Designer.cs" />
+    <Compile Remove="Migrations\20200511140135_UbicacionModificadoOnceMore.cs" />
+    <Compile Remove="Migrations\20200511140135_UbicacionModificadoOnceMore.Designer.cs" />
+    <Compile Remove="Migrations\20200511141103_UbicacionModificadoOnceMore.cs" />
+    <Compile Remove="Migrations\20200511141103_UbicacionModificadoOnceMore.Designer.cs" />
+    <Compile Remove="Migrations\20200511141943_UbicacionModificadoOnceMore.cs" />
+    <Compile Remove="Migrations\20200511141943_UbicacionModificadoOnceMore.Designer.cs" />
+    <Compile Remove="Migrations\20200511142405_UbicacionModificadoOnceMore.cs" />
+    <Compile Remove="Migrations\20200511142405_UbicacionModificadoOnceMore.Designer.cs" />
+    <Compile Remove="Migrations\20200511143841_UbicacionModificadoNEW.cs" />
+    <Compile Remove="Migrations\20200511143841_UbicacionModificadoNEW.Designer.cs" />
+    <Compile Remove="Migrations\20200511144753_ProbandoConUbicacion.cs" />
+    <Compile Remove="Migrations\20200511144753_ProbandoConUbicacion.Designer.cs" />
+    <Compile Remove="Migrations\20200511145913_UbicacionWithoutKeys.cs" />
+    <Compile Remove="Migrations\20200511145913_UbicacionWithoutKeys.Designer.cs" />
+    <Compile Remove="Migrations\20200511145942_UbicacionWithoutKeys2.cs" />
+    <Compile Remove="Migrations\20200511145942_UbicacionWithoutKeys2.Designer.cs" />
+    <Compile Remove="Migrations\20200511150048_UbicacionWithoutKeys.cs" />
+    <Compile Remove="Migrations\20200511150048_UbicacionWithoutKeys.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

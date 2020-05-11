@@ -40,12 +40,10 @@ namespace Heldu.Entities.Models
         public string Telefono { get; set; }
 
         public string DescripcionEmpresa { get; set; }
+        public Ubicacion Ubicacion { get; set; }
 
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
-
-        public int UbicacionId { get; set; }
-        public Ubicacion Ubicacion { get; set; }
         public List<ProductoVendedor> ProductoVendedor { get; set; }
     }
 }
