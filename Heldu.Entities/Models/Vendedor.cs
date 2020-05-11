@@ -17,15 +17,12 @@ namespace Heldu.Entities.Models
         [Display(Name = "Nº de tiendas (*)")]
         public string NumeroTiendas { get; set; }
 
-        //[Required]
         [Display(Name = "Calle en la que se ubica (*)")]
         public string Direccion { get; set; }
 
-        //[Required]
         [Display(Name = "Ciudad (*)")]
         public string Ciudad { get; set; }
 
-        //[Required]
         [Display(Name = "C.P. (*)")]
         public string CodigoPostal { get; set; }
 

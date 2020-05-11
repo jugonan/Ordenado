@@ -17,12 +17,14 @@ namespace DEFINITIVO.Controllers
     {
         private readonly IVendedoresService _vendedoresService;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUbicacionesService _ubicacionesService;
 
 
-        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager)
+        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager, IUbicacionesService ubicacionesService)
         {
             _vendedoresService = vendedoresService;
             _userManager = userManager;
+            _ubicacionesService = ubicacionesService;
         }
 
         // GET: Vendedores
@@ -67,10 +69,27 @@ namespace DEFINITIVO.Controllers
                 Vendedor vendedor = new Vendedor()
                 {
                     NombreDeEmpresa = vendedorUbicacionVM.NombreDeEmpresa,
-                    NumeroTiendas = vendedorUbicacionVM.NumeroTiendas
-
+                    NumeroTiendas = vendedorUbicacionVM.NumeroTiendas,
+                    Paginaweb = vendedorUbicacionVM.Paginaweb,
+                    Telefono = vendedorUbicacionVM.Telefono,
+                    DescripcionEmpresa = vendedorUbicacionVM.DescripcionEmpresa,
+                    IdentityUserId = vendedorUbicacionVM.IdentityUserId
                 };
                 await _vendedoresService.CreateVendedor(vendedor);
+                Ubicacion ubicacion = new Ubicacion()
+                {
+                    Pais = "España",
+                    CCAA = vendedorUbicacionVM.CCAA,
+                    Provincia = "Pendiente",
+                    Poblacion = vendedorUbicacionVM.Poblacion,
+                    CP = vendedorUbicacionVM.CP,
+                    Calle = vendedorUbicacionVM.Calle,
+                    Numero = vendedorUbicacionVM.Numero,
+                    Letra = vendedorUbicacionVM.Letra,
+                    VendedorId = vendedor.Id,
+                    UsuarioId = (vendedor.Id*1111)
+                };
+                await _ubicacionesService.CreateUbicacion(ubicacion);
                 return RedirectToAction("Inscrito", "Vendedores");
             }
             return RedirectToAction("Inscrito", "Vendedores");
