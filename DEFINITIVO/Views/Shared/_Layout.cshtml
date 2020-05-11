@@ -52,7 +52,7 @@
 
 
 </head>
-<body id="mainDiv">
+<body id="mainDiv" class="accordion">
     <header>
         <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3" id="navbarPrincipal">
             <div class="container">
@@ -75,11 +75,11 @@
                         <li class="nav-item">
                             <a class="nav-link textType1" data-toggle="collapse" href="#divBuscador" aria-controls="divBuscador" aria-expanded="false" aria-label="Toggle navigation">Buscar</a>
                         </li>
-                        <li class="nav-item">
-                            <h4 class="nav-link textType1" id="pipe">  |  </h4>
-                        </li>
                         @if (User.IsInRole("cliente"))
                         {
+                            <li class="nav-item">
+                                <h4 class="nav-link textType1" id="pipe">  |  </h4>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link textType1" asp-area="" asp-controller="Usuarios" asp-action="Micuenta">Mi perfil</a>
                             </li>
@@ -89,6 +89,9 @@
                         }
                         @if (User.IsInRole("vendedor"))
                         {
+                            <li class="nav-item">
+                                <h4 class="nav-link textType1" id="pipe">  |  </h4>
+                            </li>
                             <li class="nav-item">
                                 <a class="textType1" asp-area="" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
                             </li>
@@ -168,7 +171,7 @@
         @{
             List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
         }
-        <div class="collapse" id="divCategorias">
+        <div class="collapse" id="divCategorias" data-parent="#mainDiv">
             <ul class="row subMenuCat">
                 @foreach (Categoria categoria in listaCategorias)
                 {
@@ -176,6 +179,16 @@
                         <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3">@categoria.Nombre.ToUpper()</a>
                     </li>
                 }
+            </ul>
+        </div>
+        <!-- Detalles de Heldu ocultos. Se muestran al hacer click en "Conocenos!"-->
+        <div class="collapse" id="divDetallesHeldu" data-parent="#mainDiv">
+            <ul class="row subMenuCon">
+                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
+                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
+                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
+                @*<li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Contacto">Contáctanos</a></li>*@
+                <li class="col itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
             </ul>
         </div>
 
@@ -202,20 +215,8 @@
             </form>
         </div>
 
-        <!-- Detalles de Heldu ocultos. Se muestran al hacer click en "Conocenos!"-->
-        <div class="collapse" id="divDetallesHeldu">
-            <ul class="row subMenuCon">
-                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
-                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
-                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
-                @*<li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Contacto">Contáctanos</a></li>*@
-                <li class="col itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
-
-            </ul>
-        </div>
-
         <!-- Buscador oculto que se desplega al hacer click en "Buscar" -->
-        <div class="collapse" id="divBuscador">
+        <div class="collapse" id="divBuscador" data-parent="#mainDiv">
             <form asp-controller="Productos" asp-action="Search" id="formBuscador" class="form-inline">
                 <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="Ingrese lo que desea buscar" aria-label="Search" />
                 <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>

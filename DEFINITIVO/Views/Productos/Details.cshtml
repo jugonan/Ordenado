@@ -6,7 +6,6 @@
 @inject IHelperService HelperService
 @inject IVendedoresService VendedoresService
 @inject IUsuariosService UsuariosService
-@inject IUsuariosService UsuariosService
 @inject IReviewsService ReviewsService
 @{
     Vendedor vendedor = await VendedoresService.ObtenerVendedorDesdeProducto(Model.Id);

@@ -3,11 +3,8 @@ using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Heldu.Logic.Services
@@ -31,24 +28,6 @@ namespace Heldu.Logic.Services
         public async Task<Producto> GetProductoById(int? id)
         {
             return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
-        }
-        public async Task<List<List<Producto>>> Index2VM(List<Categoria> categorias)
-        {
-            List<ProductoCategoria> productoCategorias = await _context.ProductoCategoria.ToListAsync();
-            List<List<Producto>> productos = new List<List<Producto>>();
-            foreach (Categoria categoria in categorias)
-            {
-                List<Producto> productosAdd = new List<Producto>();
-                foreach (ProductoCategoria item in productoCategorias)
-                {
-                    if (item.CategoriaId == categoria.Id)
-                    {
-                        productosAdd.Add(item.Producto);
-                    }
-                }
-                productos.Add(productosAdd);
-            }
-            return productos;
         }
         public async Task CreateProductoPost(Producto producto)
         {
@@ -89,9 +68,7 @@ namespace Heldu.Logic.Services
             foreach (Producto producto in listaProductos)
             {
                 if (producto.Titulo.ToLower().Contains(inputBuscar.ToLower()) || producto.Descripcion.ToLower().Contains(inputBuscar.ToLower()))
-                {
                     listaProductosEncontrados.Add(producto);
-                }
             }
             return listaProductosEncontrados;
         }
@@ -109,7 +86,7 @@ namespace Heldu.Logic.Services
             }
             return productos;
         }
-        //Método que devuelve n listas de Productos por Categoria. Solo 6 productos en cada lista
+        //Método que devuelve n listas de Productos por Categoria.
         public ProductosForIndex2VM GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias)
         {
             ProductosForIndex2VM listasProductosForIndex2 = new ProductosForIndex2VM();
@@ -117,17 +94,11 @@ namespace Heldu.Logic.Services
 
             foreach (Categoria categoria in listaCategorias)
             {
-                int cont = 0;
                 List<Producto> newListaProducto = new List<Producto>();
                 foreach (ProductoCategoria productoCategoria in listaProductosCategorias)
                 {
                     if (productoCategoria.CategoriaId == categoria.Id)
-                    {
                         newListaProducto.Add(productoCategoria.Producto);
-                        cont++;
-                    }
-                    if (cont > 5)
-                        break;
                 }
                 listasProductosForIndex2.ListasProductos.Add(newListaProducto);
             }

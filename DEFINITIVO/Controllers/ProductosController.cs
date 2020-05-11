@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using DEFINITIVO.Services;
-using System;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 
@@ -59,14 +57,13 @@ namespace DEFINITIVO.Controllers
         // GET: Productos
         public async Task<IActionResult> Index2()
         {
-
             List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
-            ViewData["Categorias"] = listaCategorias;
             List<Producto> listaProductos = await _productosService.GetProductos();
             List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
-            ProductosForIndex2VM listaListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
-            return View(listaListaProductos);
-
+            ProductosForIndex2VM listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+            
+            ViewData["Categorias"] = listaCategorias;
+            return View(listasListaProductos);
         }
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -136,9 +136,9 @@ body {
     width: 100%;
     top: 4vw;
     z-index: 999;
-    height: 8vw;
-    min-height: 3rem;
-    max-height: 4.5rem;
+    height: 3.5rem;
+    min-height: 3vw;
+    max-height: 5vw;
     background-color: black;
     transition: ease;
     transition-duration: 0.2s;
