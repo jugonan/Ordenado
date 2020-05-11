@@ -8,7 +8,7 @@
 
 <div>
     <div class="row">
-        <h3 class="col-4 offset-4">Mis Datos</h3>
+        <h3 class="col-4 offset-4">Datos de empresa</h3>
         <a class="col-3" asp-action="Edit" asp-route-id="@Model.Id" ><img  style="max-width:10%;" align="right" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
     </div>
     <div class="row">
@@ -17,26 +17,45 @@
             @*Cuadro blanco*@
             <div class="row" style="margin:0px; justify-content:space-around;">
                 <div col-5 style="width:35%;">
-                    <h5>Tipo de empresa</h5>
+                    <h5>Nombre de empresa</h5>
                     <div style="border-width:1px;">
-                        <p class="texto-caja-perfil"></p>
+                        <p class="texto-caja-perfil">@Model.NombreDeEmpresa</p>
                     </div>
                 </div>
                 <div col-6 offset-1 style="width:60%;">
-                    <h5>Número de registro</h5>
+                    <h5>Dirección</h5>
                     <div style="border-width:1px;">
-                        <p class="texto-caja-perfil"></p>
+                        <p class="texto-caja-perfil">@Model.Direccion</p>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin:0px;">
                 <div col-5 style="width:35%;">
-                    <h5>Nombre de Empresa</h5>
+                    <h5>Ciudad</h5>
                     <div style="border-width:1px;">
-                        <p class="texto-caja-perfil"></p>
+                        <p class="texto-caja-perfil">@Model.Ciudad</p>
+                    </div>
+                </div>
+                <div col-6 offset-1 style="width:60%;">
+                    <h5>Código postal</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@Model.CodigoPostal</p>
+                    </div>
+                </div>
+                <div class="row" style="margin:0px;">
+                    <div col-5 style="width:35%;">
+                        <h5>Página web</h5>
+                        <div style="border-width:1px;">
+                            <p class="texto-caja-perfil">@Model.Paginaweb</p>
+                        </div>
+                    </div>
+                </div>
+                <div col-6 offset-1 style="width:60%;">
+                    <h5>Teléfono</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@Model.Telefono</p>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>

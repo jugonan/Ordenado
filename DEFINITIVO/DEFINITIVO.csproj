@@ -98,7 +98,6 @@
     <Content Remove="wwwroot\ImagenesUsuarios\a1cf7e3d-40f2-468f-98d7-c0915b51545c_foto2.png" />
     <Content Remove="wwwroot\ImagenesUsuarios\d3bfc4df-88c3-461e-a7b8-80e23fc2aee9_foto1.png" />
     <Content Remove="wwwroot\ImagenesUsuarios\1f8cdd59-f827-4620-8b0c-361e8d63ef85_foto1.png" />
-    <Content Remove="Views\Vendedores\Inscrito.cshtml" />
     <Content Remove="wwwroot\css\Vendedor_Create.css" />
   </ItemGroup>
   <ItemGroup>

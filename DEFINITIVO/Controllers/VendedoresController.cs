@@ -66,7 +66,6 @@ namespace DEFINITIVO.Controllers
                 await _vendedoresService.CreateVendedor(vendedor);
                 return RedirectToAction("Inscrito", "Vendedores");
             }
-            //ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
             return RedirectToAction("Inscrito", "Vendedores");
 
             //NOTA: Tenemos que añadir una página error a la que enviar al vendedor si se da algún problema en la creación del mismo
@@ -94,7 +93,7 @@ namespace DEFINITIVO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDeEmpresa,TipoDeEmpresa,NumeroRegistro,IdentityUserId")] Vendedor vendedor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDeEmpresa,Direccion,Ciudad,CodigoPostal,PaginaWeb,NumeroTiendas,Telefono,IdentityUserId")] Vendedor vendedor)
         {
             if (id != vendedor.Id)
             {
@@ -194,6 +193,11 @@ namespace DEFINITIVO.Controllers
 
         // Acción casi inútil que sólo devuelve la vista
         public IActionResult Inscrito()
+        {
+            return View();
+        }
+
+        public IActionResult ProbandoAPI()
         {
             return View();
         }
