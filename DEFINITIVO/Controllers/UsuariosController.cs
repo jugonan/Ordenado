@@ -69,7 +69,7 @@ namespace DEFINITIVO.Controllers
                     CP = usuarioUbicacionVM.CP,
                     Calle = usuarioUbicacionVM.Calle,
                     Numero = usuarioUbicacionVM.Numero,
-                    Letra = usuarioUbicacionVM.Letra
+                    Letra = usuarioUbicacionVM.Letra,
                 };
                 Usuario usuario = new Usuario()
                 {

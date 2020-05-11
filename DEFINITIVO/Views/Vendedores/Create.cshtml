@@ -1,4 +1,4 @@
-@model Heldu.Entities.Models.Vendedor
+@model Heldu.Logic.ViewModels.VendedorUbicacion
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
@@ -7,6 +7,7 @@
 @{
     ViewData["Title"] = "Create";
 }
+<script src="~/js/CPVendedorCreate.js"></script>
 
 <h3>¡Bienvenido/a a Heldu!</h3>
 <br />
@@ -25,21 +26,39 @@
                 <input asp-for="NombreDeEmpresa" class="form-control" />
                 <span asp-validation-for="NombreDeEmpresa" class="text-danger"></span>
             </div>
-            <div>
-                <label asp-for="Direccion" class="control-label">Dirección de la calle*</label>
-                <input placeholder="ej: Avenida Urquijo 33" asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
             <div class="row">
-                <div class="col-9">
-                    <label asp-for="Ciudad" class="control-label">Ciudad*</label>
-                    <input asp-for="Ciudad" class="form-control" />
-                    <span asp-validation-for="Ciudad" class="text-danger"></span>
+                <div class="col-3">
+                    <label asp-for="Pais" class="control-label">Código Postal*</label>
+                    <input type="text" minlength="5" maxlength="5" asp-for="Pais" class="form-control" />
+                    <span asp-validation-for="Pais" class="text-danger"></span>
                 </div>
                 <div class="col-3">
                     <label asp-for="CodigoPostal" class="control-label">Código Postal*</label>
                     <input type="text" minlength="5" maxlength="5" asp-for="CodigoPostal" class="form-control" />
                     <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <select id="poblacion" asp-for="Poblacion" class="form-control col-6"></select>
+                    @*<label asp-for="Ciudad" class="control-label">Ciudad*</label>
+                        <input asp-for="Ciudad" class="form-control" />
+                        <span asp-validation-for="Ciudad" class="text-danger"></span>*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <label asp-for="Calle" class="control-label">Dirección de la calle*</label>
+                    <input placeholder="ej: Avenida Urquijo 33" asp-for="Calle" class="form-control" />
+                    <span asp-validation-for="Calle" class="text-danger"></span>
+                </div>
+                <div class="col-2">
+                    <label asp-for="Numero" class="control-label">Nº</label>
+                    <input asp-for="Numero" class="form-control" />
+                    <span asp-validation-for="Numero" class="text-danger"></span>
+                </div>
+                <div class="col-2">
+                    <label asp-for="Letra" class="control-label">Nº</label>
+                    <input placeholder="A,B." asp-for="Letra" class="form-control" />
+                    <span asp-validation-for="Letra" class="text-danger"></span>
                 </div>
             </div>
             <div>
