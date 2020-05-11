@@ -8,8 +8,8 @@
 @inject IUsuariosService UsuariosService
 @inject IReviewsService ReviewsService
 @{
-    Vendedor vendedor = await VendedoresService.ObtenerVendedorDesdeProducto(Model.Id);
     ViewData["Title"] = "Details";
+    Vendedor vendedor = await VendedoresService.ObtenerVendedorDesdeProducto(Model.Id);
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
     Usuario usuario = await UsuariosService.GetUsuarioByActiveIdentityUser(activeUser.Id);
     List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
