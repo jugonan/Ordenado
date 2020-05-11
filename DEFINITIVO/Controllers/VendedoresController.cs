@@ -9,6 +9,7 @@ using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Heldu.Logic.Interfaces;
+using Heldu.Logic.ViewModels;
 
 namespace DEFINITIVO.Controllers
 {
@@ -59,17 +60,22 @@ namespace DEFINITIVO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombreDeEmpresa,NumeroTiendas,Direccion,Ciudad,CodigoPostal,Paginaweb,Telefono,DescripcionEmpresa,IdentityUserId")] Vendedor vendedor)
+        public async Task<IActionResult> Create(VendedorUbicacion vendedorUbicacionVM)
         {
             if (ModelState.IsValid)
             {
+                Vendedor vendedor = new Vendedor()
+                {
+                    NombreDeEmpresa = vendedorUbicacionVM.NombreDeEmpresa,
+                    NumeroTiendas = vendedorUbicacionVM.NumeroTiendas
+
+                };
                 await _vendedoresService.CreateVendedor(vendedor);
                 return RedirectToAction("Inscrito", "Vendedores");
             }
             return RedirectToAction("Inscrito", "Vendedores");
 
             //NOTA: Tenemos que añadir una página error a la que enviar al vendedor si se da algún problema en la creación del mismo
-
         }
 
         // GET: Vendedores/Edit/5

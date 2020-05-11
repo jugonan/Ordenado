@@ -21,6 +21,7 @@ namespace Heldu.Entities.Models
         public byte[] FotoUsuario { get; set; }
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        public int UbicacionId { get; set; }
         public Ubicacion Ubicacion { get; set; }
         public List<Mercado> Mercados { get; set; }
         public List<GustoUsuario> Categorias { get; set; }

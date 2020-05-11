@@ -1,4 +1,5 @@
 ﻿let url = 'https://api.zippopotam.us/ES/';
+let appendOption;
 let escribir;
 if (document.readyState !== 'loading') {
     console.log('document is already ready, just execute code here');
@@ -12,7 +13,7 @@ if (document.readyState !== 'loading') {
 
 
 function myInitCode() {
-    escribir = document.getElementById('apiUno');
+    escribir = document.getElementById('codigoPostal');
     escribir.addEventListener('input', function () {
         let seleccion = this.value;
         if (seleccion.length > 4) {
@@ -24,6 +25,7 @@ function myInitCode() {
                 return datos.json();
             }
             function show(datos) {
+                console.log('creando contenido');
                 crearContenido(datos);
             }
         }
@@ -31,18 +33,19 @@ function myInitCode() {
 }
 
 function crearContenido(datos) {
-    let poblacion = document.createElement('p');
-    let estado = document.createElement('p');
-    let pais = document.createElement('p');
-    poblacion.innerText = calcularNombrePoblacion(JSON.stringify(datos.places[0]));
-    estado.innerText = datos.places[1].state;
-    pais.innerText = datos.country;
-    let poblacionAppend = document.getElementById('poblacion');
-    let estadoAppend = document.getElementById('estado');
-    let paisAppend = document.getElementById('pais');
-    poblacionAppend.appendChild(poblacion);
-    estadoAppend.appendChild(estado);
-    paisAppend.appendChild(pais);
+    appendOption = document.getElementById('poblacion');
+    let estado = document.getElementById('comunidadAutonoma');
+    crearPoblaciones(datos);
+    //poblacion.innerText = calcularNombrePoblacion(JSON.stringify(datos.places[0]));
+    estado.innerText = datos.places[0].state;
+    estado.value = datos.places[0].state;
+}
+function crearPoblaciones(datos) {
+    for (i = 0; i < datos.places.length; i++) {
+        let option = document.createElement('option');
+        option.innerText = calcularNombrePoblacion(JSON.stringify(datos.places[i]));
+        appendOption.appendChild(option);
+    }
 }
 
 function calcularNombrePoblacion(datos) {

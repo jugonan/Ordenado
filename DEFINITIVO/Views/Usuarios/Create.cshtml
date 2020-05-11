@@ -1,4 +1,4 @@
-@model Heldu.Entities.Models.Usuario
+@model Heldu.Logic.ViewModels.UsuarioUbicacionVM
 
 @using Microsoft.AspNetCore.Identity
 
@@ -8,48 +8,78 @@
 @{
     ViewData["Title"] = "Create";
 }
-    <script src="~/js/ApiUbicacionCP.js"></script>
+<script src="~/js/CPUsuarioCreate.js"></script>
 <h1>Create</h1>
 
 <h4>Usuario</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form method="post" enctype="multipart/form-data" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Apellido" class="control-label"></label>
+                    <input asp-for="Apellido" class="form-control" />
+                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Apellido" class="control-label"></label>
-                <input asp-for="Apellido" class="form-control" />
-                <span asp-validation-for="Apellido" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="FechaNacimiento" class="control-label"></label>
+                    <input type="date" asp-for="FechaNacimiento" class="form-control" />
+                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="NombreUsuario" class="control-label"></label>
+                    <input asp-for="NombreUsuario" class="form-control" />
+                    <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NombreUsuario" class="control-label"></label>
-                <input asp-for="NombreUsuario" class="form-control" />
-                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
+            <div class="form-group form-check d-none">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Darde" /> @Html.DisplayNameFor(model => model.Darde)
                 </label>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label"></label>
-                <input type="date" asp-for="FechaNacimiento" class="form-control" />
-                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="FotoUsuario" class="control-label"></label>
+                    <input type="file" id="files " asp-for="FotoUsuario" class="form-control" />
+                    <span asp-validation-for="FotoUsuario" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="FotoUsuario" class="control-label"></label>
-                <input type="file" id="files " asp-for="FotoUsuario" class="form-control" />
-                <span asp-validation-for="FotoUsuario" class="text-danger"></span>
+            <!--Alimento el "Create" de Ubicaciones-->
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Pais" class="control-label"></label>
+                    <input type="text" asp-for="Pais" class="form-control" />
+                    <span asp-validation-for="Pais" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CP" class="control-label"></label>
+                    <input id="codigoPostal" asp-for="CP" class="form-control" />
+                    <span asp-validation-for="CP" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="hidden" asp-for="IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
+            <div class="form-group col-6">
+                <label asp-for="CCAA" class="control-label"></label>
+                <input id="comunidadAutonoma" asp-for="CCAA" class="form-control" />
+                <span asp-validation-for="CCAA" class="text-danger"></span>
             </div>
+            <select id="poblacion" asp-for="Poblacion" class="form-control col-6"></select>
+            @*<div class="form-group">
+                    <label asp-for="Poblacion" class="control-label"></label>
+                    <input id="poblacion" asp-for="Poblacion" class="form-control" />
+                    <span asp-validation-for="Poblacion" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
