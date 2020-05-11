@@ -7,19 +7,22 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Heldu.Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Heldu.Logic.ViewModels;
 
 namespace DEFINITIVO.Controllers
 {
     public class UsuariosController : Controller
     {
         private readonly IUsuariosService _usuariosService;
+        private readonly IUbicacionesService _ubicacionesService;
         private readonly UserManager<IdentityUser> _userManager;
 
 
-        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager)
+        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesService ubicacionesService)
         {
             _usuariosService = usuariosService;
             _userManager = userManager;
+            _ubicacionesService = ubicacionesService;
         }
         // GET: Usuarios
         public async Task<IActionResult> Index()
@@ -53,10 +56,30 @@ namespace DEFINITIVO.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Create(Usuario usuario, List<IFormFile> FotoUsuario)
+        public async Task<IActionResult> Create(UsuarioUbicacionVM usuarioUbicacionVM, List<IFormFile> FotoUsuario)
         {
             if (ModelState.IsValid)
             {
+                Ubicacion ubicacion = new Ubicacion()
+                {
+                    Pais = usuarioUbicacionVM.Pais,
+                    CCAA = usuarioUbicacionVM.CCAA,
+                    Provincia = usuarioUbicacionVM.Provincia,
+                    Poblacion = usuarioUbicacionVM.Poblacion,
+                    CP = usuarioUbicacionVM.CP,
+                    Calle = usuarioUbicacionVM.Calle,
+                    Numero = usuarioUbicacionVM.Numero,
+                    Letra = usuarioUbicacionVM.Letra
+                };
+                Usuario usuario = new Usuario()
+                {
+                    Nombre = usuarioUbicacionVM.Nombre,
+                    Apellido = usuarioUbicacionVM.Apellido,
+                    NombreUsuario = usuarioUbicacionVM.NombreUsuario,
+                    Darde = usuarioUbicacionVM.Darde,
+                    FechaNacimiento = usuarioUbicacionVM.FechaNacimiento,
+                    IdentityUserId = usuarioUbicacionVM.IdentityUserId
+                };
                 foreach (var item in FotoUsuario)
                 {
                     if (item.Length > 0)
@@ -69,6 +92,7 @@ namespace DEFINITIVO.Controllers
                     }
                 }
                 await _usuariosService.CreateUsuario(usuario);
+                await _ubicacionesService.CreateUbicacion(ubicacion);
             }
             return RedirectToAction("Create", "GustoUsuarios");
         }
