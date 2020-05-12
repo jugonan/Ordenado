@@ -77,7 +77,7 @@ namespace DEFINITIVO
             services.AddTransient<IProductosVendedoresService, ProductosVendedoresService>();
             services.AddTransient<IReviewsService, ReviewsService>();
             services.AddTransient<ITransaccionesService, TransaccionesService>();
-            services.AddTransient<IUbicacionesService, UbicacionesService>();
+            services.AddTransient<IUbicacionesVendedoresService, UbicacionesVendedoresService>();
             services.AddTransient<IUsuariosService, UsuariosService>();
             services.AddTransient<IVendedoresService, VendedoresService>();
         }

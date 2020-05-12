@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Heldu.Entities.Models
+﻿namespace Heldu.Entities.Models
 {
-    public class Ubicacion
+    public class UbicacionUsuario
     {
         public int Id { get; set; }
         public string Pais { get; set; }
@@ -15,6 +12,5 @@ namespace Heldu.Entities.Models
         public string Numero { get; set; }
         public string Letra { get; set; }
         public int UsuarioId { get; set; }
-        public int VendedorId { get; set; }
     }
 }

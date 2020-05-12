@@ -20,7 +20,7 @@ namespace Heldu.Entities.Models
         public DateTime FechaNacimiento { get; set; }
         public byte[] FotoUsuario { get; set; }
         public string IdentityUserId { get; set; }
-        public Ubicacion Ubicacion { get; set; }
+        public UbicacionUsuario UbicacionUsuario { get; set; }
         public IdentityUser IdentityUser { get; set; }
         public List<Mercado> Mercados { get; set; }
         public List<GustoUsuario> Categorias { get; set; }

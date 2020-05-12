@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Heldu.Entities;
 
 
 namespace Heldu.Database.Data
@@ -20,7 +16,8 @@ namespace Heldu.Database.Data
         public DbSet<Heldu.Entities.Models.Producto> Producto { get; set; }
         public DbSet<Heldu.Entities.Models.ProductoCategoria> ProductoCategoria { get; set; }
         public DbSet<Heldu.Entities.Models.ProductoVendedor> ProductoVendedor { get; set; }
-        public DbSet<Heldu.Entities.Models.Ubicacion> Ubicacion { get; set; }
+        public DbSet<Heldu.Entities.Models.UbicacionVendedor> UbicacionVendedor { get; set; }
+        public DbSet<Heldu.Entities.Models.UbicacionUsuario> UbicacionUsuario { get; set; }
         public DbSet<Heldu.Entities.Models.Usuario> Usuario { get; set; }
         public DbSet<Heldu.Entities.Models.Vendedor> Vendedor { get; set; }
         public DbSet<Heldu.Entities.Models.Transaccion> Transaccion { get; set; }

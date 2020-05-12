@@ -14,11 +14,11 @@ namespace DEFINITIVO.Controllers
     public class UsuariosController : Controller
     {
         private readonly IUsuariosService _usuariosService;
-        private readonly IUbicacionesService _ubicacionesService;
+        private readonly IUbicacionesUsuariosService _ubicacionesService;
         private readonly UserManager<IdentityUser> _userManager;
 
 
-        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesService ubicacionesService)
+        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesUsuariosService ubicacionesService)
         {
             _usuariosService = usuariosService;
             _userManager = userManager;
@@ -60,7 +60,7 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                Ubicacion ubicacion = new Ubicacion()
+                UbicacionUsuario ubicacion = new UbicacionUsuario()
                 {
                     Pais = usuarioUbicacionVM.Pais,
                     CCAA = usuarioUbicacionVM.CCAA,
@@ -92,7 +92,7 @@ namespace DEFINITIVO.Controllers
                     }
                 }
                 await _usuariosService.CreateUsuario(usuario);
-                await _ubicacionesService.CreateUbicacion(ubicacion);
+                await _ubicacionesService.CreateUbicacionUsuario(ubicacion);
             }
             return RedirectToAction("Create", "GustoUsuarios");
         }
