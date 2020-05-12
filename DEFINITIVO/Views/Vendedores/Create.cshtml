@@ -26,22 +26,27 @@
                 <input asp-for="NombreDeEmpresa" class="form-control" />
                 <span asp-validation-for="NombreDeEmpresa" class="text-danger"></span>
             </div>
+            <div class="d-none">
+                <label asp-for="Pais" class="control-label"></label>
+                <input type="text" asp-for="Pais" class="form-control" />
+                <span asp-validation-for="Pais" class="text-danger"></span>
+            </div>
             <div class="row">
                 <div class="col-3">
-                    <label asp-for="Pais" class="control-label">Código Postal*</label>
-                    <input type="text" minlength="5" maxlength="5" asp-for="Pais" class="form-control" />
-                    <span asp-validation-for="Pais" class="text-danger"></span>
+                    <label asp-for="CP" class="control-label">Código Postal*</label>
+                    <input id="codigoPostal" type="text" minlength="5" maxlength="5" asp-for="CP" class="form-control" />
+                    <span asp-validation-for="CP" class="text-danger"></span>
                 </div>
                 <div class="col-3">
-                    <label asp-for="CodigoPostal" class="control-label">Código Postal*</label>
-                    <input type="text" minlength="5" maxlength="5" asp-for="CodigoPostal" class="form-control" />
-                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                    <label asp-for="CCAA" class="control-label">CCAA*</label>
+                    <input id="comunidadAutonoma" type="text" asp-for="CCAA" class="form-control" />
+                    <span asp-validation-for="CCAA" class="text-danger"></span>
                 </div>
                 <div class="col-6">
                     <select id="poblacion" asp-for="Poblacion" class="form-control col-6"></select>
                     @*<label asp-for="Ciudad" class="control-label">Ciudad*</label>
-                        <input asp-for="Ciudad" class="form-control" />
-                        <span asp-validation-for="Ciudad" class="text-danger"></span>*@
+            <input asp-for="Ciudad" class="form-control" />
+            <span asp-validation-for="Ciudad" class="text-danger"></span>*@
                 </div>
             </div>
             <div class="row">
@@ -56,7 +61,7 @@
                     <span asp-validation-for="Numero" class="text-danger"></span>
                 </div>
                 <div class="col-2">
-                    <label asp-for="Letra" class="control-label">Nº</label>
+                    <label asp-for="Letra" class="control-label"></label>
                     <input placeholder="A,B." asp-for="Letra" class="form-control" />
                     <span asp-validation-for="Letra" class="text-danger"></span>
                 </div>
