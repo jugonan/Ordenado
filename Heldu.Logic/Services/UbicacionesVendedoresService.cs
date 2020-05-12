@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
+using Heldu.Logic.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Heldu.Logic.Services
@@ -21,7 +22,7 @@ namespace Heldu.Logic.Services
         }
         public async Task<UbicacionVendedor> GetUbicacionVendedorById(int? id)
         {
-            return await _context.UbicacionVendedor.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.UbicacionVendedor.FirstOrDefaultAsync(x => x.VendedorId == id);
         }
         public async Task CreateUbicacionVendedor(UbicacionVendedor ubicacion)
         {
@@ -45,6 +46,27 @@ namespace Heldu.Logic.Services
         public bool ExistUbicacionVendedor(int id)
         {
             return _context.UbicacionVendedor.Any(e => e.Id == id);
+        }
+        public VendedorUbicacionVM CrearVendedorUbicacionVM(Vendedor vendedor, UbicacionVendedor ubicacionVendedor)
+        {
+            VendedorUbicacionVM vendedorUbicacionVM = new VendedorUbicacionVM()
+            {
+                VendedorId = vendedor.Id,
+                NombreDeEmpresa = vendedor.NombreDeEmpresa,
+                Paginaweb = vendedor.Paginaweb,
+                Telefono = vendedor.Telefono,
+                DescripcionEmpresa = vendedor.DescripcionEmpresa,
+                IdentityUserId = vendedor.IdentityUserId,
+                Pais = ubicacionVendedor.Pais,
+                CCAA = ubicacionVendedor.CCAA,
+                Provincia = ubicacionVendedor.Provincia,
+                Poblacion = ubicacionVendedor.Poblacion,
+                CP = ubicacionVendedor.CP,
+                Calle = ubicacionVendedor.Calle,
+                Numero = ubicacionVendedor.Numero,
+                Letra = ubicacionVendedor.Letra
+            };
+            return vendedorUbicacionVM;
         }
     }
 }

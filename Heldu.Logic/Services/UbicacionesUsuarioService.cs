@@ -21,7 +21,7 @@ namespace Heldu.Logic.Services
         }
         public async Task<UbicacionUsuario> GetUbicacionUsuarioById(int? id)
         {
-            return await _context.UbicacionUsuario.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.UbicacionUsuario.FirstOrDefaultAsync(x => x.UsuarioId == id);
         }
         public async Task CreateUbicacionUsuario(UbicacionUsuario ubicacion)
         {

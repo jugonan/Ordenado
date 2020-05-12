@@ -14,15 +14,15 @@ namespace DEFINITIVO.Controllers
     public class UsuariosController : Controller
     {
         private readonly IUsuariosService _usuariosService;
-        private readonly IUbicacionesUsuariosService _ubicacionesService;
+        private readonly IUbicacionesUsuariosService _ubicacionesUsuarioService;
         private readonly UserManager<IdentityUser> _userManager;
 
 
-        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesUsuariosService ubicacionesService)
+        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesUsuariosService ubicacionesUsuariosService)
         {
             _usuariosService = usuariosService;
             _userManager = userManager;
-            _ubicacionesService = ubicacionesService;
+            _ubicacionesUsuarioService = ubicacionesUsuariosService;
         }
         // GET: Usuarios
         public async Task<IActionResult> Index()
@@ -60,17 +60,6 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                UbicacionUsuario ubicacion = new UbicacionUsuario()
-                {
-                    Pais = usuarioUbicacionVM.Pais,
-                    CCAA = usuarioUbicacionVM.CCAA,
-                    Provincia = usuarioUbicacionVM.Provincia,
-                    Poblacion = usuarioUbicacionVM.Poblacion,
-                    CP = usuarioUbicacionVM.CP,
-                    Calle = usuarioUbicacionVM.Calle,
-                    Numero = usuarioUbicacionVM.Numero,
-                    Letra = usuarioUbicacionVM.Letra,
-                };
                 Usuario usuario = new Usuario()
                 {
                     Nombre = usuarioUbicacionVM.Nombre,
@@ -92,7 +81,20 @@ namespace DEFINITIVO.Controllers
                     }
                 }
                 await _usuariosService.CreateUsuario(usuario);
-                await _ubicacionesService.CreateUbicacionUsuario(ubicacion);
+
+                UbicacionUsuario ubicacionUsuario = new UbicacionUsuario()
+                {
+                    Pais = usuarioUbicacionVM.Pais,
+                    CCAA = usuarioUbicacionVM.CCAA,
+                    Provincia = usuarioUbicacionVM.Provincia,
+                    Poblacion = usuarioUbicacionVM.Poblacion,
+                    CP = usuarioUbicacionVM.CP,
+                    Calle = usuarioUbicacionVM.Calle,
+                    Numero = usuarioUbicacionVM.Numero,
+                    Letra = usuarioUbicacionVM.Letra,
+                    UsuarioId = usuario.Id
+                };
+                await _ubicacionesUsuarioService.CreateUbicacionUsuario(ubicacionUsuario);
             }
             return RedirectToAction("Create", "GustoUsuarios");
         }

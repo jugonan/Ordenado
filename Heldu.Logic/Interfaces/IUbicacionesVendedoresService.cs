@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Heldu.Entities.Models;
+using Heldu.Logic.ViewModels;
 
 namespace Heldu.Logic.Interfaces
 {
@@ -13,5 +14,6 @@ namespace Heldu.Logic.Interfaces
         public Task EditUbicacionVendedorPost(UbicacionVendedor ubicacion);
         public Task DeleteUbicacionVendedorPost(int id);
         public bool ExistUbicacionVendedor(int id);
+        public VendedorUbicacionVM CrearVendedorUbicacionVM(Vendedor vendedor, UbicacionVendedor ubicacionVendedor);
     }
 }

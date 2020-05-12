@@ -8,45 +8,36 @@
 <div>
     <div class="row">
         <h3 class="col-4 offset-4">Mis productos</h3>
-        <a class="col-3" asp-controller="Productos" asp-action="Create" asp-route-id="@Model.Id" style="text-align:right;" >Crear nuevo<img style="max-width:10%;" align="right" src="https://image.flaticon.com/icons/svg/1042/1042340.svg" /></a>
+        <a class="col-3" asp-controller="Productos" asp-action="Create" asp-route-id="@Model.Id" style="text-align:right;">Crear nuevo<img style="max-width:10%;" align="right" src="https://image.flaticon.com/icons/svg/1042/1042340.svg" /></a>
     </div>
     <div class="row">
         <partial name="_MiperfilPV" model="Model" />
         @*Cuadro blanco*@
         <div class="col-7 offset-1" style="width: 66%;background-color: white;">
-            <div class="row">
-                @*Temporal, borrar después de crear varios productos desde vendedor*@
-                @foreach (ProductoVendedor productoVendedor in Model.ProductoVendedor)
-                {
-                <div class="card col-sm-4">
-                    <img class="card-img-top" src="@productoVendedor.Producto.ImagenProducto" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">@productoVendedor.Producto.Titulo</h5>
-                        <p class="card-text">@productoVendedor.Producto.Descripcion</p>
-                        <p class="card-text">@productoVendedor.Producto.FechaValidez</p>
-                        <p class="card-text">@productoVendedor.Producto.Precio €</p>
-                    </div>
+            @if (Model.ProductoVendedor.Count == 0)
+            {
+                <div>
+                    <p>Aún no has añadido ningún producto</p>
+                    <a asp-action="Create" asp-controller="Productos">Añadir producto</a>
                 </div>
-                }
-                @*<div class="card col-sm-4">
-                    <img class="card-img-top" src="https://files.nolocreocdn.com/wp-content/uploads/2018/11/8d3a4e11464cd26de791097496ada089.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Petrato</h5>
-                        <p class="card-text">The Potty Putter! The toilet time golf game that lets you practice your putting while going to the bathroom.If you're a golfer who can't get</p>
-                        <p class="card-text">27/05/2022</p>
-                        <p class="card-text">29 €</p>
-                    </div>
+            }
+            @if (Model.ProductoVendedor.Count != 0)
+            { 
+                <div class="row">
+                    @foreach (ProductoVendedor productoVendedor in Model.ProductoVendedor)
+                    {
+                        <div class="card col-sm-4">
+                            <img class="card-img-top" src="@productoVendedor.Producto.ImagenProducto" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">@productoVendedor.Producto.Titulo</h5>
+                                <p class="card-text">@productoVendedor.Producto.Descripcion</p>
+                                <p class="card-text">@productoVendedor.Producto.FechaValidez</p>
+                                <p class="card-text">@productoVendedor.Producto.Precio €</p>
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="card col-sm-4">
-                    <img class="card-img-top" src="https://i.pinimg.com/originals/35/64/7d/35647d0720023652113154bcd12dfad5.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Thumb wresting</h5>
-                        <p class="card-text">The Potty Putter! The toilet time golf game that lets you practice your putting while going to the bathroom.If you're a golfer who can't get</p>
-                        <p class="card-text">27/05/2022</p>
-                        <p class="card-text">17 €</p>
-                    </div>
-                </div>*@
-            </div>
+            }
         </div>
     </div>
 </div>

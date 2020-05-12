@@ -85,6 +85,7 @@ namespace Heldu.Logic.Services
                                                                           .FirstOrDefaultAsync(x => x.ProductoId == Id);
             return productoVendedor.Vendedor;
         }
+
         public async Task<Vendedor> GetVendedorByIdentityUserId(string id)
         {
             return await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == id);

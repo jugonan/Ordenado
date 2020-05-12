@@ -19,15 +19,18 @@ function myInitCode() {
         if (seleccion.length > 4) {
             url += `${seleccion}`;
 
-            fetch(url).then(response).then(show);
+            fetch(url)
+                .then(datos => datos.json())
+                .then(datos => crearContenido(datos))
+            //fetch(url).then(response).then(show);
 
-            function response(datos) {
-                return datos.json();
-            }
-            function show(datos) {
-                console.log('creando contenido');
-                crearContenido(datos);
-            }
+            //function response(datos) {
+            //    return datos.json();
+            //}
+            //function show(datos) {
+            //    console.log('creando contenido');
+            //    crearContenido(datos);
+            //}
         }
     })
 }

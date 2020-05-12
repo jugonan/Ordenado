@@ -17,14 +17,14 @@ namespace DEFINITIVO.Controllers
     {
         private readonly IVendedoresService _vendedoresService;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUbicacionesService _ubicacionesService;
+        private readonly IUbicacionesVendedoresService _ubicacionesVendedoresService;
 
 
-        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager, IUbicacionesService ubicacionesService)
+        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager, IUbicacionesVendedoresService ubicacionesVendedoresService)
         {
             _vendedoresService = vendedoresService;
             _userManager = userManager;
-            _ubicacionesService = ubicacionesService;
+            _ubicacionesVendedoresService = ubicacionesVendedoresService;
         }
 
         // GET: Vendedores
@@ -62,7 +62,7 @@ namespace DEFINITIVO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(VendedorUbicacion vendedorUbicacionVM)
+        public async Task<IActionResult> Create(VendedorUbicacionVM vendedorUbicacionVM)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace DEFINITIVO.Controllers
                     IdentityUserId = vendedorUbicacionVM.IdentityUserId
                 };
                 await _vendedoresService.CreateVendedor(vendedor);
-                Ubicacion ubicacion = new Ubicacion()
+                UbicacionVendedor ubicacionVendedor = new UbicacionVendedor()
                 {
                     Pais = "España",
                     CCAA = vendedorUbicacionVM.CCAA,
@@ -87,9 +87,8 @@ namespace DEFINITIVO.Controllers
                     Numero = vendedorUbicacionVM.Numero,
                     Letra = vendedorUbicacionVM.Letra,
                     VendedorId = vendedor.Id,
-                    UsuarioId = (vendedor.Id*1111)
                 };
-                await _ubicacionesService.CreateUbicacion(ubicacion);
+                await _ubicacionesVendedoresService.CreateUbicacionVendedor(ubicacionVendedor);
                 return RedirectToAction("Inscrito", "Vendedores");
             }
             return RedirectToAction("Inscrito", "Vendedores");
@@ -182,6 +181,8 @@ namespace DEFINITIVO.Controllers
         {
             string vendedorId = _userManager.GetUserId(User);
             Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            UbicacionVendedor ubicacionVendedor = await _ubicacionesVendedoresService.GetUbicacionVendedorById(vendedor.Id);
+            ViewData["VendedorUbicacionVM"] = _ubicacionesVendedoresService.CrearVendedorUbicacionVM(vendedor, ubicacionVendedor);
             return View(vendedor);
         }
 

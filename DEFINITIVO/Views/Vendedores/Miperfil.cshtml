@@ -1,15 +1,19 @@
 ﻿@model Heldu.Entities.Models.Vendedor
 
 @using Microsoft.AspNetCore.Identity
+@using Heldu.Logic.ViewModels;
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@{
+    VendedorUbicacionVM vendedorUbicacionVM = ViewBag.VendedorUbicacionVM;
+}
 
 <div>
     <div class="row">
         <h3 class="col-4 offset-4">Datos de empresa</h3>
-        <a class="col-3" asp-action="Edit" asp-route-id="@Model.Id" ><img  style="max-width:10%;" align="right" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
+        <a class="col-3" asp-action="Edit" asp-route-id="@Model.Id"><img style="max-width:10%;" align="right" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
     </div>
     <div class="row">
         <partial name="_MiperfilPV" model="Model" />
@@ -22,40 +26,67 @@
                         <p class="texto-caja-perfil">@Model.NombreDeEmpresa</p>
                     </div>
                 </div>
-                <div col-6 offset-1 style="width:60%;">
-                    <h5>Dirección</h5>
+            </div>
+            <div class="row" style="margin:0px;">
+                <div class="col-3">
+                    <h5>País</h5>
                     <div style="border-width:1px;">
-                        <p class="texto-caja-perfil">@Model.Direccion</p>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Pais</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5>Provincia</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Provincia</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5>Población</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Poblacion</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5>CP</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.CP</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin:0px;">
+                <div class="col-6">
+                    <h5>Calle</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Calle</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5>Nº</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Numero</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h5>Letra</h5>
+                    <div style="border-width:1px;">
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Letra</p>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin:0px;">
                 <div col-5 style="width:35%;">
-                    <h5>Ciudad</h5>
+                    <h5>Página web</h5>
                     <div style="border-width:1px;">
-                        <p class="texto-caja-perfil">@Model.Ciudad</p>
-                    </div>
-                </div>
-                <div col-6 offset-1 style="width:60%;">
-                    <h5>Código postal</h5>
-                    <div style="border-width:1px;">
-                        <p class="texto-caja-perfil">@Model.CodigoPostal</p>
-                    </div>
-                </div>
-                <div class="row" style="margin:0px;">
-                    <div col-5 style="width:35%;">
-                        <h5>Página web</h5>
-                        <div style="border-width:1px;">
-                            <p class="texto-caja-perfil">@Model.Paginaweb</p>
-                        </div>
-                    </div>
-                </div>
-                <div col-6 offset-1 style="width:60%;">
-                    <h5>Teléfono</h5>
-                    <div style="border-width:1px;">
-                        <p class="texto-caja-perfil">@Model.Telefono</p>
+                        <p class="texto-caja-perfil">@Model.Paginaweb</p>
                     </div>
                 </div>
             </div>
+            <div col-6 offset-1 style="width:60%;">
+                <h5>Teléfono</h5>
+                <div style="border-width:1px;">
+                    <p class="texto-caja-perfil">@Model.Telefono</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
