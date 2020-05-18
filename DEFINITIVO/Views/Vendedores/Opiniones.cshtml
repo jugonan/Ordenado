@@ -4,50 +4,53 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="~/js/Opiniones_Vendedores.js"></script>
+<link href="/css/Opiniones_Vendedores.css" rel="stylesheet" type="text/css">
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
 <section>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h5>Media total</h5>
+                <h5 id="titulo-media" title="@ViewBag.MediaReviews">Media total</h5>
                 <br />
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
             </div>
             <!-- Parte en la que introduzco comentarios la azar de consumidores del producto -->
             <div class="col-md-8">
-                <h5>Algunos de los comentarios</h5>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>
-                    <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
-                        <!-- Carousel indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
-                            <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
-                            <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
-                            <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
-                            <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
-                            <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
-                        </ol>
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
-                            <div class="item">
-                                <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                </blockquote>
+                <div id="row-de-prueba" class="row">
+                    <!-- Parte del foreach-->
+                    @if (ViewBag.ReviewsDelVendedor.Count != 0)
+                    {
+
+                        @foreach (Review review in ViewBag.ReviewsDelVendedor)
+                        {
+                            <div class="card col-3 offset-1" style="width: 18rem;">
+                                <div title="@review.Valoracion" class="row valoracion-producto-individual">
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">@review.Comentario</p>
+                                    <p>Fecha: @review.Fecha</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        }
+                    }
+                    @if (ViewBag.ReviewsDelVendedor.Count == 0)
+                    {
+                        <h4>Aún no tienes ningún review</h4>
+                    }
                 </div>
             </div>
         </div>

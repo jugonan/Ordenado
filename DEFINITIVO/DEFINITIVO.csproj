@@ -27,6 +27,7 @@
     <None Remove="Migrations\**" />
     <None Remove="Models\**" />
     <None Remove="ViewModel\**" />
+    <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Services\HelperServiceOld.cs" />

@@ -199,9 +199,9 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Opiniones()
         {
             string vendedorId = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
-            // Le paso una lista de  3 reviews sobre sus produtos elegidas al azar
-            ViewData["VisitasPorProducto"] = await _vendedoresService.GetProductosVistosDelVendedor(vendedor);
+            Vendedor vendedor = await _vendedoresService.MisproductosVendedor(vendedorId);
+            ViewData["ReviewsDelVendedor"] = await _helperService.ObtenerReviewsVendedor(vendedor);
+            ViewData["MediaReviews"] = await _helperService.ObtenerMediaReviewsParaVendedor(vendedor);
             return View(vendedor);
         }
 

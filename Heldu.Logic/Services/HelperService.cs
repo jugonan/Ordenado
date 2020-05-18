@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
+using Heldu.Database.Data;
+using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Heldu.Logic.Services
 {
     public class HelperService : IHelperService
     {
+        private readonly ApplicationDbContext _context;
+        public HelperService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         //Genero una lista de 6 índices random entre 0 y la cantidad de productos de una categoría
         public List<int> RandomProductos(int largo)
         {
@@ -69,6 +79,74 @@ namespace Heldu.Logic.Services
                 smtpClient.Credentials = loginInfo;
                 smtpClient.Send(msg);
             }
+        }
+
+        //Devuelve una lista random de reviews hechos hacia sus productos
+        public async Task<List<Review>> ObtenerReviewsVendedor(Vendedor vendedor)
+        {
+            List<Review> reviewsTotales = await _context.Review.ToListAsync();
+            //Genero una lista vacía a devolver con los reviews que le iré añadiendo después
+            List<Review> reviewsHaciaVendedor = new List<Review>();
+            if (vendedor.ProductoVendedor.Count != 0)
+            {
+                foreach (Review review in reviewsTotales)
+                {
+                    //Añado los productoId que coinciden de reviews con la lista que de Productos de este vendedor.
+                    //Esta lista está en vendedor.ProductoVendedor y es única
+                    foreach (ProductoVendedor productoVendedor in vendedor.ProductoVendedor)
+                    {
+                        if (review.ProductoId == productoVendedor.ProductoId)
+                        {
+                            reviewsHaciaVendedor.Add(review);
+                        }
+                    }
+                }
+                //Si tiene más de 3 reviews hago un random 
+                if (reviewsHaciaVendedor.Count > 3)
+                {
+                    Random rnd = new Random();
+                    for (int j = 0; j < 3; j++)
+                    {
+                        int longitud = reviewsTotales.Count;
+                        int random = rnd.Next(0, longitud - 1);
+                        reviewsHaciaVendedor.Add(reviewsTotales[random]);
+                        reviewsTotales.Remove(reviewsTotales[random]);
+                    }
+                }
+            }
+            return reviewsHaciaVendedor;
+        }
+
+        public async Task<int> ObtenerMediaReviewsParaVendedor(Vendedor vendedor)
+        {
+            List<Review> reviews = await _context.Review.ToListAsync();
+            int media;
+            List<Review> reviewsProductosVendedor = new List<Review>();
+            foreach (Review review in reviews)
+            {
+                foreach (ProductoVendedor productoVendedor in vendedor.ProductoVendedor)
+                {
+                    if (productoVendedor.ProductoId == review.ProductoId)
+                    {
+                        reviewsProductosVendedor.Add(review);
+                    }
+                }
+            }
+            int sumaTotal = 0;
+            if (reviewsProductosVendedor.Count != 0)
+            {
+
+                foreach (Review review in reviewsProductosVendedor)
+                {
+                    sumaTotal += review.Valoracion;
+                }
+                media = sumaTotal / reviewsProductosVendedor.Count;
+            }
+            else
+            {
+                media = 0;
+            }
+            return media;
         }
     }
 }
