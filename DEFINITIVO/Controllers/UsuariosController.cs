@@ -16,13 +16,15 @@ namespace DEFINITIVO.Controllers
         private readonly IUsuariosService _usuariosService;
         private readonly IUbicacionesUsuariosService _ubicacionesUsuarioService;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IManejoProductosService _manejoProductosService;
 
 
-        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesUsuariosService ubicacionesUsuariosService)
+        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesUsuariosService ubicacionesUsuariosService, IManejoProductosService manejoProductosService)
         {
             _usuariosService = usuariosService;
             _userManager = userManager;
             _ubicacionesUsuarioService = ubicacionesUsuariosService;
+            _manejoProductosService = manejoProductosService;
         }
         // GET: Usuarios
         public async Task<IActionResult> Index()
@@ -200,10 +202,7 @@ namespace DEFINITIVO.Controllers
         {
             string userManagerId = _userManager.GetUserId(User);
             Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
-            //ViewData["ProductosVistos"] = await _context.MTransaccion
-            //                                                        .Include(x => x.Producto)
-            //                                                        .Include(x => x.Vendedor)
-            //                                                        .Where(x => x.Unidades == 0).ToListAsync();
+            ViewData["ProductosVistos"] = await _manejoProductosService.GetProductosVistosPorUsuario(usuario.Id);
             return View(usuario);
         }
 
@@ -231,6 +230,11 @@ namespace DEFINITIVO.Controllers
         public IActionResult Inscrito()
         {
             return View();
+        }
+
+        public async Task<IActionResult> GestionarUsuarios()
+        {
+            return View(await _usuariosService.GestionarUsuarios());
         }
     }
 }

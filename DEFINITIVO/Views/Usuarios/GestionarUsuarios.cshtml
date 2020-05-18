@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Heldu.Entities.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de usuarios de Heldu</h1>
+
+<div class="row">
+    @foreach (Usuario usuario in Model)
+    {
+    <div class="card col-sm-4">
+        <img style="border-radius:50%; max-height:160px;" src="data:image/png;base64,@System.Convert.ToBase64String(usuario.FotoUsuario)" />
+        <div class="card-body">
+            <h5>Nombre de usuario:</h5>
+            <h6 class="card-title">@usuario.Nombre @usuario.Apellido</h6>
+            <br />
+            <h5> Nick de usuario:</h5>
+            <h6 class="card-title">@usuario.NombreUsuario</h6>
+            <br />
+            <h5>Fecha de nacimiento:</h5>
+            <h6 class="card-title">@usuario.FechaNacimiento</h6>
+            <br />
+            @foreach (GustoUsuario categoria in usuario.Categorias)
+            {
+                <h5>Categoría favorita:</h5>
+                <p class="card-text">@categoria.Categoria.Nombre</p>
+                <br />
+            }
+            @foreach (Mercado mercado in usuario.Mercados)
+            {
+                <h5>Cursos inscritos:</h5>
+                <p class="card-text">@mercado.Producto.Titulo</p>
+                <br />
+            }
+            @if (User.IsInRole("admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@usuario.Id">Editar</a>
+                <a asp-action="Details" asp-route-id="@usuario.Id">Detalles</a>
+                <a asp-action="Delete" asp-route-id="@usuario.Id">Eliminar</a>
+            }
+        </div>
+    </div>
+    }
+</div>

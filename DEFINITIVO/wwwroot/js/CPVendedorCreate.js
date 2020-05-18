@@ -43,6 +43,7 @@ function crearContenido(datos) {
 function crearPoblaciones(datos) {
     for (i = 0; i < datos.places.length; i++) {
         let option = document.createElement('option');
+        console.log(datos.places[0]["place name"]);
         option.innerText = calcularNombrePoblacion(JSON.stringify(datos.places[i]));
         appendOption.appendChild(option);
     }

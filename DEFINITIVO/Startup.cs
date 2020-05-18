@@ -70,6 +70,7 @@ namespace DEFINITIVO
             services.AddTransient<IFavoritosService, FavoritosService>();
             services.AddTransient<IGustosUsuariosService, GustosUsuariosService>();
             services.AddTransient<IHelperService, HelperService>();
+            services.AddTransient<IManejoProductosService, ManejoProductosService>();
             services.AddTransient<IMercadosService, MercadosService>();
             services.AddTransient<IOpcionesProductosService, OpcionesProductosService>();
             services.AddTransient<IProductoCategoriasService, ProductoCategoriasService>();
@@ -77,6 +78,7 @@ namespace DEFINITIVO
             services.AddTransient<IProductosVendedoresService, ProductosVendedoresService>();
             services.AddTransient<IReviewsService, ReviewsService>();
             services.AddTransient<ITransaccionesService, TransaccionesService>();
+            services.AddTransient<IUbicacionesUsuariosService, UbicacionesUsuarioService>();
             services.AddTransient<IUbicacionesVendedoresService, UbicacionesVendedoresService>();
             services.AddTransient<IUsuariosService, UsuariosService>();
             services.AddTransient<IVendedoresService, VendedoresService>();

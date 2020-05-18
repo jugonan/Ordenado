@@ -18,13 +18,15 @@ namespace DEFINITIVO.Controllers
         private readonly IVendedoresService _vendedoresService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUbicacionesVendedoresService _ubicacionesVendedoresService;
+        private readonly IHelperService _helperService;
 
 
-        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager, IUbicacionesVendedoresService ubicacionesVendedoresService)
+        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager, IUbicacionesVendedoresService ubicacionesVendedoresService, IHelperService helperService)
         {
             _vendedoresService = vendedoresService;
             _userManager = userManager;
             _ubicacionesVendedoresService = ubicacionesVendedoresService;
+            _helperService = helperService;
         }
 
         // GET: Vendedores
@@ -143,7 +145,6 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-            //ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", vendedor.IdentityUserId);
             return View(vendedor);
         }
 
@@ -189,7 +190,9 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Estadisticas()
         {
             string vendedorId = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.EstadisticasVendedor(vendedorId);
+            Vendedor vendedor = await _vendedoresService.MisproductosVendedor(vendedorId);
+            // Obtengo una lista de VM en la que cada objeto tiene el ID de producto y cantidad de visitas
+            ViewData["VisitasPorProducto"] = await _vendedoresService.GetProductosVistosDelVendedor(vendedor);
             return View(vendedor);
         }
 
@@ -197,6 +200,8 @@ namespace DEFINITIVO.Controllers
         {
             string vendedorId = _userManager.GetUserId(User);
             Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            // Le paso una lista de  3 reviews sobre sus produtos elegidas al azar
+            ViewData["VisitasPorProducto"] = await _vendedoresService.GetProductosVistosDelVendedor(vendedor);
             return View(vendedor);
         }
 

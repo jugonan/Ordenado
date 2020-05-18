@@ -68,5 +68,15 @@ namespace Heldu.Logic.Services
         {
             return await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == usuarioId);
         }
+
+        public async Task<List<Usuario>> GestionarUsuarios()
+        {
+            List<Usuario> usuarios = await _context.Usuario.Include(x=>x.Categorias)
+                                                                .ThenInclude(y=>y.Categoria)
+                                                           .Include(x=>x.Mercados)
+                                                                 .ThenInclude(y=>y.Producto)
+                                                           .ToListAsync();
+            return usuarios;
+        }
     }
 }

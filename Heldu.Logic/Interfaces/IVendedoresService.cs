@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Heldu.Entities.Models;
+using Heldu.Logic.ViewModels;
 
 namespace Heldu.Logic.Interfaces
 {
@@ -19,6 +20,6 @@ namespace Heldu.Logic.Interfaces
         public Task<Vendedor> ObtenerVendedorDesdedIdentity(string identityId);
         public Task<Vendedor> GetVendedorByIdentityUserId(string id);
         public Task<Vendedor> MisproductosVendedor(string vendedorId);
-
+        public Task<List<CantidadVisitasProductoVM>> GetProductosVistosDelVendedor(Vendedor vendedor);
     }
 }

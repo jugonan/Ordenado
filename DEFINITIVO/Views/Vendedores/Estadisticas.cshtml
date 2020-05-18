@@ -1,6 +1,7 @@
 ﻿@model Heldu.Entities.Models.Vendedor
 
 @using Microsoft.AspNetCore.Identity
+@using Heldu.Logic.ViewModels
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -33,8 +34,15 @@
                 }
             ],
             datasets: [{
-                label: 'nº de ventas',
-                data: [12, 19, 3, 5],
+                label: 'visitas/producto',
+                data: [
+                    @{
+                        foreach (CantidadVisitasProductoVM productoVisto in ViewBag.VisitasPorProducto)
+                        {
+                            <text>'</text>@productoVisto.cantidadVisitas<text>',</text>
+                        }
+                    }
+                ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

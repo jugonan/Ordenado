@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Heldu.Logic.Services
 {
-    public class UbicacionesService : IUbicacionesUsuariosService
+    public class UbicacionesUsuarioService : IUbicacionesUsuariosService
     {
         private readonly ApplicationDbContext _context;
-        public UbicacionesService(ApplicationDbContext context)
+        public UbicacionesUsuarioService(ApplicationDbContext context)
         {
             _context = context;
         }

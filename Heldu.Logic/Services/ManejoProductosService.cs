@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
@@ -47,6 +48,24 @@ namespace Heldu.Logic.Services
                 }
             }
             return disponibles;
+        }
+        // Obtiene una lista con los productos vistos por EL COMPRADOR pasándole el UsuarioId
+        public async Task<List<Transaccion>> GetProductosVistosPorUsuario(int id)
+        {
+            List<Transaccion> vistos = await _context.Transaccion
+                                                                    .Include(x => x.Producto)
+                                                                    .Include(x => x.Vendedor)
+                                                                    .Where(x => x.Unidades == 0 && x.UsuarioId == id).ToListAsync();
+            return vistos;
+        }
+        // Obtiene una lista con los productos vistos de EL VENDEDOR pasándole el VendedorId
+        public async Task<List<Transaccion>> GetProductosVistosDelVendedor(int id)
+        {
+            List<Transaccion> vistos = await _context.Transaccion
+                                                                    .Include(x => x.Producto)
+                                                                    .Include(x => x.Vendedor)
+                                                                    .Where(x => x.VendedorId == id).ToListAsync();
+            return vistos;
         }
     }
 }

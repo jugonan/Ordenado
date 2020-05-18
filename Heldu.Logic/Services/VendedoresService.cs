@@ -5,6 +5,7 @@ using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Heldu.Logic.ViewModels;
 
 namespace Heldu.Logic.Services
 {
@@ -56,19 +57,6 @@ namespace Heldu.Logic.Services
             return await _context.Vendedor.Include(v => v.ProductoVendedor).ThenInclude(a => a.Producto).FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
         }
 
-        //Estos dos métodos hacen exactamente lo mismo que ObtenerVendedorMedianteIdentity
-        //public async Task<Vendedor> OpinionesVendedor(string vendedorId)
-        //{
-        //    Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
-        //    return vendedor;
-        //}
-
-        //public async Task<Vendedor> MiperfilVendedor(string vendedorId)
-        //{
-        //    Vendedor vendedor = await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == vendedorId);
-        //    return vendedor;
-        //}
-
         public async Task<Vendedor> MisproductosVendedor(string vendedorId)
         {
             return await _context.Vendedor
@@ -89,6 +77,42 @@ namespace Heldu.Logic.Services
         public async Task<Vendedor> GetVendedorByIdentityUserId(string id)
         {
             return await _context.Vendedor.FirstOrDefaultAsync(x => x.IdentityUserId == id);
+        }
+
+        // Devuelve una lista de VM con la el ID de cada producto y la cantidad de visitas en cada objeto VM de la lista
+        public async Task<List<CantidadVisitasProductoVM>> GetProductosVistosDelVendedor(Vendedor vendedor)
+        {
+            List<Transaccion> vistos = await _context.Transaccion
+                                                                    .Include(x => x.Producto)
+                                                                    .Include(x => x.Vendedor)
+                                                                    .Where(x => x.VendedorId == vendedor.Id).ToListAsync();
+            //Creo una lista vacía para llenar de VM con parámetros de ProudctoId y Cantidad visitas
+            List<CantidadVisitasProductoVM> objetosLista = new List<CantidadVisitasProductoVM>();
+            // Aprovecho que el ProductoVendedor ya tiene una lista de productos únicos para recorrerla
+            foreach (ProductoVendedor productoDiferente in vendedor.ProductoVendedor)
+            {
+                // Al ser una lista de productos únicos, lleno la Lista de VM con ellos
+                CantidadVisitasProductoVM objeto = new CantidadVisitasProductoVM()
+                {
+                    ProductoId = productoDiferente.ProductoId,
+                    cantidadVisitas = 0
+                };
+                objetosLista.Add(objeto);
+            }
+            // Por último, recorro la lista total de transacciones y comparo el Id de cada producto con la el ProductoId
+            // de cada objeto único en la lista de VM. Si es el mismo, hago +1 y así obtengo el total de visitas por
+            // cada producto.
+            foreach (Transaccion transaccion in vistos)
+            {
+                foreach (CantidadVisitasProductoVM objeto in objetosLista)
+                {
+                    if (transaccion.ProductoId == objeto.ProductoId)
+                    {
+                        objeto.cantidadVisitas += 1;
+                    }
+                }
+            }
+            return objetosLista;
         }
     }
 }

@@ -17,5 +17,6 @@ namespace Heldu.Logic.Interfaces
         public Task<List<Usuario>> GetUsuariosListByActiveIdentityUser(string usuarioId);
         public Task<Usuario> GetUsuarioByActiveIdentityUser(string usuarioId);
         public Task<Usuario> ObtenerUsuarioDesdedIdentity(string identityId);
+        public Task<List<Usuario>> GestionarUsuarios();
     }
 }
