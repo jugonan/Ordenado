@@ -19,7 +19,7 @@ namespace DEFINITIVO.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly MessagesService _messagesService;
         private readonly IProductosService _productosService;
-        private readonly ITransaccionesService _transaccionesService;
+        private readonly IVisitasService _VisitasService;
         private readonly ICategoriasService _categoriasService;
         private readonly IProductoCategoriasService _productoCategoriasService;
         private readonly IVendedoresService _vendedoresService;
@@ -33,7 +33,7 @@ namespace DEFINITIVO.Controllers
             SignInManager<IdentityUser> signInManager,
             MessagesService messagesService,
             IProductosService productosService,
-            ITransaccionesService transaccionesService,
+            IVisitasService VisitasService,
             ICategoriasService categoriasService,
             IProductoCategoriasService productoCategoriasService,
             IVendedoresService vendedoresService,
@@ -45,7 +45,7 @@ namespace DEFINITIVO.Controllers
             _signInManager = signInManager;
             _messagesService = messagesService;
             _productosService = productosService;
-            _transaccionesService = transaccionesService;
+            _VisitasService = VisitasService;
             _categoriasService = categoriasService;
             _productoCategoriasService = productoCategoriasService;
             _vendedoresService = vendedoresService;
@@ -82,7 +82,7 @@ namespace DEFINITIVO.Controllers
                 //Genero una nueva transacción con los datos del usuario, el producto y el vendedor
                 Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
                 ProductoVendedor productoVendedor = await _productosVendedoresService.ProductoVendedorByProductoId(id);
-                await _transaccionesService.CreateTransaccionWithUsuarioAndProductoVendedor(usuario, productoVendedor);
+                await _VisitasService.CreateVisitaWithUsuarioAndProductoVendedor(usuario, productoVendedor);
             }
 
             //Modifico el producto actual agregando una unidad a la columa "CantidadVisitas" de la tabla

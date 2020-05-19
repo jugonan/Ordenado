@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Heldu.Entities.Models
 {
-    public class Transaccion
+    public class Visita
     {
         public int Id { get; set; }
         public int UsuarioId { get; set; }
@@ -10,7 +10,7 @@ namespace Heldu.Entities.Models
         public Vendedor Vendedor { get; set; }
         public int ProductoId { get; set; }
         public Producto Producto { get; set; }
-        public DateTime FechaTransaccion { get; set; }
+        public DateTime FechaVisita { get; set; }
         public int Unidades { get; set; }
     }
 }

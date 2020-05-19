@@ -226,13 +226,13 @@ namespace DEFINITIVO.Migrations
                     b.ToTable("Review");
                 });
 
-            modelBuilder.Entity("Heldu.Entities.Models.Transaccion", b =>
+            modelBuilder.Entity("Heldu.Entities.Models.Visita", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("FechaTransaccion")
+                    b.Property<DateTime>("FechaVisita")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("ProductoId")
@@ -255,7 +255,7 @@ namespace DEFINITIVO.Migrations
 
                     b.HasIndex("VendedorId");
 
-                    b.ToTable("Transaccion");
+                    b.ToTable("Visita");
                 });
 
             modelBuilder.Entity("Heldu.Entities.Models.Ubicacion", b =>
@@ -640,7 +640,7 @@ namespace DEFINITIVO.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Heldu.Entities.Models.Transaccion", b =>
+            modelBuilder.Entity("Heldu.Entities.Models.Visita", b =>
                 {
                     b.HasOne("Heldu.Entities.Models.Producto", "Producto")
                         .WithMany()

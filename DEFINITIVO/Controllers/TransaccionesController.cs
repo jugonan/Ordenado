@@ -11,59 +11,59 @@ using Heldu.Logic.Interfaces;
 
 namespace DEFINITIVO.Controllers
 {
-    public class TransaccionesController : Controller
+    public class VisitasController : Controller
     {
-        private readonly ITransaccionesService _transaccionesService;
+        private readonly IVisitasService _VisitasService;
 
-        public TransaccionesController(ITransaccionesService transaccionesService)
+        public VisitasController(IVisitasService VisitasService)
         {
-            _transaccionesService = transaccionesService;
+            _VisitasService = VisitasService;
         }
 
-        // GET: Transacciones
+        // GET: Visitas
         public async Task<IActionResult> Index()
         {
-            return View(await _transaccionesService.GetTransaccion());
+            return View(await _VisitasService.GetVisitas());
         }
 
-        // GET: Transacciones/Details/5
+        // GET: Visitas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            Transaccion transaccion = await _transaccionesService.GetTransaccionById(id);
-            if (transaccion == null)
+            Visita Visita = await _VisitasService.GetVisitaById(id);
+            if (Visita == null)
             {
                 return NotFound();
             }
 
-            return View(transaccion);
+            return View(Visita);
         }
 
-        // GET: Transacciones/Create
+        // GET: Visitas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Transacciones/Create
+        // POST: Visitas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UsuarioId,VendedorId,ProductoId,FechaTransaccion,Unidades")] Transaccion transaccion)
+        public async Task<IActionResult> Create([Bind("Id,UsuarioId,VendedorId,ProductoId,FechaVisita,Unidades")] Visita Visita)
         {
             if (ModelState.IsValid)
             {
-                await _transaccionesService.CreateTransaccion(transaccion);
+                await _VisitasService.CreateVisita(Visita);
                 return RedirectToAction("Index2", "Productos");
             }
-            return View(transaccion);
+            return View(Visita);
         }
 
-        // GET: Transacciones/Edit/5
+        // GET: Visitas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -71,22 +71,22 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Transaccion transaccion = await _transaccionesService.EditTransaccionGet(id);
-            if (transaccion == null)
+            Visita Visita = await _VisitasService.EditVisitaGet(id);
+            if (Visita == null)
             {
                 return NotFound();
             }
-            return View(transaccion);
+            return View(Visita);
         }
 
-        // POST: Transacciones/Edit/5
+        // POST: Visitas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UsuarioId,VendedorId,ProductoId,FechaTransaccion,Unidades")] Transaccion transaccion)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UsuarioId,VendedorId,ProductoId,FechaVisita,Unidades")] Visita Visita)
         {
-            if (id != transaccion.Id)
+            if (id != Visita.Id)
             {
                 return NotFound();
             }
@@ -95,11 +95,11 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    await _transaccionesService.EditTransaccionPost(transaccion);
+                    await _VisitasService.EditVisitaPost(Visita);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TransaccionExists(transaccion.Id))
+                    if (!VisitaExists(Visita.Id))
                     {
                         return NotFound();
                     }
@@ -110,10 +110,10 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(transaccion);
+            return View(Visita);
         }
 
-        // GET: Transacciones/Delete/5
+        // GET: Visitas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -121,27 +121,27 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            Transaccion transaccion = await _transaccionesService.GetTransaccionById(id);
-            if (transaccion == null)
+            Visita Visita = await _VisitasService.GetVisitaById(id);
+            if (Visita == null)
             {
                 return NotFound();
             }
 
-            return View(transaccion);
+            return View(Visita);
         }
 
-        // POST: Transacciones/Delete/5
+        // POST: Visitas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _transaccionesService.DeleteTransaccionPost(id);
+            await _VisitasService.DeleteVisitaPost(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TransaccionExists(int id)
+        private bool VisitaExists(int id)
         {
-            return _transaccionesService.ExistTransaccion(id);
+            return _VisitasService.ExistVisita(id);
         }
     }
 }

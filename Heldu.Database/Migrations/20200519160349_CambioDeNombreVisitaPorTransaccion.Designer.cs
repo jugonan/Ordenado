@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEFINITIVO.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200511084004_UbicacionModificado")]
-    partial class UbicacionModificado
+    [Migration("20200519160349_CambioDeNombreVisitaPorTransaccion")]
+    partial class CambioDeNombreVisitaPorTransaccion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -276,39 +276,7 @@ namespace DEFINITIVO.Migrations
                     b.ToTable("Review");
                 });
 
-            modelBuilder.Entity("Heldu.Entities.Models.Visita", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FechaVisita")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Unidades")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VendedorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductoId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.HasIndex("VendedorId");
-
-                    b.ToTable("Visita");
-                });
-
-            modelBuilder.Entity("Heldu.Entities.Models.Ubicacion", b =>
+            modelBuilder.Entity("Heldu.Entities.Models.UbicacionUsuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -338,9 +306,56 @@ namespace DEFINITIVO.Migrations
                     b.Property<string>("Provincia")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Ubicacion");
+                    b.HasIndex("UsuarioId")
+                        .IsUnique();
+
+                    b.ToTable("UbicacionUsuario");
+                });
+
+            modelBuilder.Entity("Heldu.Entities.Models.UbicacionVendedor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CCAA")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CP")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Calle")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Letra")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Numero")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Pais")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Poblacion")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Provincia")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("VendedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VendedorId")
+                        .IsUnique();
+
+                    b.ToTable("UbicacionVendedor");
                 });
 
             modelBuilder.Entity("Heldu.Entities.Models.Usuario", b =>
@@ -373,14 +388,9 @@ namespace DEFINITIVO.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("UbicacionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IdentityUserId");
-
-                    b.HasIndex("UbicacionId");
 
                     b.ToTable("Usuario");
                 });
@@ -392,18 +402,15 @@ namespace DEFINITIVO.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Ciudad")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("CodigoPostal")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("DescripcionEmpresa")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Direccion")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("IdentityUserId")
@@ -425,16 +432,43 @@ namespace DEFINITIVO.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("UbicacionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IdentityUserId");
 
-                    b.HasIndex("UbicacionId");
-
                     b.ToTable("Vendedor");
+                });
+
+            modelBuilder.Entity("Heldu.Entities.Models.Visita", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaVisita")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Unidades")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendedorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.HasIndex("VendedorId");
+
+                    b.ToTable("Visita");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -736,6 +770,38 @@ namespace DEFINITIVO.Migrations
                         .HasForeignKey("UsuarioId1");
                 });
 
+            modelBuilder.Entity("Heldu.Entities.Models.UbicacionUsuario", b =>
+                {
+                    b.HasOne("Heldu.Entities.Models.Usuario", null)
+                        .WithOne("UbicacionUsuario")
+                        .HasForeignKey("Heldu.Entities.Models.UbicacionUsuario", "UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Heldu.Entities.Models.UbicacionVendedor", b =>
+                {
+                    b.HasOne("Heldu.Entities.Models.Vendedor", null)
+                        .WithOne("UbicacionVendedor")
+                        .HasForeignKey("Heldu.Entities.Models.UbicacionVendedor", "VendedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Heldu.Entities.Models.Usuario", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("Heldu.Entities.Models.Vendedor", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
             modelBuilder.Entity("Heldu.Entities.Models.Visita", b =>
                 {
                     b.HasOne("Heldu.Entities.Models.Producto", "Producto")
@@ -755,28 +821,6 @@ namespace DEFINITIVO.Migrations
                         .HasForeignKey("VendedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Heldu.Entities.Models.Usuario", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
-
-                    b.HasOne("Heldu.Entities.Models.Ubicacion", "Ubicacion")
-                        .WithMany("Usuarios")
-                        .HasForeignKey("UbicacionId");
-                });
-
-            modelBuilder.Entity("Heldu.Entities.Models.Vendedor", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
-
-                    b.HasOne("Heldu.Entities.Models.Ubicacion", "Ubicacion")
-                        .WithMany("Vendedores")
-                        .HasForeignKey("UbicacionId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

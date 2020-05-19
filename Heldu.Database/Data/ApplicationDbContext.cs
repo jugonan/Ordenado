@@ -20,7 +20,7 @@ namespace Heldu.Database.Data
         public DbSet<Heldu.Entities.Models.UbicacionUsuario> UbicacionUsuario { get; set; }
         public DbSet<Heldu.Entities.Models.Usuario> Usuario { get; set; }
         public DbSet<Heldu.Entities.Models.Vendedor> Vendedor { get; set; }
-        public DbSet<Heldu.Entities.Models.Transaccion> Transaccion { get; set; }
+        public DbSet<Heldu.Entities.Models.Visita> Visita { get; set; }
         public DbSet<Heldu.Entities.Models.Favorito> Favorito { get; set; }
         public DbSet<Heldu.Entities.Models.Review> Review { get; set; }
         public DbSet<Heldu.Entities.Models.OpcionProducto> OpcionProducto { get; set; }

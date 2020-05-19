@@ -82,7 +82,7 @@ namespace Heldu.Logic.Services
         // Devuelve una lista de VM con la el ID de cada producto y la cantidad de visitas en cada objeto VM de la lista
         public async Task<List<CantidadVisitasProductoVM>> GetProductosVistosDelVendedor(Vendedor vendedor)
         {
-            List<Transaccion> vistos = await _context.Transaccion
+            List<Visita> vistos = await _context.Visita
                                                                     .Include(x => x.Producto)
                                                                     .Include(x => x.Vendedor)
                                                                     .Where(x => x.VendedorId == vendedor.Id).ToListAsync();
@@ -99,14 +99,14 @@ namespace Heldu.Logic.Services
                 };
                 objetosLista.Add(objeto);
             }
-            // Por último, recorro la lista total de transacciones y comparo el Id de cada producto con la el ProductoId
+            // Por último, recorro la lista total de Visitas y comparo el Id de cada producto con la el ProductoId
             // de cada objeto único en la lista de VM. Si es el mismo, hago +1 y así obtengo el total de visitas por
             // cada producto.
-            foreach (Transaccion transaccion in vistos)
+            foreach (Visita Visita in vistos)
             {
                 foreach (CantidadVisitasProductoVM objeto in objetosLista)
                 {
-                    if (transaccion.ProductoId == objeto.ProductoId)
+                    if (Visita.ProductoId == objeto.ProductoId)
                     {
                         objeto.cantidadVisitas += 1;
                     }

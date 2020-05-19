@@ -1,4 +1,4 @@
-@model IEnumerable<Heldu.Entities.Models.Transaccion>
+@model IEnumerable<Heldu.Entities.Models.Visita>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Producto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaTransaccion)
+                @Html.DisplayNameFor(model => model.FechaVisita)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Unidades)
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Producto.Titulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaTransaccion)
+                @Html.DisplayFor(modelItem => item.FechaVisita)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Unidades)

@@ -25,6 +25,8 @@
     <Compile Remove="Migrations\20200511145942_UbicacionWithoutKeys2.Designer.cs" />
     <Compile Remove="Migrations\20200511150048_UbicacionWithoutKeys.cs" />
     <Compile Remove="Migrations\20200511150048_UbicacionWithoutKeys.Designer.cs" />
+    <Compile Remove="Migrations\20200519152730_ChangeNameTransaccionToVisita.cs" />
+    <Compile Remove="Migrations\20200519152730_ChangeNameTransaccionToVisita.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

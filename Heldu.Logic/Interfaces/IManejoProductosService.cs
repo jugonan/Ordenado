@@ -9,7 +9,7 @@ namespace Heldu.Logic.Interfaces
     {
         public List<Producto> GetProductosDisponibles(int id);
         public List<Producto> GetProductosComprados(int id);
-        public Task<List<Transaccion>> GetProductosVistosPorUsuario(int id);
-        public Task<List<Transaccion>> GetProductosVistosDelVendedor(int id);
+        public Task<List<Visita>> GetProductosVistosPorUsuario(int id);
+        public Task<List<Visita>> GetProductosVistosDelVendedor(int id);
     }
 }
