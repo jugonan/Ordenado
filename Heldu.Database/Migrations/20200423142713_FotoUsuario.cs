@@ -7,13 +7,13 @@ namespace DEFINITIVO.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "FotoPerfil",
-                table: "Usuario");
+            //migrationBuilder.DropColumn(
+            //    name: "FotoPerfil",
+            //    table: "Usuario");
 
-            migrationBuilder.DropColumn(
-                name: "Image",
-                table: "Usuario");
+            //migrationBuilder.DropColumn(
+            //    name: "Image",
+            //    table: "Usuario");
 
             migrationBuilder.AddColumn<byte[]>(
                 name: "FotoUsuario",
