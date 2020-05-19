@@ -1,4 +1,7 @@
 ﻿/*Parte de cálculo del % de descuento */
+let imagenesCarousel;
+let imagenesThumbNail;
+let numeroImagen;
 
 let precioInicial = document.getElementById('precio-inicial').innerText;
 let precioFinal = document.getElementById('precio-final').innerText;
@@ -142,3 +145,20 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+/* Parte para activar el carousel en base al click de las imágenes en thumbnail*/
+
+function cambiarCarousel() {
+    imagenesCarousel = document.getElementsByClassName('carousel-item');
+    let thumbNails = document.querySelector('#div-de-thumbNails').children;
+    for (i = 0; i < thumbNails.length; i++) {
+        let thumbNail = thumbNails[i];
+        thumbNail.addEventListener('click', function (event) {
+            numeroImagen = event.target.title - 1;
+            let activo = document.getElementsByClassName('active');
+            activo[0].classList.remove('active');
+            imagenesCarousel[numeroImagen].classList.toggle('active');
+        })
+    }
+    
+}
