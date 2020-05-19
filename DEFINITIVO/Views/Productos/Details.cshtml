@@ -11,7 +11,15 @@
     ViewData["Title"] = "Details";
     Vendedor vendedor = await VendedoresService.ObtenerVendedorDesdeProducto(Model.Id);
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
-    Usuario usuario = await UsuariosService.GetUsuarioByActiveIdentityUser(activeUser.Id);
+    Usuario usuario = new Usuario();
+    if (User.IsInRole("cliente"))
+    {
+        usuario = await UsuariosService.GetUsuarioByActiveIdentityUser(activeUser.Id);
+    }
+    else
+    {
+        usuario = null;
+    }
     List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
     int totalComentarios = ReviewsService.CantidadComentariosByReviewList(reviews);
     int valoracionMedia = await ReviewsService.ObtenerValoracionMediaByProductoId(Model.Id);
@@ -113,18 +121,35 @@
                 }
                 <div class='container'>
                     <div class="row media comment-box">
-                        <div class="media-left col-3">
-                            <a href="#">
-                                <img style="width:80%" class="img-responsive user-photo" src="data:image/png;base64,@System.Convert.ToBase64String(usuario.FotoUsuario)">
-                            </a>
-                        </div>
-                        <div class="media-body col-9">
-                            <h4 class="media-heading">@usuario.NombreUsuario</h4>
-                            <div>
-                                <p>¿Has probado este producto?</p>
-                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Añadir comentario</button>
+                        @if (usuario != null)
+                        {
+                            <div class="media-left col-3">
+                                <a href="#">
+                                    <img style="width:80%" class="img-responsive user-photo" src="data:image/png;base64,@System.Convert.ToBase64String(usuario.FotoUsuario)">
+                                </a>
                             </div>
-                        </div>
+                            <div class="media-body col-9">
+                                <h4 class="media-heading">@usuario.NombreUsuario</h4>
+                                <div>
+                                    <p>¿Has probado este producto?</p>
+                                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Añadir comentario</button>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="media-left col-3">
+                                <a href="#">
+                                    <img style="width:80%" class="img-responsive user-photo" src="~/img/default-user.jpg">
+                                </a>
+                            </div>
+                            <div class="media-body col-9">
+                                <div>
+                                    <p>Sólo los usuarios registrados pueden dejar comentarios</p>
+                                    <button type="button" disabled class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Añadir comentario</button>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -192,25 +217,28 @@
     </div>
 </div>
 <!-- MODAL PARA AÑADIR COMENTARIOS-->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="background: white;">
-        <p>¿Qué te ha parecido el producto?</p>
-        <div class="modal-content" style="display:flex; flex-direction:row;" id="div-estrellas-modal">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </div>
-        <div class="modal-content">
-            <form method="post" asp-action="CrearReview" asp-route-ProductoId="@Model.Id" asp-route-UsuarioId="@usuario.IdentityUserId">
-                <input type="text" placeholder="Añada su comentario" name="ComentarioUsuario" asp-action="CrearReview" rows="6" style="width:100%" />
-                <input class="d-none" name="valoracionUsuario" type="text" id="incluir-valoracion" asp-action="CrearReview" />
-                <input type="submit" value="Enviar comentario" />
-            </form>
+@if (usuario != null)
+{
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="background: white;">
+            <p>¿Qué te ha parecido el producto?</p>
+            <div class="modal-content" style="display:flex; flex-direction:row;" id="div-estrellas-modal">
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </div>
+            <div class="modal-content">
+                <form method="post" asp-action="CrearReview" asp-route-ProductoId="@Model.Id" asp-route-UsuarioId="@usuario.IdentityUserId">
+                    <input type="text" placeholder="Añada su comentario" name="ComentarioUsuario" asp-action="CrearReview" rows="6" style="width:100%" />
+                    <input class="d-none" name="valoracionUsuario" type="text" id="incluir-valoracion" asp-action="CrearReview" />
+                    <input type="submit" value="Enviar comentario" />
+                </form>
+            </div>
         </div>
     </div>
-</div>
+}
 
 @if (User.IsInRole("admin"))
 {
