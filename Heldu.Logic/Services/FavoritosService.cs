@@ -27,10 +27,6 @@ namespace Heldu.Logic.Services
                         .Include(f => f.Vendedor)
                         .FirstOrDefaultAsync(m => m.Id == id);
         }
-        //public async CreateFavoritoGet()
-        //{
-
-        //}
         public async Task CreateFavoritoPost(Favorito favorito)
         {
             _context.Add(favorito);

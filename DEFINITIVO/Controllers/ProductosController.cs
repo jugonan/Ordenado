@@ -54,7 +54,6 @@ namespace DEFINITIVO.Controllers
             _reviewsService = reviewsService;
         }
 
-        // GET: Productos
         public async Task<IActionResult> Index2()
         {
             List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
@@ -65,7 +64,6 @@ namespace DEFINITIVO.Controllers
             ViewData["Categorias"] = listaCategorias;
             return View(listasListaProductos);
         }
-        // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -103,7 +101,6 @@ namespace DEFINITIVO.Controllers
             return RedirectToAction("Details", "Productos", new { id = producto.Id });
         }
 
-        // GET: Productos/Create
         [Authorize(Roles = "admin,vendedor")]
         public async Task<IActionResult> Create()
         {
@@ -112,9 +109,6 @@ namespace DEFINITIVO.Controllers
             return View();
         }
 
-        // POST: Productos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
@@ -154,7 +148,6 @@ namespace DEFINITIVO.Controllers
             return View(producto);
         }
 
-        // GET: Productos/Edit/5
         [Authorize(Roles = "admin,vendedor")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -171,9 +164,6 @@ namespace DEFINITIVO.Controllers
             return View(producto);
         }
 
-        // POST: Productos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
@@ -201,13 +191,11 @@ namespace DEFINITIVO.Controllers
                         throw;
                     }
                 }
-                //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Modificado", "Vendedores");
             }
             return View(producto);
         }
 
-        // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -224,7 +212,6 @@ namespace DEFINITIVO.Controllers
             return View(producto);
         }
 
-        // POST: Productos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

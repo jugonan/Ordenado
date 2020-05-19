@@ -1,6 +1,8 @@
 ﻿let url = 'https://api.zippopotam.us/ES/';
 let appendOption;
 let escribir;
+
+
 if (document.readyState !== 'loading') {
     console.log('document is already ready, just execute code here');
     myInitCode();
