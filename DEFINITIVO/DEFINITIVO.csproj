@@ -102,9 +102,6 @@
     <Content Remove="wwwroot\css\Vendedor_Create.css" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\ImagenesUsuarios\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Heldu.Entities\Heldu.Entities.csproj" />
     <ProjectReference Include="..\Heldu.Logic\Heldu.Logic.csproj" />
   </ItemGroup>

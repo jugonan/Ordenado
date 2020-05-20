@@ -19,7 +19,7 @@
 @*<script src="~/js/Productos_Index2.js"></script>*@
 
 
-@if (User.IsInRole("admin"))
+@if (User.IsInRole("vendedor"))
 {
     <a asp-action="Create" class="floating-button">
         <i class="fa fa-plus my-float"></i>
@@ -30,7 +30,7 @@
     </div>
 }
 
-<!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SINO EL CARROUSEL NO FUNCIONA!!!!-->
+<!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
 @{
     List<Categoria> cats = ViewBag.Categorias;
     int indexCategorias = 0;
