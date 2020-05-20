@@ -39,19 +39,19 @@
             <div class="preview col-md-7">
                 <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="@Model.ImagenProducto" class="d-block w-100" alt="...">
+                        <div title="1" class="carousel-item active">
+                            <img src="@Model.ImagenProducto" class="d-block w-100" alt="@Model.ImagenProducto">
                         </div>
                         @if (Model.ImagenProducto2 != null)
                         {
-                            <div class="carousel-item">
-                                <img src="@Model.ImagenProducto2" class="d-block w-100" alt="...">
+                            <div title="2" class="carousel-item">
+                                <img src="@Model.ImagenProducto2" class="d-block w-100" alt="@Model.ImagenProducto2">
                             </div>
                         }
                         @if (Model.ImagenProducto3 != null)
                         {
-                            <div class="carousel-item">
-                                <img src="@Model.ImagenProducto3" class="d-block w-100" alt="...">
+                            <div title="3" class="carousel-item">
+                                <img src="@Model.ImagenProducto3" class="d-block w-100" alt="@Model.ImagenProducto3">
                             </div>
                         }
                     </div>
@@ -64,15 +64,15 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="row">
-                    <img src="@Model.ImagenProducto" style="width:150px; height:150px;" alt="..." class="img-thumbnail">
+                <div class="row" id="div-de-thumbNails">
+                    <img title="1" src="@Model.ImagenProducto" style="width:150px; height:150px;" alt="@Model.ImagenProducto" class="img-thumbnail-carousel">
                     @if (Model.ImagenProducto2 != null)
                     {
-                        <img src="@Model.ImagenProducto2" style="width:150px; height:150px;" alt="..." class="img-thumbnail">
+                        <img title="2" src="@Model.ImagenProducto2" style="width:150px; height:150px;" alt="@Model.ImagenProducto2" class="img-thumbnail-carousel">
                     }
                     @if (Model.ImagenProducto3 != null)
                     {
-                        <img src="@Model.ImagenProducto3" style="width:150px; height:150px;" alt="..." class="img-thumbnail">
+                        <img title="3" src="@Model.ImagenProducto3" style="width:150px; height:150px;" alt="@Model.ImagenProducto3" class="img-thumbnail-carousel">
                     }
                 </div>
                 <div>
@@ -206,8 +206,8 @@
                         </div>
                     </div>
                     <div style="display:grid">
-                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-carrito" class="btn btn-outline-success">Agregar a carrito</a>
-                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-favorito" class="btn btn-outline-danger">Añadir a favoritos<img style="width:6%; margin-left: 4%;" id="imagen-favorito" class="d-none" /></a>
+                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-carrito" class="btn btn-outline-success">Comprar producto</a>
+                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-favorito" class="btn btn-outline-warning">Añadir a mi lista de favoritos<img style="width:6%; margin-left: 4%;" id="imagen-favorito" class="d-none" /></a>
                     </div>
                 </div>
                 <div>
