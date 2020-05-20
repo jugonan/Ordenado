@@ -240,7 +240,7 @@ body {
     width: 100%;
     top: 4vw;
     z-index: 999;
-    min-height: 3rem;
+    min-height: 3.5rem;
     max-height: 3.5rem;
     background-color: black;
     transition: ease;
@@ -254,7 +254,7 @@ body {
     width: 60%;
     align-items: center;
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: -5px;
 }
 
 .itemCategoria {
@@ -265,13 +265,13 @@ body {
 
 .textType3 {
     font-family: 'Syncopate', sans-serif !important;
-    font-size: 1vw;
+    font-size: 0.7vw;
     color: whitesmoke !important;
     text-decoration: none !important;
     font-weight: 400;
 }
     .textType3:hover, .textType3:focus {
-        font-weight: 500;
+        font-weight: 600;
         color: ghostwhite !important;
     }
 
