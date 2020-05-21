@@ -11,6 +11,7 @@ namespace Heldu.Database.Data
         {
         }
         public DbSet<Heldu.Entities.Models.Categoria> Categoria { get; set; }
+        public DbSet<Heldu.Entities.Models.Condicion> Condicion { get; set; }
         public DbSet<Heldu.Entities.Models.GustoUsuario> GustoUsuario { get; set; }
         public DbSet<Heldu.Entities.Models.Mercado> Mercado { get; set; }
         public DbSet<Heldu.Entities.Models.Producto> Producto { get; set; }
