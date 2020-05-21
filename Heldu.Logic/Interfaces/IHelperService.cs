@@ -11,6 +11,8 @@ namespace Heldu.Logic.Interfaces
         public Task<List<Review>> ObtenerReviewsVendedor(Vendedor vendedor);
         public Task<int> ObtenerMediaReviewsParaVendedor(Vendedor vendedor);
         public string GetIPv6Address();
-        public string GetIPv4Address();
+        public string GetIPv4LANAddress();
+        public string GetIPv4EthernetAddress();
+
     }
 }

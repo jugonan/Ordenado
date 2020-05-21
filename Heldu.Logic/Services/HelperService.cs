@@ -164,12 +164,20 @@ namespace Heldu.Logic.Services
             }
             return null;
         }
-        public string GetIPv4Address()
+        public string GetIPv4LANAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             var direcciones = (from ip in host.AddressList where ip.AddressFamily == AddressFamily.InterNetwork select ip.ToString()).ToList();
             return direcciones[0];
-
+        }
+        public string GetIPv4EthernetAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            var direcciones = (from ip in host.AddressList where ip.AddressFamily == AddressFamily.InterNetwork select ip.ToString()).ToList();
+            if (direcciones[1] != null)
+                return direcciones[1];
+            else
+                return null;
         }
     }
 }

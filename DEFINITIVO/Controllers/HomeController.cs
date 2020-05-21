@@ -12,6 +12,7 @@ using DEFINITIVO.Services;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.Services;
 using System.Net;
+using System.Net.Http;
 
 namespace DEFINITIVO.Controllers
 {
@@ -101,13 +102,20 @@ namespace DEFINITIVO.Controllers
             // Do the lookup
             string ip = "128.101.101.101";
 
-            var myIPv6 = _helperService.GetIPv6Address();
-            var myIPv4 = _helperService.GetIPv4Address();
+            //var myIPv6 = _helperService.GetIPv6Address();
+            //var myIPv4LAN = _helperService.GetIPv4LANAddress();
+            //var myIPv4Ethernet = _helperService.GetIPv4EthernetAddress();
 
-            var response = await _geoLocationService.GetCountryNameAsync(ip);
-            var response2 = await _geoLocationService.GetCountryNameAsync(myIPv4);
+            //var response1 = await _geoLocationService.GetCountryNameAsync(ip);
+            //var response2 = await _geoLocationService.GetCountryNameAsync(myIPv4LAN);
 
-            Console.WriteLine(response);           // 'United States'
+            //var publicIP = IPAddress.Parse(new System.Net.WebClient().DownloadString("https://ipinfo.io/ip")).ToString();
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("https://ipinfo.io/ip");
+            var publicIP = response.Content.ToString();
+            var response3 = await _geoLocationService.GetCountryNameAsync(publicIP);
+
+            Console.WriteLine(response3);           // 'United States'
             //<!-- FIN DE PROBANDO EL GeoIP2 para comproabar el pais de la IP-->
             return View();
         }
