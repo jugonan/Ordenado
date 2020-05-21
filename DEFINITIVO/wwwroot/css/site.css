@@ -84,6 +84,13 @@ body {
 
 
 /* Cambios de CSS hechos por Galo */
+.desplegable-salir{
+    position: absolute;
+}
+.btn-link .textType {
+    color: black;
+}
+
 #navbarPrincipal {
     height: 6vw;
     max-height: 4rem;
@@ -95,6 +102,10 @@ body {
 
 .nav-item {
     align-self: center;
+}
+#anchor-miperfil{
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 #pipe {
@@ -115,12 +126,7 @@ body {
 }
 
 #mainDiv {
-    background-image: url(../img/white-round-table-on-white-floor-3742699.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    /*opacity: 0.5;*/
+    background-color: #fff7f7;
 }
 
 .texto-caja-perfil {
@@ -248,7 +254,6 @@ body {
 }
 
 .subMenuCat {
-    position: absolute;
     bottom: 0.5rem;
     left: 15%;
     width: 60%;

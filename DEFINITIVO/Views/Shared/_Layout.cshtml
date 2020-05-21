@@ -41,11 +41,11 @@
 </head>
 <body id="mainDiv" class="accordion">
     <header>
-        <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3" id="navbarPrincipal">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3" id="navbarPrincipal">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img id="navbar-logo" src="~/img/LogoMakr_5fDIiz.png" alt="Navigation home logo" />
-                </a>
+                </a>*@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -62,7 +62,7 @@
                         <li class="nav-item">
                             <a class="nav-link textType1" data-toggle="collapse" href="#divBuscador" aria-controls="divBuscador" aria-expanded="false" aria-label="Toggle navigation">Buscar</a>
                         </li>
-                        @if (User.IsInRole("cliente"))
+                        @*@if (User.IsInRole("cliente"))
                         {
                             <li class="nav-item">
                                 <h4 class="nav-link textType1" id="pipe">  |  </h4>
@@ -82,7 +82,7 @@
                             <li class="nav-item">
                                 <a class="textType1" asp-area="" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
                             </li>
-                        }
+                        }*@
                         @if (User.IsInRole("admin"))
                         {
                             <li class="nav-item">

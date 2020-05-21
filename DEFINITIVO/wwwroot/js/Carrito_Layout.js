@@ -1,6 +1,7 @@
 ﻿document.addEventListener('DOMContentLoaded', iniciarJS());
 
 function iniciarJS() {
+    funcion()
     cambiarCarousel();
     actualizarNumerosFavorito();
 }
