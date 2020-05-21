@@ -1,6 +1,8 @@
 ﻿using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +57,21 @@ namespace Heldu.Logic.Services
             List<Categoria> listaCategorias = await _context.Categoria.ToListAsync();
 
             return listaCategorias;
+        }
+
+        //Devuelve un Select List con las categorias, incluyendo un "Todas" al principio. Se usa en el "Buscar" del Layout.cshtml
+        public async Task<List<SelectListItem>> GetSelectListCategorias()
+        {
+            List<SelectListItem> selectListCategorias = new List<SelectListItem>();
+            selectListCategorias.Add(new SelectListItem { Text = "Todas las categorias", Value = "-1", Selected = true });
+
+            List<Categoria> categorias = await GetCategorias();
+            foreach (Categoria item in categorias)
+            {
+                selectListCategorias.Add(new SelectListItem { Text = item.Nombre, Value = item.Id.ToString()});
+            }
+
+            return selectListCategorias;
         }
     }
 }

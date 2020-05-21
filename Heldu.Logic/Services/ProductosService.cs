@@ -62,7 +62,22 @@ namespace Heldu.Logic.Services
         //Método que devuelve una lista de productos que contienen un string en su título o descripción
         public async Task<List<Producto>> BuscarProductosPorString(string inputBuscar)
         {
-            List<Producto> listaProductos = await GetProductos();
+            List<Producto> listaProductos = new List<Producto>();
+            listaProductos = await GetProductos();
+            List<Producto> listaProductosEncontrados = new List<Producto>();
+
+            foreach (Producto producto in listaProductos)
+            {
+                if (producto.Titulo.ToLower().Contains(inputBuscar.ToLower()) || producto.Descripcion.ToLower().Contains(inputBuscar.ToLower()))
+                    listaProductosEncontrados.Add(producto);
+            }
+            return listaProductosEncontrados;
+        }
+        //Método que devuelve una lista de productos que contienen un string en su título o descripción para una sola categoría
+        public async Task<List<Producto>> BuscarProductosPorStringYCategoria(string inputBuscar, int categoriaId)
+        {
+            List<Producto> listaProductos = new List<Producto>();
+            listaProductos = await GetProductosByCategoriaId(categoriaId);
             List<Producto> listaProductosEncontrados = new List<Producto>();
 
             foreach (Producto producto in listaProductos)
@@ -81,8 +96,11 @@ namespace Heldu.Logic.Services
             foreach (ProductoCategoria productoCategoria in productoCategorias)
             {
                 int idProducto = productoCategoria.ProductoId;
-                Producto nuevoProducto = _context.Producto.FirstOrDefault(x => x.Id == idProducto);
-                productos.Add(nuevoProducto);
+                Producto nuevoProducto = _context.Producto.Find(idProducto);
+                if (nuevoProducto != null)
+                {
+                    productos.Add(nuevoProducto);
+                }
             }
             return productos;
         }

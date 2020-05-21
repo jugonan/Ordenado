@@ -10,5 +10,7 @@ namespace Heldu.Logic.Interfaces
         public void EnviarEmail(string asunto, string mensaje);
         public Task<List<Review>> ObtenerReviewsVendedor(Vendedor vendedor);
         public Task<int> ObtenerMediaReviewsParaVendedor(Vendedor vendedor);
+        public string GetIPv6Address();
+        public string GetIPv4Address();
     }
 }

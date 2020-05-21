@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using DEFINITIVO.Services;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
+using System;
+using Heldu.Logic.Services;
 
 namespace DEFINITIVO.Controllers
 {
@@ -26,6 +28,7 @@ namespace DEFINITIVO.Controllers
         private readonly IUsuariosService _usuariosService;
         private readonly IProductosVendedoresService _productosVendedoresService;
         private readonly IReviewsService _reviewsService;
+        //private readonly GeoLocationService _geoLocationService;
 
         public ProductosController(
             ApplicationDbContext context,
@@ -40,6 +43,7 @@ namespace DEFINITIVO.Controllers
             IUsuariosService usuariosService,
             IProductosVendedoresService productosVendedoresService,
             IReviewsService reviewsService)
+            //GeoLocationService geoLocationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -52,15 +56,16 @@ namespace DEFINITIVO.Controllers
             _usuariosService = usuariosService;
             _productosVendedoresService = productosVendedoresService;
             _reviewsService = reviewsService;
+            //_geoLocationService = geoLocationService;
         }
 
-        public async Task<IActionResult> Index2()
+    public async Task<IActionResult> Index2()
         {
             List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
             List<Producto> listaProductos = await _productosService.GetProductos();
             List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
             ProductosForIndex2VM listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
-            
+
             ViewData["Categorias"] = listaCategorias;
             return View(listasListaProductos);
         }
@@ -129,7 +134,7 @@ namespace DEFINITIVO.Controllers
             if (idVendedor == null)
             {
                 string idUsuario = _userManager.GetUserId(User);
-                Vendedor vendedor = await _vendedoresService.GetVendedorByIdentityUserId(idUsuario); 
+                Vendedor vendedor = await _vendedoresService.GetVendedorByIdentityUserId(idUsuario);
                 aux = vendedor.Id;
             }
             else if (idVendedor != null)
@@ -226,7 +231,7 @@ namespace DEFINITIVO.Controllers
         private bool ProductoExists(int id)
         {
             return _productosService.ExistProducto(id);
-            }
+        }
         public async Task<IActionResult> Categoria(int id)
         {
             ViewData["Categoria"] = await _categoriasService.GetCategoriaById(id);
@@ -234,11 +239,20 @@ namespace DEFINITIVO.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Search(string inputBuscar)
+        public async Task<IActionResult> Search(string inputBuscar, string catSelected)
         {
-            List<Producto> output = await _productosService.BuscarProductosPorString(inputBuscar);
             ViewData["inputBuscar"] = inputBuscar;
-            return View(output);
+            if (catSelected == "-1")
+            {
+                List<Producto> output = await _productosService.BuscarProductosPorString(inputBuscar);
+                return View(output);
+            }
+            else
+            {
+                int categoriaId = Convert.ToInt32(catSelected);
+                List<Producto> output = await _productosService.BuscarProductosPorStringYCategoria(inputBuscar, categoriaId);
+                return View(output);
+            }
         }
     }
 }

@@ -195,10 +195,15 @@
         <div class="formContacto">
             <h2>Contáctanos!</h2>
             <form asp-controller="Home" asp-action="Contacto">
+                @{
+                    string actualPath = Context.Request.Path;
+
+                }
                 <div class="left section">
-                    <input type="text" name="nombre" placeholder="Nombre(s) y Apellido(s)" required>
+                    <input type="text" name="nombre" placeholder="Nombre(s) y Apellido(s)" required minlength="3">
                     <input type="email" name="email" placeholder="E-Mail" required>
-                    <input type="tel" name="tel" placeholder="Teléfono">
+                    <input type="tel" pattern="[0-9]{9}" maxlength="12" name="tel" placeholder="Teléfono">
+                    <input type="hidden" name="actualPath" value="@actualPath" >
                     @if (activeUser != null)
                     {
                         <input type="hidden" name="userId" value="@activeUser.Id">
@@ -214,8 +219,11 @@
 
         <!-- Buscador oculto que se desplega al hacer click en "Buscar" -->
         <div class="collapse" id="divBuscador" data-parent="#mainDiv">
+            @{ List<SelectListItem> catSelect = await CategoriasService.GetSelectListCategorias(); }
             <form asp-controller="Productos" asp-action="Search" id="formBuscador" class="form-inline">
-                <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="Ingrese lo que desea buscar" aria-label="Search" />
+                <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="Ingrese lo que desea buscar" aria-label="Search" required minlength="3" /> en
+                <select id="selecListBuscar" name="catSelected" asp-items="catSelect" class="form-control">
+                </select>
                 <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>
             </form>
         </div>

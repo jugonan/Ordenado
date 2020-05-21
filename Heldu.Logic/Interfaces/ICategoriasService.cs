@@ -1,4 +1,5 @@
 ﻿using Heldu.Entities.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Heldu.Logic.Interfaces
         public Task DeleteCategoriaPost(int? id);
         public bool ExistCategoria(int id);
         public Task<List<Categoria>> ListaCategorias();
+        public Task<List<SelectListItem>> GetSelectListCategorias();
     }
 }
  

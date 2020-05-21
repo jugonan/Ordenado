@@ -12,6 +12,7 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.Services;
 using HelperService = Heldu.Logic.Services.HelperService;
+using MaxMind.GeoIP2;
 
 namespace DEFINITIVO
 {
@@ -82,6 +83,14 @@ namespace DEFINITIVO
             services.AddTransient<IUbicacionesVendedoresService, UbicacionesVendedoresService>();
             services.AddTransient<IUsuariosService, UsuariosService>();
             services.AddTransient<IVendedoresService, VendedoresService>();
+
+            //Servicio de GeoIP2 de MaxMind (https://maxmind.github.io/GeoIP2-dotnet/)
+            // Configure to read configuration options from MaxMind section
+            services.Configure<WebServiceClientOptions>(Configuration.GetSection("MaxMind"));
+            // Configure dependency injection for WebServiceClient
+            services.AddHttpClient<WebServiceClient>();
+            services.AddTransient<GeoLocationService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

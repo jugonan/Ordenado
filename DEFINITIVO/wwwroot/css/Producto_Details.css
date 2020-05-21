@@ -275,5 +275,11 @@ img {
         transition: background .3s ease;
     }
 
+#reportarProblema{
+    font-size:small;
+    color:darkred;
+    text-align:center;
+    cursor:pointer;
+}
 
 /*# sourceMappingURL=style.css.map */

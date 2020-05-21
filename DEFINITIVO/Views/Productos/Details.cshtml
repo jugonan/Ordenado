@@ -193,21 +193,20 @@
                             <div>
                                 <div class="row">
                                     <div class="col-6" style="display:flex;">
-                                        <h4 id="precio-inicial"><strike>@Model.Precio</strike></h4>
-                                        <h4 id="precio-inicial"><strike>€</strike></h4>
+                                        <h4><strike>&#8364<span id="precio-inicial">@Model.Precio</span></strike></h4>
                                     </div>
                                     <div class="col-6" style="display:flex;">
-                                        <h4 id="precio-final" style="color: green;"><strong>@Model.PrecioFinal</strong></h4>
-                                        <h4 id="precio-final" style="color: green;"><strong>€</strong></h4>
+                                        <h4 style="color: green;"><strong>&#8364<span id="precio-final">@Model.PrecioFinal</span></strong></h4>
                                     </div>
                                 </div>
-                                <p id="resultado-descuento">50% descuento</p>
+                                <p id="resultado-descuento"></p>
                             </div>
                         </div>
                     </div>
                     <div style="display:grid">
                         <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-carrito" class="btn btn-outline-success">Comprar producto</a>
                         <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-favorito" class="btn btn-outline-warning">Añadir a mi lista de favoritos<img style="width:6%; margin-left: 4%;" id="imagen-favorito" class="d-none" /></a>
+                        <label id="reportarProblema" for="showForm">Reportar un problema</label>
                     </div>
                 </div>
                 <div>

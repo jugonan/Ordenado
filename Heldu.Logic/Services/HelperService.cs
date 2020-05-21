@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
@@ -147,6 +149,27 @@ namespace Heldu.Logic.Services
                 media = 0;
             }
             return media;
+        }
+
+        //Devuelve la Dirección IP
+        public string GetIPv6Address()
+        {
+            var hostName = Dns.GetHostName();
+            Ping ping = new Ping();
+            var replay = ping.Send(hostName);
+
+            if (replay.Status == IPStatus.Success)
+            {
+                return replay.Address.ToString();
+            }
+            return null;
+        }
+        public string GetIPv4Address()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            var direcciones = (from ip in host.AddressList where ip.AddressFamily == AddressFamily.InterNetwork select ip.ToString()).ToList();
+            return direcciones[0];
+
         }
     }
 }

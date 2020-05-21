@@ -10,6 +10,8 @@ using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Http;
 using DEFINITIVO.Services;
 using Heldu.Logic.Interfaces;
+using Heldu.Logic.Services;
+using System.Net;
 
 namespace DEFINITIVO.Controllers
 {
@@ -22,6 +24,7 @@ namespace DEFINITIVO.Controllers
         private readonly MessagesService _messagesService;
         private readonly IHelperService _helperService;
         private readonly IUsuariosService _usuariosService;
+        private readonly GeoLocationService _geoLocationService;
 
         public HomeController(ILogger<HomeController> logger,
             ApplicationDbContext context,
@@ -29,7 +32,8 @@ namespace DEFINITIVO.Controllers
             SignInManager<IdentityUser> signInManager,
             MessagesService messagesService,
             IHelperService helperService,
-            IUsuariosService usuariosService)
+            IUsuariosService usuariosService,
+            GeoLocationService geoLocationService)
         {
             _logger = logger;
             _context = context;
@@ -38,6 +42,7 @@ namespace DEFINITIVO.Controllers
             _messagesService = messagesService;
             _helperService = helperService;
             _usuariosService = usuariosService;
+            _geoLocationService = geoLocationService;
         }
 
         public async Task<IActionResult> Index()
@@ -90,19 +95,26 @@ namespace DEFINITIVO.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult FAQ()
+        public async Task<IActionResult> FAQ()
         {
+            //<!-- PROBANDO EL GeoIP2 para comproabar el pais de la IP-->
+            // Do the lookup
+            string ip = "128.101.101.101";
+
+            var myIPv6 = _helperService.GetIPv6Address();
+            var myIPv4 = _helperService.GetIPv4Address();
+
+            var response = await _geoLocationService.GetCountryNameAsync(ip);
+            var response2 = await _geoLocationService.GetCountryNameAsync(myIPv4);
+
+            Console.WriteLine(response);           // 'United States'
+            //<!-- FIN DE PROBANDO EL GeoIP2 para comproabar el pais de la IP-->
             return View();
         }
-        //[HttpGet]
-        //public IActionResult Contacto()
-        //{
-        //    return View();
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Contacto(string userId, string nombre, string email, string tel, string mensaje)
+        public async Task<IActionResult> Contacto(string userId, string nombre, string email, string tel, string mensaje, string actualPath)
         {
             Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(userId);
             string asunto = "[No especificado] ha enviado un mensaje desde la web";
@@ -120,7 +132,7 @@ namespace DEFINITIVO.Controllers
                     $"\nCon los siguientes datos de contacto:" +
                     $"\n\bE-Mail: {email}   |  Teléfono: {tel}" +
                     $"\n" +
-                    $"\n Mensaje enviado el {DateTime.Now}";
+                    $"\n Mensaje enviado el {DateTime.Now} desde la URL: {actualPath}";
             }
             else
             {
@@ -130,7 +142,7 @@ namespace DEFINITIVO.Controllers
                     $"\nCon los siguientes datos de contacto:" +
                     $"\n\bE-Mail: {email}   |  Teléfono: {tel}" +
                     $"\n" +
-                    $"\n Mensaje enviado el {DateTime.Now}";
+                    $"\n Mensaje enviado el {DateTime.Now} desde la URL: {actualPath}";
             }
 
             try
@@ -144,7 +156,7 @@ namespace DEFINITIVO.Controllers
             {
                 _messagesService.SetShowMessage(true);
                 _messagesService.SetMessage($"No hemos podido gestionar su mensaje. Por favor contáctenos a: heldubbk@gmail.com. Gracias!");
-                return View();
+                return RedirectToAction("Index2", "Productos");
                 throw;
             }
 

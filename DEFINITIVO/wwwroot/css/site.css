@@ -148,25 +148,30 @@ body {
 #formBuscador {
     position: absolute;
     bottom: 0.5rem;
-    left: 33.33%;
+    left: 20%;
     padding: 0px 2px 0px 2px;
-    width: 40%;
-    max-width: 30rem;
+    width: 60%;
+    max-width: 40rem;
 }
 
 #inputBuscar {
-    margin: 0 auto;
-    width: 75%;
+    margin: 3px auto;
+    width: 50%;
     max-width: 30rem;
     vertical-align: middle;
+    font-size: medium;
+    border-radius:8px;
 }
-
-
+#selecListBuscar {
+    margin: 0 auto;
+    width: 30%;
+    max-width: 30rem;
+    vertical-align: middle;
+    font-size:small;
+}
 /* 
     BOTON DE BUSCAR
 */
-
-
 .btn-buscar:link,
 .btn:visited {
     text-decoration: none;
