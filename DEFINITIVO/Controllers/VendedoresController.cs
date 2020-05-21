@@ -59,9 +59,6 @@ namespace DEFINITIVO.Controllers
 
         }
 
-        // POST: Vendedores/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VendedorUbicacionVM vendedorUbicacionVM)
@@ -98,7 +95,6 @@ namespace DEFINITIVO.Controllers
             //NOTA: Tenemos que añadir una página error a la que enviar al vendedor si se da algún problema en la creación del mismo
         }
 
-        // GET: Vendedores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -114,9 +110,6 @@ namespace DEFINITIVO.Controllers
             return View(vendedor);
         }
 
-        // POST: Vendedores/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDeEmpresa,Direccion,Ciudad,CodigoPostal,PaginaWeb,NumeroTiendas,Telefono,IdentityUserId")] Vendedor vendedor)
@@ -148,7 +141,6 @@ namespace DEFINITIVO.Controllers
             return View(vendedor);
         }
 
-        // GET: Vendedores/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -164,7 +156,6 @@ namespace DEFINITIVO.Controllers
             return View(vendedor);
         }
 
-        // POST: Vendedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

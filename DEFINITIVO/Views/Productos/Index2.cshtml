@@ -16,10 +16,10 @@
 }
 <!-- CSS particular para esta vista. Los script están en el layout-->
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
-@*<script src="~/js/Productos_Index2.js"></script>*@
+<script src="~/js/Productos_Index2.js"></script>
 
 
-@if (User.IsInRole("admin"))
+@if (User.IsInRole("vendedor"))
 {
     <a asp-action="Create" class="floating-button">
         <i class="fa fa-plus my-float"></i>
@@ -30,7 +30,7 @@
     </div>
 }
 
-<!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SINO EL CARROUSEL NO FUNCIONA!!!!-->
+<!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
 @{
     int indexCategorias = 0;
     foreach (List<Producto> listaProducto in Model.ListasProductos)
