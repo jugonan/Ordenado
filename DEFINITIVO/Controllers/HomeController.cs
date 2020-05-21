@@ -101,6 +101,7 @@ namespace DEFINITIVO.Controllers
             //<!-- PROBANDO EL GeoIP2 para comproabar el pais de la IP-->
             // Do the lookup
             string ip = "128.101.101.101";
+            string ip99 = "188.114.110.136";
 
             //var myIPv6 = _helperService.GetIPv6Address();
             //var myIPv4LAN = _helperService.GetIPv4LANAddress();
@@ -109,11 +110,17 @@ namespace DEFINITIVO.Controllers
             //var response1 = await _geoLocationService.GetCountryNameAsync(ip);
             //var response2 = await _geoLocationService.GetCountryNameAsync(myIPv4LAN);
 
-            //var publicIP = IPAddress.Parse(new System.Net.WebClient().DownloadString("https://ipinfo.io/ip")).ToString();
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("https://ipinfo.io/ip");
-            var publicIP = response.Content.ToString();
-            var response3 = await _geoLocationService.GetCountryNameAsync(publicIP);
+            //HttpClient client = new HttpClient();
+            //HttpResponseMessage response = await client.GetAsync("http://icanhazip.com/");
+            //var publicIP2 = await response.Content.ReadAsStringAsync();
+            //string publicIP = publicIP2.Remove(publicIP2.Length-1);
+            //var response3 = await _geoLocationService.GetCountryNameAsync(publicIP);
+            
+            var remoteIp = HttpContext.Connection.RemoteIpAddress;
+
+            var response3 = await _geoLocationService.GetCountryNameAsync(ip99);
+
+
 
             Console.WriteLine(response3);           // 'United States'
             //<!-- FIN DE PROBANDO EL GeoIP2 para comproabar el pais de la IP-->
