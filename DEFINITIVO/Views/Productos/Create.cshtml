@@ -1,4 +1,4 @@
-@model Heldu.Entities.Models.ProductoCategoria
+@model Heldu.Logic.ViewModels.ProductoCategoriaCondicionesVM
 
 @using Microsoft.AspNetCore.Identity
 
@@ -9,7 +9,7 @@
     ViewData["Title"] = "Create";
 }
 
-<link href="~/css/Producto_sCreate.css" rel="stylesheet" type="text/css">
+@*<link href="~/css/Producto_sCreate.css" rel="stylesheet" type="text/css">*@
 <script src="~/js/Productos_Create.js"></script>
 
 <h1>Cargar producto</h1>
@@ -26,18 +26,18 @@
                 <span asp-validation-for="Producto.Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Producto.Descripcion" class="control-label"></label>
-                <input asp-for="Producto.Descripcion" class="form-control" id="descripcion-introducida" />
-                <span asp-validation-for="Producto.Descripcion" class="text-danger"></span>
+                <label asp-for="Categoria.Nombre" class="control-label">Categoría</label>
+                <select asp-for="Categoria.Id" asp-items="ViewBag.NombreCategoria" class="form-control">
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Producto.FechaValidez" class="control-label"></label>
-                <input type="date" asp-for="Producto.FechaValidez" class="form-control"  value="2020-11-10" id="fecha-introducida" />
+                <input type="date" asp-for="Producto.FechaValidez" class="form-control" value="2020-11-10" id="fecha-introducida" />
                 <span asp-validation-for="Producto.FechaValidez" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Producto.ImagenProducto" class="control-label"></label>
-                <input asp-for="Producto.ImagenProducto" class="form-control"  id="imagen-introducida"/>
+                <input asp-for="Producto.ImagenProducto" class="form-control" id="imagen-introducida" />
                 <span asp-validation-for="Producto.ImagenProducto" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -51,33 +51,48 @@
                 <span asp-validation-for="Producto.ImagenProducto3" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Categoria.Nombre" class="control-label">Categoría</label>
-                <select asp-for="CategoriaId" asp-items="ViewBag.NombreCategoria" class="form-control">
-                </select>
+                <label asp-for="Condicion.Horario" class="control-label"></label>
+                <input asp-for="Condicion.Horario" class="form-control" />
+                <span asp-validation-for="Condicion.Horario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Producto.Precio" class="control-label"></label>
-                <input asp-for="Producto.Precio" class="form-control" id="precioInicial-introducido" />
-                <span asp-validation-for="Producto.Precio" class="text-danger"></span>
+                <label asp-for="Condicion.Reserva" class="control-label"></label>
+                <input asp-for="Condicion.Reserva" class="form-control" />
+                <span asp-validation-for="Condicion.Reserva" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Producto.PrecioFinal" class="control-label"></label>
-                <input asp-for="Producto.PrecioFinal" class="form-control" id="precioFinal-introducido" />
-                <span asp-validation-for="Producto.PrecioFinal" class="text-danger"></span>
+                <label asp-for="Condicion.Entrega" class="control-label"></label>
+                <input asp-for="Condicion.Entrega" class="form-control" />
+                <span asp-validation-for="Condicion.Entrega" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Producto.UnidadesStock" class="control-label"></label>
-                <input asp-for="Producto.UnidadesStock" class="form-control" />
-                <span asp-validation-for="Producto.UnidadesStock" class="text-danger"></span>
+                <label asp-for="Condicion.Recogida" class="control-label"></label>
+                <input asp-for="Condicion.Recogida" class="form-control" />
+                <span asp-validation-for="Condicion.Recogida" class="text-danger"></span>
             </div>
-            @if (User.IsInRole("admin"))
-            {
-                <div class="form-group">
-                    <label class="control-label">Empresa</label>
-                    <select name="idVendedor" asp-items="ViewBag.VendedorId" class="form-control">
-                    </select>
+
+            <!-- ESTOS PUNTOS AHORA ESTÁN EN LA VENTANA 2-->
+            @*<div class="form-group">
+                    <label asp-for="Producto.Descripcion" class="control-label"></label>
+                    <input asp-for="Producto.Descripcion" class="form-control" id="descripcion-introducida" />
+                    <span asp-validation-for="Producto.Descripcion" class="text-danger"></span>
                 </div>
-            }
+                    <div class="form-group">
+                        <label asp-for="Producto.Precio" class="control-label"></label>
+                        <input asp-for="Producto.Precio" class="form-control" id="precioInicial-introducido" />
+                        <span asp-validation-for="Producto.Precio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Producto.PrecioFinal" class="control-label"></label>
+                        <input asp-for="Producto.PrecioFinal" class="form-control" id="precioFinal-introducido" />
+                        <span asp-validation-for="Producto.PrecioFinal" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Producto.UnidadesStock" class="control-label"></label>
+                        <input asp-for="Producto.UnidadesStock" class="form-control" />
+                        <span asp-validation-for="Producto.UnidadesStock" class="text-danger"></span>
+                    </div>
+            *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -176,8 +191,8 @@
                                 </div>
                             </div>
                             <div style="display:grid">
-                                <a href="#" style="margin: 2% 0%" class="btn btn-outline-success">Agregar a carrito</a>
-                                <a href="#" style="margin: 2% 0%" class="btn btn-outline-danger">Añadir a favoritos<img style="width:6%; margin-left: 4%;" class="d-none" /></a>
+                                <a href="#" style="margin: 2% 0%" class="disabled btn btn-outline-success">Agregar a carrito</a>
+                                <a href="#" style="margin: 2% 0%" class="disabled btn btn-outline-danger">Añadir a favoritos<img style="width:6%; margin-left: 4%;" class="d-none" /></a>
                             </div>
                         </div>
                         <div>
@@ -190,7 +205,7 @@
 </div>
 
 <div>
-    <a asp-action="Index2">Volver a la lista</a>
+    <a asp-action="Index2">Volver al inicio</a>
 </div>
 
 @section Scripts {
