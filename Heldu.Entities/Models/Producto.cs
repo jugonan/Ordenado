@@ -8,15 +8,12 @@ namespace Heldu.Entities.Models
     {
         public int Id { get; set; }
 
-        [Required]
         [Display(Name = "Nombre del producto")]
         public string Titulo { get; set; }
 
-        [Required]
         [Display(Name = "Descripción del producto")]
         public string Descripcion { get; set; }
 
-        [Required]
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         [Display(Name = "Fecha de validez de la oferta")]
         public DateTime FechaValidez { get; set; }
@@ -34,12 +31,10 @@ namespace Heldu.Entities.Models
         [DataType(DataType.Url)]
         public string ImagenProducto3 { get; set; }
 
-        [Required]
         [Display(Name = "Precio original del producto")]
         [DataType(DataType.Currency)]
         public double Precio { get; set; }
 
-        [Required]
         [Display(Name = "Precio final del producto")]
         [DataType(DataType.Currency)]
         public string PrecioFinal { get; set; }

@@ -110,25 +110,24 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create()
         {
             ViewData["NombreCategoria"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
-            ViewData["VendedorId"] = new SelectList(await _vendedoresService.GetVendedor(), "Id", "NombreDeEmpresa");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
-        public async Task<IActionResult> Create(ProductoCategoria productoCategoria, int? idVendedor)
+        public async Task<IActionResult> Create(ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM, int? idVendedor)
         {
-            Producto producto = productoCategoria.Producto;
+            Producto producto = productoCategoriaCondicionesVM.Producto;
             await _productosService.CreateProductoPost(producto);
 
             ProductoCategoria newProdCat = new ProductoCategoria()
             {
-                CategoriaId = productoCategoria.CategoriaId,
+                CategoriaId = productoCategoriaCondicionesVM.Categoria.Id,
                 ProductoId = producto.Id
             };
             ProductoVendedor productoVendedor = new ProductoVendedor();
-            productoVendedor.ProductoId = productoCategoria.Producto.Id;
+            productoVendedor.ProductoId = producto.Id;
 
             int aux = -1;
             if (idVendedor == null)
