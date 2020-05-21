@@ -68,6 +68,7 @@ namespace DEFINITIVO
 
             //Nueva Arquitectura
             services.AddTransient<ICategoriasService, CategoriasService>();
+            services.AddTransient<ICondicionesService, CondicionesService>();
             services.AddTransient<IFavoritosService, FavoritosService>();
             services.AddTransient<IGustosUsuariosService, GustosUsuariosService>();
             services.AddTransient<IHelperService, HelperService>();
