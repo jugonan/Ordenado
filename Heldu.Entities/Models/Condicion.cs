@@ -11,6 +11,8 @@ namespace Heldu.Entities.Models
         public string Horario { get; set; }
         public string Entrega { get; set; }
         public string Recogida { get; set; }
+        public int ProductoId { get; set; }
+        public Producto Producto { get; set; }
         [NotMapped]
         public List<string> Otros { get; set; }
     }

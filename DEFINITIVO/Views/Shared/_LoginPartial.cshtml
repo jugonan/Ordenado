@@ -6,11 +6,11 @@
 {
     <div id="div-cabecera-salir">
         <div id="anchor-miperfil">
-            <a id="anchor-miperfil" class="nav-link textType2" asp-controller="Usuarios" asp-action="Miperfil">Mi perfil</a>
+            <a id="anchor-miperfil" class="nav-link" asp-controller="Usuarios" asp-action="Miperfil">Mi perfil</a>
         </div>
         <div class="desplegable-salir">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link textType2"><p>Salir</p></button>
+                <button type="submit" class="nav-link btn btn-link"><p>Salir</p></button>
             </form>
         </div>
     </div>
@@ -19,7 +19,7 @@
 {
     <div id="div-cabecera-salir">
         <div id="anchor-miperfil">
-            <a class="nav-link textType2" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
+            <a class="nav-link" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
         </div>
         <div class="desplegable-salir">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -33,16 +33,16 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <div class="nav-item">
-            <p class="nav-link textType2">Hola @User.Identity.Name!</p>
+            <p class="nav-link">Hola @User.Identity.Name!</p>
         </div>
     }
     else
     {
         <div class="nav-item">
-            <a class="nav-link textType2" asp-area="Identity" asp-page="/Account/Register">Registrarme</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrarme</a>
         </div>
         <div class="nav-item">
-            <a class="nav-link textType2" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
         </div>
     }
 </div>
