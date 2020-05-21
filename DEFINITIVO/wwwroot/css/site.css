@@ -7,7 +7,55 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-/* Added by JAF*/
+/* Added by JAF */
+/* Parte del nav bar */
+#div-cabecera-salir {
+    float: left;
+    overflow: hidden;
+    min-width: 9rem;
+}
+
+    #div-cabecera-salir #anchor-miperfil {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+#anchor-miperfil{
+    width:100%;
+}
+
+.desplegable-salir {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 9rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background-color: gray;
+}
+
+    .desplegable-salir form {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+        .desplegable-salir form:hover {
+            background-color: #ddd;
+        }
+
+#div-cabecera-salir:hover .desplegable-salir {
+    display: block;
+}
 
 #producto-vendedor-vacio {
     margin-top: 9em;
@@ -29,7 +77,7 @@ a {
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #1b6ec2;
+    background-color: white;
     border-color: #1861ac;
 }
 
@@ -84,9 +132,6 @@ body {
 
 
 /* Cambios de CSS hechos por Galo */
-.desplegable-salir{
-    position: absolute;
-}
 .btn-link .textType {
     color: black;
 }
@@ -103,7 +148,8 @@ body {
 .nav-item {
     align-self: center;
 }
-#anchor-miperfil{
+
+#anchor-miperfil {
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -126,7 +172,7 @@ body {
 }
 
 #mainDiv {
-    background-color: #fff7f7;
+    background-color: white;
 }
 
 .texto-caja-perfil {
@@ -275,6 +321,7 @@ body {
     text-decoration: none !important;
     font-weight: 400;
 }
+
     .textType3:hover, .textType3:focus {
         font-weight: 600;
         color: ghostwhite !important;

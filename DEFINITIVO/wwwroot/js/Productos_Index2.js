@@ -1,5 +1,7 @@
-﻿let ancla;
+﻿/*
+let ancla;
 let form;
+*/
 document.addEventListener('scroll', function () {
     let divCategorias = document.getElementById('divCategorias');
     divCategorias.classList.remove('show');
@@ -9,17 +11,17 @@ document.addEventListener('scroll', function () {
     divBuscador.classList.remove('show');
 })
 
-function funcion() {
-    alimentarVariables();
-    addEvent();
-}
+//function funcion() {
+//    alimentarVariables();
+//    addEvent();
+//}
 
-function alimentarVariables() {
-    ancla = document.getElementById('anchor-miperfil');
-    form = ancla.nextSibling.nextSibling;
-}
-function addEvent() {
-    ancla.addEventListener('mouseover', function () {
-        form.classList.remove('d-none');
-    })
-}
+//function alimentarVariables() {
+//    ancla = document.getElementById('anchor-miperfil');
+//    form = ancla.nextSibling.nextSibling;
+//}
+//function addEvent() {
+//    ancla.addEventListener('mouseover', function () {
+//        form.classList.remove('d-none');
+//    })
+//}

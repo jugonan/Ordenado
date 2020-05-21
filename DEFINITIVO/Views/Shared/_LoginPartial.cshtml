@@ -8,7 +8,7 @@
         <div id="anchor-miperfil">
             <a id="anchor-miperfil" class="nav-link textType2" asp-controller="Usuarios" asp-action="Miperfil">Mi perfil</a>
         </div>
-        <div class="d-none desplegable-salir">
+        <div class="desplegable-salir">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link textType2"><p>Salir</p></button>
             </form>
@@ -21,7 +21,7 @@
         <div id="anchor-miperfil">
             <a class="nav-link textType2" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
         </div>
-        <div class="d-none desplegable-salir">
+        <div class="desplegable-salir">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link textType2">Salir</button>
             </form>
