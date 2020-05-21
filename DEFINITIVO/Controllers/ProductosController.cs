@@ -112,7 +112,7 @@ namespace DEFINITIVO.Controllers
             ViewData["NombreCategoria"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
             return View();
         }
-
+        //a
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
