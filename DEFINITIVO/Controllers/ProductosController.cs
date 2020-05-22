@@ -147,7 +147,7 @@ namespace DEFINITIVO.Controllers
             {
                 await _productosVendedoresService.CreateProductoVendedor(productoVendedor);
                 await _productoCategoriasService.CreateProductoCategoriaPost(newProdCat);
-                return RedirectToAction(nameof(Index2));
+                return RedirectToAction("Create","OpcionesProductos", new { productoId = producto.Id});
             }
             return View(producto);
         }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
+using Heldu.Logic.ViewModels;
 
 namespace DEFINITIVO.Controllers
 {
@@ -41,7 +42,7 @@ namespace DEFINITIVO.Controllers
         }
 
         // GET: OpcionesProductos/Create
-        public IActionResult Create()
+        public IActionResult Create(int productoId)
         {
             return View();
         }
