@@ -1,6 +1,7 @@
 ﻿using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
+using Heldu.Logic.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,17 @@ namespace Heldu.Logic.Services
         public bool ExistOpcionProducto(int id)
         {
             return _context.OpcionProducto.Any(e => e.Id == id);
+        }
+        public async Task<ProductoCategoriaCondicionesVM> CrearVM(int productoId)
+        {
+            Producto producto = await _context.Producto.FirstOrDefaultAsync(x => x.Id == productoId);
+            Condicion condicion = await _context.Condicion.FirstOrDefaultAsync(x => x.ProductoId == productoId);
+            ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = new ProductoCategoriaCondicionesVM()
+            {
+                Producto = producto,
+                Condicion = condicion
+            };
+            return productoCategoriaCondicionesVM;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Heldu.Entities.Models;
+using Heldu.Logic.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,5 +14,6 @@ namespace Heldu.Logic.Interfaces
         public Task EditOpcionProductoPost(OpcionProducto opcionProducto);
         public Task DeleteOpcionProductoPost(int id);
         public bool ExistOpcionProducto(int id);
+        public Task<ProductoCategoriaCondicionesVM> CrearVM(int productoId);
     }
 }
