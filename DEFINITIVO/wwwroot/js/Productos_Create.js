@@ -9,6 +9,7 @@ let clicksReservas = 0;
 let clicksEntregas = 0;
 let clicksRecogidas = 0;
 let clicksOtros = 0;
+let crearProductoBTN;
 window.addEventListener('DOMContentLoaded', function () {
     /* Estas funciones se ejecutan en Productos/Create */
     obtenerTitulo();
@@ -21,6 +22,8 @@ window.addEventListener('DOMContentLoaded', function () {
     obtenerRecogida();
     obtenerOtros();
     obtenerDescripcion();
+    crearProductoBTN = document.getElementById('boton-crear-producto');
+    crearProductoBTN.addEventListener('click', crearVM);
 
     /* Estas funciones se ejecutan en OpcionesProducto/Create */
 
@@ -341,3 +344,19 @@ function comprobarClicks(string) {
             break;
     }
 }
+
+function crearVM() {
+    /* Al limpiar todos los inputs, se envían vacíos al controlador
+     * con este método les devuelvo el valor para crear el VM*/
+    let horarioIntroducido = document.getElementById('horario-introducida');
+    let reservaIntroducida = document.getElementById('reserva-introducida');
+    let entregaIntroducida = document.getElementById('entrega-introducida');
+    let recogidaIntroducida = document.getElementById('recogida-introducida');
+    let otroIntroducido = document.getElementById('otros-introducido');
+
+    horarioIntroducido.value = listaHorarios;
+    reservaIntroducida.value = listaReservas;
+    entregaIntroducida.value = listaEntregas;
+    recogidaIntroducida.value = listaRecogidas;
+    otroIntroducido.value = listaOtros;
+};

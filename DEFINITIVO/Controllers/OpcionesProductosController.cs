@@ -6,25 +6,26 @@ using Microsoft.EntityFrameworkCore;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace DEFINITIVO.Controllers
 {
     public class OpcionesProductosController : Controller
     {
         private readonly IOpcionesProductosService _opcionesProductosService;
+        private readonly IVendedoresService _vendedoresService;
 
-        public OpcionesProductosController(IOpcionesProductosService opcionesProductosService)
+        public OpcionesProductosController(IOpcionesProductosService opcionesProductosService, IVendedoresService vendedoresService)
         {
             _opcionesProductosService = opcionesProductosService;
+            _vendedoresService = vendedoresService;
         }
 
-        // GET: OpcionesProductos
         public async Task<IActionResult> Index()
         {
             return View(await _opcionesProductosService.GetOpcionesProductos());
         }
 
-        // GET: OpcionesProductos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,15 +42,13 @@ namespace DEFINITIVO.Controllers
             return View(opcionProducto);
         }
 
-        // GET: OpcionesProductos/Create
-        public IActionResult Create(int productoId)
+        public async Task<IActionResult> Create(int productoId)
         {
-            return View();
+            ViewData["Vendedor"] = await _vendedoresService.ObtenerVendedorDesdeProducto(productoId);
+            ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
+            return View(productoCategoriaCondicionesVM);
         }
 
-        // POST: OpcionesProductos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion,PrecioInicial,PrecioFinal,Descuento")] OpcionProducto opcionProducto)
@@ -62,7 +61,6 @@ namespace DEFINITIVO.Controllers
             return View(opcionProducto);
         }
 
-        // GET: OpcionesProductos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,9 +76,6 @@ namespace DEFINITIVO.Controllers
             return View(opcionProducto);
         }
 
-        // POST: OpcionesProductos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descripcion,PrecioInicial,PrecioFinal,Descuento")] OpcionProducto opcionProducto)

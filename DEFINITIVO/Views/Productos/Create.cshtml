@@ -107,30 +107,8 @@
                     <button type="button" class="btn btn-danger col-5 offset-1" id="otros-introducida-borrar">eliminar</button>
                 </div>
             </div>
-            <!-- ESTOS PUNTOS AHORA ESTÁN EN LA VENTANA 2-->
-            @*<div class="form-group">
-            <label asp-for="Producto.Descripcion" class="control-label"></label>
-            <input asp-for="Producto.Descripcion" class="form-control" id="descripcion-introducida" />
-            <span asp-validation-for="Producto.Descripcion" class="text-danger"></span>
-        </div>
             <div class="form-group">
-                <label asp-for="Producto.Precio" class="control-label"></label>
-                <input asp-for="Producto.Precio" class="form-control" id="precioInicial-introducido" />
-                <span asp-validation-for="Producto.Precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Producto.PrecioFinal" class="control-label"></label>
-                <input asp-for="Producto.PrecioFinal" class="form-control" id="precioFinal-introducido" />
-                <span asp-validation-for="Producto.PrecioFinal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Producto.UnidadesStock" class="control-label"></label>
-                <input asp-for="Producto.UnidadesStock" class="form-control" />
-                <span asp-validation-for="Producto.UnidadesStock" class="text-danger"></span>
-            </div>
-            *@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" id="boton-crear-producto"/>
             </div>
         </form>
     </div>
@@ -198,6 +176,7 @@
                         <label><strong>Recogida</strong></label>
                         <ul class="d-none" id="ul-recogida">
                         </ul>
+                        <br />
                         <label><strong>Otros</strong></label>
                         <ul class="d-none" id="ul-otros">
                         </ul>

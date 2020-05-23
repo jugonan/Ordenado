@@ -28,6 +28,7 @@ namespace DEFINITIVO.Controllers
         private readonly IUsuariosService _usuariosService;
         private readonly IProductosVendedoresService _productosVendedoresService;
         private readonly IReviewsService _reviewsService;
+        private readonly ICondicionesService _condicionesService;
         //private readonly GeoLocationService _geoLocationService;
 
         public ProductosController(
@@ -42,7 +43,8 @@ namespace DEFINITIVO.Controllers
             IVendedoresService vendedoresService,
             IUsuariosService usuariosService,
             IProductosVendedoresService productosVendedoresService,
-            IReviewsService reviewsService)
+            IReviewsService reviewsService,
+            ICondicionesService condicionesService)
             //GeoLocationService geoLocationService)
         {
             _userManager = userManager;
@@ -56,6 +58,7 @@ namespace DEFINITIVO.Controllers
             _usuariosService = usuariosService;
             _productosVendedoresService = productosVendedoresService;
             _reviewsService = reviewsService;
+            _condicionesService = condicionesService;
             //_geoLocationService = geoLocationService;
         }
 
@@ -112,7 +115,7 @@ namespace DEFINITIVO.Controllers
             ViewData["NombreCategoria"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
             return View();
         }
-        //a
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
@@ -120,6 +123,9 @@ namespace DEFINITIVO.Controllers
         {
             Producto producto = productoCategoriaCondicionesVM.Producto;
             await _productosService.CreateProductoPost(producto);
+            Condicion condicion = productoCategoriaCondicionesVM.Condicion;
+            condicion.ProductoId = producto.Id;
+            await _condicionesService.CreateCondicion(condicion);
 
             ProductoCategoria newProdCat = new ProductoCategoria()
             {
