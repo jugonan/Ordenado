@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,7 +13,6 @@ using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Heldu.Logic.Services
 {
@@ -220,6 +218,50 @@ namespace Heldu.Logic.Services
             var myRegion = root.GetProperty("region_name").GetString();    // Obtiene el string de la llave "region_name" del JSON
 
             return $"{myCity}, {myRegion}";
+        }
+        public async Task<string> GetPostalCodeFromIP()
+        {
+            using HttpClient client = new HttpClient();
+            //Obtiene la IP del usuario
+            HttpResponseMessage responseIP = await client.GetAsync("http://icanhazip.com/");
+            var responseString = await responseIP.Content.ReadAsStringAsync();
+            string publicIP = responseString.Remove(responseString.Length - 1);
+
+            //Obtiene los datos de ubicación de acuerdo a la IP
+            string urlInicial = "http://api.ipapi.com/";
+            string APIKey = "?access_key=42709e692e4b6c4269941c7827ee7a01";
+            string urlToFetch = $"{urlInicial}{publicIP}{APIKey}";
+            var response = await client.GetStringAsync(urlToFetch);
+
+            using var jsonDoc = JsonDocument.Parse(response);
+            var root = jsonDoc.RootElement;
+            var myPostalCode = root.GetProperty("zip").GetString();    // Obtiene el string de la llave "zip" del JSON
+
+            return myPostalCode;
+        }
+
+        //Obtener el nombre de una ciudad desde un código postal (Solo para España)
+        public async Task<string> GetCityFromPostalCode(string postalCode)
+        {
+            string city = "N/A Ciudad";
+            int cp = Convert.ToInt32(postalCode);
+            if (cp > 1001 && cp < 52080)
+            {
+                string url = $"http://api.zippopotam.us/ES/{cp}";
+                using HttpClient client = new HttpClient();
+
+                var request = await client.GetAsync(url);
+                if (request.IsSuccessStatusCode)
+                {
+                    var response2 = await client.GetStringAsync(url);
+                    using var jsonDoc2 = JsonDocument.Parse(response2);
+                    var root = jsonDoc2.RootElement;
+                    var root2 = root.GetProperty("places");
+                    city = root2[0].GetProperty("place name").ToString();
+                }
+            }
+
+            return city;
         }
     }
 }

@@ -15,5 +15,8 @@ namespace Heldu.Logic.Interfaces
         public string GetIPv4EthernetAddress();
         public Task<object> GetIPJson();
         public Task<string> GetCityAndRegionFromIP();
+        public Task<string> GetPostalCodeFromIP();
+        public Task<string> GetCityFromPostalCode(string postalCode);
+
     }
 }

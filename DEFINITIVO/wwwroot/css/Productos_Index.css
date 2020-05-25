@@ -251,11 +251,19 @@ a.floating-button:hover + div.label-container {
 }
 
 
+#modificarCiudad{
+    cursor:pointer;
+    color:darkblue;
+}
+#ubicacion {
+    text-align: center;
+}
+
 
 
 /* MODAL PARA CONOCER LA UBICACIÓN*/
 .modal {
-    display:none;
+    display: none;
 }
 .modal-header, h4, .close {
     background-color: #5cb85c;

@@ -12,6 +12,7 @@ using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using System;
 using Heldu.Logic.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace DEFINITIVO.Controllers
 {
@@ -44,7 +45,7 @@ namespace DEFINITIVO.Controllers
             IProductosVendedoresService productosVendedoresService,
             IReviewsService reviewsService,
             IHelperService helperService)
-             
+
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -60,30 +61,38 @@ namespace DEFINITIVO.Controllers
             _helperService = helperService;
         }
 
-        public int aux = 0;
-        public string cp = "";
         public async Task<IActionResult> Index2(string postalCode)
         {
-            if (aux == 0)
+            if (string.IsNullOrEmpty(postalCode))
             {
-                cp = "";
-                aux++;
+                if (string.IsNullOrEmpty(HttpContext.Session.GetString("sessionPostalCode")))
+                {
+                    string postalCodeFromIP = await _helperService.GetPostalCodeFromIP();
+                    string cityAndRegionFromIP = await _helperService.GetCityAndRegionFromIP();
+                    HttpContext.Session.SetString("sessionPostalCode", postalCodeFromIP);
+                    HttpContext.Session.SetString("sessionCity", cityAndRegionFromIP);
+                }
+            }
+            else
+            {
+                HttpContext.Session.SetString("sessionPostalCode", postalCode);
+                string cityFromPostalCode = await _helperService.GetCityFromPostalCode(postalCode);
+                HttpContext.Session.SetString("sessionCity", cityFromPostalCode);
             }
 
-            if (!string.IsNullOrEmpty(postalCode))
-            {
-                cp = postalCode;
-            }
+            string cp = HttpContext.Session.GetString("sessionPostalCode");
+            string city = HttpContext.Session.GetString("sessionCity");
 
-            ViewData["postalCode"] = cp;
+            ViewData["PostalCode"] = cp;
+            ViewData["City"] = city;
+
 
             List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
             List<Producto> listaProductos = await _productosService.GetProductos();
             List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
             ProductosForIndex2VM listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
 
-            ViewData["Location"] = await _helperService.GetCityAndRegionFromIP();
-
+            //ViewData["PostalCodeByIP"] = PostalCodeFromIP;
             ViewData["Categorias"] = listaCategorias;
             return View(listasListaProductos);
         }
@@ -130,7 +139,7 @@ namespace DEFINITIVO.Controllers
             ViewData["NombreCategoria"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
@@ -168,7 +177,7 @@ namespace DEFINITIVO.Controllers
             {
                 await _productosVendedoresService.CreateProductoVendedor(productoVendedor);
                 await _productoCategoriasService.CreateProductoCategoriaPost(newProdCat);
-                return RedirectToAction("Create","OpcionesProductos", new { productoId = producto.Id});
+                return RedirectToAction("Create", "OpcionesProductos", new { productoId = producto.Id });
             }
             return View(producto);
         }

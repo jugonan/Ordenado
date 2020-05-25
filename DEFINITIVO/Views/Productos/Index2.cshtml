@@ -13,7 +13,8 @@
     ViewData["Title"] = "Index2";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
     List<Categoria> categorias = ViewBag.Categorias;
-    string postalCode = ViewBag.postalCode;
+    string postalCode = ViewBag.PostalCode;
+    string city = ViewBag.City;
 }
 <!-- CSS particular para esta vista. Los script están en el layout-->
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
@@ -32,7 +33,7 @@
 
 @if (postalCode != "")
 {
-    <p class="alert-primary">Mostrando productos para CP:<span id="inputModalPostalCode"> @postalCode </span></p>
+    <p id="ubicacion" class="alert-light">Mostrando productos para <span id="locationCity" >@city</span> - CP: <span id="inputModalPostalCode">@postalCode</span><span> <a id="modificarCiudad" data-toggle="modal" data-target="#myModal">Modificar</a></span> </p>
 }
 
 <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
@@ -146,7 +147,6 @@
                         </div>
                     </div>
                 </div>
-                <input id="location" value="@ViewBag.Location" type="hidden" />
             </div>
         }
         indexCategorias++;
@@ -215,13 +215,13 @@
                 <form role="form" asp-controller="Productos" asp-action="LocateVisitor">
                     <div class="form-group">
                         <label for="postaCode"><span class="glyphicon glyphicon-user"></span> Código Postal</label>
-                        <input type="text" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001" maxlength="5" minlength="5" required>
+                        <input type="number" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001" maxlength="5" minlength="5" required>
                     </div>
                     <button type="submit" class="btn btn-success btn-block" id="botonConfirmar"><span class="glyphicon glyphicon-off"></span> Confirmar </button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar </button>
+                <button id="botonCancelar" type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar </button>
             </div>
         </div>
     </div>
