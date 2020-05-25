@@ -3,13 +3,13 @@ let ancla;
 let form;
 */
 document.addEventListener('scroll', function () {
-    let divCategorias = document.getElementById('divCategorias');
-    divCategorias.classList.remove('show');
-    let divDetallesHeldu = document.getElementById('divDetallesHeldu');
-    divDetallesHeldu.classList.remove('show');
-    let divBuscador = document.getElementById('divBuscador');
-    divBuscador.classList.remove('show');
-    tryLocation();
+        let divCategorias = document.getElementById('divCategorias');
+        divCategorias.classList.remove('show');
+        let divDetallesHeldu = document.getElementById('divDetallesHeldu');
+        divDetallesHeldu.classList.remove('show');
+        let divBuscador = document.getElementById('divBuscador');
+        divBuscador.classList.remove('show');
+        tryLocation();
 })
 
 //if (document.readyState !== 'loading') {

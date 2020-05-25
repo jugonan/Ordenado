@@ -1,4 +1,4 @@
-@model Heldu.Logic.ViewModels.ProductoCategoriaCondicionesVM
+@model Heldu.Logic.ViewModels.ProductoCategoriaVM
 
 @using Microsoft.AspNetCore.Identity
 
@@ -62,51 +62,51 @@
                 <span asp-validation-for="Producto.ImagenProducto3" class="text-danger"></span>
                 <button type="button" class="btn btn-link" id="imagen-introducidaBtn3">+ añadir imagen</button>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Condicion.Horario" class="control-label"></label>
-                <input asp-for="Condicion.Horario" class="form-control" id="horario-introducida" />
-                <span asp-validation-for="Condicion.Horario" class="text-danger"></span>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input class="form-control" id="horario-introducida" />
+                <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="horario-introducidaBtn">+ añadir horario</button>
                     <button type="button" class="btn btn-danger col-5 offset-1" id="horario-introducida-borrar">eliminar</button>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Condicion.Reserva" class="control-label"></label>
-                <input asp-for="Condicion.Reserva" class="form-control" id="reserva-introducida" />
-                <span asp-validation-for="Condicion.Reserva" class="text-danger"></span>
+                <label class="control-label"></label>
+                <input class="form-control" id="reserva-introducida" />
+                <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="reserva-introducidaBtn">+ añadir reserva</button>
                     <button type="button" class="btn btn-danger col-5 offset-1" id="reserva-introducida-borrar">eliminar</button>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Condicion.Entrega" class="control-label"></label>
-                <input asp-for="Condicion.Entrega" class="form-control" id="entrega-introducida" />
-                <span asp-validation-for="Condicion.Entrega" class="text-danger"></span>
+                <label class="control-label"></label>
+                <input class="form-control" id="entrega-introducida" />
+                <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="entrega-introducidaBtn">+ añadir entrega</button>
                     <button type="button" class="btn btn-danger col-5 offset-1" id="entrega-introducida-borrar">eliminar</button>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Condicion.Recogida" class="control-label"></label>
-                <input asp-for="Condicion.Recogida" class="form-control" id="recogida-introducida" />
-                <span asp-validation-for="Condicion.Recogida" class="text-danger"></span>
+                <label class="control-label"></label>
+                <input class="form-control" id="recogida-introducida" />
+                <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="recogida-introducidaBtn">+ añadir recogida</button>
                     <button type="button" class="btn btn-danger col-5 offset-1" id="recogida-introducida-borrar">eliminar</button>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Condicion.Otros" class="control-label"></label>
-                <input asp-for="Condicion.Otros" class="form-control" id="otros-introducido" />
-                <span asp-validation-for="Condicion.Otros" class="text-danger"></span>
+                <label class="control-label"></label>
+                <input asp-for="Producto.Condiciones" class="form-control" id="otros-introducido" />
+                <span asp-validation-for="Producto.Condiciones" class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="otros-introducidoBtn">+ añadir</button>
                     <button type="button" class="btn btn-danger col-5 offset-1" id="otros-introducida-borrar">eliminar</button>
                 </div>
-            </div>*@
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" id="boton-crear-producto"/>
             </div>

@@ -134,9 +134,9 @@ namespace DEFINITIVO.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
-        public async Task<IActionResult> Create(ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM, int? idVendedor)
+        public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor)
         {
-            Producto producto = productoCategoriaCondicionesVM.Producto;
+            Producto producto = productoCategoriaVM.Producto;
             await _productosService.CreateProductoPost(producto);
             //Condicion condicion = productoCategoriaCondicionesVM.Condicion;
             //condicion.ProductoId = producto.Id;
@@ -144,7 +144,7 @@ namespace DEFINITIVO.Controllers
 
             ProductoCategoria newProdCat = new ProductoCategoria()
             {
-                CategoriaId = productoCategoriaCondicionesVM.Categoria.Id,
+                CategoriaId = productoCategoriaVM.Categoria.Id,
                 ProductoId = producto.Id
             };
             ProductoVendedor productoVendedor = new ProductoVendedor();

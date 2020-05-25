@@ -14,11 +14,13 @@ namespace DEFINITIVO.Controllers
     {
         private readonly IOpcionesProductosService _opcionesProductosService;
         private readonly IVendedoresService _vendedoresService;
+        private readonly IProductosService _productosService;
 
-        public OpcionesProductosController(IOpcionesProductosService opcionesProductosService, IVendedoresService vendedoresService)
+        public OpcionesProductosController(IOpcionesProductosService opcionesProductosService, IVendedoresService vendedoresService, IProductosService productosService)
         {
             _opcionesProductosService = opcionesProductosService;
             _vendedoresService = vendedoresService;
+            _productosService = productosService;
         }
 
         public async Task<IActionResult> Index()
@@ -45,8 +47,9 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create(int productoId)
         {
             ViewData["Vendedor"] = await _vendedoresService.ObtenerVendedorDesdeProducto(productoId);
-            ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
-            return View(productoCategoriaCondicionesVM);
+            Producto producto = await _productosService.GetProductoById(productoId);
+            //ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
+            return View(producto);
         }
 
         [HttpPost]
