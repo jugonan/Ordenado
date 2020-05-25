@@ -14,6 +14,6 @@ namespace Heldu.Logic.Interfaces
         public Task EditOpcionProductoPost(OpcionProducto opcionProducto);
         public Task DeleteOpcionProductoPost(int id);
         public bool ExistOpcionProducto(int id);
-        public Task<ProductoCategoriaCondicionesVM> CrearVM(int productoId);
+        //public Task<ProductoCategoriaCondicionesVM> CrearVM(int productoId);
     }
 }

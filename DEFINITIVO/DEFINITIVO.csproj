@@ -66,6 +66,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Json.Net" Version="1.0.22" />
+    <PackageReference Include="Echovoice.JSON" Version="2.0.15151.1" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
@@ -109,5 +112,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Heldu.Entities\Heldu.Entities.csproj" />
     <ProjectReference Include="..\Heldu.Logic\Heldu.Logic.csproj" />
+    <ProjectReference Include="..\Heldu.Database\Heldu.Database.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

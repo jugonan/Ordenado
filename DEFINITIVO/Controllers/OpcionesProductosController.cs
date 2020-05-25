@@ -7,6 +7,10 @@ using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Text.Json;
+using Echovoice.JSON;
 
 namespace DEFINITIVO.Controllers
 {
@@ -14,11 +18,13 @@ namespace DEFINITIVO.Controllers
     {
         private readonly IOpcionesProductosService _opcionesProductosService;
         private readonly IVendedoresService _vendedoresService;
+        private readonly IProductosService _productosService;
 
-        public OpcionesProductosController(IOpcionesProductosService opcionesProductosService, IVendedoresService vendedoresService)
+        public OpcionesProductosController(IOpcionesProductosService opcionesProductosService, IVendedoresService vendedoresService, IProductosService productosService)
         {
             _opcionesProductosService = opcionesProductosService;
             _vendedoresService = vendedoresService;
+            _productosService = productosService;
         }
 
         public async Task<IActionResult> Index()
@@ -45,8 +51,23 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create(int productoId)
         {
             ViewData["Vendedor"] = await _vendedoresService.ObtenerVendedorDesdeProducto(productoId);
-            ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
-            return View(productoCategoriaCondicionesVM);
+            Producto producto = await _productosService.GetProductoById(productoId);
+
+            var json = producto.Condiciones;
+            var parseado = JsonDocument.Parse(json);
+            var algo = parseado.RootElement;
+            var horario = algo.GetProperty("Horario");
+            var reservas = algo.GetProperty("Reservas");
+            var entregas = algo.GetProperty("Entregas");
+            var recogidas = algo.GetProperty("Recogidas");
+            var otros = algo.GetProperty("Otros");
+            ViewData["Horario"] = horario;
+            ViewData["Reservas"] = reservas;
+            ViewData["Entregas"] = entregas;
+            ViewData["Recogidas"] = recogidas;
+            ViewData["Otros"] = otros;
+            //ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
+            return View(producto);
         }
 
         [HttpPost]

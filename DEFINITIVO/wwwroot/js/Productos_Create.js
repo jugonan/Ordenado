@@ -4,15 +4,28 @@ let listaReservas = [];
 let listaEntregas = [];
 let listaRecogidas = [];
 let listaOtros = [];
+/* Creo el objeto de condición con todas las varibles como nulas para después añadirle
+ * los arreglos con valores en su Value */
+let condicion = {
+    'Horario': null,
+    'Reservas': null,
+    'Entregas': null,
+    'Recogidas': null,
+    'Otros': null
+};
 let clicksHorarios = 0;
 let clicksReservas = 0;
 let clicksEntregas = 0;
 let clicksRecogidas = 0;
 let clicksOtros = 0;
 let crearProductoBTN;
+
+/* Primer evento para ejecutar toda la carga del JS cuando la página está cargada */
 window.addEventListener('DOMContentLoaded', function () {
     /* Estas funciones se ejecutan en Productos/Create */
     obtenerTitulo();
+    obtenerDescripcion();
+    obtenerFecha();
     obtenerImagen();
     obtenerImagen2();
     obtenerImagen3();
@@ -21,14 +34,12 @@ window.addEventListener('DOMContentLoaded', function () {
     obtenerEntrega();
     obtenerRecogida();
     obtenerOtros();
-    obtenerDescripcion();
     crearProductoBTN = document.getElementById('boton-crear-producto');
     crearProductoBTN.addEventListener('click', crearVM);
 
     /* Estas funciones se ejecutan en OpcionesProducto/Create */
 
     /*
-    obtenerFecha();
     obtenerPrecioInicial();
     obtenerPrecioFinal(); */
 });
@@ -55,6 +66,14 @@ function obtenerImagen() {
         let thumbnail = document.getElementsByClassName('img-thumbnail');
         thumbnail[0].src = Blob;
     }
+}
+
+function obtenerFecha() {
+    let fechaIntroducida = document.getElementById('fecha-introducida');
+    fechaIntroducida.addEventListener('input', function () {
+        let fechaDemo = document.getElementById('fecha-demo');
+        fechaDemo.innerText = fechaIntroducida.value;
+    });
 }
 
 function obtenerImagen2() {
@@ -114,6 +133,7 @@ function obtenerHorario() {
     });
     let botonHorarioEliminar = document.getElementById('horario-introducida-borrar');
     botonHorarioEliminar.addEventListener('click', function () {
+        clicksHorarios = 0;
         let ulHorario = document.getElementById('ul-horario');
         while (ulHorario.firstChild) {
             ulHorario.removeChild(ulHorario.firstChild);
@@ -125,6 +145,7 @@ function obtenerHorario() {
 function obtenerReserva() {
     let botonReserva = document.getElementById('reserva-introducidaBtn');
     botonReserva.addEventListener('click', function () {
+        clicksReservas = 0;
         if (comprobarClicks('reserva')) {
             let reservaIntroducida = document.getElementById('reserva-introducida');
             /* Elimino el d-none del UL para que se pueda ver el bullet point */
@@ -158,6 +179,7 @@ function obtenerReserva() {
 function obtenerEntrega() {
     let botonEntrega = document.getElementById('entrega-introducidaBtn');
     botonEntrega.addEventListener('click', function () {
+        clicksEntregas = 0;
         if (comprobarClicks('entrega')) {
             let entregaIntroducida = document.getElementById('entrega-introducida');
             /* Elimino el d-none del UL para que se pueda ver el bullet point */
@@ -191,6 +213,7 @@ function obtenerEntrega() {
 function obtenerRecogida() {
     let botonRecogida = document.getElementById('recogida-introducidaBtn');
     botonRecogida.addEventListener('click', function () {
+        clicksRecogidas = 0;
         if (comprobarClicks('recogida')) {
             let recogidaIntroducida = document.getElementById('recogida-introducida');
             /* Elimino el d-none del UL para que se pueda ver el bullet point */
@@ -224,6 +247,7 @@ function obtenerRecogida() {
 function obtenerOtros() {
     let botonOtro = document.getElementById('otros-introducidoBtn');
     botonOtro.addEventListener('click', function () {
+        clicksOtros
         if (comprobarClicks('otro')) {
             let otroIntroducido = document.getElementById('otros-introducido');
             /* Elimino el d-none del UL para que se pueda ver el bullet point */
@@ -285,6 +309,7 @@ function obtenerDescripcion() {
     });
     let botonDescripcionEliminar = document.getElementById('descripcion-introducida-borrar');
     botonDescripcionEliminar.addEventListener('click', function () {
+
         let descripcionDemo = document.getElementById('descripcion-demo');
         descripcionDemo.innerText = '';
     })
@@ -348,15 +373,14 @@ function comprobarClicks(string) {
 function crearVM() {
     /* Al limpiar todos los inputs, se envían vacíos al controlador
      * con este método les devuelvo el valor para crear el VM*/
-    let horarioIntroducido = document.getElementById('horario-introducida');
-    let reservaIntroducida = document.getElementById('reserva-introducida');
-    let entregaIntroducida = document.getElementById('entrega-introducida');
-    let recogidaIntroducida = document.getElementById('recogida-introducida');
     let otroIntroducido = document.getElementById('otros-introducido');
-
-    horarioIntroducido.value = listaHorarios;
-    reservaIntroducida.value = listaReservas;
-    entregaIntroducida.value = listaEntregas;
-    recogidaIntroducida.value = listaRecogidas;
-    otroIntroducido.value = listaOtros;
+    condicion.Horario = listaHorarios;
+    condicion.Reservas = listaReservas;
+    condicion.Entregas = listaEntregas;
+    condicion.Recogidas = listaRecogidas;
+    condicion.Otros = listaOtros;
+    var json = JSON.stringify(condicion);
+    otroIntroducido.value = json;
 };
+
+/* Parte de la vista de OpcionesProductos Create */
