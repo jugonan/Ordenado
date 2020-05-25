@@ -7,13 +7,14 @@
 
 @{
     ViewData["Title"] = "Create";
+    string [] horarios = ViewBag.Horario;
 }
 
 <link href="~/css/opcionesProductos_Create.css" rel="stylesheet" type="text/css">
 <script src="~/js/OpcionesProductosCreate.js"></script>
 
 <h1>Cargar producto</h1>
-<p class="d-none" value="@Model"></p>
+
 
 <h4></h4>
 <hr />
@@ -92,6 +93,10 @@
                         <br />
                         <label><strong>Reserva</strong></label>
                         <ul class="d-none" id="ulReserva">
+                         @for (int i = 0; i < horarios.Length; i++)
+                         {
+                             <li>@horarios[i]</li>
+                         }
                         </ul>
                         <br />
                         <label><strong>Horario</strong></label>
@@ -132,24 +137,24 @@
                     </div>
                     <div>
                         <div class="row">
-                                <div class="col-6 offset-6">
-                                    <div>
-                                        <div class="row precios-opcion">
-                                            <div class="col-6" style="display:flex;">
-                                                <!-- Modificar Precio inicial y mostrar símbolo de € con js-->
-                                                <h4><strike id="precioInicial-demo"></strike></h4>
-                                                <h4 class="simbolo-euro d-none"><strike>€</strike></h4>
-                                            </div>
-                                            <div class="col-6" style="display:flex;">
-                                                <!-- Modificar Precio final y mostrar símbolo de € con js-->
-                                                <h4 style="color: green;"><strong id="precioFinal-demo"></strong></h4>
-                                                <h4 class="simbolo-euro d-none" style="color: green;"><strong>€</strong></h4>
-                                            </div>
+                            <div class="col-6 offset-6">
+                                <div>
+                                    <div class="row precios-opcion">
+                                        <div class="col-6" style="display:flex;">
+                                            <!-- Modificar Precio inicial y mostrar símbolo de € con js-->
+                                            <h4><strike id="precioInicial-demo"></strike></h4>
+                                            <h4 class="simbolo-euro d-none"><strike>€</strike></h4>
                                         </div>
-                                        <p id="descuento-demo"></p>
+                                        <div class="col-6" style="display:flex;">
+                                            <!-- Modificar Precio final y mostrar símbolo de € con js-->
+                                            <h4 style="color: green;"><strong id="precioFinal-demo"></strong></h4>
+                                            <h4 class="simbolo-euro d-none" style="color: green;"><strong>€</strong></h4>
+                                        </div>
                                     </div>
+                                    <p id="descuento-demo"></p>
                                 </div>
                             </div>
+                        </div>
                         <div class="row">
                             <div class="col-2">
                                 <h4>Opciones de producto: </h4>

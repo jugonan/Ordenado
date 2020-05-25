@@ -7,6 +7,10 @@ using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Text.Json;
+using Echovoice.JSON;
 
 namespace DEFINITIVO.Controllers
 {
@@ -48,6 +52,20 @@ namespace DEFINITIVO.Controllers
         {
             ViewData["Vendedor"] = await _vendedoresService.ObtenerVendedorDesdeProducto(productoId);
             Producto producto = await _productosService.GetProductoById(productoId);
+
+            var json = producto.Condiciones;
+            var parseado = JsonDocument.Parse(json);
+            var algo = parseado.RootElement;
+            var horario = algo.GetProperty("Horario");
+            var reservas = algo.GetProperty("Reservas");
+            var entregas = algo.GetProperty("Entregas");
+            var recogidas = algo.GetProperty("Recogidas");
+            var otros = algo.GetProperty("Otros");
+            ViewData["Horario"] = horario;
+            ViewData["Reservas"] = reservas;
+            ViewData["Entregas"] = entregas;
+            ViewData["Recogidas"] = recogidas;
+            ViewData["Otros"] = otros;
             //ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
             return View(producto);
         }
