@@ -51,11 +51,11 @@ namespace Heldu.Logic.Services
         public async Task<ProductoCategoriaCondicionesVM> CrearVM(int productoId)
         {
             Producto producto = await _context.Producto.FirstOrDefaultAsync(x => x.Id == productoId);
-            Condicion condicion = await _context.Condicion.FirstOrDefaultAsync(x => x.ProductoId == productoId);
+            //Condicion condicion = await _context.Condicion.FirstOrDefaultAsync(x => x.ProductoId == productoId);
             ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = new ProductoCategoriaCondicionesVM()
             {
                 Producto = producto,
-                Condicion = condicion
+                //Condicion = condicion
             };
             return productoCategoriaCondicionesVM;
         }

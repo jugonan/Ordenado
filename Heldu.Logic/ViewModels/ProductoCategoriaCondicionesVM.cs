@@ -7,6 +7,6 @@ namespace Heldu.Logic.ViewModels
     {
         public Producto Producto { get; set; }
         public Categoria Categoria { get; set; }
-        public Condicion Condicion { get; set; }
+        //public Condicion Condicion { get; set; }
     }
 }

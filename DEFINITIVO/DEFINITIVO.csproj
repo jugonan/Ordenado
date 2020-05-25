@@ -12,21 +12,25 @@
     <Compile Remove="Migrations\**" />
     <Compile Remove="Models\**" />
     <Compile Remove="ViewModel\**" />
+    <Compile Remove="Views\Condiciones\**" />
     <Content Remove="Data\**" />
     <Content Remove="Frames\**" />
     <Content Remove="Migrations\**" />
     <Content Remove="Models\**" />
     <Content Remove="ViewModel\**" />
+    <Content Remove="Views\Condiciones\**" />
     <EmbeddedResource Remove="Data\**" />
     <EmbeddedResource Remove="Frames\**" />
     <EmbeddedResource Remove="Migrations\**" />
     <EmbeddedResource Remove="Models\**" />
     <EmbeddedResource Remove="ViewModel\**" />
+    <EmbeddedResource Remove="Views\Condiciones\**" />
     <None Remove="Data\**" />
     <None Remove="Frames\**" />
     <None Remove="Migrations\**" />
     <None Remove="Models\**" />
     <None Remove="ViewModel\**" />
+    <None Remove="Views\Condiciones\**" />
     <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
