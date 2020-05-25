@@ -28,7 +28,7 @@ namespace DEFINITIVO.Controllers
         private readonly IUsuariosService _usuariosService;
         private readonly IProductosVendedoresService _productosVendedoresService;
         private readonly IReviewsService _reviewsService;
-        //private readonly GeoLocationService _geoLocationService;
+        private readonly IHelperService _helperService;
 
         public ProductosController(
             ApplicationDbContext context,
@@ -42,8 +42,8 @@ namespace DEFINITIVO.Controllers
             IVendedoresService vendedoresService,
             IUsuariosService usuariosService,
             IProductosVendedoresService productosVendedoresService,
-            IReviewsService reviewsService)
-            //GeoLocationService geoLocationService)
+            IReviewsService reviewsService,
+            IHelperService helperService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -56,15 +56,32 @@ namespace DEFINITIVO.Controllers
             _usuariosService = usuariosService;
             _productosVendedoresService = productosVendedoresService;
             _reviewsService = reviewsService;
-            //_geoLocationService = geoLocationService;
+            _helperService = helperService;
         }
 
-    public async Task<IActionResult> Index2()
+        public int aux = 0;
+        public string cp = "";
+        public async Task<IActionResult> Index2(string postalCode)
         {
+            if (aux == 0)
+            {
+                cp = "";
+                aux++;
+            }
+
+            if (!string.IsNullOrEmpty(postalCode))
+            {
+                cp = postalCode;
+            }
+
+            ViewData["postalCode"] = cp;
+
             List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
             List<Producto> listaProductos = await _productosService.GetProductos();
             List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
             ProductosForIndex2VM listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+
+            ViewData["Location"] = await _helperService.GetCityAndRegionFromIP();
 
             ViewData["Categorias"] = listaCategorias;
             return View(listasListaProductos);
@@ -252,6 +269,11 @@ namespace DEFINITIVO.Controllers
                 List<Producto> output = await _productosService.BuscarProductosPorStringYCategoria(inputBuscar, categoriaId);
                 return View(output);
             }
+        }
+
+        public IActionResult LocateVisitor(string inputPostalCode)
+        {
+            return RedirectToAction("Index2", "Productos", new { postalCode = inputPostalCode });
         }
     }
 }

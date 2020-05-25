@@ -249,3 +249,17 @@ a.floating-button:hover + div.label-container {
     visibility: visible;
     opacity: 1;
 }
+
+
+
+
+/* MODAL PARA CONOCER LA UBICACIÓN*/
+.modal {
+    display:none;
+}
+.modal-header, h4, .close {
+    background-color: #5cb85c;
+    color: white !important;
+    text-align: center;
+    font-size: 30px;
+}

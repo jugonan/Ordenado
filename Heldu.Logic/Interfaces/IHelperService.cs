@@ -13,6 +13,7 @@ namespace Heldu.Logic.Interfaces
         public string GetIPv6Address();
         public string GetIPv4LANAddress();
         public string GetIPv4EthernetAddress();
-
+        public Task<object> GetIPJson();
+        public Task<string> GetCityAndRegionFromIP();
     }
 }

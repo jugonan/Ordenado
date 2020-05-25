@@ -10,9 +10,6 @@ using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Http;
 using DEFINITIVO.Services;
 using Heldu.Logic.Interfaces;
-using Heldu.Logic.Services;
-using System.Net;
-using System.Net.Http;
 
 namespace DEFINITIVO.Controllers
 {
@@ -25,7 +22,6 @@ namespace DEFINITIVO.Controllers
         private readonly MessagesService _messagesService;
         private readonly IHelperService _helperService;
         private readonly IUsuariosService _usuariosService;
-        private readonly GeoLocationService _geoLocationService;
 
         public HomeController(ILogger<HomeController> logger,
             ApplicationDbContext context,
@@ -33,8 +29,7 @@ namespace DEFINITIVO.Controllers
             SignInManager<IdentityUser> signInManager,
             MessagesService messagesService,
             IHelperService helperService,
-            IUsuariosService usuariosService,
-            GeoLocationService geoLocationService)
+            IUsuariosService usuariosService)
         {
             _logger = logger;
             _context = context;
@@ -43,7 +38,6 @@ namespace DEFINITIVO.Controllers
             _messagesService = messagesService;
             _helperService = helperService;
             _usuariosService = usuariosService;
-            _geoLocationService = geoLocationService;
         }
 
         public async Task<IActionResult> Index()
@@ -98,32 +92,6 @@ namespace DEFINITIVO.Controllers
         }
         public async Task<IActionResult> FAQ()
         {
-            //<!-- PROBANDO EL GeoIP2 para comproabar el pais de la IP-->
-            // Do the lookup
-            string ip = "128.101.101.101";
-            string ip99 = "188.114.110.136";
-
-            //var myIPv6 = _helperService.GetIPv6Address();
-            //var myIPv4LAN = _helperService.GetIPv4LANAddress();
-            //var myIPv4Ethernet = _helperService.GetIPv4EthernetAddress();
-
-            //var response1 = await _geoLocationService.GetCountryNameAsync(ip);
-            //var response2 = await _geoLocationService.GetCountryNameAsync(myIPv4LAN);
-
-            //HttpClient client = new HttpClient();
-            //HttpResponseMessage response = await client.GetAsync("http://icanhazip.com/");
-            //var publicIP2 = await response.Content.ReadAsStringAsync();
-            //string publicIP = publicIP2.Remove(publicIP2.Length-1);
-            //var response3 = await _geoLocationService.GetCountryNameAsync(publicIP);
-            
-            var remoteIp = HttpContext.Connection.RemoteIpAddress;
-
-            var response3 = await _geoLocationService.GetCountryNameAsync(ip99);
-
-
-
-            Console.WriteLine(response3);           // 'United States'
-            //<!-- FIN DE PROBANDO EL GeoIP2 para comproabar el pais de la IP-->
             return View();
         }
 

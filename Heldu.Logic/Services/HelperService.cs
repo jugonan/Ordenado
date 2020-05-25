@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Heldu.Logic.Services
 {
@@ -178,6 +183,43 @@ namespace Heldu.Logic.Services
                 return direcciones[1];
             else
                 return null;
+        }
+
+        //Devuelve un objeto con toda la información que se puede obtener de una IP
+        public async Task<object> GetIPJson()
+        {
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("http://icanhazip.com/");
+            var publicIP2 = await response.Content.ReadAsStringAsync();
+            string publicIP = publicIP2.Remove(publicIP2.Length - 1);
+            string urlInicial = "http://api.ipapi.com/";
+            string APIKey = "?access_key=42709e692e4b6c4269941c7827ee7a01";
+            string urlToFetch = $"{urlInicial}{publicIP}{APIKey}";
+
+            var response2 = await client.GetStringAsync(urlToFetch);
+
+            var data = JsonConvert.DeserializeObject(response2);
+
+            return data;
+        }
+        //Devuelve "Ciudad, Región" de acuerdo a la IP otorgada por el ISP Provider
+        public async Task<string> GetCityAndRegionFromIP()
+        {
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage responseIP = await client.GetAsync("http://icanhazip.com/");
+            var responseString = await responseIP.Content.ReadAsStringAsync();
+            string publicIP = responseString.Remove(responseString.Length - 1);
+            string urlInicial = "http://api.ipapi.com/";
+            string APIKey = "?access_key=42709e692e4b6c4269941c7827ee7a01";
+            string urlToFetch = $"{urlInicial}{publicIP}{APIKey}";
+            var response = await client.GetStringAsync(urlToFetch);
+
+            using var jsonDoc = JsonDocument.Parse(response);
+            var root = jsonDoc.RootElement;
+            var myCity = root.GetProperty("city").GetString();    // Obtiene el string de la llave "city" del JSON
+            var myRegion = root.GetProperty("region_name").GetString();    // Obtiene el string de la llave "region_name" del JSON
+
+            return $"{myCity}, {myRegion}";
         }
     }
 }

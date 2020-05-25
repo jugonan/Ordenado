@@ -13,10 +13,10 @@
     ViewData["Title"] = "Index2";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
     List<Categoria> categorias = ViewBag.Categorias;
+    string postalCode = ViewBag.postalCode;
 }
 <!-- CSS particular para esta vista. Los script están en el layout-->
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
-<script src="~/js/Productos_Index2.js"></script>
 
 
 @if (User.IsInRole("vendedor"))
@@ -28,6 +28,11 @@
         <div class="label-text">Agregar productos</div>
         <i class="fa fa-play label-arrow"></i>
     </div>
+}
+
+@if (postalCode != "")
+{
+    <p class="alert-primary">Mostrando productos para CP:<span id="inputModalPostalCode"> @postalCode </span></p>
 }
 
 <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
@@ -141,6 +146,7 @@
                         </div>
                     </div>
                 </div>
+                <input id="location" value="@ViewBag.Location" type="hidden" />
             </div>
         }
         indexCategorias++;
@@ -193,8 +199,39 @@
 
 
 
+<!-- Modal de ubicación del usuario (Cuando ingresa por primera vez)-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span> Mejoramos tu experiencia!</h4>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+                <h5>Te estamos mostrando productos para @ViewBag.Location</h5>
+                <h5>Si no es correcto, indicanos tu código postal </h5>
+                <form role="form" asp-controller="Productos" asp-action="LocateVisitor">
+                    <div class="form-group">
+                        <label for="postaCode"><span class="glyphicon glyphicon-user"></span> Código Postal</label>
+                        <input type="text" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001" maxlength="5" minlength="5" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block" id="botonConfirmar"><span class="glyphicon glyphicon-off"></span> Confirmar </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 @section Scripts {
 
+    <script src="~/js/Productos_Index2.js"></script>
     <link href="@Url.Content("~/css/popup_banner.css")" rel="stylesheet" type="text/css" />
     <link href="~/css/popup_banner.css" rel="stylesheet" type="text/css" />
 }
