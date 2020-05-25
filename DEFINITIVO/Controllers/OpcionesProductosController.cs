@@ -56,16 +56,52 @@ namespace DEFINITIVO.Controllers
             var json = producto.Condiciones;
             var parseado = JsonDocument.Parse(json);
             var algo = parseado.RootElement;
+            
             var horario = algo.GetProperty("Horario");
+            int horarioLength = horario.GetArrayLength();
+            string[] horarioArray = new string[horarioLength];
+            for (int i = 0; i < horarioLength; i++)
+            {
+                horarioArray[i] = horario[i].GetString();
+            }
+
             var reservas = algo.GetProperty("Reservas");
+            int reservasLength = reservas.GetArrayLength();
+            string[] reservasArray = new string[reservasLength];
+            for (int i = 0; i < reservasLength; i++)
+            {
+                reservasArray[i] = reservas[i].GetString();
+            }
+
             var entregas = algo.GetProperty("Entregas");
+            int entregasLength = entregas.GetArrayLength();
+            string[] entregasArray = new string[entregasLength];
+            for (int i = 0; i < entregasLength; i++)
+            {
+                entregasArray[i] = entregas[i].GetString();
+            }
+
             var recogidas = algo.GetProperty("Recogidas");
+            int recogidasLength = recogidas.GetArrayLength();
+            string[] recogidasArray = new string[recogidasLength];
+            for (int i = 0; i < recogidasLength; i++)
+            {
+                recogidasArray[i] = recogidas[i].GetString();
+            }
+
             var otros = algo.GetProperty("Otros");
-            ViewData["Horario"] = horario;
-            ViewData["Reservas"] = reservas;
-            ViewData["Entregas"] = entregas;
-            ViewData["Recogidas"] = recogidas;
-            ViewData["Otros"] = otros;
+            int otrosLength = otros.GetArrayLength();
+            string[] otrosArray = new string[otrosLength];
+            for (int i = 0; i < otrosLength; i++)
+            {
+                otrosArray[i] = otros[i].GetString();
+            }
+
+            ViewData["Horario"] = horarioArray;
+            ViewData["Reservas"] = reservasArray;
+            ViewData["Entregas"] = entregasArray;
+            ViewData["Recogidas"] = recogidasArray;
+            ViewData["Otros"] = otrosArray;
             //ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
             return View(producto);
         }
