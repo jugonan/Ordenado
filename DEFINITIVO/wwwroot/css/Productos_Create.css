@@ -1,0 +1,10 @@
+﻿.checked {
+    color: orange;
+}
+#imagen-demo {
+    max-width: 70%;
+}
+.img-thumbnail {
+    max-width: 150px;
+    max-height: 150px;
+}

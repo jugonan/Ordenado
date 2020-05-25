@@ -29,6 +29,8 @@ namespace DEFINITIVO.Controllers
         private readonly IProductosVendedoresService _productosVendedoresService;
         private readonly IReviewsService _reviewsService;
         private readonly IHelperService _helperService;
+        private readonly ICondicionesService _condicionesService;
+        //private readonly GeoLocationService _geoLocationService;
 
         public ProductosController(
             ApplicationDbContext context,
@@ -44,6 +46,9 @@ namespace DEFINITIVO.Controllers
             IProductosVendedoresService productosVendedoresService,
             IReviewsService reviewsService,
             IHelperService helperService)
+            IReviewsService reviewsService,
+            ICondicionesService condicionesService)
+            //GeoLocationService geoLocationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -68,6 +73,9 @@ namespace DEFINITIVO.Controllers
                 cp = "";
                 aux++;
             }
+            _condicionesService = condicionesService;
+            //_geoLocationService = geoLocationService;
+        }
 
             if (!string.IsNullOrEmpty(postalCode))
             {
@@ -129,7 +137,7 @@ namespace DEFINITIVO.Controllers
             ViewData["NombreCategoria"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
             return View();
         }
-        //a
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
@@ -137,6 +145,9 @@ namespace DEFINITIVO.Controllers
         {
             Producto producto = productoCategoriaCondicionesVM.Producto;
             await _productosService.CreateProductoPost(producto);
+            Condicion condicion = productoCategoriaCondicionesVM.Condicion;
+            condicion.ProductoId = producto.Id;
+            await _condicionesService.CreateCondicion(condicion);
 
             ProductoCategoria newProdCat = new ProductoCategoria()
             {
@@ -164,7 +175,7 @@ namespace DEFINITIVO.Controllers
             {
                 await _productosVendedoresService.CreateProductoVendedor(productoVendedor);
                 await _productoCategoriasService.CreateProductoCategoriaPost(newProdCat);
-                return RedirectToAction(nameof(Index2));
+                return RedirectToAction("Create","OpcionesProductos", new { productoId = producto.Id});
             }
             return View(producto);
         }
