@@ -1,4 +1,24 @@
-﻿
+﻿/*  SELECCION DE COLORES GENERALES Y TIPOGRAFIA (26/05/20)
+
+    Colores:
+        Rosa principal: #F21B6D 
+        Negro Navbar: #1C2229
+        Fondo subNavbar: #F7F6F2
+        Fondo cards: #F7F6F2
+        Color de separación complementaria suave: #BAC1B8
+        Color de separación complementaria fuerte: #02A669
+
+    Fuente principal: 
+        font-family: 'Open Sans Condensed', sans-serif;
+        weight: 300 - 700;
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+
+*/
+
+
+
+
+
 
 .cta-100 {
     /*margin-top: 100px;*/
@@ -169,6 +189,7 @@ figure img {
 
 .category_name {
     font-family: 'Montserrat Alternates', sans-serif;
+    font-family:'Segoe UI'
     font-size: 2rem;
     color: #FF0 !important;
     opacity: 0.7;

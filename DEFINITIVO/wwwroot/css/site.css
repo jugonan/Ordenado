@@ -22,7 +22,7 @@ a.navbar-brand {
         color: white;
         padding: 14px 16px;
         background-color: inherit;
-        font-family: inherit;
+        font-family: 'Open Sans Condensed', sans-serif;
         margin: 0;
     }
 
@@ -36,7 +36,7 @@ a.navbar-brand {
     background-color: #f9f9f9;
     min-width: 9rem;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 900;
     background-color: gray;
 }
 
@@ -76,9 +76,17 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
+    color: #F7F6F2!important;
     background-color: white;
     border-color: #1861ac;
+}
+.nav-link {
+    color: #F7F6F2 !important;
+    margin: 0;
+    text-wrap:none;
+}
+.nav-link:hover{
+    font-weight:600;
 }
 
 /* Sticky footer styles
@@ -139,14 +147,17 @@ body {
 #navbarPrincipal {
     height: 6vw;
     max-height: 4rem;
+    background-color: #1C2229;
 }
 
 #navbar-logo {
     height: 3.5rem;
+    color: #F21B6D;
 }
 
 .nav-item {
     align-self: center;
+    padding: 0rem 1.5vw;
 }
 
 #anchor-miperfil {
@@ -160,13 +171,13 @@ body {
 }
 
 .textType1 {
-    font-family: 'Syncopate', sans-serif !important;
+    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1vw;
     color: whitesmoke !important;
 }
 
 .textType2 {
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1vw;
     color: whitesmoke !important;
 }
@@ -187,11 +198,11 @@ body {
     position: fixed;
     width: 100%;
     top: 4vw;
-    z-index: 999;
+    z-index: 899;
     height: 3.5rem;
     min-height: 3vw;
     max-height: 5vw;
-    background-color: black;
+    background-color: #363537;
     transition: ease;
     transition-duration: 0.2s;
     /*margin-bottom: -7%;*/
@@ -296,18 +307,18 @@ body {
     position: fixed;
     width: 100%;
     top: 4vw;
-    z-index: 999;
+    z-index: 899;
     min-height: 3.5rem;
     max-height: 3.5rem;
-    background-color: black;
+    background-color: #363537;
     transition: ease;
-    transition-duration: 0.2s;
+    transition-duration: 0.3s;
 }
 
 .subMenuCat {
     bottom: 0.5rem;
-    left: 15%;
-    width: 60%;
+    margin-left: 15%;
+    width: 70%;
     align-items: center;
     text-align: center;
     margin-bottom: -5px;
@@ -320,7 +331,7 @@ body {
 }
 
 .textType3 {
-    font-family: 'Syncopate', sans-serif !important;
+    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 0.7vw;
     color: whitesmoke !important;
     text-decoration: none !important;
@@ -335,8 +346,8 @@ body {
 .subMenuCon {
     position: absolute;
     bottom: 0.5rem;
-    left: 10%;
-    width: 80%;
+    margin-left: 15%;
+    width: 70%;
     align-items: center;
     text-align: center;
     margin-bottom: 0;

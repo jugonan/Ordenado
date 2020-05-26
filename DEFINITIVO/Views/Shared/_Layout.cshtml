@@ -61,7 +61,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1" style="width:130%">
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#divCategorias" aria-controls="divCategorias" aria-expanded="false" aria-label="Toggle navigation">Categorias</a>
+                            <a class="nav-link" data-toggle="collapse" href="#divCategorias" aria-controls="divCategorias" aria-expanded="false" aria-label="Toggle navigation">Categorías</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#divDetallesHeldu" aria-controls="divDetallesHeldu" aria-expanded="false" aria-label="Toggle navigation">Conócenos</a>
@@ -73,6 +73,15 @@
                         {
                             <li class="nav-item">
                                 <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("vendedor"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Vendedores" asp-action="Misproductos">Gestionar Productos</a>
                             </li>
                         }
                     </ul>
@@ -130,7 +139,7 @@
                     <div style="width:10%;" id="div-del-vendedor">
                         <div id="producto-vendedor-vacio" class="d-none">
                             <p>Aún no has añadido ningún producto</p>
-                            <a asp-action="Create" asp-controller="Productos">Añadir producto</a>
+                            <a class="nav-link" asp-controller="Productos" asp-action="Create">Añadir producto</a>
                         </div>
                     </div>
                 }
