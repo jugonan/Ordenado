@@ -10,4 +10,21 @@
 }
 #div-boton-login {
     justify-content: space-between;
+    margin:0!important;
+}
+
+.inputs{
+    margin-left:15px;
+    margin-right:15px;
+    width:90%;
+}
+#recuperar-password {
+    float: left;
+    margin-top: 0.5rem;
+}
+#forgot-password {
+
+}
+#keep-session {
+    align-self: flex-end;
 }

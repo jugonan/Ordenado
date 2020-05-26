@@ -223,9 +223,13 @@ namespace Heldu.Logic.Services
         {
             using HttpClient client = new HttpClient();
             //Obtiene la IP del usuario
-            HttpResponseMessage responseIP = await client.GetAsync("http://icanhazip.com/");
-            var responseString = await responseIP.Content.ReadAsStringAsync();
-            string publicIP = responseString.Remove(responseString.Length - 1);
+            string publicIP = "213.192.202.121";
+            var responseIP = await client.GetAsync("http://icanhazip.com/");
+            if (responseIP.IsSuccessStatusCode)
+            {
+                var responseString = await responseIP.Content.ReadAsStringAsync();
+                publicIP = responseString.Remove(responseString.Length - 1);
+            }
 
             //Obtiene los datos de ubicación de acuerdo a la IP
             string urlInicial = "http://api.ipapi.com/";

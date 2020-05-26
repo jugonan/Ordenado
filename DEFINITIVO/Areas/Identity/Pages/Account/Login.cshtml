@@ -47,33 +47,32 @@
     <section>
         <form id="account" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="row">
+            <div class="row inputs">
                 <div class="form-group">
                     <label style="width: 100%; text-align: left;" asp-for="Input.Email">Correo electrónico</label>
                     <input asp-for="Input.Email" class="form-control" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group row">
-                    <label asp-for="Input.Password">Contraseña</label>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
+            <div class="row inputs">
+                <div class="form-group">
+                    <label style="width: 100%; text-align: left;" asp-for="Input.Password">Contraseña</label>
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <p id="recuperar-password">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
                 </div>
             </div>
             <div class="row" id="div-boton-login">
                 <div class="form-group col-3">
                     <button type="submit" class="btn btn-primary">Entrar</button>
                 </div>
-                <div class="form-group col-9">
+                <div class="form-group col-9" id="keep-session">
                     <div class="checkbox">
                         <label asp-for="Input.RememberMe">
                             <input asp-for="Input.RememberMe" />
-                            Recordar usuario y contraseña
-                            @*@Html.DisplayNameFor(m => m.Input.RememberMe)*@
+                            Mantener mi sesión abierta
                         </label>
                     </div>
                 </div>

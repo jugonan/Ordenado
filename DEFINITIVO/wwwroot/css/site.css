@@ -336,6 +336,7 @@ body {
     color: whitesmoke !important;
     text-decoration: none !important;
     font-weight: 400;
+    text-transform:uppercase;
 }
 
     .textType3:hover, .textType3:focus {
@@ -348,7 +349,33 @@ body {
     bottom: 0.5rem;
     margin-left: 15%;
     width: 70%;
+    height:80%;
     align-items: center;
     text-align: center;
     margin-bottom: 0;
+}
+
+
+
+#ubicacion {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #1C2229;
+    margin-top:1vw;
+    margin-bottom:1vw;
+}
+#locationCity {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #F21B6D;
+}
+#inputModalPostalCode {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #1C2229;
+}
+#modificarCiudad{
+    font-size:small;
+    color:darkblue;
+    font-weight:200;
+}
+#modificarCiudad:hover{
+    font-weight:400;
 }
