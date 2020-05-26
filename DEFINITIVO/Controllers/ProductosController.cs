@@ -13,6 +13,7 @@ using Heldu.Logic.ViewModels;
 using System;
 using Heldu.Logic.Services;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace DEFINITIVO.Controllers
 {
@@ -201,7 +202,7 @@ namespace DEFINITIVO.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descripcion,FechaValidez,ImagenProducto,ImagenProducto2,ImagenProducto3,Precio,PrecioFinal,UnidadesStock")] Producto producto)
+        public async Task<IActionResult> Edit(int id, Producto producto, List<IFormFile> ImagenProducto, List<IFormFile> ImagenProducto2, List<IFormFile> ImagenProducto3)
         {
             if (id != producto.Id)
             {
@@ -212,6 +213,9 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
+                    producto.ImagenProducto = await _productosService.AgregarImagenesBlob(ImagenProducto);
+                    producto.ImagenProducto2 = await _productosService.AgregarImagenesBlob(ImagenProducto2);
+                    producto.ImagenProducto3 = await _productosService.AgregarImagenesBlob(ImagenProducto3);
                     await _productosService.EditProductoPost(producto);
                 }
                 catch (DbUpdateConcurrencyException)

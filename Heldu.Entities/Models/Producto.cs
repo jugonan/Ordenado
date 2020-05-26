@@ -19,7 +19,6 @@ namespace Heldu.Entities.Models
         [Display(Name = "Fecha de validez de la oferta")]
         public DateTime FechaValidez { get; set; }
 
-        [Required]
         public byte[] ImagenProducto { get; set; }
 
         public byte[] ImagenProducto2 { get; set; }

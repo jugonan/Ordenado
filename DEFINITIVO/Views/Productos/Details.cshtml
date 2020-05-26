@@ -40,18 +40,18 @@
                 <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
                     <div class="carousel-inner">
                         <div title="1" class="carousel-item active">
-                            <img src="@Model.ImagenProducto" class="d-block w-100" alt="@Model.ImagenProducto">
+                            <img src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto)" class="d-block w-100" alt="@Model.ImagenProducto">
                         </div>
                         @if (Model.ImagenProducto2 != null)
                         {
                             <div title="2" class="carousel-item">
-                                <img src="@Model.ImagenProducto2" class="d-block w-100" alt="@Model.ImagenProducto2">
+                                <img src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto2)" class="d-block w-100" alt="@Model.ImagenProducto2">
                             </div>
                         }
                         @if (Model.ImagenProducto3 != null)
                         {
                             <div title="3" class="carousel-item">
-                                <img src="@Model.ImagenProducto3" class="d-block w-100" alt="@Model.ImagenProducto3">
+                                <img src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto3)" class="d-block w-100" alt="@Model.ImagenProducto3">
                             </div>
                         }
                     </div>
@@ -65,14 +65,14 @@
                     </a>
                 </div>
                 <div class="row" id="div-de-thumbNails">
-                    <img title="1" src="@Model.ImagenProducto" style="width:150px; height:150px;" alt="@Model.ImagenProducto" class="img-thumbnail-carousel">
+                    <img title="1" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto)" style="width:150px; height:150px;" alt="@Model.ImagenProducto" class="img-thumbnail-carousel">
                     @if (Model.ImagenProducto2 != null)
                     {
-                        <img title="2" src="@Model.ImagenProducto2" style="width:150px; height:150px;" alt="@Model.ImagenProducto2" class="img-thumbnail-carousel">
+                        <img title="2" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto2)" style="width:150px; height:150px;" alt="@Model.ImagenProducto2" class="img-thumbnail-carousel">
                     }
                     @if (Model.ImagenProducto3 != null)
                     {
-                        <img title="3" src="@Model.ImagenProducto3" style="width:150px; height:150px;" alt="@Model.ImagenProducto3" class="img-thumbnail-carousel">
+                        <img title="3" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto3)" style="width:150px; height:150px;" alt="@Model.ImagenProducto3" class="img-thumbnail-carousel">
                     }
                 </div>
                 <div>

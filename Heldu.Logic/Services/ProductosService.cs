@@ -2,9 +2,11 @@
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -122,6 +124,22 @@ namespace Heldu.Logic.Services
                 listasProductosForIndex2.ListasProductos.Add(newListaProducto);
             }
             return listasProductosForIndex2;
+        }
+        public async Task<byte[]> AgregarImagenesBlob(List<IFormFile> ImagenProducto)
+        {
+            byte[] toAdd = new byte[] { };
+            foreach (var item in ImagenProducto)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        toAdd = stream.ToArray();
+                    }
+                }
+            }
+            return toAdd;
         }
     }
 }
