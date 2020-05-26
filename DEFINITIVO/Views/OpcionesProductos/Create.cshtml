@@ -7,7 +7,6 @@
 
 @{
     ViewData["Title"] = "Create";
-    string [] horarios = ViewBag.Horario;
 }
 
 <link href="~/css/opcionesProductos_Create.css" rel="stylesheet" type="text/css">
@@ -93,26 +92,42 @@
                         <br />
                         <label><strong>Reserva</strong></label>
                         <ul class="d-none" id="ulReserva">
-                         @for (int i = 0; i < horarios.Length; i++)
+                         @foreach(string horario in ViewBag.Horario)
                          {
-                             <li>@horarios[i]</li>
+                             <li>@horario</li>
                          }
                         </ul>
                         <br />
                         <label><strong>Horario</strong></label>
                         <ul class="d-none" id="ulHorario">
+                            @foreach (string reserva in ViewBag.Reservas)
+                            {
+                                <li>@reserva</li>
+                            }
                         </ul>
                         <br />
                         <label><strong>Entrega</strong></label>
                         <ul class="d-none" id="ulEntrega">
+                            @foreach (string entrega in ViewBag.Entregas)
+                            {
+                                <li>@entrega</li>
+                            }
                         </ul>
                         <br />
                         <label><strong>Recogida</strong></label>
                         <ul class="d-none" id="ulRecogida">
+                            @foreach (string recogida in ViewBag.Recogidas)
+                            {
+                                <li>@recogida</li>
+                            }
                         </ul>
                         <br />
                         <label><strong>Otros</strong></label>
                         <ul class="d-none" id="ulOtros">
+                            @foreach (string otros in ViewBag.Otros)
+                            {
+                                <li>@otros</li>
+                            }
                         </ul>
                     </div>
                     <!-- Div que incluye todos los comentarios existentes-->

@@ -3,6 +3,7 @@ using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
