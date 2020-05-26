@@ -22,15 +22,15 @@ namespace Heldu.Entities.Models
         [Required]
         [Display(Name = "URL de la imagen del producto")]
         [DataType(DataType.Url)]
-        public string ImagenProducto { get; set; }
+        public byte[] ImagenProducto { get; set; }
 
         [Display(Name = "URL de una nueva imagen del producto(opcional)")]
         [DataType(DataType.Url)]
-        public string ImagenProducto2 { get; set; }
+        public byte[] ImagenProducto2 { get; set; }
 
         [Display(Name = "URL de una nueva imagen del producto(opcional)")]
         [DataType(DataType.Url)]
-        public string ImagenProducto3 { get; set; }
+        public byte[] ImagenProducto3 { get; set; }
 
         [Display(Name = "Precio original del producto")]
         [DataType(DataType.Currency)]
