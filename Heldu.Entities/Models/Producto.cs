@@ -64,12 +64,6 @@ namespace Heldu.Entities.Models
 
         public int CantidadVisitas { get; set; }
 
-        // CONDICIONES DEL PRODUCTO QUE SE GESTIONARÁN EN UN STRING (JSON)
-        //public List<string> Reserva { get; set; }
-        //public List<string> Horario { get; set; }
-        //public List<string> Entrega { get; set; }
-        //public List<string> Recogida { get; set; }
-        //public List<string> Otros { get; set; }
         public string Condiciones { get; set; }
     }
 }

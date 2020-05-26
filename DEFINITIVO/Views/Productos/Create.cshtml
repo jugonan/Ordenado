@@ -18,7 +18,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form method="post" enctype="multipart/form-data" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger">(*) Campos obligatorios</div>
             <div class="form-group">
                 <label asp-for="Producto.Titulo" class="control-label"></label>
@@ -45,21 +45,21 @@
                 <span asp-validation-for="Producto.FechaValidez" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Producto.ImagenProducto" class="control-label"></label>
-                <input type="file" asp-for="Producto.ImagenProducto" class="form-control" id="imagen-introducida" />
-                <span asp-validation-for="Producto.ImagenProducto" class="text-danger"></span>
+                <label asp-for="ImagenProducto" class="control-label"></label>
+                <input type="file" asp-for="ImagenProducto" class="form-control" id="imagen-introducida" />
+                <span asp-validation-for="ImagenProducto" class="text-danger"></span>
                 <button type="button" class="btn btn-link" id="imagen-introducidaBtn">+ añadir imagen</button>
             </div>
             <div class="form-group">
-                <label asp-for="Producto.ImagenProducto2" class="control-label"></label>
-                <input type="file" asp-for="Producto.ImagenProducto2" class="form-control" id="imagen-introducida2" />
-                <span asp-validation-for="Producto.ImagenProducto2" class="text-danger"></span>
+                <label asp-for="ImagenProducto2" class="control-label"></label>
+                <input type="file" asp-for="ImagenProducto2" class="form-control" id="imagen-introducida2" />
+                <span asp-validation-for="ImagenProducto2" class="text-danger"></span>
                 <button type="button" class="btn btn-link" id="imagen-introducidaBtn2">+ añadir imagen</button>
             </div>
             <div class="form-group">
-                <label asp-for="Producto.ImagenProducto3" class="control-label"></label>
-                <input type="file" asp-for="Producto.ImagenProducto3" class="form-control" id="imagen-introducida3" />
-                <span asp-validation-for="Producto.ImagenProducto3" class="text-danger"></span>
+                <label asp-for="ImagenProducto3" class="control-label"></label>
+                <input type="file" asp-for="ImagenProducto3" class="form-control" id="imagen-introducida3" />
+                <span asp-validation-for="ImagenProducto3" class="text-danger"></span>
                 <button type="button" class="btn btn-link" id="imagen-introducidaBtn3">+ añadir imagen</button>
             </div>
             <div class="form-group">
@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" id="boton-crear-producto"/>
+                <input type="submit" value="Create" class="btn btn-primary" id="boton-crear-producto" />
             </div>
         </form>
     </div>

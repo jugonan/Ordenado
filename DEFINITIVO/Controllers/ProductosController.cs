@@ -144,13 +144,14 @@ namespace DEFINITIVO.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
-        public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor)
+        public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor, List<IFormFile> ImagenProducto, List<IFormFile> ImagenProducto2, List<IFormFile> ImagenProducto3)
         {
             Producto producto = productoCategoriaVM.Producto;
+            producto.ImagenProducto = await _productosService.AgregarImagenesBlob(ImagenProducto);
+            producto.ImagenProducto2 = await _productosService.AgregarImagenesBlob(ImagenProducto2);
+            producto.ImagenProducto3 = await _productosService.AgregarImagenesBlob(ImagenProducto3);
+
             await _productosService.CreateProductoPost(producto);
-            //Condicion condicion = productoCategoriaCondicionesVM.Condicion;
-            //condicion.ProductoId = producto.Id;
-            //await _condicionesService.CreateCondicion(condicion);
 
             ProductoCategoria newProdCat = new ProductoCategoria()
             {
