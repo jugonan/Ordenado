@@ -1,5 +1,6 @@
 ﻿using Heldu.Entities.Models;
 using Heldu.Logic.ViewModels;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,5 +20,6 @@ namespace Heldu.Logic.Interfaces
         public Task<List<Producto>> BuscarProductosPorStringYCategoria(string inputBuscar, int categoriaId);
         public Task<List<Producto>> GetProductosByCategoriaId(int categoriaId);
         public ProductosForIndex2VM GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias);
+        public Task<byte[]> AgregarImagenesBlob(List<IFormFile> ImagenProducto);
     }
 }
