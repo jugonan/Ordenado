@@ -3,8 +3,10 @@ using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Heldu.Logic.Services
@@ -48,16 +50,35 @@ namespace Heldu.Logic.Services
         {
             return _context.OpcionProducto.Any(e => e.Id == id);
         }
-        //public async Task<ProductoCategoriaCondicionesVM> CrearVM(int productoId)
-        //{
-        //    Producto producto = await _context.Producto.FirstOrDefaultAsync(x => x.Id == productoId);
-        //    //Condicion condicion = await _context.Condicion.FirstOrDefaultAsync(x => x.ProductoId == productoId);
-        //    ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = new ProductoCategoriaCondicionesVM()
-        //    {
-        //        Producto = producto,
-        //        //Condicion = condicion
-        //    };
-        //    return productoCategoriaCondicionesVM;
-        //}
+        public OpcionProducto crearDesdeJson(string json, int productoId)
+        {
+            var parseado = JsonDocument.Parse(json);
+            var algo = parseado.RootElement;
+
+            var descripcion = algo.GetProperty("descripcion");
+            string descripcionVM = descripcion.ToString();
+
+            var precioInicial = algo.GetProperty("precioInicio");
+            string precioInicialVM = precioInicial.ToString();
+
+            var precioFinal = algo.GetProperty("precioFin");
+            string precioFinalVM = precioFinal.ToString();
+
+            var descuento = algo.GetProperty("descuento");
+            string descuentoVM = descuento.ToString();
+
+            var unidades = algo.GetProperty("unidades");
+            string unidadesVM = unidades.ToString();
+
+            OpcionProducto opcionProducto = new OpcionProducto()
+            {
+                ProductoId = productoId,
+                Descripcion = descripcionVM,
+                PrecioInicial = Convert.ToDecimal(precioInicialVM),
+                PrecioFinal = Convert.ToDecimal(precioFinalVM),
+                Descuento = descuentoVM,
+            };
+            return opcionProducto;
+        }
     }
 }

@@ -51,7 +51,11 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create(int productoId)
         {
             ViewData["Vendedor"] = await _vendedoresService.ObtenerVendedorDesdeProducto(productoId);
-            Producto producto = await _productosService.GetProductoById(productoId);
+            OpcionProductoCreateVM opcionProductoCreateVM = new OpcionProductoCreateVM()
+            {
+                Producto = await _productosService.GetProductoById(productoId)
+            };
+            Producto producto = opcionProductoCreateVM.Producto;
 
             var json = producto.Condiciones;
             var parseado = JsonDocument.Parse(json);
@@ -103,19 +107,34 @@ namespace DEFINITIVO.Controllers
             ViewData["Recogidas"] = recogidasArray;
             ViewData["Otros"] = otrosArray;
             //ProductoCategoriaCondicionesVM productoCategoriaCondicionesVM = await _opcionesProductosService.CrearVM(productoId);
-            return View(producto);
+            return View(opcionProductoCreateVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion,PrecioInicial,PrecioFinal,Descuento")] OpcionProducto opcionProducto)
+        public async Task<IActionResult> Create(OpcionProductoCreateVM opcionProductoCreateVM)
         {
             if (ModelState.IsValid)
             {
-                await _opcionesProductosService.CreateOpcionProductoPost(opcionProducto);
+                if (opcionProductoCreateVM.OpcionProducto1 != null)
+                {
+                    OpcionProducto opcionProducto =  _opcionesProductosService.crearDesdeJson(opcionProductoCreateVM.OpcionProducto1, opcionProductoCreateVM.Producto.Id);
+                    await _opcionesProductosService.CreateOpcionProductoPost(opcionProducto);
+                }
+                if (opcionProductoCreateVM.OpcionProducto2 != null)
+                {
+                    OpcionProducto opcionProducto = _opcionesProductosService.crearDesdeJson(opcionProductoCreateVM.OpcionProducto2, opcionProductoCreateVM.Producto.Id);
+                    await _opcionesProductosService.CreateOpcionProductoPost(opcionProducto);
+
+                }
+                if (opcionProductoCreateVM.OpcionProducto3 != null)
+                {
+                    OpcionProducto opcionProducto = _opcionesProductosService.crearDesdeJson(opcionProductoCreateVM.OpcionProducto3, opcionProductoCreateVM.Producto.Id);
+                    await _opcionesProductosService.CreateOpcionProductoPost(opcionProducto);
+                }
                 return RedirectToAction(nameof(Index));
             }
-            return View(opcionProducto);
+            return View(opcionProductoCreateVM);
         }
 
         public async Task<IActionResult> Edit(int? id)
