@@ -10,6 +10,7 @@ let descripcion;
 let precioInicio;
 let precioFin;
 let unidades;
+let labelOpciones;
 /* Objecto del tipo de Opción producto. Cada vez que añada uno, creo uno nuevo y lo guardo en una lista */
 let opcion = {
     descripcion: '',
@@ -17,7 +18,11 @@ let opcion = {
     precioFin: '',
     unidades: ''
 };
-let opciones;
+/* Arreglo en el que voy añadiendo las diferentes opciones de producto */
+let opciones = [];
+/* Variable auxiliar con la que controlo que no añada más de 3 productos */
+let clicks = 0;
+
 
 function funcion() {
     let imagenes = document.getElementsByClassName('carousel-item');
@@ -33,6 +38,7 @@ function funcion() {
     ulEntrega = document.getElementById('ulEntrega');
     ulRecogida = document.getElementById('ulRecogida');
     ulOtros = document.getElementById('ulOtros');
+    labelOpciones = document.getElementsByClassName('radio-opciones');
 
     if (ulReserva.hasChildNodes(ulReserva)) {
         mostrarHijos(ulReserva);
@@ -67,8 +73,36 @@ function crearOpcion() {
         unidades: unidades.value
     };
     opciones.push(opcion);
+    revisarOpciones();
+
     descripcion.value = '';
     precioInicio.value = '';
     precioFin.value = '';
     unidades.value = '';
+}
+
+function revisarOpciones() {
+    if (opciones.length !== 0) {
+        for (i = 0; i < opciones.length; i++) {
+            input = document.createElement('input');
+            labelOpciones[i].innerText = opciones[i].descripcion;
+            input.setAttribute('name', 'opcionesProducto');
+            input.setAttribute('type', 'radio');
+            input.setAttribute('id',`${i}`);
+            input.addEventListener('click', cambiarPrecio);
+            labelOpciones[i].appendChild(input);
+        }
+    }
+}
+
+function cambiarPrecio() {
+    /* Quito el 'd-none' a los símbolos de € */
+    let euros = document.getElementsByClassName('simbolo-euro');
+    for (i = 0; i < euros.length; i++) {
+        euros[i].classList.remove('d-none');
+    }
+    let precioInicial = document.getElementById('precioInicial-demo');
+    let precioFinal = document.getElementById('precioFinal-demo');
+    precioInicial.innerText = opciones[this.id].precioInicio;
+    precioFinal.innerText = opciones[this.id].precioFin;
 }
