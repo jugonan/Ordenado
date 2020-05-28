@@ -179,6 +179,8 @@ namespace DEFINITIVO.Controllers
             return _usuariosService.ExistUsuario(id);
         }
 
+        // Ningún enlace debería dirigir a esta acción porque devuelve una vista parcial.
+        // Redirigir a 'Mi Cuenta'
         public async Task<IActionResult> Miperfil()
         {
             string userManagerId = _userManager.GetUserId(User);

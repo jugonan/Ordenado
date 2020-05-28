@@ -32,6 +32,7 @@
     <None Remove="ViewModel\**" />
     <None Remove="Views\Condiciones\**" />
     <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
+    <Content Remove="wwwroot\css\Usuarios_MiPeriflPV.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Services\HelperServiceOld.cs" />

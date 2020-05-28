@@ -1,0 +1,61 @@
+﻿/*  SELECCION DE COLORES GENERALES Y TIPOGRAFIA (26/05/20)
+
+    Colores:
+        Rosa principal: #F21B6D 
+        Negro Navbar: #1C2229
+        Fondo subNavbar: #F7F6F2
+        Fondo cards: #F7F6F2
+        Color de separación complementaria suave: #BAC1B8
+        Color de separación complementaria fuerte: #02A669
+
+    Fuente principal: 
+        font-family: 'Open Sans Condensed', sans-serif;
+        weight: 300 - 700;
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+
+*/
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h5 {
+    font-family: Open Sans Condensed;
+    font-size: 1.45rem;
+    padding-left: 1vw;
+}
+
+div p {
+    font-size: larger;
+    opacity: 0.9;
+    padding-left: 1vw;
+    display: inline-block;
+    padding: 0.7vw;
+    border: 1px solid gray;
+    border-radius: 11%;
+
+}
+
+.titulo-datos h3 {
+    font-weight: 400;
+    font-size: xx-large;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #02A669;
+    padding-left: 15px;
+    text-align: center;
+}
+
+.ancla-editar {
+    text-align: center;
+    font-weight: 500;
+    font-size: x-large;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #02A669;
+}
+
+.ancla-editar img{
+ max-width:16%;
+ margin-left:1vw;
+}
+body {
+}
+

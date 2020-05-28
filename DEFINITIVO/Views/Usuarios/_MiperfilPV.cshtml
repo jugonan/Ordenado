@@ -6,17 +6,19 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+<!-- CSS Personalizado -->
+<link href="~/css/Usuarios_MiPerfilPV.css" rel="stylesheet" type="text/css">
+
 <div class="col-3">
-    <img style="border-radius:50%; max-height:160px;" src="data:image/png;base64,@System.Convert.ToBase64String(Model.FotoUsuario)" />
-    <h3>@Model.NombreUsuario</h3>
+    <img id="imagen-usuario-pv" src="data:image/png;base64,@System.Convert.ToBase64String(Model.FotoUsuario)" />
     <br />
-    <div style="width:50%; margin: 10px 0px;">
-        <a style="width:100%;" asp-action="MiCuenta" asp-route-id="@Model.Id" class="btn btn-primary">Mi cuenta</a>
+    <div class="botones-PV">
+        <a style="width:100%;" asp-action="MiCuenta" asp-route-id="@Model.Id" class="btn">Mi cuenta</a>
     </div>
-    <div style="width:50%; margin: 10px 0px;">
-        <a style="width:100%;" asp-action="Historico" asp-route-id="@Model.Id" class="btn btn-primary">Histórico</a>
+    <div class="botones-PV">
+        <a style="width:100%;" asp-action="Historico" asp-route-id="@Model.Id" class="btn">Histórico</a>
     </div>
-    <div style="width:50%; margin: 10px 0px;">
-        <a style="width:100%;" asp-action="Rewards" asp-route-id="@Model.Id" class="btn btn-primary">Rewards</a>
+    <div class="botones-PV">
+        <a style="width:100%;" asp-action="Rewards" asp-route-id="@Model.Id" class="btn">Rewards</a>
     </div>
 </div>
