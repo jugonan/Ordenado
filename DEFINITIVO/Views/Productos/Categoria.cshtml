@@ -1,40 +1,47 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@model List<Producto>
+
+@using Microsoft.AspNetCore.Identity
 @using Heldu.Logic.Interfaces
 @using DEFINITIVO.Services
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
-@inject IProductosService ProductosService
 @{
     ViewData["Title"] = "Productos";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
-    List<Producto> nuevaLista = await ProductosService.GetProductosByCategoriaId(ViewBag.CategoriaId);
     Categoria categoria = ViewBag.Categoria;
 }
 <link href="~/css/Producto_Categoria.css" rel="stylesheet" type="text/css">
 
-<h1>@categoria.Nombre</h1>
+<p id="titulo-categoria">@categoria.Nombre</p>
 
 <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3">
-    @foreach (Producto producto in nuevaLista)
+    @foreach (Producto producto in Model)
     {
         <div class="col-3 contenedor-carta">
-            <div class="card h-100">
-                    <img src="@producto.ImagenProducto" class="imagen-carta" alt="Imagen_1">
+            <div class="card h-100 divCarta">
+                <img src="data:image/png;base64,@System.Convert.ToBase64String(producto.ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';" class="imagen-carta" alt="Imagen_1">
                 <div class="item-box-blog-date bg-blue-ui white">
-                    <span class="mon"> <strike style="opacity:0.7;">&#8364 @producto.Precio</strike><span class="precio-destacado"> &#8364 @producto.PrecioFinal</span></span>
+                    <span class="mon"> <strike class="oldPrice">@producto.Precio &#8364</strike><span class="precio-destacado">@producto.PrecioFinal &#8364</span></span>
                 </div>
                 <div class="cuerpo-carta">
-                    <a asp-action="Details" asp-route-id="@producto.Id">
-                        <h5 class="card-title">@producto.Titulo</h5>
+                    <a class="card-title" asp-action="Details" asp-route-id="@producto.Id">
+                        @producto.Titulo
                     </a>
                     <p class="texto-carta">@producto.Descripcion</p>
                     <div class="row">
                         <div class="texto-stock">
-                            <p>Quedan @producto.UnidadesStock!!</p>
+                            @if (producto.UnidadesStock > 3)
+                            {
+                                <p>Quedan @producto.UnidadesStock!</p>
+                            }
+                            else
+                            {
+                                <p>Últimas 3!</p>
+                            }
                         </div>
                         <div class="mt">
-                            <a asp-action="Details" asp-route-id="@producto.Id" class="btn bg-blue-ui white read">Comprar!</a>
+                            <a asp-action="Details" asp-route-id="@producto.Id" id="btnComprar" class="btn bg-blue-ui white read btnComprar">Comprar!</a>
                         </div>
                     </div>
                 </div>

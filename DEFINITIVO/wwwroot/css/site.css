@@ -195,7 +195,7 @@ body {
 /* CSS para el DIV del buscador oculto bajo el Navbar */
 
 #divBuscador {
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 4vw;
     z-index: 899;
@@ -304,7 +304,7 @@ body {
     Submenu de Categorías de productos | Submenu de Conócenos
 */
 #divCategorias, #divDetallesHeldu {
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 4vw;
     z-index: 899;
@@ -314,11 +314,16 @@ body {
     transition: ease;
     transition-duration: 0.3s;
 }
+.show{
+    margin-bottom:2vw;
+}
 
 .subMenuCat {
+    position:absolute;
     bottom: 0.5rem;
     margin-left: 15%;
     width: 70%;
+    height:80%;
     align-items: center;
     text-align: center;
     margin-bottom: -5px;
@@ -332,7 +337,7 @@ body {
 
 .textType3 {
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 0.7vw;
+    font-size: 1vw;
     color: whitesmoke !important;
     text-decoration: none !important;
     font-weight: 400;
@@ -349,10 +354,10 @@ body {
     bottom: 0.5rem;
     margin-left: 15%;
     width: 70%;
-    height:80%;
+    height: 80%;
     align-items: center;
     text-align: center;
-    margin-bottom: 0;
+    margin-bottom: -5px;
 }
 
 

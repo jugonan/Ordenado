@@ -104,6 +104,13 @@ namespace Heldu.Logic.Services
                 {
                     productos.Add(nuevoProducto);
                 }
+     //Solo descomentar el "else" para limpiar la tabla ProductoCategoria de ProductoId "null" cuando se hayan borrardo esos productos
+                //    else
+                //    {
+                //        _context.ProductoCategoria.Remove(productoCategoria);
+                //    }
+                //}
+                //await _context.SaveChangesAsync();
             }
             return productos;
         }

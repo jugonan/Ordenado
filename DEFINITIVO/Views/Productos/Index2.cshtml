@@ -33,7 +33,7 @@
 
 @if (postalCode != "")
 {
-    <p id="ubicacion" class="alert-light">Mostrando productos para <span id="locationCity" >@city</span> - CP: <span id="inputModalPostalCode">@postalCode</span><span> <a id="modificarCiudad" data-toggle="modal" data-target="#myModal">Modificar</a></span> </p>
+    <p id="ubicacion" class="alert-light">Mostrando productos para <span id="locationCity" >@city</span> - CP <span id="inputModalPostalCode">@postalCode</span><span> <a id="modificarCiudad" data-toggle="modal" data-target="#myModal"> (Modificar)</a></span> </p>
 }
 
 <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
@@ -72,14 +72,14 @@
                                                             <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> &#8364 @listaProducto[j].Precio</strike>  &#8364 @listaProducto[j].PrecioFinal</span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                <figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)"> </figure>
+                                                                <figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>
                                                             </a>
                                                         </div>
                                                         <div class="item-box-blog-body">
                                                             <!--Título-->
                                                             <div class="item-box-blog-heading">
                                                                 <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                    <h5>@listaProducto[j].Titulo</h5>
+                                                                   @listaProducto[j].Titulo
                                                                 </a>
                                                             </div>
                                                             <!--Cantidad-->
@@ -112,14 +112,14 @@
                                                             <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> &#8364 @listaProducto[j].Precio</strike>  &#8364 @listaProducto[j].PrecioFinal</span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                <figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)"> </figure>
+                                                                <figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>
                                                             </a>
                                                         </div>
                                                         <div class="item-box-blog-body">
                                                             <!--Título-->
                                                             <div class="item-box-blog-heading">
                                                                 <a asp-action="Details" asp-route-id="@listaProducto[j].Id">
-                                                                    <h5>@listaProducto[j].Titulo</h5>
+                                                                    @listaProducto[j].Titulo
                                                                 </a>
                                                             </div>
                                                             <!--Cantidad-->
@@ -206,16 +206,16 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="padding:35px 50px;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" id="cruzSalirModal">&times;</button>
                 <h4><span class="glyphicon glyphicon-lock"></span> Mejoramos tu experiencia!</h4>
             </div>
             <div class="modal-body" style="padding:40px 50px;">
-                <h5>Te estamos mostrando productos para @ViewBag.Location</h5>
-                <h5>Si no es correcto, indicanos tu código postal </h5>
+                <h5>Te estamos mostrando productos para @city</h5>
+                <h5>Si no es correcto, indícanos tu código postal </h5>
                 <form role="form" asp-controller="Productos" asp-action="LocateVisitor">
                     <div class="form-group">
                         <label for="postaCode"><span class="glyphicon glyphicon-user"></span> Código Postal</label>
-                        <input type="number" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001" maxlength="5" minlength="5" required>
+                        <input type="number" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001 / 01001" maxlength="5" minlength="5" required>
                     </div>
                     <button type="submit" class="btn btn-success btn-block" id="botonConfirmar"><span class="glyphicon glyphicon-off"></span> Confirmar </button>
                 </form>

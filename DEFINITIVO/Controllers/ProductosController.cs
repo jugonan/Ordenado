@@ -268,9 +268,9 @@ namespace DEFINITIVO.Controllers
         }
         public async Task<IActionResult> Categoria(int id)
         {
+            List<Producto> nuevaLista = await _productosService.GetProductosByCategoriaId(id);
             ViewData["Categoria"] = await _categoriasService.GetCategoriaById(id);
-            ViewData["CategoriaId"] = id;
-            return View();
+            return View(nuevaLista);
         }
 
         public async Task<IActionResult> Search(string inputBuscar, string catSelected)

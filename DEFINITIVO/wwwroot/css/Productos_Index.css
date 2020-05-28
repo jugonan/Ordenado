@@ -30,9 +30,6 @@
     padding-bottom: 20px;
 }
 
-.white {
-    color: #fff !important;
-}
 
 .mt {
     float: left;
@@ -40,16 +37,21 @@
     padding-top: 20px;
 }
 
-.bg-blue-ui {
-    background-color: #708198 !important;
-}
 
 .btnLoQuiero {
-    box-shadow: 1px -1px 2px 1px black;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 700;
+    box-shadow: 1px -1px 2px 1px #F679A9;
+    background-color: #F21B6D;
+    opacity: 0.8;
+    color: white;
 }
 
     .btnLoQuiero:hover {
-        box-shadow:none;
+        box-shadow: none;
+        background-color: #F21B6D;
+        opacity: 1;
+        color:white;
     }
 
 figure img {
@@ -76,7 +78,7 @@ figure img {
     }
 
     .blog .carousel-indicators .active {
-        background: #FF0;
+        background: #F679A9;
     }
 
 
@@ -100,7 +102,8 @@ figure img {
     padding: 5px;
     padding-top: 20px;
     padding-bottom: 20px;
-    height: inherit
+    height: inherit;
+    background-color: #F7F6F2;
 }
 
 .item-box-blog-image {
@@ -120,7 +123,7 @@ figure img {
     padding: 4px 20px;
     top: -20px;
     right: 8px;
-    background-color: #41cb52;
+    background-color: #F21B6D;
 }
 
     .item-box-blog-date span {
@@ -152,20 +155,31 @@ figure img {
 
 .item-box-blog-heading a {
     text-decoration: none;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight:700;
+    font-size:1.5rem;
+    color: #1C2229;
 }
 
 .item-box-blog-data p {
     font-size: 0.75rem;
+    font-family: 'Segoe UI', sans-serif;
+    color: #363537;
 }
 
     .item-box-blog-data p i {
-        font-size: 12px;
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 1rem;
+        color: #363537;
     }
 
 .item-box-blog-text {
     max-height: 6rem;
     overflow: hidden;
     text-align: justify;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight:300;
+    color: #363537;
 }
 
 .mt-10 {
@@ -183,23 +197,20 @@ figure img {
     bottom: -0.1rem;
 }
 
-    .btn.bg-blue-ui.white.read:hover {
-        box-shadow: 0px 5px 15px inset #4d5f77;
-    }
 
 .category_name {
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-family:'Segoe UI'
+    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 2rem;
-    color: #FF0 !important;
+    color: #F21B6D !important;
     opacity: 0.7;
 }
 
     .category_name:hover {
-        font-family: 'Montserrat Alternates', sans-serif;
+        font-family: 'Open Sans Condensed', sans-serif;
         font-size: 2.1rem;
-        color: #FF0 !important;
+        color: #F21B6D !important;
         opacity: 1;
+        text-decoration:none;
     }
 
 
@@ -212,8 +223,8 @@ figure img {
     height: 60px;
     bottom: 40px;
     right: 40px;
-    background-color: #FF0;
-    color: #FFF;
+    background-color: #02A669;
+    color: white;
     border-radius: 50px;
     text-align: center;
     box-shadow: 2px 2px 3px #999;
@@ -287,8 +298,41 @@ a.floating-button:hover + div.label-container {
     display: none;
 }
 .modal-header, h4, .close {
-    background-color: #5cb85c;
+    background-color: #02A669;
     color: white !important;
     text-align: center;
     font-size: 30px;
 }
+#botonConfirmar {
+    background-color: #02A669;
+    color: #fff;
+}
+    #botonConfirmar:disabled {
+        background-color: #363537;
+    }
+
+.modal-header {
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding: 35px 40px;
+    justify-content:center;
+}
+    .modal-header h4 {
+        color: #fff;
+        font-weight: 600;
+        font-size: 2rem;
+        text-align: center;
+    }
+    .modal-header button {
+        position: absolute;
+        right: 25px;
+        top: 10px;
+        color: #fff;
+    }
+
+.modal-body {
+    font-family: 'Segoe UI', sans-serif;
+}
+    .modal-body h5 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
