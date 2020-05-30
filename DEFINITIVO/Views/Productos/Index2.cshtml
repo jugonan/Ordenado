@@ -205,17 +205,17 @@
 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header" style="padding:35px 50px;">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" id="cruzSalirModal">&times;</button>
                 <h4><span class="glyphicon glyphicon-lock"></span> Mejoramos tu experiencia!</h4>
             </div>
-            <div class="modal-body" style="padding:40px 50px;">
+            <div class="modal-body">
                 <h5>Te estamos mostrando productos para @city</h5>
                 <h5>Si no es correcto, indícanos tu código postal </h5>
                 <form role="form" asp-controller="Productos" asp-action="LocateVisitor">
                     <div class="form-group">
                         <label for="postaCode"><span class="glyphicon glyphicon-user"></span> Código Postal</label>
-                        <input type="number" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001 / 01001" maxlength="5" minlength="5" required>
+                        <input type="text" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001 / 01001" maxlength="5" minlength="5" pattern="[0-9]{5}" required>
                     </div>
                     <button type="submit" class="btn btn-success btn-block" id="botonConfirmar"><span class="glyphicon glyphicon-off"></span> Confirmar </button>
                 </form>

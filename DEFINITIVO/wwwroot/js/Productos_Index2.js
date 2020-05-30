@@ -15,7 +15,7 @@ document.addEventListener('scroll', function () {
 })
 
 
-let locationPC = document.getElementById('inputModalPostalCode').value;
+let locationPC = document.getElementById('inputModalPostalCode');
 let myModal = document.getElementById('myModal');
 let cruzSalir = document.getElementById('cruzSalirModal');
 let btnConfirmar = document.getElementById('botonConfirmar');
@@ -23,33 +23,37 @@ let btnCancelar = document.getElementById('botonCancelar');
 let inputModalPostalCode = document.getElementById('inputPostalCode');
 let modifyLocation = document.getElementById('modificarCiudad');
 
-let postalCodeLS = JSON.parse(localStorage.getItem("location"));
 
 function tryLocation() {
+    let postalCodeLS = JSON.parse(localStorage.getItem("location"));
     if (postalCodeLS == null || postalCodeLS == "") {
         myModal.style.display = "block";
         $("#myModal").modal();
         GestionarModal();
     }
 }
-modifyLocation.addEventListener('click', GestionarModal());
+modifyLocation.addEventListener('click', GestionarModal);
 
 function GestionarModal() {
-    inputModalPostalCode.addEventListener('input', CambiarCP());
-    btnCancelar.addEventListener('click', CancelarModal());
-    cruzSalir.addEventListener('click', CancelarModal());
+    btnConfirmar.disabled = true;
+    inputModalPostalCode.addEventListener('input', function () {
+        this.autofocus;
+        let postalCode = this.value;
+        if (postalCode.length === 5) {
+            localStorage.setItem("location", JSON.stringify(postalCode));
+            btnConfirmar.disabled = false;
+        } else {
+            btnConfirmar.disabled = true;
+        }
+    })
+    btnCancelar.addEventListener('click', CancelarModal);
+    cruzSalir.addEventListener('click', CancelarModal);
     function CancelarModal() {
-        localStorage.setItem("location", JSON.stringify(locationPC));
+        localStorage.setItem("location", JSON.stringify(locationPC.innerText));
     }
 }
 
-function CambiarCP() {
-    let postalCode = this.value;
-    if (postalCode.length === 5) {
-        localStorage.setItem("location", JSON.stringify(postalCode));
-        btnConfirmar.disabled = "false";
-    }
-}
+
 
 
 

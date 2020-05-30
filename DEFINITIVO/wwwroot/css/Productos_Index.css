@@ -313,7 +313,7 @@ a.floating-button:hover + div.label-container {
 
 .modal-header {
     font-family: 'Open Sans Condensed', sans-serif;
-    padding: 35px 40px;
+    padding: 30px 40px;
     justify-content:center;
 }
     .modal-header h4 {
@@ -331,8 +331,11 @@ a.floating-button:hover + div.label-container {
 
 .modal-body {
     font-family: 'Segoe UI', sans-serif;
+    padding: 40px 50px;
 }
     .modal-body h5 {
         font-weight: 600;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        text-align:justify;
+        margin-bottom:1.5rem;
     }

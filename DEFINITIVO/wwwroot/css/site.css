@@ -26,8 +26,8 @@ a.navbar-brand {
         margin: 0;
     }
 
-#anchor-miperfil{
-    width:100%;
+#anchor-miperfil {
+    width: 100%;
 }
 
 .desplegable-salir {
@@ -76,18 +76,20 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #F7F6F2!important;
+    color: #F7F6F2 !important;
     background-color: white;
     border-color: #1861ac;
 }
+
 .nav-link {
     color: #F7F6F2 !important;
     margin: 0;
-    text-wrap:none;
+    text-wrap: none;
 }
-.nav-link:hover{
-    font-weight:600;
-}
+
+    .nav-link:hover {
+        font-weight: 600;
+    }
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -223,14 +225,15 @@ body {
     max-width: 30rem;
     vertical-align: middle;
     font-size: medium;
-    border-radius:8px;
+    border-radius: 8px;
 }
+
 #selecListBuscar {
     margin: 0 auto;
     width: 30%;
     max-width: 30rem;
     vertical-align: middle;
-    font-size:small;
+    font-size: small;
 }
 /* 
     BOTON DE BUSCAR
@@ -297,7 +300,12 @@ body {
     }
 }
 
-
+#mainContainerLayout {
+    margin-top:3.5vw;
+}
+    .navbar-nav a:visited ~ #mainContainerLayout {
+    margin-top: 10vw !important;
+}
 
 
 /*
@@ -314,16 +322,13 @@ body {
     transition: ease;
     transition-duration: 0.3s;
 }
-.show{
-    margin-bottom:2vw;
-}
 
 .subMenuCat {
-    position:absolute;
+    position: absolute;
     bottom: 0.5rem;
     margin-left: 15%;
     width: 70%;
-    height:80%;
+    height: 80%;
     align-items: center;
     text-align: center;
     margin-bottom: -5px;
@@ -341,7 +346,7 @@ body {
     color: whitesmoke !important;
     text-decoration: none !important;
     font-weight: 400;
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
     .textType3:hover, .textType3:focus {
@@ -365,22 +370,26 @@ body {
 #ubicacion {
     font-family: 'Open Sans Condensed', sans-serif;
     color: #1C2229;
-    margin-top:1vw;
-    margin-bottom:1vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
+
 #locationCity {
     font-family: 'Open Sans Condensed', sans-serif;
     color: #F21B6D;
 }
+
 #inputModalPostalCode {
     font-family: 'Open Sans Condensed', sans-serif;
     color: #1C2229;
 }
-#modificarCiudad{
-    font-size:small;
-    color:darkblue;
-    font-weight:200;
+
+#modificarCiudad {
+    font-size: small;
+    color: darkblue;
+    font-weight: 200;
 }
-#modificarCiudad:hover{
-    font-weight:400;
-}
+
+    #modificarCiudad:hover {
+        font-weight: 400;
+    }
