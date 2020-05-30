@@ -1,0 +1,41 @@
+﻿/*  SELECCION DE COLORES GENERALES Y TIPOGRAFIA (26/05/20)
+
+    Colores:
+        Rosa principal: #F21B6D 
+        Negro Navbar: #1C2229
+        Fondo subNavbar: #F7F6F2
+        Fondo cards: #F7F6F2
+        Color de separación complementaria suave: #BAC1B8
+        Color de separación complementaria fuerte: #02A669
+
+    Fuente principal: 
+        font-family: 'Open Sans Condensed', sans-serif;
+        weight: 300 - 700;
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+
+*/
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#imagen-usuario-pv {
+ border-radius:50%;
+ max-height:160px;
+ padding-top: 2em;
+}
+
+.botones-PV {
+ width:50%;
+ margin: 10px 0px;
+}
+
+.botones-PV a {
+ background-color: #02A669;
+ border-color: none;
+ border: none;
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ color:white;
+}
+
+body {
+}

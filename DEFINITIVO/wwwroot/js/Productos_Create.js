@@ -37,11 +37,6 @@ window.addEventListener('DOMContentLoaded', function () {
     crearProductoBTN = document.getElementById('boton-crear-producto');
     crearProductoBTN.addEventListener('click', crearVM);
 
-    /* Estas funciones se ejecutan en OpcionesProducto/Create */
-
-    /*
-    obtenerPrecioInicial();
-    obtenerPrecioFinal(); */
 });
 
 /*Escribe la información que va a meter sobre el producto en la muestra de la derecha */

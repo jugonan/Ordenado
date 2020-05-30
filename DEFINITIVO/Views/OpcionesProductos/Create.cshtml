@@ -1,4 +1,4 @@
-@model Heldu.Entities.Models.Producto
+@model Heldu.Logic.ViewModels.OpcionProductoCreateVM
 
 @using Microsoft.AspNetCore.Identity
 
@@ -25,47 +25,68 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger">(*) Campos obligatorios</div>
             <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" id="descripcion-introducida" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                <label class="control-label">Descripción</label>
+                <input class="form-control" id="descripcion-introducida" />
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Precio" class="control-label"></label>
-                <input asp-for="Precio" class="form-control" id="precioInicial-introducido" />
-                <span asp-validation-for="Precio" class="text-danger"></span>
+                <label class="control-label">Precio inicial</label>
+                <input class="form-control" id="precioInicial-introducido" />
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrecioFinal" class="control-label"></label>
-                <input asp-for="PrecioFinal" class="form-control" id="precioFinal-introducido" />
-                <span asp-validation-for="PrecioFinal" class="text-danger"></span>
+                <label class="control-label">Precio final</label>
+                <input class="form-control" id="precioFinal-introducido" />
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UnidadesStock" class="control-label"></label>
-                <input asp-for="UnidadesStock" class="form-control" id="unidades-introducidas" />
-                <span asp-validation-for="UnidadesStock" class="text-danger"></span>
+                <label class="control-label">¿Cuántas unidades?</label>
+                <input class="form-control" id="unidades-introducidas" />
+                <span class="text-danger"></span>
+            </div>
+            <!-- Div ocultos en los que le envío los opcionesProductos generados al controlador-->
+            <div class="form-group d-none">
+                <input asp-route-id="@Model.Producto.Id" asp-for="Producto" class="form-control" />
+                <span asp-validation-for="Producto" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <input asp-route-id="@Model.Producto.Id" asp-for="Producto.Id" class="form-control" />
+                <span asp-validation-for="Producto.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <input asp-for="OpcionProducto1" class="form-control" id="opcionProducto1" />
+                <span asp-validation-for="OpcionProducto1" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <input asp-for="OpcionProducto2" class="form-control" id="opcionProducto2" />
+                <span asp-validation-for="OpcionProducto2" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <input asp-for="OpcionProducto3" class="form-control" id="opcionProducto3" />
+                <span asp-validation-for="OpcionProducto3" class="text-danger"></span>
             </div>
             <a id="btnAddOpcion" class="btn btn-warning">Crear opción</a>
             <div class="form-group">
-                <input type="submit" value="Terminar" class="btn btn-primary" />
+                <input type="submit" value="Terminar" id="btnCreate" class="btn btn-primary" />
             </div>
         </form>
     </div>
     <!-- Quiero poner aquí un layout de cómo se lucirá la oferta que está cargando-->
     <div class="col-md-8">
-        <h4>@Model.Titulo</h4>
+        <h4>@Model.Producto.Titulo</h4>
         <div class="container-fliud">
             <div class="wrapper row">
                 <div class="preview col-md-7">
                     <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto)">
+                                <img class="d-block w-100" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.Producto.ImagenProducto)">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto2)">
+                                <img class="d-block w-100" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.Producto.ImagenProducto2)">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto3)">
+                                <img class="d-block w-100" src="data:image/png;base64,@System.Convert.ToBase64String(@Model.Producto.ImagenProducto3)">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -78,18 +99,18 @@
                         </a>
                     </div>
                     <div class="row">
-                        <img alt="..." src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto)" class="img-thumbnail">
-                        <img alt="..." src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto2)" class="img-thumbnail">
-                        <img alt="..." src="data:image/png;base64,@System.Convert.ToBase64String(@Model.ImagenProducto3)" class="img-thumbnail">
+                        <img alt="..." src="data:image/png;base64,@System.Convert.ToBase64String(@Model.Producto.ImagenProducto)" class="img-thumbnail">
+                        <img alt="..." src="data:image/png;base64,@System.Convert.ToBase64String(@Model.Producto.ImagenProducto2)" class="img-thumbnail">
+                        <img alt="..." src="data:image/png;base64,@System.Convert.ToBase64String(@Model.Producto.ImagenProducto3)" class="img-thumbnail">
                     </div>
                     <div>
                         <h5>Descripción del producto: </h5>
-                        <p>@Model.Descripcion</p>
+                        <p>@Model.Producto.Descripcion</p>
                     </div>
                     <div style="align-self:center; margin-bottom:5%;">
                         <div>
                             <h4>Fecha de validez:</h4>
-                            <p>@Model.FechaValidez</p>
+                            <p>@Model.Producto.FechaValidez</p>
                             <br />
                         </div>
                         <h4>Condiciones</h4>
