@@ -196,7 +196,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Micuenta()
         {
             string userManagerId = _userManager.GetUserId(User);
-            Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
+            Usuario usuario = await _usuariosService.ObtenerUsuarioConUbicacion(userManagerId);
             return View(usuario);
         }
 

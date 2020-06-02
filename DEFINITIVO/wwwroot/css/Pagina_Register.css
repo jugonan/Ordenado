@@ -26,7 +26,8 @@ h1 {
 }
 
 #opcion-comprar {
-    width: 100%;
+    cursor: pointer;
+    width: 15vw;
     height: 14em;
     background-size: 100%;
     background-image: url("https://images.jpost.com/image/upload/f_auto,fl_lossy/t_JD_ArticleMainImage/252949");
@@ -40,9 +41,9 @@ h1 {
 }
 
 #opcion-vender {
-    width: 100%;
+    cursor: pointer;
+    width: 15vw;
     height: 14em;
-    /*background-color: lightblue;*/
     background-size: 100%;
     background-image: url("https://okdiario.com/img/2020/01/20/disfrazarse-de-donald-trump.jpg");
     transition: transform .7s;

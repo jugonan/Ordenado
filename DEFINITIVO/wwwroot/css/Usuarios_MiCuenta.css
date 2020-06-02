@@ -18,44 +18,19 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h5 {
-    font-family: Open Sans Condensed;
-    font-size: 1.45rem;
-    padding-left: 1vw;
-}
-
-div p {
-    font-size: larger;
-    opacity: 0.9;
-    padding-left: 1vw;
-    display: inline-block;
-    padding: 0.7vw;
-    border: 1px solid gray;
-    border-radius: 11%;
-
-}
-
-.titulo-datos h3 {
-    font-weight: 400;
-    font-size: xx-large;
-    font-family: 'Open Sans Condensed', sans-serif;
-    color: #02A669;
-    padding-left: 15px;
-    text-align: center;
-}
-
-.ancla-editar {
-    text-align: center;
-    font-weight: 500;
-    font-size: x-large;
-    font-family: 'Open Sans Condensed', sans-serif;
-    color: #02A669;
-}
-
 .ancla-editar img{
- max-width:16%;
- margin-left:1vw;
-}
-body {
+    width: 1.7vw;
+    position: absolute;
+    right: 1vw;
 }
 
+.ancla-editar img:hover {
+    width: 2.3vw;
+    transition: width 0.3s linear;
+}
+
+
+.div-datos-usuario p {
+    font-size: 1.6vw;
+    background-color: #ffacac4f;
+}

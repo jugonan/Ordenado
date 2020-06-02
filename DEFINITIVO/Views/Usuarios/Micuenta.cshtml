@@ -11,34 +11,44 @@
 <div>
     <div class="row titulo-datos" style="margin-top:10%;">
         <h3 class="col-2">Mis Datos</h3>
-        <a class="ancla-editar col-2 offset-7" asp-action="Edit" asp-route-id="@Model.Id">Editar<img src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
+        <a class="col-2 offset-7 ancla-editar" asp-action="Edit" asp-route-id="@Model.Id"><img alt="editar información" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
     </div>
     <div class="row">
         <partial name="_MiperfilPV" model="Model" />
         <div class="col-7 offset-1 cuerpo-infor">
-            <div class="div-datos-usuario" style="margin:0px; justify-content:space-around;">
-                <h5>Nombre</h5>
-                <p class="texto-caja-perfil">@Model.Nombre</p>
+            <div class="row">
+                <div class="col-6 div-datos-usuario" style="margin:0px; justify-content:space-around;">
+                    <h5>Nombre</h5>
+                    <p class="texto-caja-perfil">@Model.Nombre</p>
+                </div>
+                <div class="col-6 div-datos-usuario" style="margin:0px; justify-content:space-around;">
+                    <h5>Apellido</h5>
+                    <p class="texto-caja-perfil">@Model.Apellido</p>
+                </div>
             </div>
-            <div class="div-datos-usuario" style="margin:0px; justify-content:space-around;">
-                <h5>Apellido</h5>
-                <p class="texto-caja-perfil">@Model.Apellido</p>
+            <div class="row">
+                <div class="col-6 div-datos-usuario" style="margin:0px; justify-content:space-around;">
+                    <h5>Nombre de usuario</h5>
+                    <p class="texto-caja-perfil">@Model.NombreUsuario</p>
+                </div>
+                <div class="col-6 div-datos-usuario" style="margin:0px; justify-content:space-around;">
+                    <h5>Correo</h5>
+                    <p class="texto-caja-perfil">@Model.IdentityUser.Email</p>
+                </div>
             </div>
-            <div class="div-datos-usuario" style="margin:0px; justify-content:space-around;">
-                <h5>Correo</h5>
-                <p class="texto-caja-perfil">@Model.IdentityUser.Email</p>
-            </div>
-            <div class="div-datos-usuario" style="margin:0px; justify-content:space-around;">
-                <h5>Contraseña</h5>
-                <p class="texto-caja-perfil">@Model.IdentityUser.PasswordHash</p>
-            </div>
-            <div class="div-datos-usuario" style="margin:0px; justify-content:space-around;">
-                <h5>Nombre de usuario</h5>
-                <p class="texto-caja-perfil">@Model.NombreUsuario</p>
-            </div>
-            <div class="div-datos-usuario" style="margin:0px; justify-content:space-around;">
-                <h5>Fecha de nacimiento</h5>
-                <p class="texto-caja-perfil">@Model.FechaNacimiento</p>
+            <div class="row">
+                <div class="col-3 div-datos-usuario" style="margin:0px; justify-content:space-around;">
+                    <h5>Código postal</h5>
+                    <p class="texto-caja-perfil">@Model.UbicacionUsuario.CP</p>
+                </div>
+                <div class="col-6 offset-1 div-datos-usuario" style="margin:0px; justify-content:space-around;">
+                    <h5>Dirección</h5>
+                    <p class="texto-caja-perfil">Aquí irá la calle dónde vive</p>
+                </div>
+                <div class="col-1 offset-1 div-datos-usuario" style="margin:0px; justify-content:space-around;">
+                    <h5>Nº</h5>
+                    <p class="texto-caja-perfil">72</p>
+                </div>
             </div>
         </div>
     </div>

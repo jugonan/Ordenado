@@ -10,7 +10,7 @@
         </div>
         <div class="desplegable-salir">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link"><p>Salir</p></button>
+                <button type="submit" class="nav-link btn btn-link"><p id="boton-salir-usuario">Salir</p></button>
             </form>
         </div>
     </div>
@@ -56,41 +56,3 @@
         </div>
     }
 </div>
-
-@*
-    <div class="navbar-nav" style="justify-content:end; width:60%">
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <div class="nav-item">
-                <p class="nav-link textType2">Hola @User.Identity.Name!</p>
-            </div>
-            @if (User.IsInRole("cliente"))
-            {
-                <div class="nav-item">
-                    <a id="anchor-miperfil" class="nav-link textType2" asp-controller="Usuarios" asp-action="Miperfil">Mi perfil</a>
-                    <form class="form-inline d-none" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link textType2">Salir</button>
-                    </form>
-                </div>
-            }
-            if (User.IsInRole("vendedor"))
-            {
-                <div class="nav-item">
-                    <a id="anchor-miperfil" class="nav-link textType2" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
-                    <form class="form-inline d-none" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link textType2">Salir</button>
-                    </form>
-                </div>
-            }
-        }
-        else
-        {
-            <div class="nav-item">
-                <a class="nav-link textType2" asp-area="Identity" asp-page="/Account/Register">Registrarme</a>
-            </div>
-            <div class="nav-item">
-                <a class="nav-link textType2" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
-            </div>
-        }
-    </div>
-*@

@@ -19,12 +19,12 @@
     <title>@ViewData["Title"] - Heldu</title>
     <!-- Code for the favicon in every browser, size and OS  -->
     <meta name="application-name" content="Heldu" />
-    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    @*<meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="~/mstile-144x144.png" />
     <meta name="msapplication-square70x70logo" content="~/mstile-70x70.png" />
     <meta name="msapplication-square150x150logo" content="~/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="~/mstile-310x150.png" />
-    <meta name="msapplication-square310x310logo" content="~/mstile-310x310.png" />
+    <meta name="msapplication-square310x310logo" content="~/mstile-310x310.png" />*@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
@@ -40,11 +40,8 @@
 
     <!-- Scripts externos-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @*<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
     <link rel="stylesheet" href=""https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css""/>
-    @*<script src="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>*@
 
 
 </head>
@@ -89,63 +86,6 @@
                     </ul>
                 </div>
             </div>
-            @if (User.IsInRole("cliente"))
-            {
-                <div style="width:10%;" id="div-del-carrito">
-                    <img id="imagen-carrito" style="width:20%;" src="https://image.flaticon.com/icons/svg/1124/1124199.svg" />
-                    <span style="width:12%;" class="badge badge-success" id="numero-productos-carrito"></span>
-                    <div id="carrito" class="row" style="position:absolute; background-color: white; width:18%; top:100%; right:5%; justify-content:space-around;">
-                        <table id="carrito-lleno" class="d-none">
-                            <thead>
-                                <tr id="tabla-carrito">
-                                    <th style="font-size:small;">Nombre</th>
-                                    <th style="font-size:small;">Precio</th>
-                                    <th></th>
-                                    <th style="font-size:small;">EL</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <caption style="width:100%;"><a href="#" id="vaciar-carrito" class="col-6 offset-3 button u-full-width">Vaciar Carrito</a></caption>
-                        </table>
-                        <div id="carrito-vacio" class="d-none">
-                            <p>Tu carrito está vacío</p>
-                        </div>
-                    </div>
-                </div>
-                <div style="width:10%;" id="div-de-favorito">
-                    <img id="imagen-favorito" style="width:20%;" src="https://image.flaticon.com/icons/svg/1216/1216649.svg" />
-                    <div id="favorito" class="row" style="position:absolute; background-color: white; width:18%; top:100%; right:5%; justify-content:space-around;">
-                        <table id="favorito-lleno" class="d-none">
-                            <thead>
-                                <tr id="tabla-favorito">
-                                    <th style="font-size:small;">Nombre</th>
-                                    <th style="font-size:small;">Precio</th>
-                                    <th></th>
-                                    <th style="font-size:small;">EL</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <caption style="width:100%;"><a href="#" id="vaciar-favorito" class="col-6 offset-3 button u-full-width">Vaciar Favoritos</a></caption>
-                        </table>
-                        <div id="favorito-vacio" class="d-none">
-                            <p>Tu lista de favoritos está vacía</p>
-                        </div>
-                    </div>
-                </div>
-            }
-            @if (User.IsInRole("vendedor"))
-            {
-                Vendedor vendedor = await VendedorService.GetVendedorByIdentityUserId(activeUser.Id);
-                if (vendedor.ProductoVendedor == null)
-                {
-                    <div style="width:10%;" id="div-del-vendedor">
-                        <div id="producto-vendedor-vacio" class="d-none">
-                            <p>Aún no has añadido ningún producto</p>
-                            <a class="nav-link" asp-controller="Productos" asp-action="Create">Añadir producto</a>
-                        </div>
-                    </div>
-                }
-            }
         </nav>
 
         <!-- Categorias ocultas que se despliegan al hacer click en "Categorías" -->
