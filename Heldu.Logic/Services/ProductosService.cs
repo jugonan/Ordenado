@@ -106,7 +106,7 @@ namespace Heldu.Logic.Services
                 {
                     productos.Add(nuevoProducto);
                 }
-     //Solo descomentar el "else" para limpiar la tabla ProductoCategoria de ProductoId "null" cuando se hayan borrardo esos productos
+                //Solo descomentar el "else" para limpiar la tabla ProductoCategoria de ProductoId "null" cuando se hayan borrardo esos productos
                 //    else
                 //    {
                 //        _context.ProductoCategoria.Remove(productoCategoria);
@@ -149,6 +149,15 @@ namespace Heldu.Logic.Services
                 }
             }
             return toAdd;
+        }
+
+
+
+        //Este método devuelve la primera imagen del producto, guardado en la misma tabla. Es para probar si la URL permite cargar la vista más rápido
+        public async Task<byte[]> GetImageByProductoId (int id)
+        {
+            var producto = await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
+            return producto.ImagenProducto;
         }
     }
 }

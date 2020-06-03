@@ -293,5 +293,18 @@ namespace DEFINITIVO.Controllers
         {
             return RedirectToAction("Index2", "Productos", new { postalCode = inputPostalCode });
         }
+
+        public async Task<IActionResult> GetImage (int id)
+        {
+            byte[] imagen = await _productosService.GetImageByProductoId(id);
+            if(imagen != null)
+            {
+                return File(imagen, "image/jpeg");
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

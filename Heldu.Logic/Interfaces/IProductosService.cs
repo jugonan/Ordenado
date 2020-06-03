@@ -21,5 +21,7 @@ namespace Heldu.Logic.Interfaces
         public Task<List<Producto>> GetProductosByCategoriaId(int categoriaId);
         public ProductosForIndex2VM GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias);
         public Task<byte[]> AgregarImagenesBlob(List<IFormFile> ImagenProducto);
+        public Task<byte[]> GetImageByProductoId(int id);
+
     }
 }
