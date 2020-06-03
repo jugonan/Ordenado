@@ -29,7 +29,7 @@ a.navbar-brand {
     min-width: 9rem;
 }
 
- #div-cabecera-salir #anchor-miperfil {
+ #div-cabecera-salir .anchor-miperfil {
     font-size: 16px;
     border: none;
     outline: none;
@@ -40,7 +40,7 @@ a.navbar-brand {
     margin: 0;
  }
 
-#anchor-miperfil {
+.anchor-miperfil {
     width: 100%;
 }
 
@@ -61,8 +61,9 @@ a.navbar-brand {
     transition: opacity 0.3s linear;
 }
 
-#boton-salir-usuario {
+.boton-salir-usuario {
     color: #F21B6D;
+    padding-bottom:0px;
 }
 
 #producto-vendedor-vacio {

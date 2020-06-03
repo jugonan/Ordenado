@@ -1,0 +1,28 @@
+﻿/* ====== Vista Parcial de Vendedores ====== */
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#imagen-vendedor-pv {
+    border-radius: 50%;
+    max-height: 160px;
+    padding-top: 2em;
+}
+
+.botones-PV {
+    width: 50%;
+    margin: 10px 0px;
+}
+
+.botones-PV a {
+    background-color: #02A669;
+    border-color: none;
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    width: 100%;
+}
+
+.cuadro-vendedor {
+    margin-top: 4vw;
+}

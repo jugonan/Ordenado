@@ -1,0 +1,70 @@
+﻿@model Heldu.Entities.Models.Vendedor
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<link href="/css/Vendedores_MisProductos.css" rel="stylesheet" type="text/css">
+<script defer src="/js/Vendedores_Productos.js"></script>
+<div class="cuadro-vendedor">
+    <div class="row">
+        <h3 class="col-4 offset-4">Mis productos</h3>
+        <a class="col-3" asp-controller="Productos" asp-action="Create" asp-route-id="1" style="text-align:right;">Crear nuevo<img style="max-width:10%;" align="right" src="https://image.flaticon.com/icons/svg/1042/1042340.svg" /></a>
+    </div>
+    <div class="row">
+        <partial name="_MiperfilPV" model="Model" />
+        <div class="col-7 offset-1" style="width: 66%;background-color: white;">
+            <div class="row">
+                <div class="card col-sm-4">
+                    <img class="card-img-top" src="https://cdn.vitalisestetica.es/wp-content/uploads/2019/03/Tratamiento-facial-hombres-3.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-producto">2 sesiones de tratamiento facial para hombre</h5>
+                        <p class="card-text descripcion-producto">Cepillo exfoliante Espuma de limpieza Punta de diamante Máscara secativa Máscara final según biotipo de piel</p>
+                        <p class="card-text fecha-producto">27/07/2020</p>
+                        <div class="row precio-card-productos">
+                            <p class="card-text precio-inicial">60 €</p>
+                            <p class="card-text precio-final">31 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-sm-4">
+                    <img class="card-img-top" src="https://cdn.vitalisestetica.es/wp-content/uploads/2019/03/Tratamiento-facial-hombres-3.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-producto">2 sesiones de tratamiento facial para hombre</h5>
+                        <p class="card-text descripcion-producto">Cepillo exfoliante Espuma de limpieza Punta de diamante Máscara secativa Máscara final según biotipo de piel</p>
+                        <p class="card-text fecha-producto">27/07/2020</p>
+                        <div class="row precio-card-productos">
+                            <p class="card-text precio-inicial">60 €</p>
+                            <p class="card-text precio-final">31 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-sm-4">
+                    <img class="card-img-top" src="https://cdn.vitalisestetica.es/wp-content/uploads/2019/03/Tratamiento-facial-hombres-3.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-producto">2 sesiones de tratamiento facial para hombre</h5>
+                        <p class="card-text descripcion-producto">Cepillo exfoliante Espuma de limpieza Punta de diamante Máscara secativa Máscara final según biotipo de piel</p>
+                        <p class="card-text fecha-producto">27/07/2020</p>
+                        <div class="row precio-card-productos">
+                            <p class="card-text precio-inicial">60 €</p>
+                            <p class="card-text precio-final">31 €</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-sm-4">
+                    <img class="card-img-top" src="https://cdn.vitalisestetica.es/wp-content/uploads/2019/03/Tratamiento-facial-hombres-3.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-producto">2 sesiones de tratamiento facial para hombre</h5>
+                        <p class="card-text descripcion-producto">Cepillo exfoliante Espuma de limpieza Punta de diamante Máscara secativa Máscara final según biotipo de piel</p>
+                        <p class="card-text fecha-producto">27/07/2020</p>
+                        <div class="row precio-card-productos">
+                            <p class="card-text precio-inicial">60 €</p>
+                            <p class="card-text precio-final">31 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

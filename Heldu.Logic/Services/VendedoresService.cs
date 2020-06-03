@@ -99,9 +99,10 @@ namespace Heldu.Logic.Services
                 };
                 objetosLista.Add(objeto);
             }
-            // Por último, recorro la lista total de Visitas y comparo el Id de cada producto con la el ProductoId
+            // Luego recorro la lista total de Visitas y comparo el Id de cada producto con la el ProductoId
             // de cada objeto único en la lista de VM. Si es el mismo, hago +1 y así obtengo el total de visitas por
             // cada producto.
+            int aux = 0;
             foreach (Visita Visita in vistos)
             {
                 foreach (CantidadVisitasProductoVM objeto in objetosLista)
@@ -109,10 +110,20 @@ namespace Heldu.Logic.Services
                     if (Visita.ProductoId == objeto.ProductoId)
                     {
                         objeto.cantidadVisitas += 1;
+                        aux++;
                     }
                 }
             }
-            return objetosLista;
+            if (aux != 0)
+            {
+                return objetosLista;
+            }
+            else
+            {
+                List<CantidadVisitasProductoVM> objetosLista2 = new List<CantidadVisitasProductoVM>();
+                return objetosLista2;
+
+            }
         }
     }
 }

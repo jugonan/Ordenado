@@ -1,11 +1,11 @@
-﻿document.addEventListener('DOMContentLoaded', iniciarJS());
+﻿//document.addEventListener('DOMContentLoaded', iniciarJS());
 
-function iniciarJS() {
-    funcion();
-    opcionesProductosFN();
-    cambiarCarousel();
-    actualizarNumerosFavorito();
-}
+//function iniciarJS() {
+//    funcion();
+//    opcionesProductosFN();
+//    cambiarCarousel();
+//    actualizarNumerosFavorito();
+//}
 
 
 let imagenCarrito = document.getElementById('imagen-carrito');
