@@ -19,7 +19,7 @@ namespace Heldu.Logic.Services
         }
         public async Task<Usuario> ObtenerUsuarioDesdedIdentity(string identityId)
         {
-            return await _context.Usuario.FirstOrDefaultAsync(x => x.IdentityUserId == identityId);
+            return await _context.Usuario.Include(x => x.IdentityUser).FirstOrDefaultAsync(x => x.IdentityUserId == identityId);
         }
         public async Task<List<Usuario>> GetUsuario()
         {
@@ -77,6 +77,14 @@ namespace Heldu.Logic.Services
                                                                  .ThenInclude(y=>y.Producto)
                                                            .ToListAsync();
             return usuarios;
+        }
+
+        public async Task<Usuario> ObtenerUsuarioConUbicacion(string identityId)
+        {
+            Usuario usuario = await _context.Usuario.Include(x => x.IdentityUser).FirstOrDefaultAsync(x => x.IdentityUserId == identityId);
+            UbicacionUsuario ubicacionUsuario = await _context.UbicacionUsuario.FirstOrDefaultAsync(x => x.UsuarioId == usuario.Id);
+            usuario.UbicacionUsuario = ubicacionUsuario;
+            return usuario;
         }
     }
 }

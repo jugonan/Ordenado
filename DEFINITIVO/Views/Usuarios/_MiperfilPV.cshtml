@@ -13,12 +13,12 @@
     <img id="imagen-usuario-pv" src="data:image/png;base64,@System.Convert.ToBase64String(Model.FotoUsuario)" />
     <br />
     <div class="botones-PV">
-        <a style="width:100%;" asp-action="MiCuenta" asp-route-id="@Model.Id" class="btn">Mi cuenta</a>
+        <a asp-action="MiCuenta" asp-route-id="@Model.Id" class="btn">Mi cuenta</a>
     </div>
     <div class="botones-PV">
-        <a style="width:100%;" asp-action="Historico" asp-route-id="@Model.Id" class="btn">Histórico</a>
+        <a asp-action="Historico" asp-route-id="@Model.Id" class="btn">Histórico</a>
     </div>
     <div class="botones-PV">
-        <a style="width:100%;" asp-action="Rewards" asp-route-id="@Model.Id" class="btn">Rewards</a>
+        <a asp-action="Rewards" asp-route-id="@Model.Id" class="btn">Rewards</a>
     </div>
 </div>

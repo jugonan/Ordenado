@@ -5,19 +5,19 @@
 @inject UserManager<IdentityUser> UserManager
 
     <div class="col-3">
-        <img style="border-radius:50%; max-height:160px;" src="https://image.flaticon.com/icons/svg/609/609752.svg" />
+        <img id="imagen-vendedor-pv" src="https://image.flaticon.com/icons/svg/609/609752.svg" />
         <h3>@Model.NombreDeEmpresa</h3>
         <br />
-        <div style="width:50%; margin: 10px 0px;">
+        <div class="botones-PV">
             <a style="width:100%;" asp-action="Misproductos" asp-route-id="@Model.Id" class="btn btn-warning">Productos</a>
         </div>
-        <div style="width:50%; margin: 10px 0px;">
+        <div class="botones-PV">
             <a style="width:100%;" asp-action="Estadisticas" asp-route-id="@Model.Id" class="btn btn-warning">Estadísticas</a>
         </div>
-        <div style="width:50%; margin: 10px 0px;">
+        <div class="botones-PV">
             <a style="width:100%;" asp-action="Opiniones" asp-route-id="@Model.Id" class="btn btn-warning">Opiniones</a>
         </div>
-        <div style="width:50%; margin: 10px 0px;">
+        <div class="botones-PV">
             <a style="width:100%;" asp-action="Miperfil" asp-route-id="@Model.Id" class="btn btn-warning">Mi perfil</a>
         </div>
     </div>

@@ -15,7 +15,8 @@ namespace Heldu.Entities.Models
         [Display(Name = "Descripción del producto")]
         public string Descripcion { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
+        //[DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
+        [DataType(DataType.Date)]
         [Display(Name = "Fecha de validez de la oferta")]
         public DateTime FechaValidez { get; set; }
 

@@ -28,3 +28,13 @@
 #keep-session {
     align-self: flex-end;
 }
+
+#boton-google {
+    color:white;
+    background-color: #F8C537;
+}
+
+#boton-facebook {
+    color: white;
+    background-color: rgb(75, 115, 184);
+}

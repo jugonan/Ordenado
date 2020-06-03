@@ -1,0 +1,47 @@
+﻿/* ====== Vista Parcial de Vendedores ====== */
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#imagen-vendedor-pv {
+    border-radius: 50%;
+    max-height: 160px;
+    padding-top: 2em;
+}
+
+.botones-PV {
+    width: 50%;
+    margin: 10px 0px;
+}
+
+.botones-PV a {
+    background-color: #02A669;
+    border-color: none;
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    width: 100%;
+}
+
+/* ====== Información de Vendedor ====== */
+.ancla-editar img {
+    width: 1.7vw;
+    position: absolute;
+    right: 1vw;
+}
+
+.ancla-editar img:hover {
+    width: 2.3vw;
+    transition: width 0.3s linear;
+}
+
+
+.div-datos-vendedor p {
+    font-size: 1.2vw;
+    background-color: #ffacac4f;
+    margin: 0px;
+}
+.cuadro-vendedor {
+    margin-top:4vw;
+}
+
