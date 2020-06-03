@@ -30,11 +30,8 @@ let opciones = [];
 let clicks = 0;
 
 /* Función inicial que se ejecuta con 'DOMContentLoaded' desed CArritoLayout.js */
-function funcion() {
-    llenarVariablesModel();
-    llenarListas();
-}
-
+llenarVariablesModel();
+llenarListas();
 
 function crearOpcion() {
     llenarVariablesOpcionProducto();
