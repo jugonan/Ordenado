@@ -31,6 +31,7 @@
     <None Remove="Models\**" />
     <None Remove="ViewModel\**" />
     <None Remove="Views\Condiciones\**" />
+    <Content Remove="Views\Home\Index.cshtml" />
     <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
     <Content Remove="wwwroot\css\Usuarios_MiPeriflPV.css" />
     <Content Remove="wwwroot\js\Carrito_Layout.js" />

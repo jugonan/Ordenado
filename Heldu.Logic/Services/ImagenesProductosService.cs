@@ -17,7 +17,7 @@ namespace Heldu.Logic.Services
         {
             _context = context;
         }
-        public async Task<ImagenesProducto> GetAllImages(int productoID)
+        public async Task<ImagenesProducto> GetAllImages(int? productoID)
         {
             var imagenes = await _context.ImagenesProducto.FirstOrDefaultAsync(x => x.ProductoId == productoID);
             return imagenes;

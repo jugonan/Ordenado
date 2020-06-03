@@ -197,6 +197,7 @@ namespace DEFINITIVO.Controllers
         }
 
         [Authorize(Roles = "admin,vendedor")]
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

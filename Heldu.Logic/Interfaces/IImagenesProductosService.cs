@@ -9,7 +9,7 @@ namespace Heldu.Logic.Interfaces
 {
     public interface IImagenesProductosService
     {
-        public Task<ImagenesProducto> GetAllImages(int id);
+        public Task<ImagenesProducto> GetAllImages(int? id);
         public Task<byte[]> GetMainImage(int id);
         public Task<byte[]> GetSecondImage(int id);
         public Task<byte[]> GetThirdImage(int id);

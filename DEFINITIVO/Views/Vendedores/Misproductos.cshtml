@@ -29,7 +29,7 @@
                     @foreach (ProductoVendedor productoVendedor in Model.ProductoVendedor)
                     {
                         <div class="card col-sm-4">
-                            <img class="card-img-top" src="@productoVendedor.Producto.ImagenesProducto.Imagen1" alt="Card image cap">
+                            <img class="card-img-top" src="~/Productos/GetImage1/@productoVendedor.Producto.Id" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title titulo-producto">@productoVendedor.Producto.Titulo</h5>
                                 <p class="card-text descripcion-producto">@productoVendedor.Producto.Descripcion</p>
