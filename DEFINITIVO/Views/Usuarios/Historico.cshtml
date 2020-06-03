@@ -41,7 +41,7 @@
                         <p>@comprado.FechaValidez</p>
                     </div>
                     <div class="col-3">
-                        <img style="width:60%;" src="@comprado.ImagenProducto" />
+                        <img style="width:60%;" src="@comprado.ImagenesProducto.Imagen1" />
                     </div>
                     <div class="col-3">
                         <h6>Comprado el: </h6>
@@ -64,7 +64,7 @@
                         <p>@disponible.FechaValidez</p>
                     </div>
                     <div class="col-3">
-                        <img style="width:60%;" src="@disponible.ImagenProducto" />
+                        <img style="width:60%;" src="@disponible.ImagenesProducto.Imagen1" />
                     </div>
                     <div class="col-3">
                         <h6>Comprado el: </h6>
@@ -109,7 +109,7 @@
                                             <h5>@visto.Producto.PrecioFinal €</h5>
                                         </div>
                                     </div>
-                                    <img src="@visto.Producto.ImagenProducto" class="card-img-top" alt="@visto.Producto.Titulo">
+                                    <img src="@visto.Producto.ImagenesProducto.Imagen1" class="card-img-top" alt="@visto.Producto.Titulo">
                                     <div class="card-body">
                                         <h5 class="card-title">@visto.Producto.Titulo"</h5>
                                         <p class="card-text">@visto.Producto.Descripcion"</p>
@@ -131,7 +131,7 @@
                                             <h5>@vistos[i].Producto.PrecioFinal €</h5>
                                         </div>
                                     </div>
-                                    <img src="@vistos[i].Producto.ImagenProducto" class="card-img-top" alt="@vistos[i].Producto.Titulo">
+                                    <img src="@vistos[i].Producto.ImagenesProducto.Imagen1" class="card-img-top" alt="@vistos[i].Producto.Titulo">
                                     <div class="card-body">
                                         <h5 class="card-title">@vistos[i].Producto.Titulo"</h5>
                                         <p class="card-text">@vistos[i].Producto.Descripcion"</p>

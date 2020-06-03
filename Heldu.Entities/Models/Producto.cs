@@ -20,11 +20,12 @@ namespace Heldu.Entities.Models
         [Display(Name = "Fecha de validez de la oferta")]
         public DateTime FechaValidez { get; set; }
 
-        public byte[] ImagenProducto { get; set; }
+        //public byte[] ImagenProducto { get; set; }
 
-        public byte[] ImagenProducto2 { get; set; }
-            
-        public byte[] ImagenProducto3 { get; set; }
+        //public byte[] ImagenProducto2 { get; set; }
+
+        //public byte[] ImagenProducto3 { get; set; }
+        public ImagenesProducto ImagenesProducto { get; set; }
 
         [Display(Name = "Precio original del producto")]
         [DataType(DataType.Currency)]

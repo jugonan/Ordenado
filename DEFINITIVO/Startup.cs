@@ -84,6 +84,7 @@ namespace DEFINITIVO
             services.AddTransient<IUbicacionesVendedoresService, UbicacionesVendedoresService>();
             services.AddTransient<IUsuariosService, UsuariosService>();
             services.AddTransient<IVendedoresService, VendedoresService>();
+            services.AddTransient<IImagenesProductosService, ImagenesProductosService>();
 
             //Servicio de GeoIP2 de MaxMind (https://maxmind.github.io/GeoIP2-dotnet/)
             // Configure to read configuration options from MaxMind section

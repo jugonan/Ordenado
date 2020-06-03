@@ -31,6 +31,7 @@ namespace DEFINITIVO.Controllers
         private readonly IProductosVendedoresService _productosVendedoresService;
         private readonly IReviewsService _reviewsService;
         private readonly IHelperService _helperService;
+        private readonly IImagenesProductosService _imagenesProductosService;
 
         public ProductosController(
             ApplicationDbContext context,
@@ -45,7 +46,8 @@ namespace DEFINITIVO.Controllers
             IUsuariosService usuariosService,
             IProductosVendedoresService productosVendedoresService,
             IReviewsService reviewsService,
-            IHelperService helperService)
+            IHelperService helperService,
+            IImagenesProductosService imagenesProductosService)
 
         {
             _userManager = userManager;
@@ -60,6 +62,7 @@ namespace DEFINITIVO.Controllers
             _productosVendedoresService = productosVendedoresService;
             _reviewsService = reviewsService;
             _helperService = helperService;
+            _imagenesProductosService = imagenesProductosService;
         }
 
         public async Task<IActionResult> Index2(string postalCode)
@@ -147,11 +150,19 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor, List<IFormFile> ImagenProducto, List<IFormFile> ImagenProducto2, List<IFormFile> ImagenProducto3)
         {
             Producto producto = productoCategoriaVM.Producto;
-            producto.ImagenProducto = await _productosService.AgregarImagenesBlob(ImagenProducto);
-            producto.ImagenProducto2 = await _productosService.AgregarImagenesBlob(ImagenProducto2);
-            producto.ImagenProducto3 = await _productosService.AgregarImagenesBlob(ImagenProducto3);
-
             await _productosService.CreateProductoPost(producto);
+
+            var img1 = await _imagenesProductosService.AgregarImagenesBlob(ImagenProducto);
+            var img2 = await _imagenesProductosService.AgregarImagenesBlob(ImagenProducto2);
+            var img3 = await _imagenesProductosService.AgregarImagenesBlob(ImagenProducto3);
+
+            ImagenesProducto imagenes = new ImagenesProducto()
+            {
+                Imagen1 = img1,
+                Imagen2 = img2,
+                Imagen3 = img3,
+                ProductoId = producto.Id
+            };
 
             ProductoCategoria newProdCat = new ProductoCategoria()
             {
@@ -177,6 +188,7 @@ namespace DEFINITIVO.Controllers
 
             if (ModelState.IsValid)
             {
+                await _imagenesProductosService.CreateImagenesProducto(imagenes);
                 await _productosVendedoresService.CreateProductoVendedor(productoVendedor);
                 await _productoCategoriasService.CreateProductoCategoriaPost(newProdCat);
                 return RedirectToAction("Create", "OpcionesProductos", new { productoId = producto.Id });
@@ -203,7 +215,7 @@ namespace DEFINITIVO.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
-        public async Task<IActionResult> Edit(int id, Producto producto, List<IFormFile> ImagenProducto, List<IFormFile> ImagenProducto2, List<IFormFile> ImagenProducto3)
+        public async Task<IActionResult> Edit(int id, Producto producto, List<IFormFile> Img1, List<IFormFile> Img2, List<IFormFile> Img3)
         {
             if (id != producto.Id)
             {
@@ -214,9 +226,18 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    producto.ImagenProducto = await _productosService.AgregarImagenesBlob(ImagenProducto);
-                    producto.ImagenProducto2 = await _productosService.AgregarImagenesBlob(ImagenProducto2);
-                    producto.ImagenProducto3 = await _productosService.AgregarImagenesBlob(ImagenProducto3);
+                    var imgBlob1 = await _imagenesProductosService.AgregarImagenesBlob(Img1);
+                    var imgBlob2 = await _imagenesProductosService.AgregarImagenesBlob(Img2);
+                    var imgBlob3 = await _imagenesProductosService.AgregarImagenesBlob(Img3);
+                    ImagenesProducto imagenesEdit = new ImagenesProducto()
+                    {
+                        Imagen1 = imgBlob1,
+                        Imagen2 = imgBlob2,
+                        Imagen3 = imgBlob3,
+                        ProductoId = id
+                    };
+
+                    await _imagenesProductosService.EditImagenes(imagenesEdit);
                     await _productosService.EditProductoPost(producto);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -294,10 +315,34 @@ namespace DEFINITIVO.Controllers
             return RedirectToAction("Index2", "Productos", new { postalCode = inputPostalCode });
         }
 
-        public async Task<IActionResult> GetImage (int id)
+        public async Task<IActionResult> GetImage1(int id)
         {
-            byte[] imagen = await _productosService.GetImageByProductoId(id);
-            if(imagen != null)
+            byte[] imagen = await _imagenesProductosService.GetMainImage(id);
+            if (imagen != null)
+            {
+                return File(imagen, "image/jpeg");
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public async Task<IActionResult> GetImage2(int id)
+        {
+            byte[] imagen = await _imagenesProductosService.GetSecondImage(id);
+            if (imagen != null)
+            {
+                return File(imagen, "image/jpeg");
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public async Task<IActionResult> GetImage3(int id)
+        {
+            byte[] imagen = await _imagenesProductosService.GetThirdImage(id);
+            if (imagen != null)
             {
                 return File(imagen, "image/jpeg");
             }

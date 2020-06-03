@@ -11,7 +11,7 @@
         @foreach (Mercado mercado in Model.Mercados)
         {
             <div class="card col-sm-4">
-                <img class="card-img-top" src="@mercado.Producto.ImagenProducto" alt="Card image cap">
+                <img class="card-img-top" src="@mercado.Producto.ImagenesProducto.Imagen1" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@mercado.Producto.Titulo</h5>
                     <p class="card-text">@mercado.Producto.Descripcion</p>

@@ -9,9 +9,7 @@ namespace Heldu.Logic.ViewModels
     {
         public Producto Producto { get; set; }
         public Categoria Categoria { get; set; }
-        public byte[] ImagenProducto { get; set; }
-        public byte[] ImagenProducto2 { get; set; }
-        public byte[] ImagenProducto3 { get; set; }
+        public ImagenesProducto ImagenesProducto { get; set; }
 
     }
 }

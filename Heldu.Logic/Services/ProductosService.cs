@@ -150,14 +150,5 @@ namespace Heldu.Logic.Services
             }
             return toAdd;
         }
-
-
-
-        //Este método devuelve la primera imagen del producto, guardado en la misma tabla. Es para probar si la URL permite cargar la vista más rápido
-        public async Task<byte[]> GetImageByProductoId (int id)
-        {
-            var producto = await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
-            return producto.ImagenProducto;
-        }
     }
 }
