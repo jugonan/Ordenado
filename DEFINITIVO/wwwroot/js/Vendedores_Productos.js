@@ -1,6 +1,6 @@
 ﻿
-addPuntitos('titulo-producto', 14);
-addPuntitos('descripcion-producto', 30);
+addPuntitos('titulo-producto', 18);
+addPuntitos('descripcion-producto', 40);
 
 function addPuntitos(idElemento, longitud) {
     let campos = document.getElementsByClassName(idElemento);

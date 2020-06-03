@@ -224,5 +224,25 @@ namespace DEFINITIVO.Controllers
             return View();
         }
 
+        // TESTEO: Acciones creadas para devolver al usuario  a las páginas ya hechas
+        public async Task<IActionResult> Estadisticas2()
+        {
+            string vendedorId = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            return View(vendedor);
+        }
+        public async Task<IActionResult> Misproductos2()
+        {
+            string vendedorId = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            return View(vendedor);
+        }
+        public async Task<IActionResult> Opiniones2()
+        {
+            string vendedorId = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            return View(vendedor);
+        }
+
     }
 }

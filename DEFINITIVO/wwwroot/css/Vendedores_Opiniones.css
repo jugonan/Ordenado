@@ -26,3 +26,27 @@
 .cuadro-vendedor {
     margin-top: 4vw;
 }
+
+.checked {
+    color: #ffde5f;
+}
+
+.cuerpo-carta {
+    margin-top: 1vw;
+}
+
+.valoracion-producto-individual {
+    justify-content: center;
+}
+
+.valoracion-media {
+    display:flex;
+    align-items:baseline;
+    justify-content: left;
+    margin: 2vw 0vw;
+}
+
+.valoracion-media h5 {
+    margin-right: 2vw;
+}
+

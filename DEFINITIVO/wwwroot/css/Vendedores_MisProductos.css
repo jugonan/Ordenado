@@ -29,3 +29,8 @@
 .precio-card-productos {
     justify-content: space-around;
 }
+
+.col-sm-4 img {
+    padding-top: 1vw;
+    margin-bottom: 1vw;
+}
