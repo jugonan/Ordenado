@@ -25,7 +25,10 @@ namespace Heldu.Logic.Services
         public async Task<byte[]> GetMainImage(int productoID)
         {
             var imagen = await _context.ImagenesProducto.FirstOrDefaultAsync(x => x.ProductoId == productoID);
-            return imagen.Imagen1;
+            if (imagen != null)
+                return imagen.Imagen1;
+            else
+                return null;
         }
         public async Task<byte[]> GetSecondImage(int productoID)
         {
@@ -71,7 +74,11 @@ namespace Heldu.Logic.Services
             {
                 imagenesNew.Imagen3 = imagenesOld.Imagen3;
             }
-            _context.ImagenesProducto.Remove(imagenesOld);
+
+            if (imagenesOld != null)
+            {
+                _context.ImagenesProducto.Remove(imagenesOld);
+            }
             _context.ImagenesProducto.Add(imagenesNew);
             await _context.SaveChangesAsync();
         }

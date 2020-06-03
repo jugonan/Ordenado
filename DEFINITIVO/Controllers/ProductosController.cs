@@ -147,14 +147,14 @@ namespace DEFINITIVO.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
-        public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor, List<IFormFile> ImagenProducto, List<IFormFile> ImagenProducto2, List<IFormFile> ImagenProducto3)
+        public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor, List<IFormFile> Imagen1, List<IFormFile> Imagen2, List<IFormFile> Imagen3)
         {
             Producto producto = productoCategoriaVM.Producto;
             await _productosService.CreateProductoPost(producto);
 
-            var img1 = await _imagenesProductosService.AgregarImagenesBlob(ImagenProducto);
-            var img2 = await _imagenesProductosService.AgregarImagenesBlob(ImagenProducto2);
-            var img3 = await _imagenesProductosService.AgregarImagenesBlob(ImagenProducto3);
+            var img1 = await _imagenesProductosService.AgregarImagenesBlob(Imagen1);
+            var img2 = await _imagenesProductosService.AgregarImagenesBlob(Imagen2);
+            var img3 = await _imagenesProductosService.AgregarImagenesBlob(Imagen3);
 
             ImagenesProducto imagenes = new ImagenesProducto()
             {
@@ -215,7 +215,7 @@ namespace DEFINITIVO.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,vendedor")]
-        public async Task<IActionResult> Edit(int id, Producto producto, List<IFormFile> Img1, List<IFormFile> Img2, List<IFormFile> Img3)
+        public async Task<IActionResult> Edit(int id, Producto producto, List<IFormFile> Imagen1, List<IFormFile> Imagen2, List<IFormFile> Imagen3)
         {
             if (id != producto.Id)
             {
@@ -226,9 +226,9 @@ namespace DEFINITIVO.Controllers
             {
                 try
                 {
-                    var imgBlob1 = await _imagenesProductosService.AgregarImagenesBlob(Img1);
-                    var imgBlob2 = await _imagenesProductosService.AgregarImagenesBlob(Img2);
-                    var imgBlob3 = await _imagenesProductosService.AgregarImagenesBlob(Img3);
+                    var imgBlob1 = await _imagenesProductosService.AgregarImagenesBlob(Imagen1);
+                    var imgBlob2 = await _imagenesProductosService.AgregarImagenesBlob(Imagen2);
+                    var imgBlob3 = await _imagenesProductosService.AgregarImagenesBlob(Imagen3);
                     ImagenesProducto imagenesEdit = new ImagenesProducto()
                     {
                         Imagen1 = imgBlob1,
@@ -254,7 +254,7 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction("Modificado", "Vendedores");
             }
             return View(producto);
-        }
+            }
 
         public async Task<IActionResult> Delete(int? id)
         {
@@ -319,37 +319,25 @@ namespace DEFINITIVO.Controllers
         {
             byte[] imagen = await _imagenesProductosService.GetMainImage(id);
             if (imagen != null)
-            {
                 return File(imagen, "image/jpeg");
-            }
             else
-            {
                 return null;
-            }
         }
         public async Task<IActionResult> GetImage2(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetSecondImage(id);
             if (imagen != null)
-            {
                 return File(imagen, "image/jpeg");
-            }
             else
-            {
                 return null;
-            }
         }
         public async Task<IActionResult> GetImage3(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetThirdImage(id);
             if (imagen != null)
-            {
                 return File(imagen, "image/jpeg");
-            }
             else
-            {
                 return null;
-            }
         }
     }
 }
