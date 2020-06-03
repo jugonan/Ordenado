@@ -22,12 +22,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger">(*) Campos obligatorios</div>
             <div class="form-group">
                 <label asp-for="Producto.Titulo" class="control-label"></label>
-                <input asp-for="Producto.Titulo" class="form-control" id="titulo-introducido" />
+                <input asp-for="Producto.Titulo" class="form-control" id="titulo-introducido" placeholder="Introduce el título de tu producto" />
                 <span asp-validation-for="Producto.Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Producto.Descripcion" class="control-label"></label>
-                <textarea rows="6" cols="35" asp-for="Producto.Descripcion" class="form-control" id="descripcion-introducida"></textarea>
+                <textarea rows="6" cols="35" asp-for="Producto.Descripcion" class="form-control" id="descripcion-introducida" placeholder="Escribe la descripción general del producto.Más adelante podrás especificar hasta 3 opciones de producto"></textarea>
                 <span asp-validation-for="Producto.Descripcion" class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="descripcion-introducidaBtn">+ descripción</button>
@@ -41,23 +41,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="Producto.FechaValidez" class="control-label"></label>
-                <input type="date" asp-for="Producto.FechaValidez" class="form-control" value="2020-11-10" id="fecha-introducida" />
+                <input type="date" asp-for="Producto.FechaValidez" class="form-control" value="2020-01-01" id="fecha-introducida" />
                 <span asp-validation-for="Producto.FechaValidez" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Imagen 1 (*)</label>
+                <label class="control-label">Primera imagen del producto (*)</label>
                 <input type="file" name="Imagen1" class="form-control" id="imagen-introducida" required />
                 @*<span asp-validation-for="ImagenesProducto.Imagen1" class="text-danger"></span>*@
                 <button type="button" class="btn btn-link" id="imagen-introducidaBtn">+ añadir imagen</button>
             </div>
             <div class="form-group">
-                <label class="control-label">Imagen 2</label>
+                <label class="control-label">Segunda imagen del producto</label>
                 <input type="file" name="Imagen2" class="form-control" id="imagen-introducida2" />
                 @*<span asp-validation-for="ImagenesProducto.Imagen2" class="text-danger"></span>*@
                 <button type="button" class="btn btn-link" id="imagen-introducidaBtn2">+ añadir imagen</button>
             </div>
             <div class="form-group">
-                <label class="control-label">Imagen 3</label>
+                <label class="control-label">Tercera imagen del producto</label>
                 <input type="file" name="Imagen3" class="form-control" id="imagen-introducida3" />
                 @*<span asp-validation-for="ImagenesProducto.Imagen3" class="text-danger"></span>*@
                 <button type="button" class="btn btn-link" id="imagen-introducidaBtn3">+ añadir imagen</button>
@@ -161,12 +161,12 @@
                         </div>
                         <h4>Condiciones</h4>
                         <br />
-                        <label><strong>Reserva</strong></label>
-                        <ul class="d-none" id="ul-reserva">
-                        </ul>
-                        <br />
                         <label><strong>Horario</strong></label>
                         <ul class="d-none" id="ul-horario">
+                        </ul>
+                        <br />
+                        <label><strong>Reserva</strong></label>
+                        <ul class="d-none" id="ul-reserva">
                         </ul>
                         <br />
                         <label><strong>Entrega</strong></label>
