@@ -8,7 +8,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
 @inject IHelperService HelperService
-@inject IProductosService ProductosService
+@*@inject IProductosService ProductosService*@
 @{
     ViewData["Title"] = "Index2";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
@@ -69,7 +69,7 @@
                                                     <div class="item-box-blog">
                                                         <div class="item-box-blog-image">
                                                             <!--Precio-->
-                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> &#8364 @listaProducto[j].Precio</strike>  &#8364 @listaProducto[j].PrecioFinal</span> </div>
+                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364</span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
                                                                 <figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>
@@ -109,7 +109,7 @@
                                                     <div class="item-box-blog">
                                                         <div class="item-box-blog-image">
                                                             <!--Precio-->
-                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> &#8364 @listaProducto[j].Precio</strike>  &#8364 @listaProducto[j].PrecioFinal</span> </div>
+                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364 /span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Details" asp-route-id="@listaProducto[j].Id">
                                                                 <figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>

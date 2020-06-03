@@ -1,22 +1,50 @@
-﻿.how-section1 {
+﻿/*  SELECCION DE COLORES GENERALES Y TIPOGRAFIA (26/05/20)
+
+    Colores:
+        Rosa principal: #F21B6D 
+        Negro Navbar: #1C2229
+        Fondo subNavbar: #F7F6F2
+        Fondo cards: #F7F6F2
+        Color de separación complementaria suave: #BAC1B8
+        Color de separación complementaria fuerte: #02A669
+
+    Fuente principal: 
+        font-family: 'Open Sans Condensed', sans-serif;
+        weight: 300 - 700;
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+
+*/
+
+.how-section1 {
+    font-family: 'Open Sans Condensed', sans-serif;
     margin-top: -15%;
     padding: 10%;
 }
 
-    .how-section1 h4 {
-        color: #FF0;
-        font-weight: bold;
-        font-size: 30px;
-    }
-
-    .how-section1 .subheading {
-        color: whitesmoke;
-        font-size: 20px;
-    }
-
     .how-section1 .row {
         margin-top: 5%;
     }
+
+.claims {
+
+}
+
+.heading {
+    color: #1C2229;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.subheading {
+    color: #F21B6D;
+    font-size: 20px;
+}
+
+.copies {
+    text-align: justify;
+    font-size:larger;
+}
+
 
 .how-img {
     text-align: center;
@@ -25,4 +53,8 @@
 
     .how-img img {
         width: 60%;
+        height:18vw;
+    }
+    .how-img:hover img{
+        
     }
