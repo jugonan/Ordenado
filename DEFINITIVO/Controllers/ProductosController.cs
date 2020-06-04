@@ -340,5 +340,11 @@ namespace DEFINITIVO.Controllers
             else
                 return null;
         }
+        public async Task<IActionResult> Detalles()
+        {
+            string idUsuario = _userManager.GetUserId(User);
+            Vendedor vendedor = await _vendedoresService.GetVendedorByIdentityUserId(idUsuario);
+            return View(vendedor);
+        }
     }
 }
