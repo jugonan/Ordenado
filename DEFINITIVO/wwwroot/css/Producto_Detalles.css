@@ -30,6 +30,14 @@
     font-weight: 600;
 }
 
+.checked {
+    color: orange;
+}
+
+a {
+    cursor:pointer;
+}
+
 .boton-comprar-producto {
     font-family: revert;
     width: 100%;
@@ -45,4 +53,19 @@
 
 .normal-thumbnail-carousel {
     opacity: 0.5;
+}
+
+.ul-opciones-producto {
+    align-content: flex-start;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+.anchor-texto-opciones{
+    opacity: 0;
+}
+
+.opacidad-cero {
+    opacity: 1;
+    transition: opacity 0.3s linear;
 }

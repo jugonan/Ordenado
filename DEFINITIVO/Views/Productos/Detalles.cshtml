@@ -2,7 +2,11 @@
 @using Microsoft.AspNetCore.Identity
 @using Heldu.Logic.Interfaces
 
+<!-- Link que habilita las estrellas de valoración -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/css/Producto_Detalles.css" rel="stylesheet" type="text/css">
+<script defer src="~/js/Producto_Detalles.js"></script>
+
 <div class="row">
     <div class="col-10 offset-1">
         <div class="row">
@@ -57,7 +61,15 @@
                     <p id="descuento-detalles" class="col-3">Ahorro</p>
                 </div>
                 <div class="row">
-                    <p>Descripción </p>
+                    <p>Media vendedor:</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div class="row">
+                    <p>Descripción</p>
                 </div>
                 <div class="input-opciones-productos">
                     <form>
@@ -79,46 +91,28 @@
     <div class="col-10 offset-1 barra-opciones-producto">
         <div class="navbar navbar-default">
             <div class="container-fluid">
-                <ul class="row ul-opciones-producto" style="list-style: none;">
-                    <li class="active"><a href="#"></a></li>
-                    <li><a class="anclas-opciones" href="primero">Page 1</a></li>
-                    <li><a class="anclas-opciones" href="segundo">Page 2</a></li>
-                    <li><a class="anclas-opciones" href="tercero">Page 3</a></li>
-                </ul>
+                <div class="row ul-opciones-producto" style="list-style: none;">
+                    <a class="anclas-opciones">Condiciones</a>
+                    <a class="anclas-opciones">Vendedor</a>
+                    <a class="anclas-opciones">Opiniones</a>
+                </div>
             </div>
         </div>
         <div>
             <div>
-                <a name="primero">
-                    Este es el texto que tenemos en la primera de las opciones
+                <a class="anchor-texto-opciones" id="condiciones-producto-detalles">
+                    Este es el texto que tenemos en la primera de las opciones con la explicación de los diferentes detalles
                 </a>
             </div>
             <div>
-                <a name="segundo">
-                    Este es el texto que tenemos en la primera de las opciones
+                <a class="anchor-texto-opciones" id="vendedor-producto-detalles">
+                    Este es el texto que tenemos en la primera de las opciones con la información del vendedor
                 </a>
             </div>
             <div>
-                <a name="tercero">
-                    Este es el texto que tenemos en la primera de las opciones
+                <a class="anchor-texto-opciones" id="opiniones-producto-detalles">
+                    Este es el texto que tenemos en la primera de las opciones con las opiniones de los usuarios
                 </a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- En la parte de más productos pondremos más productos de la misma categoría -->
-<div class="row">
-    <div class="col-10 offset-1 box-reviews">
-        <div class="row">
-            <h3>Valoraciónes de usuario</h3>
-            <div class="valoracion-media">
-
-            </div>
-        </div>
-        <div class="row">
-            <p class="col-12">Opiniones de usurios</p>
-            <div class="opinion-de-usuario">
-
             </div>
         </div>
     </div>
