@@ -22,11 +22,17 @@ namespace Heldu.Logic.Services
         {
             return await _context.OpcionProducto.ToListAsync();
         }
-        public async Task<OpcionProducto> GetOpcionProductoById(int? id)
+        // Recibe todas las opcionesProducto desde el id de Producto
+        public async Task<List<OpcionProducto>> GetOpcionProductoById(int? id)
         {
-            return await  _context.OpcionProducto
-                                .FirstOrDefaultAsync(m => m.Id == id);
+            return await _context.OpcionProducto.Where(m => m.ProductoId == id).ToListAsync();
         }
+        // Recibe una única opción de producto por el Id de estea
+        public async Task<OpcionProducto> GetOpcionProductoByHisId(int? id)
+        {
+            return await _context.OpcionProducto.FirstOrDefaultAsync(m => m.Id == id);
+        }
+
         public async Task CreateOpcionProductoPost(OpcionProducto opcionProducto)
         {
             _context.Add(opcionProducto);

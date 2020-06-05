@@ -1,6 +1,15 @@
 ﻿@model Heldu.Entities.Models.Producto
 @using Microsoft.AspNetCore.Identity
 @using Heldu.Logic.Interfaces
+@inject IReviewsService ReviewsService
+@{
+    List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
+    int totalComentarios = ReviewsService.CantidadComentariosByReviewList(reviews);
+    int valoracionMedia = await ReviewsService.ObtenerValoracionMediaByProductoId(Model.Id);
+    Vendedor vendedor = ViewBag.Vendedor;
+    Usuario usuario = ViewBag.Usuario;
+    List<OpcionProducto> opcionesProductos = ViewBag.OpcionesProductos;
+}
 
 <!-- Link que habilita las estrellas de valoración -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,23 +42,26 @@
                     </a>
                     <div class="carousel-indicators">
                         <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="0" class="active">
-                            <img src="~/Productos/GetImage1/@Model.Id" width="100">
+                            <img src="~/Productos/GetImage1/@Model.Id">
                         </a>
                         <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="1">
-                            <img src="~/Productos/GetImage2/@Model.Id" width="100">
+                            <img src="~/Productos/GetImage2/@Model.Id">
                         </a>
                         <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="2">
-                            <img src="~/Productos/GetImage3/@Model.Id" width="100">
+                            <img src="~/Productos/GetImage3/@Model.Id">
                         </a>
                     </div>
                 </div>
             </div>
             <div class="col-4 ">
-                <div class="row h-25 precios-producto-detalles">
-                    <p id="precio-final-detalles" class="col-4">@Model.Precio€</p>
-                    <p id="precio-inicial-detalles" class="col-3">@Model.PrecioFinal€</p>
-                    <p id="descuento-detalles" class="col-3">Ahorro</p>
-                </div>
+                @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+                {
+                    <div class="row h-25 precios-producto-detalles d-none">
+                        <p class="col-4 precio-inicial-opciones">@opcionesDeProducto.PrecioInicial€</p>
+                        <p class="col-3 precio-final-opciones">@opcionesDeProducto.PrecioFinal€</p>
+                        <p class="col-3 descuento-opciones">@opcionesDeProducto.Descuento</p>
+                    </div>
+                }
                 <div class="row">
                     <p>Media vendedor:</p>
                     <span class="fa fa-star checked"></span>
@@ -59,16 +71,25 @@
                     <span class="fa fa-star"></span>
                 </div>
                 <div class="row">
-                    <p>@Model.Descripcion</p>
+                    @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+                    {
+                        <p>@opcionesDeProducto.Descripcion</p>
+                    }
                 </div>
                 <div class="input-opciones-productos">
                     <form>
                         <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
                         <label for="male">Opción nº1 de producto</label><br>
-                        <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
-                        <label for="female">Opción nº2 de producto</label><br>
-                        <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
-                        <label for="other">Opción nº3 de producto</label>
+                        @if (opcionesProductos.Count > 1)
+                        {
+                            <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
+                            <label for="female">@opcionesProductos[1].Titulo</label><br>
+                        }
+                        @if (opcionesProductos.Count > 2)
+                        {
+                            <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
+                            <label for="other">@opcionesProductos[2].Titulo</label>
+                        }
                     </form>
                 </div>
                 <p id="precio-compra">Total</p>
@@ -89,20 +110,20 @@
             </div>
         </div>
         <div>
-            <div class="anclas-ocultar d-none">
-                <a id="condiciones-producto-detalles">
+            <div class="texto-ocultar d-none">
+                <p>
                     Este es el texto que tenemos en la primera de las opciones con la explicación de los diferentes detalles
-                </a>
+                </p>
             </div>
-            <div class="anclas-ocultar d-none">
-                <a id="vendedor-producto-detalles">
+            <div class="texto-ocultar d-none">
+                <p>
                     Este es el texto que tenemos en la primera de las opciones con la información del vendedor
-                </a>
+                </p>
             </div>
-            <div class="anclas-ocultar d-none">
-                <a id="opiniones-producto-detalles">
+            <div class="texto-ocultar d-none">
+                <p>
                     Este es el texto que tenemos en la primera de las opciones con las opiniones de los usuarios
-                </a>
+                </p>
             </div>
         </div>
     </div>
@@ -119,7 +140,6 @@
             <span class="fa fa-star"></span>
         </div>
         <div class="modal-content">
-            @*<form method="post" asp-action="CrearReview" asp-route-ProductoId="@Model.Id" asp-route-UsuarioId="@usuario.IdentityUserId">*@
             <form method="post">
                 <input type="text" placeholder="Añada su comentario" name="ComentarioUsuario" asp-action="CrearReview" rows="6" style="width:100%" />
                 <input class="d-none" name="valoracionUsuario" type="text" id="incluir-valoracion" asp-action="CrearReview" />

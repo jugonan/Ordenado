@@ -50,7 +50,7 @@ namespace Heldu.Logic.Services
         }
 
         // Obtenemos Lista de reviews enviándole un Producto ID
-        public async Task<List<Review>> ObtenerReviewsByProductoId(int Id)
+        public async Task<List<Review>> ObtenerReviewsByProductoId(int? Id)
         {
             return await _context.Review.Where(x => x.ProductoId == Id).ToListAsync();
         }

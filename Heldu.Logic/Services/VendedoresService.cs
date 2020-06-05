@@ -66,7 +66,7 @@ namespace Heldu.Logic.Services
         }
 
         // Devuelve el objeto vendedor pasándole el Id del producto
-        public async Task<Vendedor> ObtenerVendedorDesdeProducto(int Id)
+        public async Task<Vendedor> ObtenerVendedorDesdeProducto(int? Id)
         {
             ProductoVendedor productoVendedor = await _context.ProductoVendedor
                                                                           .Include(v => v.Vendedor)
