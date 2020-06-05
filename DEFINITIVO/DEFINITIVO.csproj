@@ -46,6 +46,7 @@
 
   <ItemGroup>
     <PackageReference Include="MaxMind.GeoIP2" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
@@ -72,6 +73,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Json.Net" Version="1.0.22" />
     <PackageReference Include="Echovoice.JSON" Version="2.0.15151.1" />
+    <PackageReference Include="WebEssentials.AspNetCore.OutputCaching" Version="1.0.28" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />

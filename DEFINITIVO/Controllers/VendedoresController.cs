@@ -10,6 +10,7 @@ using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace DEFINITIVO.Controllers
 {
@@ -19,17 +20,26 @@ namespace DEFINITIVO.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUbicacionesVendedoresService _ubicacionesVendedoresService;
         private readonly IHelperService _helperService;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IMemoryCache _memoryCache;
 
-
-        public VendedoresController(IVendedoresService vendedoresService, UserManager<IdentityUser> userManager, IUbicacionesVendedoresService ubicacionesVendedoresService, IHelperService helperService)
+        public VendedoresController(IVendedoresService vendedoresService,
+                                    UserManager<IdentityUser> userManager,
+                                    IUbicacionesVendedoresService ubicacionesVendedoresService,
+                                    IHelperService helperService,
+                                    SignInManager<IdentityUser> signInManager,
+                                    IMemoryCache memoryCache)
         {
             _vendedoresService = vendedoresService;
             _userManager = userManager;
             _ubicacionesVendedoresService = ubicacionesVendedoresService;
             _helperService = helperService;
+            _signInManager = signInManager;
+            _memoryCache = memoryCache;
         }
 
         // GET: Vendedores
+        [OutputCache(Duration = 0)]
         public async Task<IActionResult> Index()
         {
             return View(await _vendedoresService.GetVendedor());
@@ -169,6 +179,7 @@ namespace DEFINITIVO.Controllers
             return _vendedoresService.ExistVendedor(id);
         }
 
+        [OutputCache(Duration = 0)]
         public async Task<IActionResult> Miperfil()
         {
             string vendedorId = _userManager.GetUserId(User);
@@ -187,6 +198,7 @@ namespace DEFINITIVO.Controllers
             return View(vendedor);
         }
 
+        [OutputCache(Duration = 0)]
         public async Task<IActionResult> Opiniones()
         {
             string vendedorId = _userManager.GetUserId(User);
@@ -196,6 +208,7 @@ namespace DEFINITIVO.Controllers
             return View(vendedor);
         }
 
+        [OutputCache(Duration = 0)]
         public async Task<IActionResult> Misproductos()
         {
             string vendedorId = _userManager.GetUserId(User);
@@ -214,8 +227,12 @@ namespace DEFINITIVO.Controllers
         }
 
         // Acción casi inútil que sólo devuelve la vista
-        public IActionResult Inscrito()
+        [OutputCache(Duration = 0)]
+        public async Task<IActionResult> Inscrito()
         {
+            await _signInManager.SignOutAsync();
+            //_memoryCache.Remove("ProductosForIndex2");
+            //_memoryCache.Remove("Categorias");
             return View();
         }
 

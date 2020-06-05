@@ -28,6 +28,9 @@ namespace DEFINITIVO
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
+            services.AddOutputCaching();
+            services.AddMvc();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection"), mysqlOptions =>
@@ -118,6 +121,7 @@ namespace DEFINITIVO
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseOutputCaching();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

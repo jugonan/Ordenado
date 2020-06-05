@@ -11,61 +11,66 @@
 }
 <link href="/css/Vendedores_MiPerfil.css" rel="stylesheet" type="text/css">
 
-<div style="padding-top:2vw">
-    <div class="row">
-        <h3 class="col-4 offset-4">Datos de empresa</h3>
-        <a class="col-3 ancla-editar" asp-action="Edit" asp-route-id="@Model.Id"><img src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
-    </div>
-    <div class="row">
-        <partial name="_MiperfilPV" model="Model" />
-        <div class="col-7 offset-1 cuadro-vendedor">
-            @*Cuadro blanco*@
-            <div class="row">
-                <div class="col-4 div-datos-vendedor">
-                    <h5>Nombre de empresa</h5>
-                    <p class="texto-caja-perfil">@Model.NombreDeEmpresa</p>
+<cache enabled="false">
+
+    <div style="padding-top:2vw">
+        <div class="row">
+            <h3 class="col-4 offset-4">Datos de empresa</h3>
+            <a class="col-3 ancla-editar" asp-action="Edit" asp-route-id="@Model.Id"><img src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
+        </div>
+        <div class="row">
+            <partial name="_MiperfilPV" model="Model" />
+            <div class="col-7 offset-1 cuadro-vendedor">
+                @*Cuadro blanco*@
+                <div class="row">
+                    <div class="col-4 div-datos-vendedor">
+                        <h5>Nombre de empresa</h5>
+                        <p class="texto-caja-perfil">@Model.NombreDeEmpresa</p>
+                    </div>
+                    <div class="col-4 div-datos-vendedor">
+                        <h5>Página web</h5>
+                        <p class="texto-caja-perfil">@Model.Paginaweb</p>
+                    </div>
+                    <div class="col-4 div-datos-vendedor">
+                        <h5>Teléfono</h5>
+                        <p class="texto-caja-perfil">@Model.Telefono</p>
+                    </div>
                 </div>
-                <div class="col-4 div-datos-vendedor">
-                    <h5>Página web</h5>
-                    <p class="texto-caja-perfil">@Model.Paginaweb</p>
+                <div class="row">
+                    <div class="col-3 div-datos-vendedor">
+                        <h5>País</h5>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Pais</p>
+                    </div>
+                    <div class="col-3 div-datos-vendedor">
+                        <h5>Provincia</h5>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Provincia</p>
+                    </div>
+                    <div class="col-3 div-datos-vendedor">
+                        <h5>Población</h5>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Poblacion</p>
+                    </div>
+                    <div class="col-2 offset-1 div-datos-vendedor">
+                        <h5>CP</h5>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.CP</p>
+                    </div>
                 </div>
-                <div class="col-4 div-datos-vendedor">
-                    <h5>Teléfono</h5>
-                    <p class="texto-caja-perfil">@Model.Telefono</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3 div-datos-vendedor">
-                    <h5>País</h5>
-                    <p class="texto-caja-perfil">@vendedorUbicacionVM.Pais</p>
-                </div>
-                <div class="col-3 div-datos-vendedor">
-                    <h5>Provincia</h5>
-                    <p class="texto-caja-perfil">@vendedorUbicacionVM.Provincia</p>
-                </div>
-                <div class="col-3 div-datos-vendedor">
-                    <h5>Población</h5>
-                    <p class="texto-caja-perfil">@vendedorUbicacionVM.Poblacion</p>
-                </div>
-                <div class="col-2 offset-1 div-datos-vendedor">
-                    <h5>CP</h5>
-                    <p class="texto-caja-perfil">@vendedorUbicacionVM.CP</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 div-datos-vendedor">
-                    <h5>Calle</h5>
-                    <p class="texto-caja-perfil">@vendedorUbicacionVM.Calle</p>
-                </div>
-                <div class="col-2 offset-1 div-datos-vendedor">
-                    <h5>Nº</h5>
-                    <p class="texto-caja-perfil">@vendedorUbicacionVM.Numero</p>
-                </div>
-                <div class="col-2 offset-1 div-datos-vendedor">
-                    <h5>Letra</h5>
-                    <p class="texto-caja-perfil">@vendedorUbicacionVM.Letra</p>
+                <div class="row">
+                    <div class="col-6 div-datos-vendedor">
+                        <h5>Calle</h5>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Calle</p>
+                    </div>
+                    <div class="col-2 offset-1 div-datos-vendedor">
+                        <h5>Nº</h5>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Numero</p>
+                    </div>
+                    <div class="col-2 offset-1 div-datos-vendedor">
+                        <h5>Letra</h5>
+                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Letra</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+
+</cache>

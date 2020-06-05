@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace DEFINITIVO.Areas.Identity.Pages.Account
 {
@@ -18,14 +19,17 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IMemoryCache _memoryCache;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            IMemoryCache memoryCache)
         {
             _userManager = userManager;
+            _memoryCache = memoryCache;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -88,6 +92,8 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
                     //return LocalRedirect(returnUrl);
+                    _memoryCache.Remove("ProductosForIndex2");
+                    _memoryCache.Remove("Categorias");
                     return RedirectToAction("Index2", "Productos");
                 }
                 if (result.RequiresTwoFactor)

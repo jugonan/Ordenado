@@ -47,6 +47,7 @@
 </head>
 <body id="mainDiv" class="accordion">
     <header>
+        <cache enabled="false">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" id="navbarPrincipal">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
@@ -80,13 +81,14 @@
                         @if (User.IsInRole("vendedor"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Vendedores" asp-action="Misproductos">Gestionar Productos</a>
+                                <a class="nav-link" asp-area="" asp-controller="Vendedores" asp-action="Misproductos2">Gestionar Productos</a>
                             </li>
                         }
                     </ul>
                 </div>
             </div>
         </nav>
+        </cache>
 
         <!-- Categorias ocultas que se despliegan al hacer click en "Categorías" -->
         @{

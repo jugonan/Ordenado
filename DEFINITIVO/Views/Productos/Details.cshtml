@@ -42,18 +42,18 @@
                         <div title="1" class="carousel-item active">
                             <img src="~/Productos/GetImage1/@Model.Id" class="d-block w-100" alt="Imagen número 1 del producto">
                         </div>
-                        @if (Model.ImagenesProducto.Imagen2 != null)
-                        {
-                            <div title="2" class="carousel-item">
-                                <img src="~/Productos/GetImage2/@Model.Id" class="d-block w-100" alt="Imagen número 2 del producto">
-                            </div>
-                        }
-                        @if (Model.ImagenesProducto.Imagen3 != null)
-                        {
-                            <div title="3" class="carousel-item">
-                                <img src="~/Productos/GetImage3/@Model.Id" class="d-block w-100" alt="Imagen número 3 del producto">
-                            </div>
-                        }
+                        @*@if (Model.ImagenesProducto.Imagen2 != null)*@
+
+                        <div title="2" class="carousel-item">
+                            <img src="~/Productos/GetImage2/@Model.Id" class="d-block w-100" alt="Imagen número 2 del producto">
+                        </div>
+
+                        @*@if (Model.ImagenesProducto.Imagen3 != null)*@
+
+                        <div title="3" class="carousel-item">
+                            <img src="~/Productos/GetImage3/@Model.Id" class="d-block w-100" alt="Imagen número 3 del producto">
+                        </div>
+
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -66,14 +66,14 @@
                 </div>
                 <div class="row" id="div-de-thumbNails">
                     <img title="1" src="~/Productos/GetImage1/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 1 del producto" class="img-thumbnail-carousel">
-                    @if (Model.ImagenesProducto.Imagen2 != null)
-                    {
-                        <img title="2" src="~/Productos/GetImage2/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 2 del producto" class="img-thumbnail-carousel">
-                    }
-                    @if (Model.ImagenesProducto.Imagen3 != null)
-                    {
-                        <img title="3" src="~/Productos/GetImage3/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 3 del producto" class="img-thumbnail-carousel">
-                    }
+                    @*@if (Model.ImagenesProducto.Imagen2 != null)*@
+
+                    <img title="2" src="~/Productos/GetImage2/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 2 del producto" class="img-thumbnail-carousel">
+
+                    @*@if (Model.ImagenesProducto.Imagen3 != null)*@
+
+                    <img title="3" src="~/Productos/GetImage3/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 3 del producto" class="img-thumbnail-carousel">
+
                 </div>
                 <div>
                     <h5>El producto</h5>

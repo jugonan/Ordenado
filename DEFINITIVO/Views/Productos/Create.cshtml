@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Producto.FechaValidez" class="control-label"></label>
-                <input type="date" asp-for="Producto.FechaValidez" class="form-control" value="2020-11-10" id="fecha-introducida" />
+                <input type="date" asp-for="Producto.FechaValidez" class="form-control" value="2020-11-20" id="fecha-introducida" />
                 <span asp-validation-for="Producto.FechaValidez" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input class="form-control" id="horario-introducida" />
+                <input class="form-control" id="horario-introducida" placeholder="Lu-Vi de 8 a 18 hs..." />
                 <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="horario-introducidaBtn">+ añadir horario</button>
@@ -73,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input class="form-control" id="reserva-introducida" />
+                <input class="form-control" id="reserva-introducida" placeholder="Debe solicitarla 48hs antes..." />
                 <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="reserva-introducidaBtn">+ añadir reserva</button>
@@ -82,7 +82,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input class="form-control" id="entrega-introducida" />
+                <input class="form-control" id="entrega-introducida" placeholder="Envío no incluido..."/>
                 <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="entrega-introducidaBtn">+ añadir entrega</button>
@@ -91,7 +91,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input class="form-control" id="recogida-introducida" />
+                <input class="form-control" id="recogida-introducida" placeholder="Solo con cita previa...."/>
                 <span class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="recogida-introducidaBtn">+ añadir recogida</button>
@@ -100,7 +100,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input asp-for="Producto.Condiciones" class="form-control" id="otros-introducido" />
+                <input asp-for="Producto.Condiciones" class="form-control" id="otros-introducido" placeholder="Otra información importante..."/>
                 <span asp-validation-for="Producto.Condiciones" class="text-danger"></span>
                 <div class="row">
                     <button type="button" class="btn btn-link col-5" id="otros-introducidoBtn">+ añadir</button>

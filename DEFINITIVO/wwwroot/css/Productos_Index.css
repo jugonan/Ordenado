@@ -79,8 +79,6 @@ figure img {
     text-align: center;
     z-index: 4;
     padding: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
     height: inherit;
     background-color: #F7F6F2;
 }
@@ -99,7 +97,7 @@ figure img {
 .item-box-blog-date {
     position: absolute;
     z-index: 5;
-    padding: 4px 20px;
+    padding: 6px 15px;
     top: -20px;
     right: 8px;
     background-color: #F21B6D;

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace DEFINITIVO.Areas.Identity.Pages.Account
@@ -15,11 +16,13 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
+        private readonly IMemoryCache _memoryCache;
 
-        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger, IMemoryCache memoryCache)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _memoryCache = memoryCache;
         }
 
         public void OnGet()
@@ -29,6 +32,8 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
+            _memoryCache.Remove("ProductosForIndex2");
+            _memoryCache.Remove("Categorias");
             _logger.LogInformation("User logged out.");
             if (returnUrl == "saleYEntra")
             {
@@ -42,7 +47,7 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    return RedirectToPage();
+                    return LocalRedirect("/Productos/Index2");
                 }
             }
         }

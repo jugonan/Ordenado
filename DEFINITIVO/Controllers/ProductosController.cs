@@ -11,9 +11,9 @@ using DEFINITIVO.Services;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using System;
-using Heldu.Logic.Services;
 using Microsoft.AspNetCore.Http;
-using System.IO;
+using System.Diagnostics;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace DEFINITIVO.Controllers
 {
@@ -32,6 +32,7 @@ namespace DEFINITIVO.Controllers
         private readonly IReviewsService _reviewsService;
         private readonly IHelperService _helperService;
         private readonly IImagenesProductosService _imagenesProductosService;
+        private readonly IMemoryCache _memoryCache;
 
         public ProductosController(
             ApplicationDbContext context,
@@ -47,7 +48,8 @@ namespace DEFINITIVO.Controllers
             IProductosVendedoresService productosVendedoresService,
             IReviewsService reviewsService,
             IHelperService helperService,
-            IImagenesProductosService imagenesProductosService)
+            IImagenesProductosService imagenesProductosService,
+            IMemoryCache memoryCache)
 
         {
             _userManager = userManager;
@@ -63,8 +65,10 @@ namespace DEFINITIVO.Controllers
             _reviewsService = reviewsService;
             _helperService = helperService;
             _imagenesProductosService = imagenesProductosService;
+            _memoryCache = memoryCache;
         }
 
+        //[OutputCache(Duration = 6000, VaryByParam ="postalCode", VaryByHeader = "User-Agent;From")]
         public async Task<IActionResult> Index2(string postalCode)
         {
             if (string.IsNullOrEmpty(postalCode))
@@ -90,14 +94,29 @@ namespace DEFINITIVO.Controllers
             ViewData["PostalCode"] = cp;
             ViewData["City"] = city;
 
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
-            List<Producto> listaProductos = await _productosService.GetProductos();
-            List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
-            ProductosForIndex2VM listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+            List<Categoria> listaCategorias;
+            List<Producto> listaProductos;
+            List<ProductoCategoria> listaProductosCategorias;
+            ProductosForIndex2VM listasListaProductos;
 
-            //ViewData["PostalCodeByIP"] = PostalCodeFromIP;
+            if (!_memoryCache.TryGetValue("ProductosForIndex2", out listasListaProductos))
+            {
+                listaCategorias = await _categoriasService.GetCategorias();
+                listaProductos =  await _productosService.GetProductos();
+                listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
+                listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+                _memoryCache.Set("Categorias", listaCategorias);
+                _memoryCache.Set("ProductosForIndex2", listasListaProductos);
+            }
+            listasListaProductos = _memoryCache.Get("ProductosForIndex2") as ProductosForIndex2VM;
+            listaCategorias = _memoryCache.Get("Categorias") as List<Categoria>;
+
             ViewData["Categorias"] = listaCategorias;
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.Elapsed);
             return View(listasListaProductos);
         }
         public async Task<IActionResult> Details(int? id)
@@ -150,7 +169,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor, List<IFormFile> Imagen1, List<IFormFile> Imagen2, List<IFormFile> Imagen3)
         {
             Producto producto = productoCategoriaVM.Producto;
-            await _productosService.CreateProductoPost(producto);
+            _productosService.CreateProductoPost(producto);
 
             var img1 = await _imagenesProductosService.AgregarImagenesBlob(Imagen1);
             var img2 = await _imagenesProductosService.AgregarImagenesBlob(Imagen2);
@@ -193,6 +212,8 @@ namespace DEFINITIVO.Controllers
                 await _productoCategoriasService.CreateProductoCategoriaPost(newProdCat);
                 return RedirectToAction("Create", "OpcionesProductos", new { productoId = producto.Id });
             }
+
+            _memoryCache.Remove("ProductosForIndex2");
             return View(producto);
         }
 
@@ -254,8 +275,9 @@ namespace DEFINITIVO.Controllers
                 }
                 return RedirectToAction("Modificado", "Vendedores");
             }
+            _memoryCache.Remove("ProductosForIndex2");
             return View(producto);
-            }
+        }
 
         public async Task<IActionResult> Delete(int? id)
         {
@@ -281,6 +303,7 @@ namespace DEFINITIVO.Controllers
             Producto producto = await _productosService.GetProductoById(id);
             _messagesService.SetShowMessage(true);
             _messagesService.SetMessage($"El producto '{producto.Titulo.ToUpper()}' ha sido eliminado!");
+            _memoryCache.Remove("ProductosForIndex2");
             return RedirectToAction(nameof(Index2));
         }
 
@@ -315,7 +338,8 @@ namespace DEFINITIVO.Controllers
         {
             return RedirectToAction("Index2", "Productos", new { postalCode = inputPostalCode });
         }
-
+        
+        [OutputCache(Duration =600,VaryByParam ="Id")]
         public async Task<IActionResult> GetImage1(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetMainImage(id);
