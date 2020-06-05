@@ -226,10 +226,14 @@ figure img {
 
 .label-container {
     position: fixed;
-    bottom: 48px;
-    right: 105px;
+    bottom: 8vw;
+    right: 1vw;
     display: table;
     visibility: hidden;
+}
+
+.label-container div {
+
 }
 
 .label-text {
@@ -259,10 +263,19 @@ a.floating-button:hover + div.label-container {
     opacity: 1;
 }
 
+.add-producto-bubble {
+    font-size: 3vw;
+    font-weight: bold;
+    opacity:0.9;
+}
 
-#modificarCiudad{
-    cursor:pointer;
-    color:darkblue;
+.add-producto-bubble:hover {
+    text-decoration:none;
+}
+
+#modificarCiudad {
+    cursor: pointer;
+    color: darkblue;
 }
 #ubicacion {
     text-align: center;

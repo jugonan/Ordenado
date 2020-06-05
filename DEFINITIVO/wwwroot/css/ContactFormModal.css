@@ -1,16 +1,6 @@
-﻿
-/*h1,
-p {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding: 1em 0;
+﻿* {
+    font-family: 'Open Sans Condensed', sans-serif;
 }
-
-p {
-    padding: 0.5em 0;
-}*/
-
 .left {
     float: left;
 }
@@ -40,19 +30,19 @@ p {
     transition: height 0.5s ease, width 0.5s ease 0.5s;
 }
 
-    .formContacto h2 {
-        width: 100%;
-        text-align: center;
-        color: #333;
-        font-size: 2rem;
-        margin: 1.5rem 0 3rem;
-    }
+.formContacto h2 {
+    width: 100%;
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin: 1.5rem 0 3rem;
+}
 
-    .formContacto formContacto {
-        max-height: 90%;
-        height: 75vh;
-        z-index:999;
-    }
+.formContacto formContacto {
+    max-height: 90%;
+    height: 75vh;
+    z-index:999;
+}
 
 @media (max-width: 35em) {
     .formContacto formContacto {
@@ -148,12 +138,13 @@ p {
     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
-    .formContacto .closeFormLabel:hover, .formContacto .closeFormLabel:focus,
-    .formContacto .sendForm:hover,
-    .formContacto .sendForm:focus {
-        background-color: #cccccc;
-        border-color: #333;
-    }
+.closeFormLabel:hover {
+    background-color: #e46464;
+}
+
+.sendForm:hover {
+    background-color: #67dd67;
+}
 
 @media (max-width: 35em) {
     .formContacto .closeFormLabel,
