@@ -127,7 +127,7 @@ namespace DEFINITIVO.Controllers
                     await _opcionesProductosService.CreateOpcionProductoPost(opcionProducto);
 
                 }
-                if (opcionProductoCreateVM.OpcionProducto3 != null)
+                if (opcionProductoCreateVM.OpcionProducto3 != null && opcionProductoCreateVM.OpcionProducto3 != "undefined")
                 {
                     OpcionProducto opcionProducto = _opcionesProductosService.crearDesdeJson(opcionProductoCreateVM.OpcionProducto3, opcionProductoCreateVM.Producto.Id);
                     await _opcionesProductosService.CreateOpcionProductoPost(opcionProducto);
