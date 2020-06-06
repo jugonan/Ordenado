@@ -23,6 +23,7 @@ namespace DEFINITIVO.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly MessagesService _messagesService;
         private readonly IProductosService _productosService;
+        private readonly IOpcionesProductosService _opcionesProductosService;
         private readonly IVisitasService _VisitasService;
         private readonly ICategoriasService _categoriasService;
         private readonly IProductoCategoriasService _productoCategoriasService;
@@ -48,6 +49,7 @@ namespace DEFINITIVO.Controllers
             IProductosVendedoresService productosVendedoresService,
             IReviewsService reviewsService,
             IHelperService helperService,
+            IOpcionesProductosService opcionesProductosService,
             IImagenesProductosService imagenesProductosService,
             IMemoryCache memoryCache)
 
@@ -64,6 +66,7 @@ namespace DEFINITIVO.Controllers
             _productosVendedoresService = productosVendedoresService;
             _reviewsService = reviewsService;
             _helperService = helperService;
+            _opcionesProductosService = opcionesProductosService;
             _imagenesProductosService = imagenesProductosService;
             _memoryCache = memoryCache;
         }
@@ -168,8 +171,14 @@ namespace DEFINITIVO.Controllers
         [Authorize(Roles = "admin,vendedor")]
         public async Task<IActionResult> Create(ProductoCategoriaVM productoCategoriaVM, int? idVendedor, List<IFormFile> Imagen1, List<IFormFile> Imagen2, List<IFormFile> Imagen3)
         {
-            Producto producto = productoCategoriaVM.Producto;
-            _productosService.CreateProductoPost(producto);
+            Producto producto = new Producto()
+            {
+                Titulo = productoCategoriaVM.Producto.Titulo,
+                Descripcion = productoCategoriaVM.Producto.Descripcion,
+                Condiciones = productoCategoriaVM.Producto.Condiciones,
+                FechaValidez = productoCategoriaVM.Producto.FechaValidez
+            };
+            await _productosService.CreateProductoPost(producto);
 
             var img1 = await _imagenesProductosService.AgregarImagenesBlob(Imagen1);
             var img2 = await _imagenesProductosService.AgregarImagenesBlob(Imagen2);
@@ -343,7 +352,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> GetImage1(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetMainImage(id);
-            if (imagen != null)
+            if (imagen.Length != 0)
                 return File(imagen, "image/jpeg");
             else
                 return null;
@@ -351,7 +360,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> GetImage2(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetSecondImage(id);
-            if (imagen != null)
+            if (imagen.Length != 0)
                 return File(imagen, "image/jpeg");
             else
                 return null;
@@ -359,16 +368,40 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> GetImage3(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetThirdImage(id);
-            if (imagen != null)
+            if (imagen.Length != 0)
                 return File(imagen, "image/jpeg");
             else
                 return null;
         }
-        public async Task<IActionResult> Detalles()
+        public async Task<IActionResult> Detalles(int? id)
         {
-            string idUsuario = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.GetVendedorByIdentityUserId(idUsuario);
-            return View(vendedor);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Producto producto = await _productosService.GetProductoById(id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            if (User.IsInRole("cliente"))
+            {
+                //Genero una nueva transacción con los datos del usuario, el producto y el vendedor
+                Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
+                ProductoVendedor productoVendedor = await _productosVendedoresService.ProductoVendedorByProductoId(id);
+                await _VisitasService.CreateVisitaWithUsuarioAndProductoVendedor(usuario, productoVendedor);
+                ViewData["Usuario"] = usuario;
+            }
+
+            //Modifico el producto actual agregando una unidad a la columa "CantidadVisitas" de la tabla
+            await _productosService.AddCantidadVisitasProductoById(id);
+            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdeProducto(id);
+            List<OpcionProducto> opcionesProductos = await _opcionesProductosService.GetOpcionProductoById(id);
+            ViewData["Vendedor"] = vendedor;
+            ViewData["OpcionesProductos"] = opcionesProductos;
+            return View(producto);
         }
     }
 }

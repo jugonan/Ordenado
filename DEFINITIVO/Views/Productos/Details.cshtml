@@ -65,13 +65,13 @@
                 </div>
                 <div class="row" id="div-de-thumbNails">
                     <img title="1" src="~/Productos/GetImage1/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 1 del producto" class="img-thumbnail-carousel">
-                    @*@if (Model.ImagenesProducto.Imagen2 != null)*@
 
+                    @*@if (Model.ImagenesProducto.Imagen2 != null)*@
                     <img title="2" src="~/Productos/GetImage2/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 2 del producto" class="img-thumbnail-carousel">
 
                     @*@if (Model.ImagenesProducto.Imagen3 != null)*@
 
-                    <img title="3" src="~/Productos/GetImage3/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 3 del producto" class="img-thumbnail-carousel">
+                    <img title="3" src="~/Productos/GetImage3/@Model.Id" onerror="this.onerror = null; this.class = 'd-none'"; style="width:150px; height:150px;" alt="Imagen número 3 del producto" class="img-thumbnail-carousel">
 
                 </div>
                 <div>

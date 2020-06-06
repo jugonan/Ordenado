@@ -160,5 +160,15 @@
 //            imagenesCarousel[numeroImagen].classList.toggle('active');
 //        })
 //    }
-    
+
 //}
+
+let imagenes;
+window.addEventListener('DOMContentLoaded', function () {
+    imagenes = document.getElementsByClassName('img-thumbnail-carousel');
+    for (let i = 0; i < imagenes.length; i++) {
+        imagenes[i].addEventListener('error', function () {
+            imagenes[i].classList.add('d-none');
+        });
+    }
+})

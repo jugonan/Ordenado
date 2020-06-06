@@ -191,7 +191,8 @@ namespace DEFINITIVO.Controllers
                 return NotFound();
             }
 
-            OpcionProducto opcionProducto = await _opcionesProductosService.GetOpcionProductoById(id);
+            OpcionProducto opcionProducto = await _opcionesProductosService.GetOpcionProductoByHisId(id);
+
             if (opcionProducto == null)
             {
                 return NotFound();
