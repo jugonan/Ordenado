@@ -54,14 +54,6 @@
                 </div>
             </div>
             <div class="col-4 ">
-                @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
-                {
-                    <div class="row h-25 precios-producto-detalles d-none">
-                        <p class="col-4 precio-inicial-opciones">@opcionesDeProducto.PrecioInicial€</p>
-                        <p class="col-3 precio-final-opciones">@opcionesDeProducto.PrecioFinal€</p>
-                        <p class="col-3 descuento-opciones">@opcionesDeProducto.Descuento</p>
-                    </div>
-                }
                 <div class="row">
                     <p>Media vendedor:</p>
                     <span class="fa fa-star checked"></span>
@@ -70,16 +62,46 @@
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span>
                 </div>
-                <div class="row">
-                    @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+                <div class="row precios-producto-detalles">
+                    <div class="col-3 precio-final-opciones">
+                        <div class="row">
+                            <p id="precio-final-producto">@Model.PrecioFinal</p>
+                            <p>€</p>
+                        </div>
+                    </div>
+                    <div class="col-4 precio-inicial-opciones">
+                        <div class="row">
+                            <p id="precio-inicial-producto">@Model.Precio</p>
+                            <p>€</p>
+                        </div>
+                    </div>
+                    <p class="col-5 descuento-opciones"></p>
+                </div>
+                <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
+                @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
                     {
-                        <p>@opcionesDeProducto.Descripcion</p>
-                    }
+                        <div class="row precios-producto-detalles d-none">
+                            <p class="col-4 precio-inicial-opciones">@opcionesDeProducto.PrecioInicial€</p>
+                            <p class="col-3 precio-final-opciones">@opcionesDeProducto.PrecioFinal€</p>
+                            <p class="col-3 descuento-opciones">@opcionesDeProducto.Descuento</p>
+                        </div>
+                    }*@
+                <div class="row">
+                    @*
+                        @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+                        {
+                            <p>@opcionesDeProducto.Descripcion</p>
+                        }
+                    *@
+                    <p>@Model.Descripcion</p>
+                </div>
+                <div class="row">
+                    <p id="row-fecha-validez">@Model.FechaValidez</p>
                 </div>
                 <div class="input-opciones-productos">
                     <form>
                         <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
-                        <label for="male">Opción nº1 de producto</label><br>
+                        <label for="male">@Model.Titulo</label><br>
                         @if (opcionesProductos.Count > 1)
                         {
                             <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
@@ -92,7 +114,10 @@
                         }
                     </form>
                 </div>
-                <p id="precio-compra">Total</p>
+                <div class="row precio-compra-ahorro">
+                    <p id="cantidad-ahorrada"></p>
+                    <p id="precio-compra">Total€</p>
+                </div>
                 <button class="btn boton-comprar-producto">Comprar</button>
             </div>
         </div>
@@ -110,20 +135,51 @@
             </div>
         </div>
         <div>
-            <div class="texto-ocultar d-none">
-                <p>
-                    Este es el texto que tenemos en la primera de las opciones con la explicación de los diferentes detalles
-                </p>
+            <div class="texto-ocultar">
+                <ul id="ul-condicion-horario">
+                    <li>Lu - vi: 9:00 - 17:00</li>
+                    <li>Sa - do: 11:00 - 15:00</li>
+                </ul>
+                <ul id="ul-condicion-reserva">
+                    <li>Se aceptan reservas</li>
+                    <li>Realizar reserva vía telefónica</li>
+                </ul>
+                <ul id="ul-condicion-entrega">
+                    <li>Entregas nacionales</li>
+                    <li>Entregas a domicilio</li>
+                </ul>
+                <ul id="ul-condicion-recogida">
+                    <li>Recogida en tienda física</li>
+                </ul>
+                <ul id="ul-condicion-otros">
+                    <li>Sólo un cupón por persona</li>
+                    <li>Cerrado la 2ª y 3ª semana de Agosto</li>
+                </ul>
             </div>
             <div class="texto-ocultar d-none">
-                <p>
-                    Este es el texto que tenemos en la primera de las opciones con la información del vendedor
-                </p>
+                <p>@vendedor.NombreDeEmpresa</p>
+                <p>@vendedor.Paginaweb</p>
+                <p>@vendedor.Telefono</p>
             </div>
             <div class="texto-ocultar d-none">
-                <p>
-                    Este es el texto que tenemos en la primera de las opciones con las opiniones de los usuarios
-                </p>
+                @if (reviews.Count() != 0)
+                {
+                    foreach (Review review in reviews)
+                    {
+                        <p>@review.Comentario</p>
+                        <p>@review.Fecha</p>
+                    }
+                }
+                else
+                {
+                    <p>
+                        Este producto aún no tiene ninguna review,
+                        @if (User.IsInRole("Cliente"))
+                        {
+                            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Sé el primero</button>
+                        }
+                    </p>
+                }
             </div>
         </div>
     </div>
