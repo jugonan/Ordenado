@@ -14,8 +14,26 @@
     </div>
     <div class="row">
         <partial name="_MiperfilPV" model="Model" />
-        <div class="col-7 offset-1">
+        <div class="col-7 offset-1" style="width: 66%;background-color: white;">
             <div class="row">
+                @if (Model.ProductoVendedor.Count != 0)
+                {
+                    @foreach (ProductoVendedor productoVendedor in Model.ProductoVendedor)
+                    {
+                        <div class="card col-sm-4">
+                            <img class="card-img-top" src="~/Productos/GetImage1/@productoVendedor.Producto.Id" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title titulo-producto">@productoVendedor.Producto.Titulo</h5>
+                                <p class="card-text descripcion-producto">@productoVendedor.Producto.Descripcion</p>
+                                <p class="card-text fecha-producto">@productoVendedor.Producto.FechaValidez</p>
+                                <div class="row precio-card-productos">
+                                    <p class="card-text precio-inicial">@productoVendedor.Producto.Precio €</p>
+                                    <p class="card-text precio-final">@productoVendedor.Producto.PrecioFinal €</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
                 <div class="card col-sm-4">
                     <img class="card-img-top" src="https://cdn.vitalisestetica.es/wp-content/uploads/2019/03/Tratamiento-facial-hombres-3.jpg" alt="2 sesiones de tratamiento facial">
                     <div class="card-body">
@@ -112,6 +130,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

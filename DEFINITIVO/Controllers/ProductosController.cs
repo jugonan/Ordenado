@@ -339,7 +339,7 @@ namespace DEFINITIVO.Controllers
             return RedirectToAction("Index2", "Productos", new { postalCode = inputPostalCode });
         }
         
-        [OutputCache(Duration =600,VaryByParam ="Id")]
+        [OutputCache(Duration =6000,VaryByParam ="Id")]
         public async Task<IActionResult> GetImage1(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetMainImage(id);

@@ -251,7 +251,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Misproductos2()
         {
             string vendedorId = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            Vendedor vendedor = await _vendedoresService.MisproductosVendedor(vendedorId);
             return View(vendedor);
         }
         public async Task<IActionResult> Opiniones2()
