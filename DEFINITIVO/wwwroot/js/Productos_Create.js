@@ -23,6 +23,7 @@ let crearProductoBTN;
 /* Primer evento para ejecutar toda la carga del JS cuando la página está cargada */
 window.addEventListener('DOMContentLoaded', function () {
     /* Estas funciones se ejecutan en Productos/Create */
+    unableEnterKey();
     obtenerTitulo();
     obtenerDescripcion();
     obtenerFecha();
@@ -379,3 +380,11 @@ function crearVM() {
 };
 
 /* Parte de la vista de OpcionesProductos Create */
+
+function unableEnterKey() {
+    window.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            window.alert('El botón "enter" está desactivado, utiliza el botón "Crear" por favor :)');
+        }
+    });
+}
