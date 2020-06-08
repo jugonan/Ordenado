@@ -14,11 +14,31 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
 
 */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
-    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 /* Added by JAF */
@@ -35,7 +55,6 @@ a.navbar-brand {
         color: white;
         padding: 14px 16px;
         background-color: inherit;
-        font-family: 'Open Sans Condensed', sans-serif;
         margin: 0;
     }
 
@@ -108,63 +127,11 @@ a {
         font-weight: 800;
     }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-.border-top {
-    border-top: 1px solid #e5e5e5;
-}
-
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
-}
 
 
 /* Cambios de CSS hechos por Galo */
 .btn-link .textType {
     color: black;
-}
-
-.navbar {
-    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #navbarPrincipal {
@@ -194,13 +161,11 @@ body {
 }
 
 .textType1 {
-    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1vw;
     color: whitesmoke !important;
 }
 
 .textType2 {
-    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1vw;
     color: whitesmoke !important;
 }
@@ -324,7 +289,7 @@ body {
 .subMenuCat {
     position: absolute;
     bottom: 0.5rem;
-    margin-left: 15%;
+    margin-left: 13%;
     width: 70%;
     height: 80%;
     align-items: center;
@@ -365,7 +330,6 @@ body {
 }
 
 .textType3 {
-    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1vw;
     color: whitesmoke !important;
     text-decoration: none !important;
@@ -381,30 +345,30 @@ body {
 .subMenuCon {
     position: absolute;
     bottom: 0.5rem;
-    margin-left: 15%;
+    margin-left: 13%;
     width: 70%;
     height: 80%;
     align-items: center;
     text-align: center;
     margin-bottom: -5px;
+    padding-inline-start: 0px;
 }
 
 
 
+/* -------------------- MODAL UBICACION  -------------------- */
+
 #ubicacion {
-    font-family: 'Open Sans Condensed', sans-serif;
     color: #1C2229;
     margin-top: 1vw;
     margin-bottom: 1vw;
 }
 
 #locationCity {
-    font-family: 'Open Sans Condensed', sans-serif;
     color: #F21B6D;
 }
 
 #inputModalPostalCode {
-    font-family: 'Open Sans Condensed', sans-serif;
     color: #1C2229;
 }
 
@@ -417,6 +381,7 @@ body {
     #modificarCiudad:hover {
         font-weight: 400;
     }
+/*   FIN MODAL UBICACION   */
 
 
 
@@ -425,7 +390,6 @@ body {
 /* LANDING BETA */
 
 .divLandingBeta {
-    font-family: 'Open Sans Condensed', sans-serif;
     text-align: center;
     color: #363537;
 }
@@ -462,3 +426,263 @@ body {
         font-weight: 800;
         cursor: pointer;
     }
+
+
+
+/*------------ FORMULARIO DE CONTACTO --------------*/
+.left{
+    float:left;
+}
+.right {
+    float:right;
+}
+.formContacto {
+    width: 0;
+    height: auto;
+    max-height: 65vh;
+    margin-left: 5%;
+    background: #d9d9d9;
+    overflow: hidden;
+    position: fixed;
+    z-index: 999;
+    -webkit-transition: height 0.5s ease, width 0.5s ease 0.5s;
+    transition: height 0.5s ease, width 0.5s ease 0.5s;
+}
+
+    .formContacto h2 {
+        width: 100%;
+        text-align: center;
+        color: #333;
+        font-size: 2rem;
+        margin: 1.5rem 0 3rem;
+    }
+
+    .formContacto formContacto {
+        max-height: 90%;
+        height: 75vh;
+        z-index: 999;
+    }
+
+@media (max-width: 35em) {
+    .formContacto formContacto {
+        height: auto;
+    }
+}
+
+.formContacto .section {
+    width: 40%;
+    margin: 0 5%;
+    height: calc(100% - 5rem);
+    max-height: 100%;
+}
+
+@media (max-width: 35em) {
+    .formContacto .section {
+        width: 90%;
+        height: auto;
+    }
+}
+
+.formContacto ::-webkit-input-placeholder,
+.formContacto :-moz-placeholder,
+.formContacto ::-moz-placeholder,
+.formContacto :-ms-input-placeholder {
+    color: #999;
+}
+
+.formContacto input[type="text"],
+.formContacto input[type="email"],
+.formContacto input[type="tel"],
+.formContacto textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+    color: #333;
+    -webkit-transition: border-color 0.5s ease;
+    transition: border-color 0.5s ease;
+}
+
+    .formContacto input[type="text"]:focus,
+    .formContacto input[type="email"]:focus,
+    .formContacto input[type="tel"]:focus,
+    .formContacto textarea:focus {
+        border-color: #333;
+    }
+
+    .formContacto input[type="text"]::invalid,
+    .formContacto input[type="email"]::invalid,
+    .formContacto input[type="tel"]::invalid,
+    .formContacto textarea::invalid {
+        border-color: #b31b1b;
+    }
+
+.formContacto input[type="text"],
+.formContacto input[type="email"],
+.formContacto input[type="tel"] {
+    height: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.formContacto textarea {
+    resize: none;
+    height: 10rem;
+    line-height: 1.5rem;
+}
+
+@media (max-width: 35em) {
+    .formContacto textarea {
+        height: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 2rem;
+    }
+}
+
+.formContacto .closeFormLabel,
+.formContacto .sendForm {
+    position: absolute;
+    bottom: 1rem;
+    width: 40%;
+    margin: 0 5%;
+    right: 0;
+    text-align: center;
+    border: 1px solid #999;
+    padding: 0.5rem;
+    background: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-transition: background-color 0.5s ease, border-color 0.5s ease;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.closeFormLabel:hover {
+    background-color: #e46464;
+    color:white;
+    font-weight:800;
+}
+
+.sendForm:hover {
+    background-color: #02A669;
+    color: white;
+    font-weight: 800;
+}
+
+@media (max-width: 35em) {
+    .formContacto .closeFormLabel,
+    .formContacto .sendForm {
+        position: relative;
+        width: 90%;
+        left: 0;
+        margin-top: 1em;
+    }
+}
+
+.formContacto .closeFormLabel {
+    left: 0;
+}
+
+@media (max-width: 35em) {
+    .formContacto .closeFormLabel {
+        bottom: 1rem;
+    }
+}
+
+input.showForm {
+    display: none;
+}
+
+    input.showForm:checked + .formContacto {
+        width: 90%;
+        height: 85%;
+        box-shadow: 4px 5px 5px 5px #a6a6a6;
+        overflow: auto;
+        -webkit-transition: width 0.5s ease, height 0.5s ease 0.5s;
+        transition: width 0.5s ease, height 0.5s ease 0.5s;
+    }
+
+.showFormLabel {
+    margin: 0;
+    cursor: pointer;
+    background: inherit;
+    z-index: 91;
+}
+
+
+@media (max-width: 35em) {
+    .showFormLabel {
+        width: 90%;
+        left: 5%;
+    }
+}
+/* FIN DE FORMULARIO DE CONTACTO*/
+
+
+
+
+/*---------------- BANNER POP UP ----------------*/
+.banner {
+    position: absolute;
+    z-index: 9999;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    display: none;
+}
+
+    .banner.active {
+        display: block;
+    }
+
+.banner-bottom {
+    left: 0;
+    right: 0;
+    bottom: 10px;
+}
+
+.banner-top {
+    left: 0;
+    right: 0;
+    top: 10px;
+}
+
+.banner-right {
+    right: 10px;
+    bottom: 10%;
+    min-height: 10vh;
+}
+
+.banner-left {
+    left: 10px;
+    bottom: 10%;
+    min-height: 10vh;
+}
+
+.alert-primary {
+    color: white;
+    background-color: #02A669;
+    border-color: #363537;
+}
+
+.alert-danger {
+    color: white;
+    background-color: #e46464;
+    border-color: #363537;
+}
+
+.banner-close {
+    position: absolute;
+    right: 1.5%;
+}
+
+    .banner-close:after {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        content: 'X';
+        color: white;
+        font-weight:800;
+    }
+/* FIN POP UP BANNER */

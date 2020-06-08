@@ -1,4 +1,4 @@
-﻿.banner {
+﻿/*.banner {
     position: absolute;
     z-index: 9999;
     padding: .75rem 1.25rem;
@@ -38,7 +38,7 @@
 
 .alert-primary {
     color: white;
-    background-color: rgba(0, 0, 255, 0.8); /*#cce5ff;*/
+    background-color: rgba(0, 0, 255, 0.8);
     border-color: #b8daff;
 }
 
@@ -59,4 +59,4 @@
         top: 50%;
         content: 'X';
         color: #69f;
-    }
+    }*/

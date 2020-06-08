@@ -1,7 +1,4 @@
-﻿/*
-let ancla;
-let form;
-*/
+﻿
 document.addEventListener('scroll', function () {
     let divCategorias = document.getElementById('divCategorias');
     divCategorias.classList.remove('show');
