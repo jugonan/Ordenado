@@ -67,5 +67,9 @@ namespace Heldu.Entities.Models
         public int CantidadVisitas { get; set; }
 
         public string Condiciones { get; set; }
+        public string Reserva { get; set; }
+        public string Horario { get; set; }
+        public string Entrega { get; set; }
+        public string Recogida { get; set; }
     }
 }
