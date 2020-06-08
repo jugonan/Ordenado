@@ -12,6 +12,7 @@ using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace Heldu.Logic.Services
@@ -19,9 +20,12 @@ namespace Heldu.Logic.Services
     public class HelperService : IHelperService
     {
         private readonly ApplicationDbContext _context;
-        public HelperService(ApplicationDbContext context)
+        private readonly IConfiguration _configuration;
+
+        public HelperService(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         //Genero una lista de 6 índices random entre 0 y la cantidad de productos de una categoría
@@ -59,16 +63,19 @@ namespace Heldu.Logic.Services
         {
             {
                 // Your hard-coded email values (where the email will be sent from), this could be define in a config file, etc.
-                var email = "heldubbk@gmail.com";
-                var password = "visualstudio";
+                string email = _configuration["SendEmail:emailAccount"];
+                string password = _configuration["SendEmail:passAccount"];
+                //Console.WriteLine(emailAccount);
+                //var email = "sender@heldu.eus";
+                //var password = "Heldu.2020";
 
                 // Your target (you may want to ensure that you have a property within your form so that you know who to send the email to
-                string address = "galo130@gmail.com";
+                string address = "galo@heldu.eus";
 
                 // Builds a message and necessary credentials
                 var loginInfo = new NetworkCredential(email, password);
                 var msg = new MailMessage();
-                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                var smtpClient = new SmtpClient("smtp.heldu.eus", 465);
 
                 // This email will be sent from you
                 msg.From = new MailAddress(email);

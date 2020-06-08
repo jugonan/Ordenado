@@ -90,7 +90,7 @@ namespace DEFINITIVO.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public async Task<IActionResult> FAQ()
+        public IActionResult FAQ()
         {
             return View();
         }
@@ -138,7 +138,7 @@ namespace DEFINITIVO.Controllers
             catch (Exception)
             {
                 _messagesService.SetShowMessage(true);
-                _messagesService.SetMessage($"No hemos podido gestionar su mensaje. Por favor contáctenos a: heldubbk@gmail.com. Gracias!");
+                _messagesService.SetMessage($"No hemos podido gestionar su mensaje. Por favor contáctenos a:  jon@heldu.eus | Gracias!");
                 return RedirectToAction("Index2", "Productos");
                 throw;
             }
