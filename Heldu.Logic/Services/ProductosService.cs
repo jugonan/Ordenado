@@ -73,7 +73,9 @@ namespace Heldu.Logic.Services
 
             foreach (Producto producto in listaProductos)
             {
-                if (producto.Titulo.ToLower().Contains(inputBuscar.ToLower()) || producto.Descripcion.ToLower().Contains(inputBuscar.ToLower()))
+                if (producto.Titulo.ToLower().Contains(inputBuscar.ToLower()))
+                    listaProductosEncontrados.Add(producto);
+                else if (producto.Descripcion != null && producto.Descripcion.ToLower().Contains(inputBuscar.ToLower()))
                     listaProductosEncontrados.Add(producto);
             }
             return listaProductosEncontrados;

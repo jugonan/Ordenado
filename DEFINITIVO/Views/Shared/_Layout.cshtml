@@ -19,15 +19,15 @@
     <title>@ViewData["Title"] - Heldu</title>
     <!-- Code for the favicon in every browser, size and OS  -->
     <meta name="application-name" content="Heldu" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="//fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet"/>
+
 
     <!-- Añadida una S al http-->
-    @*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link href="//fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+    @*<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+    @*<link href="//fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">*@
+    @*<link href="//fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap" rel="stylesheet">*@
 
     <!-- Scripts externos-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -89,7 +89,7 @@
                 @foreach (Categoria categoria in listaCategorias)
                 {
                     <li class="col itemCategoria">
-                        <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3">@categoria.Nombre.ToUpper()</a>
+                        <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3"id="Categoria_@categoria.Id">@categoria.Nombre.ToUpper()</a>
                     </li>
                 }
             </ul>
@@ -137,7 +137,7 @@
         <div class="collapse" id="divBuscador" data-parent="#mainDiv">
             @{ List<SelectListItem> catSelect = await CategoriasService.GetSelectListCategorias(); }
             <form asp-controller="Productos" asp-action="Search" id="formBuscador" class="form-inline">
-                <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="Ingrese lo que desea buscar" aria-label="Search" required minlength="3" /> en
+                <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="Ingrese lo que desea buscar" aria-label="Search" required minlength="3"/><span style="color:white;"> en </span> 
                 <select id="selecListBuscar" name="catSelected" asp-items="catSelect" class="form-control">
                 </select>
                 <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>

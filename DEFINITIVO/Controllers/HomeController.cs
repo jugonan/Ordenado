@@ -45,7 +45,7 @@ namespace DEFINITIVO.Controllers
             string id = _userManager.GetUserId(User);
             if (id == null)
             {
-                return RedirectToAction("Index2", "Productos");
+                return RedirectToAction("LandingBeta", "Home");
             }
             else
             {
@@ -143,6 +143,10 @@ namespace DEFINITIVO.Controllers
                 throw;
             }
 
+        }
+        public IActionResult LandingBeta()
+        {
+            return View();
         }
     }
 }

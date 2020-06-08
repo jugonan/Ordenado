@@ -1,14 +1,12 @@
 ﻿@model List<Producto>
 
 @using Microsoft.AspNetCore.Identity
-@using Heldu.Logic.Interfaces
 @using DEFINITIVO.Services
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
 @{
     ViewData["Title"] = "Productos";
-    IdentityUser activeUser = await UserManager.GetUserAsync(User);
     Categoria categoria = ViewBag.Categoria;
 }
 <link href="~/css/Producto_Categoria.css" rel="stylesheet" type="text/css">
@@ -20,13 +18,12 @@
     {
         <div class="col-3 contenedor-carta">
             <div class="card h-100 divCarta">
-                @*<img src="data:image/png;base64,@System.Convert.ToBase64String(producto.ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';" class="imagen-carta" alt="Imagen_1">*@
-                <img src="~/Productos/GetImage1/@producto.Id" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';" class="imagen-carta" alt="Imagen_1">
+                <img src="~/Productos/GetImage1/@producto.Id" onerror="this.onerror=null;this.src='https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png';" class="imagen-carta" alt="Imagen 1 del producto">
                 <div class="item-box-blog-date bg-blue-ui white">
                     <span class="mon"> <strike class="oldPrice">@producto.Precio &#8364 </strike><span class="precio-destacado"> @producto.PrecioFinal &#8364 </span></span>
                 </div>
                 <div class="cuerpo-carta">
-                    <a class="card-title" asp-action="Details" asp-route-id="@producto.Id">
+                    <a class="card-title" asp-action="Detalles" asp-route-id="@producto.Id">
                         @producto.Titulo
                     </a>
                     <p class="texto-carta">@producto.Descripcion</p>
@@ -42,7 +39,7 @@
                             }
                         </div>
                         <div class="mt">
-                            <a asp-action="Details" asp-route-id="@producto.Id" id="btnComprar" class="btn bg-blue-ui white read btnComprar">Comprar!</a>
+                            <a asp-action="Detalles" asp-route-id="@producto.Id" id="btnComprar" class="btn bg-blue-ui white read btnComprar">Comprar!</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +48,7 @@
     }
 </div>
 
-<script src="~/js/Producto_Categoria.js"></script>
+<script defer src="~/js/Producto_Categoria.js"></script>
 
 
 

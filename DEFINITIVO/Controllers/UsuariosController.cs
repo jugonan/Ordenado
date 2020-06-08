@@ -17,14 +17,19 @@ namespace DEFINITIVO.Controllers
         private readonly IUbicacionesUsuariosService _ubicacionesUsuarioService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IManejoProductosService _manejoProductosService;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-
-        public UsuariosController(IUsuariosService usuariosService, UserManager<IdentityUser> userManager, IUbicacionesUsuariosService ubicacionesUsuariosService, IManejoProductosService manejoProductosService)
+        public UsuariosController(IUsuariosService usuariosService,
+                                  UserManager<IdentityUser> userManager,
+                                  IUbicacionesUsuariosService ubicacionesUsuariosService,
+                                  IManejoProductosService manejoProductosService,
+                                  SignInManager<IdentityUser> signInManager)
         {
             _usuariosService = usuariosService;
             _userManager = userManager;
             _ubicacionesUsuarioService = ubicacionesUsuariosService;
             _manejoProductosService = manejoProductosService;
+            _signInManager = signInManager;
         }
         // GET: Usuarios
         public async Task<IActionResult> Index()
@@ -229,8 +234,9 @@ namespace DEFINITIVO.Controllers
         }
 
         // Acción casi inútil que sólo devuelve la vista
-        public IActionResult Inscrito()
+        public async Task<IActionResult> Inscrito()
         {
+            await _signInManager.SignOutAsync();
             return View();
         }
 

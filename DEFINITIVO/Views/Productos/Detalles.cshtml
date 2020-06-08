@@ -14,7 +14,7 @@
 <!-- Link que habilita las estrellas de valoración -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/css/Producto_Detalles.css" rel="stylesheet" type="text/css">
-<script defer src="~/js/Producto_Detalles.js"></script>
+@*<script defer src="~/js/Producto_Detalles.js"></script>*@
 
 <div class="row">
     <div class="col-10 offset-1">
@@ -41,14 +41,14 @@
                         <span class="sr-only">Next</span>
                     </a>
                     <div class="carousel-indicators">
-                        <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="0" class="active">
-                            <img src="~/Productos/GetImage1/@Model.Id">
+                        <a class="normal-thumbnail-carousel active" data-target="#carousel-thumb" data-slide-to="0">
+                            <img src="~/Productos/GetImage1/@Model.Id" onerror="this.onerror=null;this.src='https://i.ibb.co/gMsDrL9/NoImage.png';">
                         </a>
                         <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="1">
-                            <img src="~/Productos/GetImage2/@Model.Id">
+                            <img src="~/Productos/GetImage2/@Model.Id" onerror="this.onerror=null;this.src='https://i.ibb.co/gMsDrL9/NoImage.png';">
                         </a>
                         <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="2">
-                            <img src="~/Productos/GetImage3/@Model.Id">
+                            <img src="~/Productos/GetImage3/@Model.Id" onerror="this.onerror=null;this.src='https://i.ibb.co/gMsDrL9/NoImage.png';">
                         </a>
                     </div>
                 </div>

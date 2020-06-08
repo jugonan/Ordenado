@@ -29,16 +29,15 @@ a.navbar-brand {
     min-width: 9rem;
 }
 
- #div-cabecera-salir .anchor-miperfil {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: 'Open Sans Condensed', sans-serif;
-    margin: 0;
- }
+    #div-cabecera-salir .anchor-miperfil {
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: 'Open Sans Condensed', sans-serif;
+        margin: 0;
+    }
 
 .anchor-miperfil {
     width: 100%;
@@ -52,9 +51,9 @@ a.navbar-brand {
     transition: opacity 0.3s linear;
 }
 
-.desplegable-salir form {
-    padding: 12px 16px;
-}
+    .desplegable-salir form {
+        padding: 12px 16px;
+    }
 
 #div-cabecera-salir:hover .desplegable-salir {
     opacity: 1;
@@ -62,9 +61,16 @@ a.navbar-brand {
 }
 
 .boton-salir-usuario {
+    font-size: 1.2rem;
     color: #F21B6D;
-    padding-bottom:0px;
+    background-color: #F7F6F2;
+    padding: 6px;
 }
+
+    .boton-salir-usuario:hover {
+        font-size: 1.1rem;
+        font-weight: 800;
+    }
 
 #producto-vendedor-vacio {
     margin-top: 9em;
@@ -94,11 +100,13 @@ a {
     color: #F7F6F2 !important;
     margin: 0;
     text-wrap: none;
+    font-size: 1.2rem;
 }
 
-.nav-link:hover {
-    font-weight: 600;
-}
+    .nav-link:hover {
+        font-size: 1.1rem;
+        font-weight: 800;
+    }
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -107,7 +115,7 @@ html {
 }
 
 @media (min-width: 768px) {
-html {
+    html {
         font-size: 16px;
     }
 }
@@ -154,6 +162,7 @@ body {
 .btn-link .textType {
     color: black;
 }
+
 .navbar {
     font-family: 'Open Sans Condensed', sans-serif;
 }
@@ -219,7 +228,7 @@ body {
     background-color: #363537;
     transition: ease;
     transition-duration: 0.2s;
- }
+}
 
 #formBuscador {
     position: absolute;
@@ -257,20 +266,23 @@ body {
     transition: all .2s;
 }
 
-.btn-buscar:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.btn-buscar:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
 .btn-buscar {
-    background-color: #ff0;
-    color: #191919;
+    background-color: #F21B6D !important;
+    color: white !important;
+    opacity: 0.8 !important;
+    z-index: 902 !important;
 }
+
+    .btn-buscar:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        opacity:1!important;
+        font-weight:800;
+    }
+
+    .btn-buscar:active {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
 
 @keyframes moveInBottom {
     0% {
@@ -285,7 +297,8 @@ body {
 }
 
 #mainContainerLayout {
-    margin-top:3.5vw;
+    margin-top: 3.5vw;
+    margin-bottom: 3.5vw;
 }
 
 .navbar-nav a:visited ~ #mainContainerLayout {
@@ -318,6 +331,32 @@ body {
     text-align: center;
     margin-bottom: -5px;
 }
+/*Salud y Belleza*/
+#Categoria_1 {
+
+}
+/*Gastronomía*/
+#Categoria_2 {
+}
+/*Deportes y Actividades*/
+#Categoria_3 {
+}
+/*Formación*/
+#Categoria_4 {
+}
+/*Moda y Accesorios*/
+#Categoria_5 {
+    pointer-events: none;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+/*Alimentación*/
+#Categoria_6 {
+    pointer-events: none;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
 
 .itemCategoria {
     text-decoration: none;
@@ -375,6 +414,51 @@ body {
     font-weight: 200;
 }
 
-#modificarCiudad:hover {
-    font-weight: 400;
+    #modificarCiudad:hover {
+        font-weight: 400;
+    }
+
+
+
+
+
+/* LANDING BETA */
+
+.divLandingBeta {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    color: #363537;
 }
+
+    .divLandingBeta h1 {
+        font-size: 2.5vw;
+        color: #F21B6D;
+        font-weight: 800;
+        font-stretch: extra-expanded;
+    }
+
+    .divLandingBeta h3 {
+        font-size: 2vw;
+        color: #02A669;
+        font-weight: 800;
+        font-stretch: expanded;
+    }
+
+    .divLandingBeta p {
+        font-size: 1.5vw;
+        color: #363537;
+        font-weight: 800;
+    }
+
+    .divLandingBeta h4 {
+        font-size: 1.8vw;
+        color: #363537;
+    }
+
+    .divLandingBeta a {
+        font-size: 2vw;
+        color: #F21B6D;
+        text-decoration: none;
+        font-weight: 800;
+        cursor: pointer;
+    }

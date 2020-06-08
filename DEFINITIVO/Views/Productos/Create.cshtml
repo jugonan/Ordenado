@@ -22,7 +22,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger">(*) Campos obligatorios</div>
             <div class="form-group">
                 <label asp-for="Producto.Titulo" class="control-label"></label>
-                <input asp-for="Producto.Titulo" class="form-control" id="titulo-introducido" placeholder="Introduce el título de tu producto" />
+                <input asp-for="Producto.Titulo" class="form-control" id="titulo-introducido" placeholder="Introduce el título de tu producto" required/>
                 <span asp-validation-for="Producto.Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
