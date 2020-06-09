@@ -63,30 +63,33 @@ namespace Heldu.Logic.Services
         {
             {
                 // Your hard-coded email values (where the email will be sent from), this could be define in a config file, etc.
-                string email = _configuration["SendEmail:emailAccount"];
+                string sender = _configuration["SendEmail:emailAccount"];
                 string password = _configuration["SendEmail:passAccount"];
-                //Console.WriteLine(emailAccount);
-                //var email = "sender@heldu.eus";
-                //var password = "Heldu.2020";
+                string server = _configuration["SendEmail:Server"];
+                int port = Convert.ToInt32(_configuration["SendEmail:Port"]);
+
 
                 // Your target (you may want to ensure that you have a property within your form so that you know who to send the email to
-                string address = "galo@heldu.eus";
+                string address1 = "galo@heldu.eus";
+                string address2 = "jon@heldu.eus";
 
                 // Builds a message and necessary credentials
-                var loginInfo = new NetworkCredential(email, password);
+                var loginInfo = new NetworkCredential(sender, password);
                 var msg = new MailMessage();
-                var smtpClient = new SmtpClient("smtp.heldu.eus", 465);
+                var smtpClient = new SmtpClient(server, port);
 
                 // This email will be sent from you
-                msg.From = new MailAddress(email);
+                msg.From = new MailAddress(sender);
                 // Your target email address
-                msg.To.Add(new MailAddress(address));
+                msg.To.Add(new MailAddress(address1));
+                msg.CC.Add(new MailAddress(address2));
                 msg.Subject = asunto;
+               
                 // Build the body of your email using the Body property of your message
                 msg.Body = mensaje;
 
                 // Wires up and send the email
-                smtpClient.EnableSsl = true;
+                smtpClient.EnableSsl = true;                
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = loginInfo;
                 smtpClient.Send(msg);

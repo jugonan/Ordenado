@@ -19,6 +19,7 @@ let btnConfirmar = document.getElementById('botonConfirmar');
 let btnCancelar = document.getElementById('botonCancelar');
 let inputModalPostalCode = document.getElementById('inputPostalCode');
 let modifyLocation = document.getElementById('modificarCiudad');
+let modalRoot = document.getElementById('modal-root');
 
 
 function tryLocation() {
@@ -45,6 +46,7 @@ function GestionarModal() {
     })
     btnCancelar.addEventListener('click', CancelarModal);
     cruzSalir.addEventListener('click', CancelarModal);
+    modalRoot.addEventListener('click', CancelarModal);
     function CancelarModal() {
         localStorage.setItem("location", JSON.stringify(locationPC.innerText));
     }

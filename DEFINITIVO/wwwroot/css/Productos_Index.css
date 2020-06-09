@@ -53,7 +53,8 @@ figure img {
     .blog .carousel-indicators li {
         background: #708198;
         border-radius: 50%;
-        height: 3px;
+        height: 25px;
+        cursor:pointer;
     }
 
     .blog .carousel-indicators .active {

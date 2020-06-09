@@ -33,7 +33,7 @@
 
 @if (postalCode != "")
 {
-    <p id="ubicacion" class="alert-light">Mostrando productos para <span id="locationCity" >@city</span> - CP <span id="inputModalPostalCode">@postalCode</span><span> <a id="modificarCiudad" data-toggle="modal" data-target="#myModal"> (Modificar)</a></span> </p>
+    <p id="ubicacion" class="alert-light">Mostrando productos para <span id="locationCity">@city</span> - CP <span id="inputModalPostalCode">@postalCode</span><span> <a id="modificarCiudad" data-toggle="modal" data-target="#myModal"> (Modificar)</a></span> </p>
 }
 
 <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
@@ -72,8 +72,6 @@
                                                             <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364</span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                @*<figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>*@
-                                                                @*<figure> <img loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>*@
                                                                 <figure> <img loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
                                                             </a>
                                                         </div>
@@ -81,7 +79,7 @@
                                                             <!--Título-->
                                                             <div class="item-box-blog-heading">
                                                                 <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                   @listaProducto[j].Titulo
+                                                                    @listaProducto[j].Titulo
                                                                 </a>
                                                             </div>
                                                             <!--Cantidad-->
@@ -114,8 +112,6 @@
                                                             <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364 </span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                @*<figure> <img alt="Producto @listaProducto[j].Titulo" src="data:image/png;base64,@System.Convert.ToBase64String(listaProducto[j].ImagenProducto)" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>*@
-                                                                @*<figure> <img alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Imagen_no_disponible.svg/1200px-Imagen_no_disponible.svg.png';"> </figure>*@
                                                                 <figure> <img loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
                                                             </a>
                                                         </div>
@@ -204,28 +200,30 @@
 
 
 <!-- Modal de ubicación del usuario (Cuando ingresa por primera vez)-->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+<div id="modal-root">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" id="cruzSalirModal">&times;</button>
-                <h4><span class="glyphicon glyphicon-lock"></span> Mejoramos tu experiencia!</h4>
-            </div>
-            <div class="modal-body">
-                <h5>Te estamos mostrando productos para @city</h5>
-                <h5>Si no es correcto, indícanos tu código postal </h5>
-                <form role="form" asp-controller="Productos" asp-action="LocateVisitor">
-                    <div class="form-group">
-                        <label for="postaCode"><span class="glyphicon glyphicon-user"></span> Código Postal</label>
-                        <input type="text" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001 / 01001" maxlength="5" minlength="5" pattern="[0-9]{5}" required>
-                    </div>
-                    <button type="submit" class="btn btn-success btn-block" id="botonConfirmar"><span class="glyphicon glyphicon-off"></span> Confirmar </button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button id="botonCancelar" type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar </button>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" id="cruzSalirModal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-lock"></span> Mejoramos tu experiencia!</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>Te estamos mostrando productos para @city</h5>
+                    <h5>Si no es correcto, indícanos tu código postal </h5>
+                    <form role="form" asp-controller="Productos" asp-action="LocateVisitor">
+                        <div class="form-group">
+                            <label for="postaCode"><span class="glyphicon glyphicon-user"></span> Código Postal</label>
+                            <input type="text" class="form-control" id="inputPostalCode" name="inputPostalCode" placeholder="48001 / 01001" maxlength="5" minlength="5" pattern="[0-9]{5}" required>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block" id="botonConfirmar"><span class="glyphicon glyphicon-off"></span> Confirmar </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="botonCancelar" type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar </button>
+                </div>
             </div>
         </div>
     </div>
