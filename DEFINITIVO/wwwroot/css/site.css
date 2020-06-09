@@ -29,10 +29,37 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
+    height: 4vw;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
+#footerInfo {
+    padding-top: 20px;
+    margin: 0;
+    overflow:hidden;
+}
+    #footerInfo h5 {
+        font-size: 1rem;
+    }
+
+    #footerInfo a {
+        font-size: 1rem;
+        color: white;
+        font-weight: 800;
+        text-decoration:none;
+        cursor:pointer;
+    }
+#footerLeft {
+    float: left;
+    padding-left: 20%;
+}
+
+#footerRight {
+    float: right;
+    padding-right: 25%;
+}
 
 
 a.navbar-brand {
@@ -141,8 +168,8 @@ a {
 }
 
 #navbar-logo {
-    height: 3.5rem;
-    color: #F21B6D;
+    height: 2.5rem;
+    /*    color: #F21B6D;*/
 }
 
 .nav-item {
@@ -240,8 +267,8 @@ a {
 
     .btn-buscar:hover {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        opacity:1!important;
-        font-weight:800;
+        opacity: 1 !important;
+        font-weight: 800;
     }
 
     .btn-buscar:active {
@@ -298,7 +325,6 @@ a {
 }
 /*Salud y Belleza*/
 #Categoria_1 {
-
 }
 /*Gastronomía*/
 #Categoria_2 {
@@ -335,6 +361,8 @@ a {
     text-decoration: none !important;
     font-weight: 400;
     text-transform: uppercase;
+    overflow: visible;
+    white-space: nowrap;
 }
 
     .textType3:hover, .textType3:focus {
@@ -430,12 +458,14 @@ a {
 
 
 /*------------ FORMULARIO DE CONTACTO --------------*/
-.left{
-    float:left;
+.left {
+    float: left;
 }
+
 .right {
-    float:right;
+    float: right;
 }
+
 .formContacto {
     width: 0;
     height: auto;
@@ -559,8 +589,8 @@ a {
 
 .closeFormLabel:hover {
     background-color: #e46464;
-    color:white;
-    font-weight:800;
+    color: white;
+    font-weight: 800;
 }
 
 .sendForm:hover {
@@ -683,6 +713,6 @@ input.showForm {
         top: 50%;
         content: 'X';
         color: white;
-        font-weight:800;
+        font-weight: 800;
     }
 /* FIN POP UP BANNER */

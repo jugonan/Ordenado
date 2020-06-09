@@ -25,8 +25,8 @@
     @*Con este funcionan los botones del carrousel del Index2
         <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
 
-    <link rel="icon" type="image/png" href="~/wwwroot/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="~/wwwroot/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="~/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/favicon-16x16.png" sizes="16x16" />
 
 </head>
 <body id="mainDiv" class="accordion">
@@ -35,7 +35,7 @@
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" id="navbarPrincipal">
                 <div class="container">
                     <a class="navbar-brand" asp-area="" asp-controller="Productos" asp-action="Index2">
-                        <img id="navbar-logo" src="~/img/home.png" alt="Navigation home logo" />
+                        <img id="navbar-logo" src="~/img/helduLogo.png" alt="Home Logo" />
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -148,8 +148,21 @@
     </div>
 
     <footer class="border-top footer text-muted bg-dark">
-        <div class="container">
-            Copyright &copy; Heldu 2020 - <a href="https://www.linkedin.com/in/jon-ander-fidalgo/"> JAF </a> & <a href="https://www.linkedin.com/in/galo-garcia-pugliese/"> GGP </a> - <a asp-area="" asp-controller="Home" asp-action="Privacy">Políticas de privacidad</a>
+        <div id="footerInfo">
+            <div id="footerLeft">
+                <h5>
+                    Copyright &copy; Heldu 2020  -
+                    <span><a href="https://www.linkedin.com/in/jon-ander-fidalgo/"> JAF </a></span>
+                    <span>   &   </span>
+                    <span><a href="https://www.linkedin.com/in/galo-garcia-pugliese/"> GGP </a></span>
+                    <span>   -   </span>
+                    <span> | Contactos: jon@heldu.eus  -  galo@heldu.eus </span>
+                    <span> - 666 60 81 99 </span>
+                </h5>
+            </div>
+            <div id="footerRight">
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Políticas de privacidad</a>
+            </div>
         </div>
     </footer>
 
