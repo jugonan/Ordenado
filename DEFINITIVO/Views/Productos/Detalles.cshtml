@@ -75,7 +75,9 @@
                             <p> €</p>
                         </div>
                     </div>
-                    <p class="col-5 descuento-opciones"></p>
+                    <div class="col-5">
+                        <p class="descuento-opciones"></p>
+                    </div>
                 </div>
                 <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
                 @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
@@ -95,9 +97,6 @@
                     *@
                     <p>@Model.Descripcion</p>
                 </div>
-                <div class="row">
-                    <p id="row-fecha-validez">@Model.FechaValidez</p>
-                </div>
                 <div class="input-opciones-productos">
                     <form>
                         <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
@@ -114,9 +113,13 @@
                         }
                     </form>
                 </div>
-                <div class="row precio-compra-ahorro">
-                    <p id="cantidad-ahorrada"></p>
+                <div class="row div-fecha-validez">
+                    <p>Válido hasta: </p>
+                    <p id="fecha-validez">@Model.FechaValidez</p>
+                </div>
+                <div class="precio-compra-ahorro">
                     <p id="precio-compra">Total€</p>
+                    <p id="cantidad-ahorrada"></p>
                 </div>
                 <button class="btn boton-comprar-producto" onclick="this.disabled=true">Comprar</button>
             </div>
@@ -134,7 +137,7 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="contenedor-texto-ocultar">
             <div class="texto-ocultar">
                 <ul id="ul-condicion-horario">
                     <li>Lu - vi: 9:00 - 17:00</li>
@@ -156,10 +159,16 @@
                     <li>Cerrado la 2ª y 3ª semana de Agosto</li>
                 </ul>
             </div>
-            <div class="texto-ocultar d-none">
-                <p>@vendedor.NombreDeEmpresa</p>
-                <p>@vendedor.Paginaweb</p>
-                <p>@vendedor.Telefono</p>
+            <div class="row texto-ocultar d-none">
+                <div class="col-4">
+                    <p>@vendedor.NombreDeEmpresa</p>
+                    <p>@vendedor.Paginaweb</p>
+                    <p>@vendedor.Telefono</p>
+                </div>
+                <div class="offset-2 div-mapa">
+                    <iframe scrolling="no" src="https://maps.google.com/maps?width=506&amp;height=400&amp;hl=en&amp;q=Luis%20Power%2023%20Bilbao+(Ubicacion)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                    </iframe>
+                </div>
             </div>
             <div class="texto-ocultar d-none">
                 @if (reviews.Count() != 0)
@@ -212,4 +221,5 @@
         <a asp-action="Index2">Volver</a>
     </div>
 }
-<script src="~/js/Producto_Details.js"></script>
+<script src="~/js/Producto_Detalles.js"></script>
+<script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=9c17717abbd24cb090de87ce36a3eea304e9b281'></script>

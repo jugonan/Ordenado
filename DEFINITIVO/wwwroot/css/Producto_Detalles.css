@@ -18,9 +18,16 @@
 }
 
 .precio-final-opciones {
-    font-size: 2.2vw;
+    font-size: 2.1vw;
     text-align: right;
     color: #0e950e;
+    font-weight: 600;
+}
+
+#precio-final-producto + p {
+    font-size: 2.1vw;
+    color: #0e950e;
+    font-weight: 600;
 }
 
 .precio-inicial-opciones {
@@ -41,8 +48,9 @@
 }
 
 .precio-compra-ahorro {
-    justify-content: space-around;
-    align-items: baseline;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .precio-compra-ahorro p{
@@ -58,6 +66,11 @@
     font-size: 2vw;
     text-align: right;
     font-weight: 600;
+}
+
+#cantidad-ahorrada {
+    width:100%;
+    text-align: right;
 }
 
 .checked {
@@ -95,10 +108,25 @@ a {
     margin-top: 3vw;
 }
 
+.div-fecha-validez {
+    font-size: 1.4vw;
+    margin: 1vw 0vw -1vw 0vw;
+}
+
 .navegador-condiciones-productos {
     padding: 0;
     background-color: #F7F6F2;
     border-bottom: 1px solid gray;
+}
+
+.contenedor-texto-ocultar {
+    height: 23vw;
+}
+
+.div-mapa iframe {
+    border: 0px;
+    height: 17vw;
+
 }
 
 .ul-opciones-producto {

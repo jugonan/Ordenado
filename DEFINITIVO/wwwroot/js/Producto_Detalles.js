@@ -61,7 +61,7 @@ function TEMPORALlPrecioTotal() {
         precioTotal.innerText = precioFinal;
         let ahorrado = document.getElementById('cantidad-ahorrada');
         let cantidadAhorrada = precioInicial - precioFinal;
-        ahorrado.innerText = (`Has ahorrado ${cantidadAhorrada}€`);
+        ahorrado.innerText = (`Has ahorrado ${cantidadAhorrada.toFixed(2)}€`);
         let placesDescuento = document.getElementsByClassName('descuento-opciones');
         let placeDescuento = placesDescuento[0];
         let cantidadDescuento = 100 - (precioFinal * 100 / precioInicial);
@@ -70,7 +70,9 @@ function TEMPORALlPrecioTotal() {
 }
 
 function TEMPORALquitarMinutosDeFecha() {
-    let fecha = document.getElementById('row-fecha-validez');
-    console.log(fecha.innerText);
+    let fecha = document.getElementById('fecha-validez');
+    let textoFecha = fecha.innerText.toString();
+    let posicion = textoFecha.indexOf(' ');
+    fecha.innerText = textoFecha.substring(0, posicion);
 }
 
