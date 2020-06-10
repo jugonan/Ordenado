@@ -1,4 +1,4 @@
-﻿#control-next-carousel{
+﻿#control-next-carousel {
     justify-content: flex-start;
 }
 
@@ -13,9 +13,9 @@
     height: 4vw;
 }
 
-.precios-producto-detalles p {
-    height:inherit;
-}
+    .precios-producto-detalles p {
+        height: inherit;
+    }
 
 .precio-final-opciones {
     font-size: 2.1vw;
@@ -37,7 +37,6 @@
 
 .descuento-opciones {
     font-size: 1.5vw;
-
 }
 
 .informacion-producto {
@@ -53,14 +52,14 @@
     align-items: center;
 }
 
-.precio-compra-ahorro p{
-    height: inherit;
-}
+    .precio-compra-ahorro p {
+        height: inherit;
+    }
 
-.precio-compra-ahorro:first-child {
-    font-size:1.4vw;
-    text-decoration-line:underline;
-}
+    .precio-compra-ahorro:first-child {
+        font-size: 1.4vw;
+        text-decoration-line: underline;
+    }
 
 #precio-compra {
     font-size: 2vw;
@@ -69,7 +68,7 @@
 }
 
 #cantidad-ahorrada {
-    width:100%;
+    width: 100%;
     text-align: right;
 }
 
@@ -78,14 +77,31 @@
 }
 
 a {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .boton-comprar-producto {
-    font-family: revert;
     width: 100%;
+    font-weight: 600;
+    text-transform:uppercase;
     background: #F21B6D;
+    opacity: 0.9;
     color: whitesmoke;
+}
+
+    .boton-comprar-producto:hover {
+        opacity: 1;
+        color: white;
+    }
+
+#reportarProblema {
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    color: darkblue;
+    padding-top: 10px;
+    font-size: small;
+    font-weight: 600;
 }
 
 .icono-carousel {
@@ -94,15 +110,14 @@ a {
     background-color: #F21B6D;
 }
 
-.normal-thumbnail-carousel img{
+.normal-thumbnail-carousel img {
     width: 7vw;
     height: 7vw;
-
 }
 
-.normal-thumbnail-carousel img:hover {
-    border: 3px solid #F21B6D;
-}
+    .normal-thumbnail-carousel img:hover {
+        border: 3px solid #F21B6D;
+    }
 
 .barra-opciones-producto {
     margin-top: 3vw;
@@ -125,8 +140,8 @@ a {
 
 .div-mapa iframe {
     border: 0px;
-    height: 17vw;
-
+    height: 18vw;
+    width: inherit;
 }
 
 .ul-opciones-producto {
@@ -134,13 +149,12 @@ a {
     justify-content: start;
 }
 
-.ul-opciones-producto a {
-    margin: 0vw 2vw;
-    padding: 1vw 2vw;
-    font-size: larger;
-}
+    .ul-opciones-producto a {
+        margin: 0vw 2vw;
+        padding: 1vw 2vw;
+        font-size: larger;
+    }
 
 .anclas-opciones:hover {
     background-color: white;
 }
-

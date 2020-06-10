@@ -63,16 +63,16 @@
                     <span class="fa fa-star"></span>
                 </div>
                 <div class="row precios-producto-detalles">
-                    <div class="col-3 precio-final-opciones">
+                    <div class="col-4 precio-final-opciones">
                         <div class="row">
-                            <p id="precio-final-producto">@Model.PrecioFinal</p>
-                            <p> €</p>
+                            <p id="precio-final-producto">@Model.PrecioFinal </p>
+                            <span> &#8364 </span>
                         </div>
                     </div>
-                    <div class="col-4 precio-inicial-opciones">
+                    <div class="col-3 precio-inicial-opciones">
                         <div class="row">
-                            <p id="precio-inicial-producto">@Model.Precio</p>
-                            <p> €</p>
+                            <p id="precio-inicial-producto">@Model.Precio </p>
+                            <span> &#8364 </span>
                         </div>
                     </div>
                     <div class="col-5">
@@ -99,8 +99,10 @@
                 </div>
                 <div class="input-opciones-productos">
                     <form>
-                        <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
-                        <label for="male">@Model.Titulo</label><br>
+                        <row>
+                            <input class="col-2" type="radio" id="opcion-producto-1" name="opciones-productos" value="" style="vertical-align: super;">
+                            <label class="span-1 col-8" for="male">@Model.Titulo</label><br>
+                        </row>
                         @if (opcionesProductos.Count > 1)
                         {
                             <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
@@ -122,6 +124,7 @@
                     <p id="cantidad-ahorrada"></p>
                 </div>
                 <button class="btn boton-comprar-producto" onclick="this.disabled=true">Comprar</button>
+                <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
         </div>
     </div>
@@ -167,8 +170,9 @@
                     <p>Luis Power 23,</p>
                     <p>48014, Bilbao</p>
                 </div>
-                <div class="offset-2 div-mapa">
-                    <iframe scrolling="no" src="https://maps.google.com/maps?width=506&amp;height=400&amp;hl=en&amp;q=Luis%20Power%2023%20Bilbao+(Ubicacion)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                <div class="offset-1 col-7 div-mapa">
+                    @*<iframe scrolling="no" src="https://maps.google.com/maps?width=506&amp;height=400&amp;hl=en&amp;q=Luis%20Power%2023%20Bilbao+(Ubicacion)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">*@
+                    <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=506&height=400&hl=en&q=Luis%20Power%2023%20Bilbao+(Ubicacion)&t=&z=12&ie=UTF8&iwloc=B&output=embed" width="auto" height="auto" frameborder="0">
                     </iframe>
                 </div>
             </div>
@@ -276,4 +280,4 @@
     </div>
 }
 <script src="~/js/Producto_Detalles.js"></script>
-<script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=9c17717abbd24cb090de87ce36a3eea304e9b281'></script>
+@*<script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=9c17717abbd24cb090de87ce36a3eea304e9b281'></script>*@

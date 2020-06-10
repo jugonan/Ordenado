@@ -14,28 +14,21 @@
     padding-bottom: 20px;
 }
 
-.mt {
-    float: left;
-    margin-top: -20px;
-    padding-top: 20px;
-}
 
 .btnLoQuiero {
-    font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 700;
     box-shadow: 1px -1px 2px 1px #F679A9;
     background-color: #F21B6D;
-    opacity: 0.8;
+    opacity: 0.9;
     color: white;
-    margin-right: 6vw;
 }
 
-.btnLoQuiero:hover {
-    box-shadow: none;
-    background-color: #F21B6D;
-    opacity: 1;
-    color:white;
-}
+    .btnLoQuiero:hover {
+        box-shadow: none;
+        background-color: #F21B6D;
+        opacity: 1;
+        color: white;
+    }
 
 figure img {
     width: 300px;
@@ -58,7 +51,7 @@ figure img {
         background: #708198;
         border-radius: 50%;
         height: 25px;
-        cursor:pointer;
+        cursor: pointer;
     }
 
     .blog .carousel-indicators .active {
@@ -111,20 +104,20 @@ figure img {
     width: 45%;
 }
 
-.item-box-blog-date span {
-    color: #fff;
-    display: block;
-    text-align: center;
-    line-height: 1.2;
-}
+    .item-box-blog-date span {
+        color: #fff;
+        display: block;
+        text-align: center;
+        line-height: 1.2;
+    }
 
-.item-box-blog-date span.mon {
-    font-size: 1.7vw;
-}
+        .item-box-blog-date span.mon {
+            font-size: 1.7vw;
+        }
 
-.item-box-blog-date span.day {
-    font-size: 16px;
-}
+        .item-box-blog-date span.day {
+            font-size: 16px;
+        }
 
 .item-box-blog-body {
     padding: 2px;
@@ -140,9 +133,8 @@ figure img {
 
 .item-box-blog-heading a {
     text-decoration: none;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-weight:700;
-    font-size:1.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
     color: #1C2229;
 }
 
@@ -153,7 +145,6 @@ figure img {
 }
 
     .item-box-blog-data p i {
-        font-family: 'Open Sans Condensed', sans-serif;
         font-size: 1rem;
         color: #363537;
     }
@@ -163,7 +154,7 @@ figure img {
     overflow: hidden;
     text-align: justify;
     font-family: 'Segoe UI', sans-serif;
-    font-weight:300;
+    font-weight: 300;
     color: #363537;
 }
 
@@ -175,27 +166,25 @@ figure img {
 
 .btn.bg-blue-ui.white.read {
     cursor: pointer;
-    padding: 4px 20px;
-    float: left;
+    padding: 4px 0px;
     position: absolute;
-    right: 2rem;
     bottom: -0.1rem;
+    width: 88%;
 }
 
 
 .category_name {
-    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 2rem;
     color: #F21B6D !important;
-    opacity: 0.7;
+    opacity: 0.8;
+    text-decoration: none;
 }
 
     .category_name:hover {
-        font-family: 'Open Sans Condensed', sans-serif;
-        font-size: 2.1rem;
+        font-weight: 600;
         color: #F21B6D !important;
         opacity: 1;
-        text-decoration:none;
+        text-decoration: none;
     }
 
 
@@ -240,9 +229,8 @@ figure img {
     visibility: hidden;
 }
 
-.label-container div {
-
-}
+    .label-container div {
+    }
 
 .label-text {
     color: #FFF;
@@ -274,17 +262,21 @@ a.floating-button:hover + div.label-container {
 .add-producto-bubble {
     font-size: 3vw;
     font-weight: bold;
-    opacity:0.9;
+    opacity: 0.9;
 }
 
-.add-producto-bubble:hover {
-    text-decoration:none;
-}
+    .add-producto-bubble:hover {
+        text-decoration: none;
+    }
 
 #modificarCiudad {
     cursor: pointer;
     color: darkblue;
 }
+#modificarCiudad:hover{
+    font-weight:600;
+}
+
 #ubicacion {
     text-align: center;
 }
@@ -295,16 +287,19 @@ a.floating-button:hover + div.label-container {
 .modal {
     display: none;
 }
+
 .modal-header, h4, .close {
     background-color: #02A669;
     color: white !important;
     text-align: center;
     font-size: 30px;
 }
+
 #botonConfirmar {
     background-color: #02A669;
     color: #fff;
 }
+
     #botonConfirmar:disabled {
         background-color: #363537;
     }
@@ -312,14 +307,16 @@ a.floating-button:hover + div.label-container {
 .modal-header {
     font-family: 'Open Sans Condensed', sans-serif;
     padding: 30px 40px;
-    justify-content:center;
+    justify-content: center;
 }
+
     .modal-header h4 {
         color: #fff;
         font-weight: 600;
         font-size: 2rem;
         text-align: center;
     }
+
     .modal-header button {
         position: absolute;
         right: 25px;
@@ -331,9 +328,10 @@ a.floating-button:hover + div.label-container {
     font-family: 'Segoe UI', sans-serif;
     padding: 40px 50px;
 }
+
     .modal-body h5 {
         font-weight: 600;
         font-size: 1.2rem;
-        text-align:justify;
-        margin-bottom:1.5rem;
+        text-align: justify;
+        margin-bottom: 1.5rem;
     }
