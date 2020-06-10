@@ -1,21 +1,24 @@
 ﻿
 .cta-100 {
     /*margin-top: 100px;*/
-    padding-left: 6%;
-    padding-bottom: 3%;
+    /*padding-left: 6%;
+    padding-bottom: 3%;*/
+    padding: 0;
+}
+
+.imagen-producto-index2 {
+    width: 100% !important;
 }
 
 .col-md-4 {
     padding-bottom: 20px;
 }
 
-
 .mt {
     float: left;
     margin-top: -20px;
     padding-top: 20px;
 }
-
 
 .btnLoQuiero {
     font-family: 'Open Sans Condensed', sans-serif;
@@ -24,14 +27,15 @@
     background-color: #F21B6D;
     opacity: 0.8;
     color: white;
+    margin-right: 6vw;
 }
 
-    .btnLoQuiero:hover {
-        box-shadow: none;
-        background-color: #F21B6D;
-        opacity: 1;
-        color:white;
-    }
+.btnLoQuiero:hover {
+    box-shadow: none;
+    background-color: #F21B6D;
+    opacity: 1;
+    color:white;
+}
 
 figure img {
     width: 300px;
@@ -102,22 +106,25 @@ figure img {
     top: -10px;
     right: 8px;
     background-color: #F21B6D;
+    justify-content: space-evenly;
+    padding: 0.3vw 0vw;
+    width: 45%;
 }
 
-    .item-box-blog-date span {
-        color: #fff;
-        display: block;
-        text-align: center;
-        line-height: 1.2;
-    }
+.item-box-blog-date span {
+    color: #fff;
+    display: block;
+    text-align: center;
+    line-height: 1.2;
+}
 
-        .item-box-blog-date span.mon {
-            font-size: 18px;
-        }
+.item-box-blog-date span.mon {
+    font-size: 1.7vw;
+}
 
-        .item-box-blog-date span.day {
-            font-size: 16px;
-        }
+.item-box-blog-date span.day {
+    font-size: 16px;
+}
 
 .item-box-blog-body {
     padding: 2px;

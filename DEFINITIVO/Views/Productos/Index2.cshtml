@@ -69,10 +69,13 @@
                                                     <div class="item-box-blog">
                                                         <div class="item-box-blog-image">
                                                             <!--Precio-->
-                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364</span> </div>
+                                                            <div class="row item-box-blog-date bg-blue-ui white">
+                                                                <span class="mon"><strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike></span>
+                                                                <span class="mon">@listaProducto[j].PrecioFinal &#8364</span>
+                                                            </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                <figure> <img loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
+                                                                <figure> <img class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
                                                             </a>
                                                         </div>
                                                         <div class="item-box-blog-body">
@@ -112,7 +115,7 @@
                                                             <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364 </span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                <figure> <img loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
+                                                                <figure> <img class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
                                                             </a>
                                                         </div>
                                                         <div class="item-box-blog-body">
@@ -163,8 +166,7 @@
             <span class="banner-close"></span>
         </div>
     </script>
-    <script>
-        function getBannerTemplate() {
+    <script>function getBannerTemplate() {
             var template = document.querySelector("#banner-template");
             return template.innerHTML;
         }
