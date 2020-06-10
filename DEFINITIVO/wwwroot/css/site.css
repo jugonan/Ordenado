@@ -59,6 +59,7 @@ body {
 #footerRight {
     float: right;
     padding-right: 25%;
+    font-weight:300;
 }
 
 
