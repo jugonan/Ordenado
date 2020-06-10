@@ -58,7 +58,7 @@ function TEMPORALlPrecioTotal() {
     let precioFinal = document.getElementById('precio-final-producto').innerText;
     let precioInicial = document.getElementById('precio-inicial-producto').innerText;
     let click = document.getElementById('opcion-producto-1').addEventListener('click', function () {
-        precioTotal.innerText = precioFinal;
+        precioTotal.innerText = `Total: ${precioFinal}€`;
         let ahorrado = document.getElementById('cantidad-ahorrada');
         let cantidadAhorrada = precioInicial - precioFinal;
         ahorrado.innerText = (`Has ahorrado ${cantidadAhorrada.toFixed(2)}€`);

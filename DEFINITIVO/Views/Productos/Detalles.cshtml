@@ -118,7 +118,7 @@
                     <p id="fecha-validez">@Model.FechaValidez</p>
                 </div>
                 <div class="precio-compra-ahorro">
-                    <p id="precio-compra">Total€</p>
+                    <p id="precio-compra">Total...€</p>
                     <p id="cantidad-ahorrada"></p>
                 </div>
                 <button class="btn boton-comprar-producto" onclick="this.disabled=true">Comprar</button>
@@ -133,7 +133,7 @@
                 <div class="row ul-opciones-producto">
                     <a class="anclas-opciones">Condiciones</a>
                     <a class="anclas-opciones">Vendedor</a>
-                    <a class="anclas-opciones">Opiniones</a>
+                    <a class="anclas-opciones">Opiniones(3)</a>
                 </div>
             </div>
         </div>
@@ -164,6 +164,8 @@
                     <p>@vendedor.NombreDeEmpresa</p>
                     <p>@vendedor.Paginaweb</p>
                     <p>@vendedor.Telefono</p>
+                    <p>Luis Power 23,</p>
+                    <p>48014, Bilbao</p>
                 </div>
                 <div class="offset-2 div-mapa">
                     <iframe scrolling="no" src="https://maps.google.com/maps?width=506&amp;height=400&amp;hl=en&amp;q=Luis%20Power%2023%20Bilbao+(Ubicacion)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
@@ -171,24 +173,76 @@
                 </div>
             </div>
             <div class="texto-ocultar d-none">
-                @if (reviews.Count() != 0)
-                {
-                    foreach (Review review in reviews)
+                <!-- Este es el código correspondiete, ahora para el MVP es hard code -->
+                @*@if (reviews.Count() != 0)
                     {
-                        <p>@review.Comentario</p>
-                        <p>@review.Fecha</p>
-                    }
-                }
-                else
-                {
-                    <p>
-                        Este producto aún no tiene ninguna review,
-                        @if (User.IsInRole("Cliente"))
+                        foreach (Review review in reviews)
                         {
-                            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Sé el primero</button>
+                            <p>@review.Comentario</p>
+                            <p>@review.Fecha</p>
                         }
-                    </p>
-                }
+                    }
+                    else
+                    {
+                        <p>
+                            Este producto aún no tiene ninguna review,
+                            @if (User.IsInRole("Cliente"))
+                            {
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Sé el primero</button>
+                            }
+                        </p>
+                    }*@
+                <!-- 1er comentario Hard Codeado-->
+                <div class="row">
+                    <div class="col-2">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                    </div>
+                    <div class="col-6">
+                        <div style="display:flex; flex-direction:row;">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <h5>Janire Rueda</h5>
+                        <p>Un servicio rápido, agradable y de buena calidad.¡Volveremos sin duda!</p>
+                    </div>
+                </div>
+                <!-- 2do comentario Hard Codeado-->
+                <div class="row">
+                    <div class="col-2">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                    </div>
+                    <div class="col-6">
+                        <div style="display:flex; flex-direction:row;">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <h5>Aitor Campos</h5>
+                        <p>100% recomendable. Era la primera vez que acudíamos y Arantxa nos atendió y ayudó mucho. Muy profesionales.</p>
+                    </div>
+                </div>
+                <!-- 3er comentario Hard Codeado-->
+                <div class="row">
+                    <div class="col-2">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                    </div>
+                    <div class="col-6">
+                        <div style="display:flex; flex-direction:row;">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <h5>Janire Rueda</h5>
+                        <p>Muy buena experiencia.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
