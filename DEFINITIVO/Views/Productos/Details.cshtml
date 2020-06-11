@@ -8,7 +8,7 @@
 @inject IUsuariosService UsuariosService
 @inject IReviewsService ReviewsService
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
     Vendedor vendedor = await VendedoresService.ObtenerVendedorDesdeProducto(Model.Id);
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
     Usuario usuario = new Usuario();

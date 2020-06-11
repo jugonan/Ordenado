@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Checkout";
+}
+
+<link href="~/css/Producto_Checkout.css" rel="stylesheet" type="text/css" />
+
+<div class="row">
+    <div class="offset-1 col-2" id="logoContainer">
+        <img src="~/img/helduLogo.png" alt="Home Logo" id="imagenLogo" />
+    </div>
+    <div class="col-8 proximamente">
+        <p id="proxText">Próximamente podrás completar la compra y disfrutar de los mejores descuentos en Heldu</p>
+        <div class="row">
+            <div class="col-9" id="registrar">
+                <p id="registText">Si lo deseas, puedes registrarte y te avisaremos cuando Heldu esté funcionando!</p>
+                <p id="textMin">(prometemos no molestar con publicidad)</p>
+            </div>
+            <div class="col-3" id="divBtnRegistrar">
+                <a class="btn" id="btnRegistrarme" asp-area="Identity" asp-page="/Account/Register">Registrarme</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="volver">
+    <p>¡Gracias nuevamente por ayudarnos en esta etapa!</p>
+</div>
+<div>
+    <a class="btn offset-3 col-6" id="btnVolver" asp-action="Index2" asp-controller="Productos">Volver al listado!</a>
+</div>

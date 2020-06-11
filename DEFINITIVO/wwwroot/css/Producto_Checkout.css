@@ -1,0 +1,83 @@
+﻿#logoContainer {
+    text-align: center;
+}
+
+#imagenLogo {
+    height: 7vw;
+    width: auto;
+}
+
+.proximamente {
+    width: 80%;
+    text-align: center;
+}
+
+    .proximamente p {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #F21B6D;
+    }
+
+    .proximamente #proxText {
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: justify;
+        margin: 0;
+    }
+
+    .proximamente #registText {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1C2229;
+        margin: 0;
+        text-align: left;
+        padding-top: 9px;
+    }
+
+    .proximamente #textMin {
+        font-family: 'Segoe UI';
+        font-size: 0.8rem;
+        font-weight: 400;
+        text-align: left;
+        color: #363537;
+        padding: 0;
+        margin: 0;
+    }
+
+#btnRegistrarme {
+    background-color: #F21B6D;
+    color: whitesmoke;
+    box-shadow: none;
+    margin: 5% 0%;
+}
+
+    #btnRegistrarme:hover {
+        color: white;
+        box-shadow: 1px 1px 2px 1px #F679A9;
+    }
+
+.volver {
+    margin-top:90px;
+    text-align:center;
+}
+
+    .volver p {
+        color: #1C2229;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+#btnVolver {
+    background-color: #F21B6D;
+    color: whitesmoke;
+    height: 3vw;
+    font-size: 1.3rem;
+    box-shadow: none;
+}
+
+    #btnVolver:hover {
+        color: white;
+        font-size: 1.35rem;
+        box-shadow: 1px 1px 2px 1px #F679A9;
+    }

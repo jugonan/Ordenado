@@ -38,19 +38,20 @@ body {
 #footerInfo {
     padding-top: 20px;
     margin: 0;
-    overflow:hidden;
-}
-#footerInfo h5 {
-    font-size: 1rem;
+    overflow: hidden;
 }
 
-#footerInfo a {
-    font-size: 1rem;
-    color: white;
-    font-weight: 800;
-    text-decoration:none;
-    cursor:pointer;
-}
+    #footerInfo h5 {
+        font-size: 1rem;
+    }
+
+    #footerInfo a {
+        font-size: 1rem;
+        color: white;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 #footerLeft {
     float: left;
@@ -61,12 +62,10 @@ body {
     float: right;
     padding-right: 25%;
 }
-<<<<<<< Updated upstream
     #footerRight a {
         font-weight: 300;
     }
-=======
->>>>>>> Stashed changes
+
 
 a.navbar-brand {
     white-space: normal;
@@ -81,14 +80,14 @@ a.navbar-brand {
     min-width: 9rem;
 }
 
-#div-cabecera-salir .anchor-miperfil {
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    margin: 0;
-}
+    #div-cabecera-salir .anchor-miperfil {
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        margin: 0;
+    }
 
 .anchor-miperfil {
     width: 100%;
@@ -102,9 +101,9 @@ a.navbar-brand {
     transition: opacity 0.3s linear;
 }
 
-.desplegable-salir form {
-    padding: 12px 16px;
-}
+    .desplegable-salir form {
+        padding: 12px 16px;
+    }
 
 #div-cabecera-salir:hover .desplegable-salir {
     opacity: 1;
@@ -118,10 +117,10 @@ a.navbar-brand {
     padding: 6px;
 }
 
-.boton-salir-usuario:hover {
-    font-size: 1.1rem;
-    font-weight: 800;
-}
+    .boton-salir-usuario:hover {
+        font-size: 1.1rem;
+        font-weight: 800;
+    }
 
 #producto-vendedor-vacio {
     margin-top: 9em;

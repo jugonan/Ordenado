@@ -93,3 +93,25 @@
         font-size:1.35rem;
         box-shadow: 1px 1px 2px 1px #F679A9;
     }
+
+#notesSection {
+    margin-top: 50px;
+    margin-bottom: -50px;
+}
+
+#notesTitle {
+    font-family: 'Segoe UI';
+    font-size: medium;
+    font-weight: 400;
+    color: gray;
+    margin-bottom: 0;
+}
+
+.notes {
+    font-family: 'Segoe UI';
+    font-size: smaller;
+    font-weight: 200;
+    color: gray;
+    padding: 0 !important;
+    margin: 0 !important;
+}

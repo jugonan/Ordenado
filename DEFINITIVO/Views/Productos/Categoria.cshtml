@@ -6,8 +6,8 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
 @{
-    ViewData["Title"] = "Productos";
     Categoria categoria = ViewBag.Categoria;
+    ViewData["Title"] = categoria.Nombre;
 }
 <link href="~/css/Producto_Categoria.css" rel="stylesheet" type="text/css">
 

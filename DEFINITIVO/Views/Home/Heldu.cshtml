@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Heldu";
+    ViewData["Title"] = "Conócenos";
 }
 
 <!-- CSS particular para esta vista. Los script están en el layout-->
@@ -76,6 +76,13 @@
         </div>
     </div>
     <div class="row">
-            <a class="btn offset-2 col-8" id="continuarNav" onclick="this.disabled=true" asp-action="Index2" asp-controller="Productos">Continuar navegando!</a>
+        <a class="btn offset-2 col-8" id="continuarNav" onclick="this.disabled=true" asp-action="Index2" asp-controller="Productos">Continuar navegando!</a>
+    </div>
+    <div class="col-8" id="notesSection">
+        <p id="notesTitle" class="row">Notas beta-rollout jun-2020:</p>
+        <p class="notes row">- En esta etapa el sitio se encuentra únicamente en castellano.</p>
+        <p class="notes row">- Algunas secciones se encuentran deshabilitadas.</p>
+        <p class="notes row">- Algunas secciones podrían tardar en cargar más de lo habitual.</p>
+        <p class="notes row">- Los productos, servicios y empresas no son reales</p>
     </div>
 </div>

@@ -3,6 +3,7 @@
 @using Heldu.Logic.Interfaces
 @inject IReviewsService ReviewsService
 @{
+    ViewData["Title"] = "Detalles";
     List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
     int totalComentarios = ReviewsService.CantidadComentariosByReviewList(reviews);
     int valoracionMedia = await ReviewsService.ObtenerValoracionMediaByProductoId(Model.Id);
@@ -123,7 +124,7 @@
                     <p id="precio-compra">Total...€</p>
                     <p id="cantidad-ahorrada"></p>
                 </div>
-                <button class="btn boton-comprar-producto" onclick="this.disabled=true">Comprar</button>
+                <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
         </div>
@@ -280,8 +281,4 @@
     </div>
 }
 <script src="~/js/Producto_Detalles.js"></script>
-<<<<<<< Updated upstream
-@*<script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=9c17717abbd24cb090de87ce36a3eea304e9b281'></script>*@
-=======
-<script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=9c17717abbd24cb090de87ce36a3eea304e9b281'></script>
->>>>>>> Stashed changes
+

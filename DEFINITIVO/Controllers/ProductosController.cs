@@ -108,7 +108,7 @@ namespace DEFINITIVO.Controllers
             if (!_memoryCache.TryGetValue("ProductosForIndex2", out listasListaProductos))
             {
                 listaCategorias = await _categoriasService.GetCategorias();
-                listaProductos =  await _productosService.GetProductos();
+                listaProductos = await _productosService.GetProductos();
                 listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
                 listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
                 _memoryCache.Set("Categorias", listaCategorias);
@@ -347,8 +347,8 @@ namespace DEFINITIVO.Controllers
         {
             return RedirectToAction("Index2", "Productos", new { postalCode = inputPostalCode });
         }
-        
-        [OutputCache(Duration =6000,VaryByParam ="Id")]
+
+        [OutputCache(Duration = 6000, VaryByParam = "Id")]
         public async Task<IActionResult> GetImage1(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetMainImage(id);
@@ -403,5 +403,11 @@ namespace DEFINITIVO.Controllers
             ViewData["OpcionesProductos"] = opcionesProductos;
             return View(producto);
         }
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
     }
+
 }
