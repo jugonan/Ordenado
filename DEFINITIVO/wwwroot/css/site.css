@@ -40,17 +40,18 @@ body {
     margin: 0;
     overflow:hidden;
 }
-    #footerInfo h5 {
-        font-size: 1rem;
-    }
+#footerInfo h5 {
+    font-size: 1rem;
+}
 
-    #footerInfo a {
-        font-size: 1rem;
-        color: white;
-        font-weight: 800;
-        text-decoration:none;
-        cursor:pointer;
-    }
+#footerInfo a {
+    font-size: 1rem;
+    color: white;
+    font-weight: 800;
+    text-decoration:none;
+    cursor:pointer;
+}
+
 #footerLeft {
     float: left;
     padding-left: 20%;
@@ -60,9 +61,12 @@ body {
     float: right;
     padding-right: 25%;
 }
+<<<<<<< Updated upstream
     #footerRight a {
         font-weight: 300;
     }
+=======
+>>>>>>> Stashed changes
 
 a.navbar-brand {
     white-space: normal;
@@ -70,7 +74,6 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-/* Added by JAF */
 /* Parte del nav bar */
 #div-cabecera-salir {
     float: left;
@@ -78,14 +81,14 @@ a.navbar-brand {
     min-width: 9rem;
 }
 
-    #div-cabecera-salir .anchor-miperfil {
-        border: none;
-        outline: none;
-        color: white;
-        padding: 14px 16px;
-        background-color: inherit;
-        margin: 0;
-    }
+#div-cabecera-salir .anchor-miperfil {
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    margin: 0;
+}
 
 .anchor-miperfil {
     width: 100%;
@@ -99,9 +102,9 @@ a.navbar-brand {
     transition: opacity 0.3s linear;
 }
 
-    .desplegable-salir form {
-        padding: 12px 16px;
-    }
+.desplegable-salir form {
+    padding: 12px 16px;
+}
 
 #div-cabecera-salir:hover .desplegable-salir {
     opacity: 1;
@@ -115,16 +118,45 @@ a.navbar-brand {
     padding: 6px;
 }
 
-    .boton-salir-usuario:hover {
-        font-size: 1.1rem;
-        font-weight: 800;
-    }
+.boton-salir-usuario:hover {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
 
 #producto-vendedor-vacio {
     margin-top: 9em;
     background-color: white;
     width: 100%;
     font-size: smaller;
+}
+
+/* Spinner */
+
+.div-spinner {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6vw;
+    background-color: white;
+}
+
+.imagen-spinner {
+    width: 40vw;
+}
+
+.texto-spinner {
+    font-size: 35px;
+    opacity: 0;
+}
+
+.texto-spinner-opaco {
+    opacity: 1;
+    transition: opacity 0.9s linear;
 }
 
 /* Provide sufficient contrast against white background */
