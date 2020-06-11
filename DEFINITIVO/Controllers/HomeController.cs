@@ -45,7 +45,7 @@ namespace DEFINITIVO.Controllers
             string id = _userManager.GetUserId(User);
             if (id == null)
             {
-                return RedirectToAction("LandingBeta", "Home");
+                return RedirectToAction("Heldu", "Home");
             }
             else
             {
