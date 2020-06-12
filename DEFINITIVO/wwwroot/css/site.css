@@ -156,9 +156,10 @@ a.navbar-brand {
 
 .texto-spinner-opaco {
     opacity: 1;
-    transition: opacity 0.9s linear;
+    transition-delay: 0.4s;
+    transition: opacity 1s ease-in;
     text-align: justify;
-    margin: 50px 300px 50px 300px;
+    margin: 50px 300px -50px 300px;
     z-index: 950;
 }
 
