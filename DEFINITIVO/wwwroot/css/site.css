@@ -151,11 +151,15 @@ a.navbar-brand {
 .texto-spinner {
     font-size: 35px;
     opacity: 0;
+    z-index:950;
 }
 
 .texto-spinner-opaco {
     opacity: 1;
     transition: opacity 0.9s linear;
+    text-align: justify;
+    margin: 50px 300px 50px 300px;
+    z-index: 950;
 }
 
 /* Provide sufficient contrast against white background */
