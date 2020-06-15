@@ -1,0 +1,47 @@
+﻿h1 {
+    text-align: center;
+    margin-bottom: 3vw;
+}
+
+.how-img {
+    text-align: center;
+    align-self: center;
+}
+
+.how-img img {
+    width: 80%;
+    height:15vw;
+}
+
+.copies {
+    font-size: 1.5vw;
+}
+
+li {
+    list-style: disclosure-closed;
+    font-size: 1.3vw;
+}
+
+.call-to-action-landing {
+   display: grid;
+   justify-content:center;
+}
+
+.call-to-action-landing p{
+text-align: center;
+font-size: 1.3vw;
+}
+
+#continuarNav {
+    background-color: #F21B6D;
+    color: whitesmoke;
+    height: 3vw;
+    font-size: 1.3rem;
+    box-shadow: none;
+}
+
+#continuarNav:hover {
+    color: white;
+    font-size:1.35rem;
+    box-shadow: 1px 1px 2px 1px #F679A9;
+}

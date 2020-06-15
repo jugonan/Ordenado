@@ -88,11 +88,12 @@
     font-size: 1.3rem;
     box-shadow: none;
 }
-    #continuarNav:hover {
-        color: white;
-        font-size:1.35rem;
-        box-shadow: 1px 1px 2px 1px #F679A9;
-    }
+
+#continuarNav:hover {
+    color: white;
+    font-size:1.35rem;
+    box-shadow: 1px 1px 2px 1px #F679A9;
+}
 
 #notesSection {
     margin-top: 50px;
