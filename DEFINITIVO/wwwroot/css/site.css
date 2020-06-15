@@ -62,16 +62,13 @@ body {
     float: right;
     padding-right: 25%;
 }
-<<<<<<< Updated upstream
     #footerRight a {
         font-weight: 300;
     }
 
-=======
 #footerRight a {
     font-weight: 300;
 }
->>>>>>> Stashed changes
 
 a.navbar-brand {
     white-space: normal;
