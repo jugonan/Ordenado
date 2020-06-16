@@ -6,6 +6,8 @@ let aClicar2Spinner;
 let divPadreSpinner;
 let spinnerSpinner;
 let textoSpinner = document.createElement('p');
+let textoVelocidad = document.createElement('p');
+textoVelocidad.classList.add('texto-temporal-velocidad');
 
 /* Empieza JavaScript */
 window.addEventListener('load', function () {
@@ -32,9 +34,11 @@ function generarSpinner() {
     imagenSpinner.classList.add('imagen-spinner');
     textoSpinner.classList.add('texto-spinner');
     textoSpinner.innerText = getText();
+    textoVelocidad.innerText = '(P.D: la velocidad se debe a que es nuestro primer prototipo. Para la versión 2.0 irá como una bala... ¡Prometido!)';
     divPadreSpinner.appendChild(textoSpinner);
     divPadreSpinner.appendChild(imagenSpinner);
     bodySpinner.appendChild(divPadreSpinner);
+    textoSpinner.appendChild(textoVelocidad);
     fondoPaginaEliminar.remove();
     window.scrollTo(0,0);
     setTimeout(function(){
@@ -68,7 +72,7 @@ function getText() {
             return '¿Sabías que una cultura de responsabilidad social crea un concepción positiva de la marca, atrae más público y fideliza futuros clientes?  Fuente: Investopedia.'
             break;
         case 5:
-            return 'Heldu surge con el objetivo de generar un impacto positivo y una situación Win-to-Wi. Por un lado la persona desempleada pueda tenere acceso a un consumo común. Y por otro lado, los comercios puedan llegar a usuarios que de otra manera no podrían.'
+            return 'Heldu surge con el objetivo de generar un impacto positivo y una situación Win-to-Win. Por un lado la persona desempleada pueda tenere acceso a un consumo común. Y por otro lado, los comercios puedan llegar a usuarios que de otra manera no podrían.'
             break;
         default:
             return "¿Sabías que en mayo han quedado desempleadas más de 3000 personas en Euskadi?"

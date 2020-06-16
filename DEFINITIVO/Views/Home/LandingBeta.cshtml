@@ -1,29 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "Beta";
+    ViewData["Title"] = "Conócenos";
 }
 
-﻿<link href="~/css/Landing_Beta.css" rel="stylesheet" type="text/css">
+<!-- CSS particular para esta vista. Los script están en el layout-->
+<link href="~/css/Landing_mvp.css" rel="stylesheet" type="text/css" />
 
-<div class="row">
-    <div class="col-6 divLandingBeta">
-        <h1>Ongi etorri Heldura</h1>
-        <h3>Beta rollout (Jun 2020)</h3>
-        <br />
-        <p>Lehenik eta behin, mila esker berriz ere Helduren garapen prozesuan parte hartzeagatik!</p>
-        <p>Garapena bizkortzeko, aplikazio osoa gazteleraz dagoela jakinarazi nahi genizuke aldez aurretik.</p>
-        <br />
-        <br />
-        <br />
+<div class="">
+    <h1>¡Bienvenida/o a Heldu!</h1>
+    <div class="row">
+        <div class="col-md-6 how-img">
+            <img src="https://image.flaticon.com/icons/svg/2945/2945609.svg" class="img-fluid" alt="¿Qué es Heldu?" />
+        </div>
+        <div class="col-md-6 claims" id="firstClaim">
+            <p class="copies">
+                Somos el portal de cupones descuento para desempleados/as, y estamos aquí para ayudar.
+            </p>
+            <ul class="lista-landing-page">
+                <li>Conocemos el paro: ponemos a tu disposición una gran variedad de ofertas con un alto descuento aplicado.</li>
+                <li>Ayudamos a quien ayuda: anuncia tus productos y/o servicios con un coste muy reducido.</li>
+            </ul>
+        </div>
     </div>
-    <div class="col-6 divLandingBeta">
-        <h1>Bienvenido/a a Heldu</h1>
-        <h3>Beta rollout (Jun 2020)</h3>
-        <br />
-        <p>Antes de nada, ¡muchas gracias de nuevo por formar parte del proceso de desarrollo de Heldu!</p>
-        <p>Para acelerar el desarrollo, nos gustaría informarte de que toda la aplicación está en castellano.</p>
-        <br />
-        <br />
-        <br />
+    <div class="row">
+        <div class="col-6 offset-6 call-to-action-landing">
+            <p>...¿suena bien?</p>
+            <a class="btn" id="continuarNav" asp-action="Index2" asp-controller="Productos">Explorar Heldu</a>
+        </div>
     </div>
-    <h4 class="offset-4">Para continuar, haz click <a asp-action="Index2" asp-controller="Productos" style="font-weight:600; color:#F21B6D;">Aquí</a></h4>
+    @*<div class="col-8" id="notesSection">
+            <p id="notesTitle" class="row">Notas beta-rollout jun-2020:</p>
+            <p class="notes row">- En esta etapa el sitio se encuentra únicamente en castellano.</p>
+            <p class="notes row">- Algunas secciones se encuentran deshabilitadas.</p>
+            <p class="notes row">- Algunas secciones podrían tardar en cargar más de lo habitual.</p>
+            <p class="notes row">- Los productos, servicios y empresas no son reales</p>
+        </div>*@
 </div>
