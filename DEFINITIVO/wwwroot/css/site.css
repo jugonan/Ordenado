@@ -261,12 +261,12 @@ a {
 }
 
 #formBuscador {
-    position: absolute;
+/*    position: absolute;
     bottom: 0.5rem;
     left: 20%;
     padding: 0px 2px 0px 2px;
     width: 60%;
-    max-width: 40rem;
+    max-width: 40rem;*/
 }
 
 #inputBuscar {

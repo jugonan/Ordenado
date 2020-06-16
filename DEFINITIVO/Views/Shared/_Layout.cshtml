@@ -10,7 +10,7 @@
 @inject IVendedoresService VendedorService
 @inject ICategoriasService CategoriasService
 @{
-    //ViewData["Title"] = "Productos";
+    ViewData["Title"] = "Productos";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
 }
 <head>
@@ -43,15 +43,13 @@
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <partial name="_LoginPartial" />
+                        <partial name="_SearchPartial" />
                         <ul class="navbar-nav flex-grow-1" style="width:130%">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" href="#divCategorias" aria-controls="divCategorias" aria-expanded="false" aria-label="Toggle navigation">Categorías</a>
+                                <a class="nav-link" asp-area="" asp-controller="Productos" asp-action="Index2">Ofertas</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="collapse" href="#divDetallesHeldu" aria-controls="divDetallesHeldu" aria-expanded="false" aria-label="Toggle navigation">Conócenos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" href="#divBuscador" aria-controls="divBuscador" aria-expanded="false" aria-label="Toggle navigation">Buscar</a>
                             </li>
                             @if (User.IsInRole("admin"))
                             {
