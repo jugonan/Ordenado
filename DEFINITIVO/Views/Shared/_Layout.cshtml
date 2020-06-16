@@ -34,7 +34,7 @@
         <cache enabled="false">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" id="navbarPrincipal">
                 <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Productos" asp-action="Index2">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                         <img id="navbar-logo" src="~/img/helduLogo.png" alt="Home Logo" />
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -44,9 +44,9 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <partial name="_LoginPartial" />
                         <partial name="_SearchPartial" />
-                        <ul class="navbar-nav flex-grow-1" style="width:130%">
+                        <ul class="navbar-nav flex-grow-1 col-3">
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Productos" asp-action="Index2">Ofertas</a>
+                                <a id="link-ofertas-navbar" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ofertas</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="collapse" href="#divDetallesHeldu" aria-controls="divDetallesHeldu" aria-expanded="false" aria-label="Toggle navigation">Conócenos</a>
@@ -71,7 +71,6 @@
                 </div>
             </nav>
         </cache>
-
         <!-- Categorias ocultas que se despliegan al hacer click en "Categorías" -->
         @{
             List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
@@ -96,7 +95,6 @@
                 <li class="col itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
             </ul>
         </div>
-
         <!-- Formulario de contacto con su CSS -->
         @*<link href="/css/ContactFormModal.css" rel="stylesheet" type="text/css">*@
         <input type="checkbox" name="showForm" id="showForm" class="showForm">
@@ -105,7 +103,6 @@
             <form asp-controller="Home" asp-action="Contacto">
                 @{
                     string actualPath = Context.Request.Path;
-
                 }
                 <div class="left section">
                     <input type="text" name="nombre" placeholder="Nombre(s) y Apellido(s)" required minlength="3">
@@ -124,7 +121,6 @@
                 <label for="showForm" class="closeFormLabel left">CANCELAR</label>
             </form>
         </div>
-
         <!-- Buscador oculto que se desplega al hacer click en "Buscar" -->
         <div class="collapse" id="divBuscador" data-parent="#mainDiv">
             @{ List<SelectListItem> catSelect = await CategoriasService.GetSelectListCategorias(); }
@@ -135,16 +131,12 @@
                 <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>
             </form>
         </div>
-
     </header>
-
-
     <div class="container" id="mainContainerLayout">
         <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted bg-dark">
         <div id="footerInfo">
             <div id="footerLeft">

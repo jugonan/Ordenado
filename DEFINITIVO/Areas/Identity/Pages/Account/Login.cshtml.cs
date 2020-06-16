@@ -94,7 +94,7 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
                     //return LocalRedirect(returnUrl);
                     _memoryCache.Remove("ProductosForIndex2");
                     _memoryCache.Remove("Categorias");
-                    return RedirectToAction("Index2", "Productos");
+                    return RedirectToAction("Index", "Home");
                 }
                 if (result.RequiresTwoFactor)
                 {

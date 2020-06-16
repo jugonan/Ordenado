@@ -63,6 +63,49 @@
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span>
                 </div>
+                <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
+                @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+        {
+            <div class="row precios-producto-detalles d-none">
+                <p class="col-4 precio-inicial-opciones">@opcionesDeProducto.PrecioInicial€</p>
+                <p class="col-3 precio-final-opciones">@opcionesDeProducto.PrecioFinal€</p>
+                <p class="col-3 descuento-opciones">@opcionesDeProducto.Descuento</p>
+            </div>
+        }*@
+                <div class="row">
+                    @*
+            @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+            {
+                <p>@opcionesDeProducto.Descripcion</p>
+            }
+                    *@
+                    <p>@Model.Descripcion</p>
+                </div>
+                <div class="row div-fecha-y-visitas">
+                    <p>Hasta el @Model.FechaValidez</p>
+                    <div class="cantidad-visitas-producto">
+                        <img src="https://image.flaticon.com/icons/png/512/1077/1077063.png" />
+                        <p>+100</p>
+                    </div>
+                </div>
+                <div class="input-opciones-productos">
+                    <form>
+                        <row>
+                            <input class="col-2" type="radio" id="opcion-producto-1" name="opciones-productos" value="" style="vertical-align: super;">
+                            <label class="span-1 col-8" for="">@Model.Titulo</label><br>
+                        </row>
+                        @if (opcionesProductos.Count > 1)
+                        {
+                            <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
+                            <label for="">@opcionesProductos[1].Titulo</label><br>
+                        }
+                        @if (opcionesProductos.Count > 2)
+                        {
+                            <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
+                            <label for="">@opcionesProductos[2].Titulo</label>
+                        }
+                    </form>
+                </div>
                 <div class="row precios-producto-detalles">
                     <div class="col-4 precio-final-opciones">
                         <div class="row">
@@ -80,48 +123,15 @@
                         <p class="descuento-opciones"></p>
                     </div>
                 </div>
-                <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
-                @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
-                    {
-                        <div class="row precios-producto-detalles d-none">
-                            <p class="col-4 precio-inicial-opciones">@opcionesDeProducto.PrecioInicial€</p>
-                            <p class="col-3 precio-final-opciones">@opcionesDeProducto.PrecioFinal€</p>
-                            <p class="col-3 descuento-opciones">@opcionesDeProducto.Descuento</p>
-                        </div>
-                    }*@
-                <div class="row">
-                    @*
-                        @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
-                        {
-                            <p>@opcionesDeProducto.Descripcion</p>
-                        }
-                    *@
-                    <p>@Model.Descripcion</p>
-                </div>
-                <div class="input-opciones-productos">
-                    <form>
-                        <row>
-                            <input class="col-2" type="radio" id="opcion-producto-1" name="opciones-productos" value="" style="vertical-align: super;">
-                            <label class="span-1 col-8" for="male">@Model.Titulo</label><br>
-                        </row>
-                        @if (opcionesProductos.Count > 1)
-                        {
-                            <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
-                            <label for="female">@opcionesProductos[1].Titulo</label><br>
-                        }
-                        @if (opcionesProductos.Count > 2)
-                        {
-                            <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
-                            <label for="other">@opcionesProductos[2].Titulo</label>
-                        }
-                    </form>
+                <div class="precio-compra-ahorro">
+                    <p id="precio-compra">Total: €</p>
                 </div>
                 <div class="row div-fecha-validez">
                     <p>Válido hasta: </p>
                     <p id="fecha-validez">@Model.FechaValidez</p>
                 </div>
-                <div class="precio-compra-ahorro">
-                    <p id="precio-compra">Total...€</p>
+                <div class="row">
+                    <p>Has ahorrado:</p>
                     <p id="cantidad-ahorrada"></p>
                 </div>
                 <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
@@ -244,7 +254,7 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
                         </div>
-                        <h5>Janire Rueda</h5>
+                        <h5>Miren Igartua</h5>
                         <p>Muy buena experiencia.</p>
                     </div>
                 </div>

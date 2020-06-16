@@ -1,4 +1,6 @@
-﻿
+﻿//window.addEventListener('load', ponerBonitasCards)
+
+
 document.addEventListener('scroll', function () {
     let divCategorias = document.getElementById('divCategorias');
     divCategorias.classList.remove('show');
@@ -52,7 +54,18 @@ function GestionarModal() {
     }
 }
 
-
+function ponerBonitasCards() {
+    let descripciones = Array.from(document.getElementsByClassName('item-box-blog-text'));
+    for (let i = 10; i < descripciones.length; i++) {
+        if (descripciones[i].innerText.length > 100) {
+            let original = descripciones[i].innerText;
+            let acotado = original.substring(0, 100);
+            console.log(acotado);
+            let nuevo = acotado + '...';
+            descripciones[i].innerHTML = nuevo;
+        }
+    }
+}
 
 
 

@@ -3,10 +3,9 @@
 @inject UserManager<IdentityUser> UserManager
 
 <cache enabled="false">
-
     @if (User.IsInRole("cliente"))
     {
-        <div id="div-cabecera-salir">
+        <div class="col-3" id="div-cabecera-salir">
             <div id="anchor-miperfil">
                 <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">Mi perfil</a>
             </div>
@@ -19,7 +18,7 @@
     }
     @if (User.IsInRole("vendedor"))
     {
-        <div id="div-cabecera-salir">
+        <div class="col-3" id="div-cabecera-salir">
             <div id="anchor-miperfil">
                 <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
             </div>
@@ -32,7 +31,7 @@
     }
     @if (User.IsInRole("admin"))
     {
-        <div id="div-cabecera-salir">
+        <div class="col-3" id="div-cabecera-salir">
             <div>
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="nav-link btn btn-link textType2">Salir</button>
@@ -40,8 +39,7 @@
             </div>
         </div>
     }
-
-    <div class="navbar-nav" style="justify-content:end; width:60%">
+    <div class="navbar-nav col-3">
         @if (SignInManager.IsSignedIn(User))
         {
             <div class="nav-item">
@@ -58,6 +56,4 @@
             </div>
         }
     </div>
-
-
 </cache>

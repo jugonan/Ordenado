@@ -61,18 +61,12 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <div class="row">
-
                                             @for (int index1 = 0; index1 < 3; index1++)
                                             {
                                                 int j = randomProducto[index1];
                                                 <div class="col-md-4 item-box">
                                                     <div class="item-box-blog">
                                                         <div class="item-box-blog-image">
-                                                            <!--Precio-->
-                                                            <div class="row item-box-blog-date bg-blue-ui white">
-                                                                <span class="mon"><strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364 </strike></span>
-                                                                <span class="mon">@listaProducto[j].PrecioFinal &#8364</span>
-                                                            </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
                                                                 <figure> <img class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
@@ -85,15 +79,16 @@
                                                                     @listaProducto[j].Titulo
                                                                 </a>
                                                             </div>
-                                                            <!--Cantidad-->
-                                                            <div class="item-box-blog-data">
-                                                                <p>Quedan @listaProducto[j].UnidadesStock unidades</p>
+                                                            <!--Precio-->
+                                                            <div class="row item-box-blog-date bg-blue-ui white">
+                                                                <span class="mon"><strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364 </strike></span>
+                                                                <span class="mon">@listaProducto[j].PrecioFinal &#8364</span>
                                                             </div>
                                                             <!--Descripción-->
                                                             <div class="item-box-blog-text">
                                                                 <p>@listaProducto[j].Descripcion</p>
                                                             </div>
-                                                            <div class="left"> <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a> </div>
+                                                            <div class="div-boton-comprar"> <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a> </div>
                                                             <!--Comprar-->
                                                         </div>
                                                     </div>
@@ -111,8 +106,6 @@
                                                 <div class="col-md-4 item-box">
                                                     <div class="item-box-blog">
                                                         <div class="item-box-blog-image">
-                                                            <!--Precio-->
-                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364 </span> </div>
                                                             <!--Imagen-->
                                                             <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
                                                                 <figure> <img class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
@@ -125,15 +118,13 @@
                                                                     @listaProducto[j].Titulo
                                                                 </a>
                                                             </div>
-                                                            <!--Cantidad-->
-                                                            <div class="item-box-blog-data">
-                                                                <p>Quedan @listaProducto[j].UnidadesStock unidades</p>
-                                                            </div>
+                                                            <!--Precio-->
+                                                            <div class="item-box-blog-date bg-blue-ui white"><span class="mon"> <strike style="opacity:0.7;"> @listaProducto[j].Precio &#8364</strike>  @listaProducto[j].PrecioFinal &#8364 </span></div>
                                                             <!--Descripción-->
                                                             <div class="item-box-blog-text">
                                                                 <p>@listaProducto[j].Descripcion</p>
                                                             </div>
-                                                            <div class="left"> <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a> </div>
+                                                            <div class="div-boton-comprar"> <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a> </div>
                                                             <!--Comprar-->
                                                         </div>
                                                     </div>
@@ -170,7 +161,6 @@
             var template = document.querySelector("#banner-template");
             return template.innerHTML;
         }
-
         function createFragment(htmlStr) {
             var frag = document.createDocumentFragment(),
                 temp = document.createElement('div');
@@ -180,7 +170,6 @@
             }
             return frag;
         }
-
         function injectTemplate(template) {
             document.body.appendChild(createFragment(template));
         }
@@ -205,7 +194,6 @@
 <div id="modal-root">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">

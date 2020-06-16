@@ -3,6 +3,7 @@ let imagenSpinner;
 let bodySpinner;
 let aClicarSpinner;
 let aClicar2Spinner;
+let aClicar3Spinner;
 let divPadreSpinner;
 let spinnerSpinner;
 let textoSpinner = document.createElement('p');
@@ -16,13 +17,19 @@ window.addEventListener('load', function () {
     try {
         aClicar2Spinner.addEventListener('click', generarSpinner);
     }
-    catch(error){ }
+    catch (error) { }
+    aClicar3Spinner.addEventListener('click', generarSpinner);
+    try {
+        aClicar2Spinner.addEventListener('click', generarSpinner);
+    }
+    catch (error) { }
 })
 
 function llenarVariablesSpinner() {
     bodySpinner = document.getElementById('mainDiv');
     aClicarSpinner = document.getElementById('navbar-logo');
     aClicar2Spinner = document.getElementById('continuarNav');
+    aClicar3Spinner = document.getElementById('link-ofertas-navbar');
     divPadreSpinner = document.createElement('div');
     imagenSpinner = document.createElement('img');
     imagenSpinner.src = 'https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif';

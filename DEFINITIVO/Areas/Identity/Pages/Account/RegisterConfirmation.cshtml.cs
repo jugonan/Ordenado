@@ -37,7 +37,7 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return NotFound($"Unable to load user with email '{email}'.");
+                return NotFound($"No hemos podido encontrar un usuario con el correo '{email}'.");
             }
 
             Email = email;
