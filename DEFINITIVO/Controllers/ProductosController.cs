@@ -72,6 +72,8 @@ namespace DEFINITIVO.Controllers
         }
 
         //[OutputCache(Duration = 6000, VaryByParam ="postalCode", VaryByHeader = "User-Agent;From")]
+
+        [ResponseCache(Duration = 2592000, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> Index2(string postalCode)
         {
             if (string.IsNullOrEmpty(postalCode))
@@ -320,6 +322,8 @@ namespace DEFINITIVO.Controllers
         {
             return _productosService.ExistProducto(id);
         }
+
+        [ResponseCache(Duration = 2592000, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> Categoria(int id)
         {
             List<Producto> nuevaLista = await _productosService.GetProductosByCategoriaId(id);
@@ -348,7 +352,8 @@ namespace DEFINITIVO.Controllers
             return RedirectToAction("Index2", "Productos", new { postalCode = inputPostalCode });
         }
 
-        [OutputCache(Duration = 6000, VaryByParam = "Id")]
+        //[OutputCache(Duration = 6000, VaryByParam = "Id")]
+        [ResponseCache(Duration = 2592000, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> GetImage1(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetMainImage(id);
