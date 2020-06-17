@@ -74,7 +74,10 @@ namespace DEFINITIVO.Controllers
         {
             return View();
         }
-
+        public IActionResult Cookies()
+        {
+            return View();
+        }
         public IActionResult Funcionamiento()
         {
             return View();

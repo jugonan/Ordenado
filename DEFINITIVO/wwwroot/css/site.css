@@ -757,3 +757,37 @@ input.showForm {
         font-weight: 800;
     }
 /* FIN POP UP BANNER */
+
+
+/* -------------- CSS Políticas de Privacidad y Cookies --------------*/
+.privacyContent{
+    text-align:justify;
+}
+
+
+/* Mensaje de Cookies */
+.cookies {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    padding: 30px;
+    background-color: lightgrey;
+    z-index: 999;
+    border: groove;
+    border-color: #F33F84;
+    height: 20rem;
+    opacity: 0.92;
+    font-size: 1.5rem;
+}
+.cookies:hover{
+    opacity:0.99;
+}
+.cookies a{
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:600;
+    font-size:1rem;
+}
+
+/* Fin Políticas de Privacidad y Cookies*/
