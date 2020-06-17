@@ -32,42 +32,34 @@
 <body id="mainDiv" class="accordion">
     <header>
         <cache enabled="false">
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" id="navbarPrincipal">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                        <img id="navbar-logo" src="~/img/helduLogo.png" alt="Home Logo" />
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial" />
-                        <partial name="_SearchPartial" />
-                        <ul class="navbar-nav flex-grow-1 col-3">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm" id="navbarPrincipal">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img id="navbar-logo" src="~/img/helduLogo.png" alt="Home Logo" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <partial name="_SearchPartial" />
+                    <ul class="navbar-nav flex-grow-1 col-3">
+                        <li class="nav-item">
+                            <a id="link-ofertas-navbar" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ofertas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#divDetallesHeldu" aria-controls="divDetallesHeldu" aria-expanded="false" aria-label="Toggle navigation">Conócenos</a>
+                        </li>
+                        @if (User.IsInRole("admin"))
+                        {
                             <li class="nav-item">
-                                <a id="link-ofertas-navbar" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ofertas</a>
+                                <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" href="#divDetallesHeldu" aria-controls="divDetallesHeldu" aria-expanded="false" aria-label="Toggle navigation">Conócenos</a>
+                                <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
                             </li>
-                            @if (User.IsInRole("admin"))
-                            {
-                                <li class="nav-item">
-                                    <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
-                                </li>
-                            }
-                            @if (User.IsInRole("vendedor"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Vendedores" asp-action="Misproductos2">Gestionar Productos</a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
+                        }
+                    </ul>
                 </div>
             </nav>
         </cache>

@@ -149,11 +149,15 @@ a {
     justify-content: start;
 }
 
-    .ul-opciones-producto a {
-        margin: 0vw 2vw;
-        padding: 1vw 2vw;
-        font-size: larger;
-    }
+.imagen-visitas-detalles {
+
+}
+
+.ul-opciones-producto a {
+    margin: 0vw 2vw;
+    padding: 1vw 2vw;
+    font-size: larger;
+}
 
 .anclas-opciones:hover {
     background-color: white;
