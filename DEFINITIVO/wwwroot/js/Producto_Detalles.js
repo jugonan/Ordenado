@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', function () {
     addEvents();
     TEMPORALquitarMinutosDeFecha();
     TEMPORALlPrecioTotal();
+    TEMPORALAddCantidadVisitas();
 });
 
 
@@ -59,9 +60,6 @@ function TEMPORALlPrecioTotal() {
     let precioInicial = document.getElementById('precio-inicial-producto').innerText;
     let click = document.getElementById('opcion-producto-1').addEventListener('click', function () {
         precioTotal.innerText = `Total: ${precioFinal}€`;
-        let ahorrado = document.getElementById('cantidad-ahorrada');
-        let cantidadAhorrada = precioInicial - precioFinal;
-        ahorrado.innerText = (`Has ahorrado ${cantidadAhorrada.toFixed(2)}€`);
         let placesDescuento = document.getElementsByClassName('descuento-opciones');
         let placeDescuento = placesDescuento[0];
         let cantidadDescuento = 100 - (precioFinal * 100 / precioInicial);
@@ -72,7 +70,13 @@ function TEMPORALlPrecioTotal() {
 function TEMPORALquitarMinutosDeFecha() {
     let fecha = document.getElementById('fecha-validez');
     let textoFecha = fecha.innerText.toString();
-    let posicion = textoFecha.indexOf(' ');
+    let posicion = textoFecha.indexOf('00');
     fecha.innerText = textoFecha.substring(0, posicion);
+}
+
+function TEMPORALAddCantidadVisitas() {
+    let visitas = document.getElementById('cantidad-temporal-visitas');
+    let random = Math.floor((Math.random() * 200) + 73);
+    visitas.innerText = `+${random}`;
 }
 

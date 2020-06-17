@@ -223,8 +223,12 @@ a {
     max-height: 4rem;
     background-color: #1C2229;
     justify-content: space-between;
+<<<<<<< Updated upstream
     border-bottom: black;
     border-bottom-style: solid;
+=======
+    padding-left: 7vw;
+>>>>>>> Stashed changes
 }
 
 #navbar-logo {
