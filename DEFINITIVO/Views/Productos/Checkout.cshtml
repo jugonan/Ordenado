@@ -1,5 +1,9 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Checkout";
+    IdentityUser activeUser = await UserManager.GetUserAsync(User);
 }
 
 <link href="~/css/Producto_Checkout.css" rel="stylesheet" type="text/css" />
@@ -10,15 +14,30 @@
     </div>
     <div class="col-8 proximamente">
         <p id="proxText">Próximamente podrás completar la compra y disfrutar de los mejores descuentos en Heldu</p>
-        <div class="row">
-            <div class="col-9" id="registrar">
-                <p id="registText">Si lo deseas, puedes registrarte y te avisaremos cuando Heldu esté funcionando!</p>
-                <p id="textMin">(prometemos no molestar con publicidad)</p>
+        @if (activeUser == null)
+        {
+            <div class="row">
+                <div class="col-9" id="registrar">
+                    <p id="registText">Si lo deseas, puedes registrarte y te avisaremos cuando Heldu esté funcionando!</p>
+                    <p id="textMin">(prometemos no molestar con publicidad)</p>
+                </div>
+                <div class="col-3" id="divBtnRegistrar">
+                    <a class="btn" id="btnRegistrarme" asp-controller="Usuarios" asp-action="MiCuenta">Registrarme</a>
+                </div>
             </div>
-            <div class="col-3" id="divBtnRegistrar">
-                <a class="btn" id="btnRegistrarme" asp-area="Identity" asp-page="/Account/Register">Registrarme</a>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-9" id="registrar">
+                    <p id="registText">Ya te encuentras registrado, te avisaremos cuando Heldu esté funcionando!</p>
+                    <p id="textMin">(prometemos no molestar con publicidad)</p>
+                </div>
+                <div class="col-3" id="divBtnRegistrar">
+                    <a class="btn" id="btnRegistrarme" asp-area="Identity" asp-page="/Account/Register">Mi Perfil</a>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 
