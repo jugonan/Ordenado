@@ -1,0 +1,22 @@
+/*  SELECCION DE COLORES GENERALES Y TIPOGRAFIA (26/05/20)
+
+    Colores:
+        Rosa principal: #F21B6D 
+        Negro Navbar: #1C2229
+        Fondo subNavbar: #363537
+        Fondo cards: #F7F6F2
+        Color de separación complementaria suave: #BAC1B8 (text?)
+        Color de separación complementaria fuerte: #02A669
+	Color "alert-danger" (rojo anaranjado): #e46464 
+	
+    Alternativos:
+	Rosa 2 tonos más claro: #F33F84
+	Rosa 5 tonos más claro: #F679A9
+
+    Fuente principal: 
+        font-family: 'Open Sans Condensed', sans-serif;
+        weight: 300 - 700;
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+
+*/
+
