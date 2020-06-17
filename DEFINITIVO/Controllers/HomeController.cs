@@ -45,11 +45,12 @@ namespace DEFINITIVO.Controllers
             string id = _userManager.GetUserId(User);
             if (id == null)
             {
-                return RedirectToAction("Heldu", "Home");
+                return RedirectToAction("Index2", "Productos");
             }
             else
             {
                 var user = _context.Users.FirstOrDefault(u => u.Id == id);
+                
                 if (user != null)
                 {
                     //Comprobar si es usuario o vendedor o administrador
@@ -65,8 +66,7 @@ namespace DEFINITIVO.Controllers
                 }
                 else
                 {
-                    //Le enviamos al inicio
-                    return RedirectToAction("Index2", "Productos");
+                    return RedirectToPage("~/Identity/Account/Register");
                 }
             }
         }

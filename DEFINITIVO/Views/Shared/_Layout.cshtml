@@ -67,8 +67,11 @@
         @{
             List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
         }
-        <div class="collapse" id="divCategorias" data-parent="#mainDiv">
+        <div id="divCategorias">
             <ul class="row subMenuCat">
+                <li class="col itemCategoria">
+                    <a asp-area="" asp-controller="Productos" asp-action="Index2" class="textType3" id="Categoria_Todas.Id">Todas</a>
+                </li>
                 @foreach (Categoria categoria in listaCategorias)
                 {
                     <li class="col itemCategoria">
@@ -146,7 +149,6 @@
                     <span><a href="https://www.linkedin.com/in/galo-garcia-pugliese/"> GGP </a></span>
                     <span>   -   </span>
                     <span> | Contactos: jon@heldu.eus  -  galo@heldu.eus </span>
-                    <span> - 666 60 81 99 </span>
                 </h5>
             </div>
             <div id="footerRight">

@@ -107,6 +107,7 @@ figure img {
     width: 45%;
     margin: 0vw auto;
     color: #F21B6D;
+    place-content:center;
 }
 
 .item-box-blog-date span {

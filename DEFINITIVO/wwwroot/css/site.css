@@ -223,6 +223,8 @@ a {
     max-height: 4rem;
     background-color: #1C2229;
     justify-content: space-between;
+    border-bottom: black;
+    border-bottom-style: solid;
 }
 
 #navbar-logo {
@@ -358,11 +360,20 @@ a {
 /*
     Submenu de Categorías de productos | Submenu de Conócenos
 */
-#divCategorias, #divDetallesHeldu {
+#divCategorias {
     position: absolute;
     width: 100%;
     top: 4vw;
-    z-index: 899;
+    background-color: #363537;
+    transition: ease;
+    transition-duration: 0.3s;
+    height: 2vw;
+}
+
+#divDetallesHeldu {
+    position: absolute;
+    width: 100%;
+    top: 4vw;
     min-height: 3.5rem;
     max-height: 3.5rem;
     background-color: #363537;
@@ -372,11 +383,8 @@ a {
 
 .subMenuCat {
     position: absolute;
-    bottom: 0.5rem;
-    margin-left: 13%;
+    margin-left: 10%;
     width: 70%;
-    height: 80%;
-    align-items: center;
     text-align: center;
     margin-bottom: -5px;
 }
