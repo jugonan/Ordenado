@@ -227,6 +227,9 @@ a {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     z-index: 1;
+=======
+    padding-left: 7vw;
+>>>>>>> Stashed changes
 }
 
 #navbar-logo {

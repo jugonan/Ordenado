@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-10 offset-1">
         <div class="row">
-            <div class="col-8 contenido-producto">
+            <div class="col-7 contenido-producto">
                 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 ">
+            <div class="col-5">
                 <div class="row">
                     <p>Media vendedor:</p>
                     <span class="fa fa-star checked"></span>
@@ -84,12 +84,12 @@
                             <p>@opcionesDeProducto.Descripcion</p>
                         }
                     *@
-                    <p>@Model.Descripcion</p>
+                    <p id="descripcion-de-producto">@Model.Descripcion</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Hasta el @Model.FechaValidez</p>
+                    <p id="fecha-validez" class="col-6">Hasta el @Model.FechaValidez</p>
                     <img class="imagen-visitas-detalles" src="https://image.flaticon.com/icons/png/512/1077/1077063.png" />
-                    <p class="col-3">+100</p>
+                    <p id="cantidad-temporal-visitas" class="col-3"></p>
                 </div>
                 <div class="input-opciones-productos">
                     <form>
@@ -109,33 +109,25 @@
                         }
                     </form>
                 </div>
-                <div class="row precios-producto-detalles">
-                    <div class="col-4 precio-final-opciones">
+                <div class="precios-producto-detalles">
+                    <div class="precio-final-opciones">
                         <div class="row">
                             <p id="precio-final-producto">@Model.PrecioFinal </p>
                             <span> &#8364 </span>
                         </div>
                     </div>
-                    <div class="col-3 precio-inicial-opciones">
+                    <div class="precio-inicial-opciones">
                         <div class="row">
                             <p id="precio-inicial-producto">@Model.Precio </p>
                             <span> &#8364 </span>
                         </div>
                     </div>
-                    <div class="col-5">
+                    <div>
                         <p class="descuento-opciones"></p>
                     </div>
                 </div>
                 <div class="precio-compra-ahorro">
                     <p id="precio-compra">Total: €</p>
-                </div>
-                <div class="row div-fecha-validez">
-                    <p>Válido hasta: </p>
-                    <p id="fecha-validez">@Model.FechaValidez</p>
-                </div>
-                <div class="row">
-                    <p>Has ahorrado:</p>
-                    <p id="cantidad-ahorrada"></p>
                 </div>
                 <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
@@ -293,5 +285,8 @@
         <a asp-action="Index2">Volver</a>
     </div>
 }
-<script src="~/js/Producto_Detalles.js"></script>
+@section Scripts {
+
+    <script defer src="~/js/Producto_Detalles.js"></script>
+}
 

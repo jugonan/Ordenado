@@ -5,17 +5,26 @@
 .imagenes-carousel {
     height: 27vw;
     width: 40vw;
+    border-radius: 1vw;
+    width: inherit;
+}
+
+#descripcion-de-producto {
+    text-align: justify;
 }
 
 .precios-producto-detalles {
+    display: flex;
+    flex-direction: row;
     align-items: baseline;
+    justify-content: space-evenly;
     font-size: 1.6vw;
     height: 4vw;
 }
 
-    .precios-producto-detalles p {
-        height: inherit;
-    }
+.precios-producto-detalles p {
+    height: inherit;
+}
 
 .precio-final-opciones {
     font-size: 2.1vw;
@@ -52,14 +61,14 @@
     align-items: center;
 }
 
-    .precio-compra-ahorro p {
-        height: inherit;
-    }
+.precio-compra-ahorro p {
+    height: inherit;
+}
 
-    .precio-compra-ahorro:first-child {
-        font-size: 1.4vw;
-        text-decoration-line: underline;
-    }
+.precio-compra-ahorro:first-child {
+   font-size: 1.4vw;
+   text-decoration-line: underline;
+}
 
 #precio-compra {
     font-size: 2vw;
@@ -89,10 +98,10 @@ a {
     color: whitesmoke;
 }
 
-    .boton-comprar-producto:hover {
-        opacity: 1;
-        color: white;
-    }
+.boton-comprar-producto:hover {
+    opacity: 1;
+    color: white;
+}
 
 #reportarProblema {
     text-align: center;
@@ -110,14 +119,20 @@ a {
     background-color: #F21B6D;
 }
 
+.carousel-indicators a {
+    border-radius: 8%;
+}
+
 .normal-thumbnail-carousel img {
     width: 7vw;
     height: 7vw;
+    border-radius: 8%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-    .normal-thumbnail-carousel img:hover {
-        border: 3px solid #F21B6D;
-    }
+.normal-thumbnail-carousel img:hover {
+    border: 3px solid #F21B6D;
+}
 
 .barra-opciones-producto {
     margin-top: 3vw;
@@ -150,7 +165,12 @@ a {
 }
 
 .imagen-visitas-detalles {
+    width: 7%;
+    height: 7%;
+}
 
+.imagen-visitas-detalles + p {
+    height: min-content;
 }
 
 .ul-opciones-producto a {
