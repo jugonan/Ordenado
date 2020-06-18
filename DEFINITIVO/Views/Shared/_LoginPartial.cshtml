@@ -5,7 +5,7 @@
 <cache enabled="false">
     @if (SignInManager.IsSignedIn(User))
     {
-        <div class="col-3" id="div-cabecera-salir">
+        <div class="col-2 offset-1" id="div-cabecera-salir">
             @if (User.IsInRole("cliente"))
             {
                 <div id="anchor-miperfil">
@@ -45,59 +45,4 @@
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
         </div>
     }
-    @*
-        @if (User.IsInRole("cliente"))
-            {
-                <div class="col-3" id="div-cabecera-salir">
-                    <div id="anchor-miperfil">
-                        <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">Mi perfil</a>
-                    </div>
-                    <div class="desplegable-salir">
-                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout">
-                            <button type="submit" class="nav-link btn btn-link"><p class="boton-salir-usuario">Salir</p></button>
-                        </form>
-                    </div>
-                </div>
-            }
-            @if (User.IsInRole("vendedor"))
-            {
-                <div class="col-3" id="div-cabecera-salir">
-                    <div id="anchor-miperfil">
-                        <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">Mi perfil</a>
-                    </div>
-                    <div class="desplegable-salir">
-                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout">
-                            <button type="submit" class="nav-link btn btn-link textType2"><p class="boton-salir-usuario">Salir</p></button>
-                        </form>
-                    </div>
-                </div>
-            }
-            @if (User.IsInRole("admin"))
-            {
-                <div class="col-3" id="div-cabecera-salir">
-                    <div>
-                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <button type="submit" class="nav-link btn btn-link textType2">Salir</button>
-                        </form>
-                    </div>
-                </div>
-            }
-            <div class="navbar-nav col-3">
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <div class="nav-item">
-                        <p class="nav-link">Hola @User.Identity.Name!</p>
-                    </div>
-                }
-                else
-                {
-                    <div class="nav-item">
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrarme</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
-                    </div>
-                }
-            </div>
-    *@
 </cache>

@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-5">
-                <div class="row">
+                <div class="row media-de-vendedor">
                     <p>Media vendedor:</p>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
@@ -80,10 +80,12 @@
                     *@
                     <p id="descripcion-de-producto">@Model.Descripcion</p>
                 </div>
-                <div class="row">
+                <div class="row fecha-y-visitas">
                     <p id="fecha-validez" class="col-6">Hasta el @Model.FechaValidez</p>
-                    <img class="imagen-visitas-detalles" src="https://image.flaticon.com/icons/png/512/1077/1077063.png" />
-                    <p id="cantidad-temporal-visitas" class="col-3"></p>
+                    <div class="col-5">
+                        <img class="imagen-visitas-detalles" src="https://image.flaticon.com/icons/png/512/1077/1077063.png" />
+                        <p id="cantidad-temporal-visitas" class="col-3"></p>
+                    </div>
                 </div>
                 <div class="input-opciones-productos">
                     <form>
@@ -120,9 +122,6 @@
                         <p class="descuento-opciones"></p>
                     </div>
                 </div>
-                <div class="precio-compra-ahorro">
-                    <p id="precio-compra">Total: €</p>
-                </div>
                 <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
@@ -130,7 +129,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-7 offset-1 barra-opciones-producto">
+    <div class="col-6 offset-1 barra-opciones-producto">
         <div class="navbar navbar-default navegador-condiciones-productos">
             <div class="container-fluid">
                 <div class="row ul-opciones-producto">

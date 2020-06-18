@@ -9,8 +9,38 @@
     width: inherit;
 }
 
+.media-de-vendedor {
+    justify-content: flex-end;
+    align-items: baseline;
+    margin-bottom: 2vw;
+}
+
 #descripcion-de-producto {
     text-align: justify;
+    font-size: 1.5vw;
+    margin-bottom: 0.5vw;
+}
+
+#fecha-validez {
+    padding: 0;
+    display: flex;
+}
+
+.fecha-y-visitas div{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    justify-content: left;
+    align-items: baseline;
+}
+.fecha-y-visitas img{
+    width: 12%;
+    height: 40%;
+    margin: 0vw 0.6vw;
+}
+
+.fecha-y-visitas p {
+    padding: 0;
 }
 
 .precios-producto-detalles {
@@ -20,6 +50,8 @@
     justify-content: space-evenly;
     font-size: 1.6vw;
     height: 4vw;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 4vw;
 }
 
 .precios-producto-detalles p {
@@ -29,8 +61,6 @@
 .precio-final-opciones {
     font-size: 2.1vw;
     text-align: right;
-    color: #0e950e;
-    font-weight: 600;
 }
 
 #precio-final-producto + p {
@@ -53,21 +83,6 @@
     align-items: center;
     font-size: 2vw;
     font-family: 'Open Sans Condensed';
-}
-
-.precio-compra-ahorro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.precio-compra-ahorro p {
-    height: inherit;
-}
-
-.precio-compra-ahorro:first-child {
-   font-size: 1.4vw;
-   text-decoration-line: underline;
 }
 
 #precio-compra {
@@ -136,11 +151,7 @@ a {
 
 .barra-opciones-producto {
     margin-top: 3vw;
-}
-
-.div-fecha-validez {
-    font-size: 1.4vw;
-    margin: 1vw 0vw -1vw 0vw;
+    padding: 0;
 }
 
 .navegador-condiciones-productos {

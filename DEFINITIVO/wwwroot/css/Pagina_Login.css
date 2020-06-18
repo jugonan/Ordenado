@@ -13,11 +13,19 @@
     margin: -1.5rem 0rem !important;
 }
 
-    #div-boton-login button {
-        padding: 0.5rem 2rem;
-        position: relative;
-        right: 3rem;
-    }
+#div-boton-login button {
+    padding: 0.5rem 2rem;
+    position: relative;
+    right: 3rem;
+}
+
+.barra-hr-el {
+    margin: 2vw 0vw 1vw 0vw;
+}
+
+.barra-hr-el hr {
+    width: 45%;
+}
 
 .inputs {
     margin-left: 15px;

@@ -12,7 +12,6 @@
     padding-bottom: 20px;
 }
 
-
 .btnLoQuiero {
     font-weight: 700;
     box-shadow: 1px -1px 2px 1px #F679A9;
@@ -39,7 +38,7 @@ figure img {
 .blog .carousel-indicators {
     left: 0;
     top: -35px;
-    height: 50%;
+    height: 1%;
 }
 
 
@@ -196,12 +195,12 @@ figure img {
     text-decoration: none;
 }
 
-    .category_name:hover {
-        font-weight: 600;
-        color: #F21B6D !important;
-        opacity: 1;
-        text-decoration: none;
-    }
+.category_name:hover {
+    font-weight: 600;
+    color: #F21B6D !important;
+    opacity: 1;
+    text-decoration: none;
+}
 
 
 /*
@@ -221,9 +220,9 @@ figure img {
     opacity: 0.7;
 }
 
-    .floating-button:hover {
-        opacity: 1;
-    }
+.floating-button:hover {
+    opacity: 1;
+}
 
 .my-float {
     margin-top: 22px;
@@ -232,10 +231,10 @@ figure img {
     z-index: 99;
 }
 
-    .my-float:hover {
-        color: ghostwhite;
-        opacity: 1;
-    }
+.my-float:hover {
+    color: ghostwhite;
+    opacity: 1;
+}
 
 .label-container {
     position: fixed;
@@ -244,9 +243,6 @@ figure img {
     display: table;
     visibility: hidden;
 }
-
-    .label-container div {
-    }
 
 .label-text {
     color: #FFF;
