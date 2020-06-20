@@ -1,32 +1,18 @@
 @page
 @model RegisterModel
-@{ 
+@{
     ViewData["Title"] = "Registro";
 }
 
 <link href="/css/Pagina_Register.css" rel="stylesheet" type="text/css">
 <script src="~/js/Register_General.js"></script>
 
-
 <h1>Bienvenido a Heldu</h1>
 <div class="row" id="div-inicial-register">
     <div class="col-md-12">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div id="div-opciones-acceso">
-                <div class="form-group form-inline" id="div-de-usuario">
-                    <label asp-for="Input.IsCliente"></label>
-                    <input type="checkbox" id="opcion-comprar" asp-for="Input.IsCliente" class="form-control" />
-                    <span asp-validation-for="Input.IsCliente" class="text-danger"></span>
-                </div>
-                <div class="form-group form-inline" id="div-de-vendedor">
-                    <label asp-for="Input.IsVendedor"></label>
-                    <input type="checkbox" id="opcion-vender" asp-for="Input.IsVendedor" class="form-control" />
-                    <span asp-validation-for="Input.IsVendedor" class="text-danger"></span>
-                </div>
-            </div>
             <!-- Registro IdentityUser -->
-            <div id="campos-registro" class="d-none">
+            <div>
                 <div class="form-group">
                     <label asp-for="Input.Email"></label>
                     <input placeholder="Introduce tu correo" asp-for="Input.Email" class="form-control" />
@@ -77,6 +63,76 @@
         </section>
     </div>
 </div>
+@*<h1>Bienvenido a Heldu</h1>
+    <div class="row" id="div-inicial-register">
+        <div class="col-md-12">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div id="div-opciones-acceso">
+                    <div class="form-group form-inline" id="div-de-usuario">
+                        <label asp-for="Input.IsCliente"></label>
+                        <input type="checkbox" id="opcion-comprar" asp-for="Input.IsCliente" class="form-control" />
+                        <span asp-validation-for="Input.IsCliente" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-inline" id="div-de-vendedor">
+                        <label asp-for="Input.IsVendedor"></label>
+                        <input type="checkbox" id="opcion-vender" asp-for="Input.IsVendedor" class="form-control" />
+                        <span asp-validation-for="Input.IsVendedor" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Registro IdentityUser -->
+                <div id="campos-registro" class="d-none">
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input placeholder="Introduce tu correo" asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input placeholder="Introduce tu contraseña" asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <input placeholder="Confirma tu contraseña" asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div id="div-boton-register">
+                        <button type="submit" class="btn btn-primary">Registarme</button>
+                    </div>
+                </div>
+            </form>
+            <section class="d-none" id="botones-autenticacion-registro">
+                <h5>Regístrate con una de las siguentes opciones</h5>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                for details on setting up this ASP.NET application to support logging in via external services.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p id="parrafo-superior-er">
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" style="width:auto;" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    </div>
+*@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

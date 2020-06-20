@@ -63,7 +63,7 @@ function TEMPORALlPrecioTotal() {
         let placesDescuento = document.getElementsByClassName('descuento-opciones');
         let placeDescuento = placesDescuento[0];
         let cantidadDescuento = 100 - (precioFinal * 100 / precioInicial);
-        placeDescuento.innerText = `desc: ${cantidadDescuento.toFixed(0)}%`;
+        placeDescuento.innerText = `${cantidadDescuento.toFixed(0)}%`;
     })
 }
 

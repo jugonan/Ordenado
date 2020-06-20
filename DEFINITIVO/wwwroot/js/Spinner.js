@@ -67,13 +67,13 @@ function getText() {
     numero = Math.floor(Math.random() * 5)+1;
     switch (numero) {
         case 1:
-            return '¿Sabías que, debido al COVID-19, se espera que la cifra de desempleados en España ascienda hasta un 24,7%?'
+            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el granadino Pedro Rincón y una inspiraciónn para Heldu'
             break;
         case 2:
             return 'Heldu nace desde y para el desempleado. La idea surgió estando ambos fundadores en paro, conociendo las dificultades que supone no tener ingresos.'
             break;
         case 3:
-            return 'En Mayo de 2020 Zara, Stradivarius y Uterque anunciaron "Special Prices" con rebajas de hasta el 50% en las dos primeras y del 30%, en el caso de la tercera.'
+            return 'Nuevos tiempos requieren nuevas medidas: en Mayo de 2020 Zara, Stradivarius y Uterque anunciaron "Special Prices" con rebajas de hasta el 50% en las dos primeras y del 30%, en el caso de la tercera.'
             break;
         case 4:
             return '¿Sabías que una cultura de responsabilidad social crea un concepción positiva de la marca, atrae más público y fideliza futuros clientes?  Fuente: Investopedia.'
@@ -82,7 +82,6 @@ function getText() {
             return 'Heldu surge con el objetivo de generar un impacto positivo y una situación Win-to-Win. Por un lado la persona desempleada pueda tenere acceso a un consumo común. Y por otro lado, los comercios puedan llegar a usuarios que de otra manera no podrían.'
             break;
         default:
-            return "¿Sabías que en mayo han quedado desempleadas más de 3000 personas en Euskadi?"
             break;
 
     }

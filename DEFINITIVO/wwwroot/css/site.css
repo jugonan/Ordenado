@@ -241,17 +241,19 @@ a {
     padding: 0rem 1.5vw;
 }
 
-.navegador-entrar {
+.boton-de-ingresar {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+}
 
+.boton-de-ingresar img {
+    width: 20%;
 }
 
 #anchor-miperfil {
     padding-top: 15px;
     padding-bottom: 15px;
-}
-
-.mis-productos-vendedor {
-
 }
 
 #pipe {

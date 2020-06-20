@@ -18,6 +18,23 @@
 
 <div class="row">
     <div class="col-10 offset-1">
+        <div class="titulo-producto-detalles">
+            <h1>@Model.Titulo</h1>
+            <div>
+                <div class="row ubicacion-del-vendedor">
+                    <img src="https://image.flaticon.com/icons/svg/684/684908.svg" />
+                    <p class="col-7">Fisioimpacto centro estético; Luis Power 23, 48014, Bilbao</p>
+                </div>
+                <div class="row media-de-vendedor" style="align-items: baseline;">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <p>(13 opiniones)</p>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-7 contenido-producto">
                 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
@@ -54,14 +71,6 @@
                 </div>
             </div>
             <div class="col-5">
-                <div class="row media-de-vendedor">
-                    <p>Media vendedor:</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                </div>
                 <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
                 @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
                     {
@@ -81,55 +90,64 @@
                     <p id="descripcion-de-producto">@Model.Descripcion</p>
                 </div>
                 <div class="row fecha-y-visitas">
-                    <p id="fecha-validez" class="col-6">Hasta el @Model.FechaValidez</p>
-                    <div class="col-5">
-                        <img class="imagen-visitas-detalles" src="https://image.flaticon.com/icons/png/512/1077/1077063.png" />
+                    <p id="fecha-validez">Hasta el @Model.FechaValidez |</p>
+                    <div>
+                        <img class="imagen-visitas-detalles" src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
                         <p id="cantidad-temporal-visitas" class="col-3"></p>
                     </div>
                 </div>
                 <div class="input-opciones-productos">
                     <form>
-                        <row>
-                            <input class="col-2" type="radio" id="opcion-producto-1" name="opciones-productos" value="" style="vertical-align: super;">
-                            <label class="span-1 col-8" for="">@Model.Titulo</label><br>
-                        </row>
+                        @if (opcionesProductos.Count == 0 || opcionesProductos.Count == 1)
+                        {
+                            <div class="row" style="align-items:center;">
+                                <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <label for="">@Model.Titulo</label><br>
+                            </div>
+                        }
                         @if (opcionesProductos.Count > 1)
                         {
-                            <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
-                            <label for="">@opcionesProductos[1].Titulo</label><br>
+                            <div class="row" style="align-items:center;">
+                                <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <label for="">@opcionesProductos[0].Titulo</label><br>
+                            </div>
+                            <div class="row" style="align-items:center;">
+                                <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
+                                <label for="">@opcionesProductos[1].Titulo</label><br>
+                            </div>
                         }
                         @if (opcionesProductos.Count > 2)
                         {
-                            <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
-                            <label for="">@opcionesProductos[2].Titulo</label>
+                            <div class="row">
+                                <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
+                                <label for="">@opcionesProductos[2].Titulo</label>
+                            </div>
                         }
                     </form>
                 </div>
                 <div class="precios-producto-detalles">
-                    <div class="precio-final-opciones">
-                        <div class="row">
-                            <p id="precio-final-producto">@Model.PrecioFinal </p>
-                            <span> &#8364 </span>
-                        </div>
-                    </div>
-                    <div class="precio-inicial-opciones">
-                        <div class="row">
-                            <p id="precio-inicial-producto">@Model.Precio </p>
-                            <span> &#8364 </span>
-                        </div>
-                    </div>
                     <div>
                         <p class="descuento-opciones"></p>
                     </div>
+                    <div class="precio-inicial-opciones">
+                        <p id="precio-inicial-producto">@Model.Precio </p>
+                        <p> &#8364 </p>
+                    </div>
+                    <div class="precio-final-opciones">
+                        <p id="precio-final-producto">@Model.PrecioFinal </p>
+                        <p> &#8364 </p>
+                    </div>
                 </div>
-                <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
+                <div class="div-boton-comprar">
+                    <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
+                </div>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-6 offset-1 barra-opciones-producto">
+    <div class="barra-opciones-producto">
         <div class="navbar navbar-default navegador-condiciones-productos">
             <div class="container-fluid">
                 <div class="row ul-opciones-producto">
@@ -248,6 +266,7 @@
             </div>
         </div>
     </div>
+    <div class="barra-informacion-vendedor"></div>
 </div>
 <!-- MODAL PARA AÑADIR COMENTARIOS-->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
