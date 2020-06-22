@@ -67,7 +67,7 @@ function getText() {
     numero = Math.floor(Math.random() * 5)+1;
     switch (numero) {
         case 1:
-            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el granadino Pedro Rincón y una inspiraciónn para Heldu'
+            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el granadino Pedro Rincón y una inspiraciónn para Heldu.Puedes copiar el siguiente enlace: shorturl.at/kEZ17'
             break;
         case 2:
             return 'Heldu nace desde y para el desempleado. La idea surgió estando ambos fundadores en paro, conociendo las dificultades que supone no tener ingresos.'

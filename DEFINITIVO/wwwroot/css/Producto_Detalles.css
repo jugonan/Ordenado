@@ -8,6 +8,14 @@ label {
     margin-left: 1vw;
 }
 
+ul {
+    list-style-type: none;
+    padding-left: 1vw;
+}
+
+h6 {
+    font-weight: 600;
+}
 
 .ubicacion-del-vendedor img{
     height: 2vw;
@@ -37,7 +45,6 @@ label {
 
 #descripcion-de-producto {
     text-align: justify;
-    font-size: 1.5vw;
     margin-bottom: 0.5vw;
 }
 
@@ -202,36 +209,40 @@ a {
     border: 3px solid #F21B6D;
 }
 
-.barra-opciones-producto {
+.seccion-inferior {
     margin-top: 3vw;
-    padding: 0;
 }
 
 .navegador-condiciones-productos {
-    padding: 0;
     background-color: #F7F6F2;
     border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    font-size: 1.5vw;
+}
+
+.navegador-condiciones-productos a{
+    padding: 1vw 0vw;
 }
 
 .contenedor-texto-ocultar {
     height: 23vw;
 }
 
+.condiciones-del-cupon {
+    width: 50%;
+}
+
+.texto-ocultar h5{
+    text-align: center;
+}
 .div-mapa iframe {
     border: 0px;
     height: 18vw;
     width: inherit;
-}
-
-.ul-opciones-producto {
-    width: 100%;
-    justify-content: start;
-}
-
-.ul-opciones-producto a {
-    margin: 0vw 2vw;
-    padding: 1vw 2vw;
-    font-size: larger;
 }
 
 .anclas-opciones:hover {
