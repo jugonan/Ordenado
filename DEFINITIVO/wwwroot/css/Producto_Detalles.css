@@ -1,4 +1,28 @@
-﻿#control-next-carousel {
+﻿input {
+    width: 1.4vw;
+    height: 1.4vw;
+}
+
+label {
+    font-size: 1.3vw;
+    margin-left: 1vw;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 1vw;
+}
+
+h6 {
+    font-weight: 600;
+}
+
+.ubicacion-del-vendedor img{
+    height: 2vw;
+    padding: 0;
+}
+
+#control-next-carousel {
     justify-content: flex-start;
 }
 
@@ -9,43 +33,104 @@
     width: inherit;
 }
 
+.media-de-vendedor {
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.media-de-vendedor p{
+    color: #09F;
+    padding-left: 1vw;
+}
+
 #descripcion-de-producto {
     text-align: justify;
+    margin-bottom: 0.5vw;
+}
+
+#fecha-validez {
+    padding: 0;
+    display: flex;
+}
+
+.fecha-y-visitas {
+    margin: 2vw auto 3vw auto;
+    align-items: center;
+    justify-content: flex-start;
+    color: gray;
+}
+
+.fecha-y-visitas div{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    justify-content: left;
+}
+.fecha-y-visitas img{
+    width: 1.5vw;
+    height: 1.5vw;
+    margin: 0vw 0.5vw 0vw 1vw;
+    opacity: 0.7;
+}
+
+.fecha-y-visitas p {
+    padding: 0;
+}
+
+.input-opciones-productos {
+    width: 100%;
 }
 
 .precios-producto-detalles {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    justify-content: space-evenly;
-    font-size: 1.6vw;
+    justify-content: center;
+    font-size: 1.7vw;
     height: 4vw;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 4vw;
 }
 
 .precios-producto-detalles p {
     height: inherit;
 }
 
-.precio-final-opciones {
-    font-size: 2.1vw;
-    text-align: right;
-    color: #0e950e;
-    font-weight: 600;
+.precios-producto-detalles div {
+    padding-right: 0.5vw;
 }
 
-#precio-final-producto + p {
-    font-size: 2.1vw;
-    color: #0e950e;
-    font-weight: 600;
+
+.precio-final-opciones {
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #2B9720;
+}
+
+#precio-final-producto {
+    border-left: 1px solid gray;
+    padding-left: 1vw;
 }
 
 .precio-inicial-opciones {
     text-decoration-line: line-through;
-    color: #775e5e;
+    color: gray;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#precio-inicial-producto {
+    border-left: 1px solid gray;
+    padding-left: 1vw;
 }
 
 .descuento-opciones {
     font-size: 1.5vw;
+    color: #f3317b;
 }
 
 .informacion-producto {
@@ -53,21 +138,6 @@
     align-items: center;
     font-size: 2vw;
     font-family: 'Open Sans Condensed';
-}
-
-.precio-compra-ahorro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.precio-compra-ahorro p {
-    height: inherit;
-}
-
-.precio-compra-ahorro:first-child {
-   font-size: 1.4vw;
-   text-decoration-line: underline;
 }
 
 #precio-compra {
@@ -89,8 +159,13 @@ a {
     cursor: pointer;
 }
 
-.boton-comprar-producto {
-    width: 100%;
+.div-boton-comprar {
+    display: flex;
+    justify-content: center;
+}
+
+.div-boton-comprar a{
+    width: 50%;
     font-weight: 600;
     text-transform:uppercase;
     background: #F21B6D;
@@ -98,7 +173,7 @@ a {
     color: whitesmoke;
 }
 
-.boton-comprar-producto:hover {
+.div-boton-comprar a:hover {
     opacity: 1;
     color: white;
 }
@@ -134,49 +209,40 @@ a {
     border: 3px solid #F21B6D;
 }
 
-.barra-opciones-producto {
+.seccion-inferior {
     margin-top: 3vw;
 }
 
-.div-fecha-validez {
-    font-size: 1.4vw;
-    margin: 1vw 0vw -1vw 0vw;
-}
-
 .navegador-condiciones-productos {
-    padding: 0;
     background-color: #F7F6F2;
     border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    font-size: 1.5vw;
+}
+
+.navegador-condiciones-productos a{
+    padding: 1vw 0vw;
 }
 
 .contenedor-texto-ocultar {
     height: 23vw;
 }
 
+.condiciones-del-cupon {
+    width: 50%;
+}
+
+.texto-ocultar h5{
+    text-align: center;
+}
 .div-mapa iframe {
     border: 0px;
     height: 18vw;
     width: inherit;
-}
-
-.ul-opciones-producto {
-    width: 100%;
-    justify-content: start;
-}
-
-.imagen-visitas-detalles {
-    width: 7%;
-    height: 7%;
-}
-
-.imagen-visitas-detalles + p {
-    height: min-content;
-}
-
-.ul-opciones-producto a {
-    margin: 0vw 2vw;
-    padding: 1vw 2vw;
-    font-size: larger;
 }
 
 .anclas-opciones:hover {

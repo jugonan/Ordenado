@@ -1,5 +1,6 @@
 ﻿/* Variables */
 let imagenSpinner;
+let imagenSpinnerProducto;
 let bodySpinner;
 let aClicarSpinner;
 let aClicar2Spinner;
@@ -33,6 +34,8 @@ function llenarVariablesSpinner() {
     divPadreSpinner = document.createElement('div');
     imagenSpinner = document.createElement('img');
     imagenSpinner.src = 'https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif';
+    imagenSpinnerProducto = document.createElement('img');
+    imagenSpinnerProducto.src = 'https://i.pinimg.com/originals/b8/c8/d8/b8c8d8b7f26bfd7e065f6fc82a4cc13e.gif';
 }
 
 function generarSpinner() {
@@ -63,17 +66,37 @@ function sleep(ms){
     }
 }
 
+function generarSpinnerProducto() {
+    let fondoPaginaEliminar = document.getElementById('mainContainerLayout');
+    divPadreSpinner.classList.add('div-spinner');
+    imagenSpinnerProducto.classList.add('imagen-spinner');
+    textoSpinner.classList.add('texto-spinner');
+    textoSpinner.innerText = 'Cargando el producto';
+    divPadreSpinner.appendChild(textoSpinner);
+    divPadreSpinner.appendChild(imagenSpinnerProducto);
+    bodySpinner.appendChild(divPadreSpinner);
+    textoSpinner.appendChild(textoVelocidad);
+    fondoPaginaEliminar.remove();
+    window.scrollTo(0, 0);
+    setTimeout(function () {
+        textoSpinner.classList.add('texto-spinner-opaco');
+    }, 100)
+    setTimeout(function () {
+        sleep(4000);
+    }, 500)
+}
+
 function getText() {
     numero = Math.floor(Math.random() * 5)+1;
     switch (numero) {
         case 1:
-            return '¿Sabías que, debido al COVID-19, se espera que la cifra de desempleados en España ascienda hasta un 24,7%?'
+            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el granadino Pedro Rincón y una inspiraciónn para Heldu.Puedes copiar el siguiente enlace: shorturl.at/kEZ17'
             break;
         case 2:
             return 'Heldu nace desde y para el desempleado. La idea surgió estando ambos fundadores en paro, conociendo las dificultades que supone no tener ingresos.'
             break;
         case 3:
-            return 'En Mayo de 2020 Zara, Stradivarius y Uterque anunciaron "Special Prices" con rebajas de hasta el 50% en las dos primeras y del 30%, en el caso de la tercera.'
+            return 'Nuevos tiempos requieren nuevas medidas: en Mayo de 2020 Zara, Stradivarius y Uterque anunciaron "Special Prices" con rebajas de hasta el 50% en las dos primeras y del 30%, en el caso de la tercera.'
             break;
         case 4:
             return '¿Sabías que una cultura de responsabilidad social crea un concepción positiva de la marca, atrae más público y fideliza futuros clientes?  Fuente: Investopedia.'
@@ -82,7 +105,6 @@ function getText() {
             return 'Heldu surge con el objetivo de generar un impacto positivo y una situación Win-to-Win. Por un lado la persona desempleada pueda tenere acceso a un consumo común. Y por otro lado, los comercios puedan llegar a usuarios que de otra manera no podrían.'
             break;
         default:
-            return "¿Sabías que en mayo han quedado desempleadas más de 3000 personas en Euskadi?"
             break;
 
     }

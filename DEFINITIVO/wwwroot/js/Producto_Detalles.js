@@ -55,15 +55,15 @@ function ocultarTodasCondiciones() {
 
 /* Esta así hasta que tengamos opciones por producto, ahí desaparecerá */
 function TEMPORALlPrecioTotal() {
-    let precioTotal = document.getElementById('precio-compra');
+    /*let precioTotal = document.getElementById('precio-compra');*/
     let precioFinal = document.getElementById('precio-final-producto').innerText;
     let precioInicial = document.getElementById('precio-inicial-producto').innerText;
     let click = document.getElementById('opcion-producto-1').addEventListener('click', function () {
-        precioTotal.innerText = `Total: ${precioFinal}€`;
+        /*precioTotal.innerText = `Total: ${precioFinal}€`;*/
         let placesDescuento = document.getElementsByClassName('descuento-opciones');
         let placeDescuento = placesDescuento[0];
         let cantidadDescuento = 100 - (precioFinal * 100 / precioInicial);
-        placeDescuento.innerText = `desc: ${cantidadDescuento.toFixed(0)}%`;
+        placeDescuento.innerText = `${cantidadDescuento.toFixed(0)}%`;
     })
 }
 

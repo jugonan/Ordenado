@@ -17,7 +17,24 @@
 <link href="~/css/Producto_Detalles.css" rel="stylesheet" type="text/css">
 
 <div class="row">
-    <div class="col-10 offset-1">
+    <div class="col-10 offset-1" style="padding-left:0;">
+        <div class="titulo-producto-detalles">
+            <h1>@Model.Titulo</h1>
+            <div>
+                <div class="row ubicacion-del-vendedor">
+                    <img src="https://image.flaticon.com/icons/svg/684/684908.svg" />
+                    <p class="col-7">Fisioimpacto centro estético; Luis Power 23, 48014, Bilbao</p>
+                </div>
+                <div class="row media-de-vendedor" style="align-items: baseline;">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <p>(3 opiniones)</p>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-7 contenido-producto">
                 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
@@ -54,14 +71,6 @@
                 </div>
             </div>
             <div class="col-5">
-                <div class="row">
-                    <p>Media vendedor:</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                </div>
                 <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
                 @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
                     {
@@ -80,171 +89,178 @@
                     *@
                     <p id="descripcion-de-producto">@Model.Descripcion</p>
                 </div>
-                <div class="row">
-                    <p id="fecha-validez" class="col-6">Hasta el @Model.FechaValidez</p>
-                    <img class="imagen-visitas-detalles" src="https://image.flaticon.com/icons/png/512/1077/1077063.png" />
-                    <p id="cantidad-temporal-visitas" class="col-3"></p>
+                <div class="row fecha-y-visitas">
+                    <p id="fecha-validez">Hasta el @Model.FechaValidez |</p>
+                    <div>
+                        <img class="imagen-visitas-detalles" src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                        <p id="cantidad-temporal-visitas" class="col-3"></p>
+                    </div>
                 </div>
                 <div class="input-opciones-productos">
                     <form>
-                        <row>
-                            <input class="col-2" type="radio" id="opcion-producto-1" name="opciones-productos" value="" style="vertical-align: super;">
-                            <label class="span-1 col-8" for="">@Model.Titulo</label><br>
-                        </row>
+                        @if (opcionesProductos.Count == 0 || opcionesProductos.Count == 1)
+                        {
+                            <div class="row" style="align-items:center;">
+                                <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <label for="">@Model.Titulo</label><br>
+                            </div>
+                        }
                         @if (opcionesProductos.Count > 1)
                         {
-                            <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
-                            <label for="">@opcionesProductos[1].Titulo</label><br>
+                            <div class="row" style="align-items:center;">
+                                <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <label for="">@opcionesProductos[0].Titulo</label><br>
+                            </div>
+                            <div class="row" style="align-items:center;">
+                                <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
+                                <label for="">@opcionesProductos[1].Titulo</label><br>
+                            </div>
                         }
                         @if (opcionesProductos.Count > 2)
                         {
-                            <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
-                            <label for="">@opcionesProductos[2].Titulo</label>
+                            <div class="row">
+                                <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
+                                <label for="">@opcionesProductos[2].Titulo</label>
+                            </div>
                         }
                     </form>
                 </div>
                 <div class="precios-producto-detalles">
-                    <div class="precio-final-opciones">
-                        <div class="row">
-                            <p id="precio-final-producto">@Model.PrecioFinal </p>
-                            <span> &#8364 </span>
-                        </div>
-                    </div>
-                    <div class="precio-inicial-opciones">
-                        <div class="row">
-                            <p id="precio-inicial-producto">@Model.Precio </p>
-                            <span> &#8364 </span>
-                        </div>
-                    </div>
                     <div>
                         <p class="descuento-opciones"></p>
                     </div>
+                    <div class="precio-inicial-opciones">
+                        <p id="precio-inicial-producto">@Model.Precio </p>
+                        <p> &#8364 </p>
+                    </div>
+                    <div class="precio-final-opciones">
+                        <p id="precio-final-producto">@Model.PrecioFinal </p>
+                        <p> &#8364 </p>
+                    </div>
                 </div>
-                <div class="precio-compra-ahorro">
-                    <p id="precio-compra">Total: €</p>
+                <div class="div-boton-comprar">
+                    <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
                 </div>
-                <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-7 offset-1 barra-opciones-producto">
-        <div class="navbar navbar-default navegador-condiciones-productos">
-            <div class="container-fluid">
-                <div class="row ul-opciones-producto">
-                    <a class="anclas-opciones">Condiciones</a>
-                    <a class="anclas-opciones">Vendedor</a>
-                    <a class="anclas-opciones">Opiniones(3)</a>
+<div class="row seccion-inferior">
+    <div class="col-10 offset-1">
+        <div class="row">
+            <div class="col-7 barra-opciones-producto">
+                <div class="navegador-condiciones-productos">
+                    <a class="col-4 anclas-opciones">Condiciones</a>
+                    <a class="col-4 anclas-opciones">Opiniones(3)</a>
+                    <a class="col-4 anclas-opciones">Preguntas freq.</a>
+                </div>
+                <div class="contenedor-texto-ocultar">
+                    <div class="texto-ocultar condiciones-del-cupon">
+                        <h5>Horario: </h5>
+                        <ul id="ul-condicion-horario">
+                            <li>De lunes a viernes: 9:00 - 17:00</li>
+                            <li>Sábado y domingo: 11:00 - 15:00</li>
+                        </ul>
+                        <h5>Política de reservas: </h5>
+                        <ul id="ul-condicion-reserva">
+                            <li>Se aceptan reservas</li>
+                            <li>Realizar reserva vía telefónica</li>
+                        </ul>
+                        <h5>Entregas: </h5>
+                        <ul id="ul-condicion-entrega">
+                            <li>Entregas nacionales</li>
+                            <li>Entregas a domicilio</li>
+                        </ul>
+                        <h5>Otras condiciones: </h5>
+                        <ul id="ul-condicion-otros">
+                            <li>Se permite más de un cupón por persona</li>
+                            <li>Cerrado la 2ª y 3ª semana de Agosto</li>
+                        </ul>
+                    </div>
+                    <div class="texto-ocultar d-none">
+                        <!-- Este es el código correspondiete, ahora para el MVP es hard code -->
+                        @*@if (reviews.Count() != 0)
+                            {
+                                foreach (Review review in reviews)
+                                {
+                                    <p>@review.Comentario</p>
+                                    <p>@review.Fecha</p>
+                                }
+                            }
+                            else
+                            {
+                                <p>
+                                    Este producto aún no tiene ninguna review,
+                                    @if (User.IsInRole("Cliente"))
+                                    {
+                                        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Sé el primero</button>
+                                    }
+                                </p>
+                            }*@
+                        <!-- 1er comentario Hard Codeado-->
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                            </div>
+                            <div class="col-6">
+                                <div style="display:flex; flex-direction:row;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <h5>Janire Rueda</h5>
+                                <p>Un servicio rápido, agradable y de buena calidad.¡Volveremos sin duda!</p>
+                            </div>
+                        </div>
+                        <!-- 2do comentario Hard Codeado-->
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                            </div>
+                            <div class="col-6">
+                                <div style="display:flex; flex-direction:row;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <h5>Aitor Campos</h5>
+                                <p>100% recomendable. Era la primera vez que acudíamos y Arantxa nos atendió y ayudó mucho. Muy profesionales.</p>
+                            </div>
+                        </div>
+                        <!-- 3er comentario Hard Codeado-->
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                            </div>
+                            <div class="col-6">
+                                <div style="display:flex; flex-direction:row;">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <h5>Miren Igartua</h5>
+                                <p>Muy buena experiencia.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="texto-ocultar d-none">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="contenedor-texto-ocultar">
-            <div class="texto-ocultar">
-                <ul id="ul-condicion-horario">
-                    <li>Lu - vi: 9:00 - 17:00</li>
-                    <li>Sa - do: 11:00 - 15:00</li>
-                </ul>
-                <ul id="ul-condicion-reserva">
-                    <li>Se aceptan reservas</li>
-                    <li>Realizar reserva vía telefónica</li>
-                </ul>
-                <ul id="ul-condicion-entrega">
-                    <li>Entregas nacionales</li>
-                    <li>Entregas a domicilio</li>
-                </ul>
-                <ul id="ul-condicion-recogida">
-                    <li>Recogida en tienda física</li>
-                </ul>
-                <ul id="ul-condicion-otros">
-                    <li>Sólo un cupón por persona</li>
-                    <li>Cerrado la 2ª y 3ª semana de Agosto</li>
-                </ul>
-            </div>
-            <div class="row texto-ocultar d-none">
-                <div class="col-4">
-                    <p>@vendedor.NombreDeEmpresa</p>
+            <div class="col-4 offset-1 barra-informacion-vendedor">
+                    <h6>@vendedor.NombreDeEmpresa</h6>
                     <p>@vendedor.Paginaweb</p>
                     <p>@vendedor.Telefono</p>
-                    <p>Luis Power 23,</p>
-                    <p>48014, Bilbao</p>
-                </div>
-                <div class="offset-1 col-7 div-mapa">
+                <div class="div-mapa">
                     <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=506&height=400&hl=en&q=Luis%20Power%2023%20Bilbao+(Ubicacion)&t=&z=12&ie=UTF8&iwloc=B&output=embed" width="auto" height="auto" frameborder="0">
                     </iframe>
-                </div>
-            </div>
-            <div class="texto-ocultar d-none">
-                <!-- Este es el código correspondiete, ahora para el MVP es hard code -->
-                @*@if (reviews.Count() != 0)
-                    {
-                        foreach (Review review in reviews)
-                        {
-                            <p>@review.Comentario</p>
-                            <p>@review.Fecha</p>
-                        }
-                    }
-                    else
-                    {
-                        <p>
-                            Este producto aún no tiene ninguna review,
-                            @if (User.IsInRole("Cliente"))
-                            {
-                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Sé el primero</button>
-                            }
-                        </p>
-                    }*@
-                <!-- 1er comentario Hard Codeado-->
-                <div class="row">
-                    <div class="col-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
-                    </div>
-                    <div class="col-6">
-                        <div style="display:flex; flex-direction:row;">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                        </div>
-                        <h5>Janire Rueda</h5>
-                        <p>Un servicio rápido, agradable y de buena calidad.¡Volveremos sin duda!</p>
-                    </div>
-                </div>
-                <!-- 2do comentario Hard Codeado-->
-                <div class="row">
-                    <div class="col-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
-                    </div>
-                    <div class="col-6">
-                        <div style="display:flex; flex-direction:row;">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                        </div>
-                        <h5>Aitor Campos</h5>
-                        <p>100% recomendable. Era la primera vez que acudíamos y Arantxa nos atendió y ayudó mucho. Muy profesionales.</p>
-                    </div>
-                </div>
-                <!-- 3er comentario Hard Codeado-->
-                <div class="row">
-                    <div class="col-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
-                    </div>
-                    <div class="col-6">
-                        <div style="display:flex; flex-direction:row;">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                        </div>
-                        <h5>Miren Igartua</h5>
-                        <p>Muy buena experiencia.</p>
-                    </div>
                 </div>
             </div>
         </div>
