@@ -13,6 +13,7 @@ using Heldu.Logic.Interfaces;
 using Heldu.Logic.Services;
 using HelperService = Heldu.Logic.Services.HelperService;
 using MaxMind.GeoIP2;
+using Stripe;
 
 namespace DEFINITIVO
 {
@@ -28,6 +29,7 @@ namespace DEFINITIVO
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            StripeConfiguration.ApiKey = Configuration["Stripe:ApiKey"];
             services.AddMemoryCache();
             services.AddOutputCaching();
             services.AddMvc();
