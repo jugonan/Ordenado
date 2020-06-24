@@ -90,19 +90,19 @@ function getText() {
     numero = Math.floor(Math.random() * 5)+1;
     switch (numero) {
         case 1:
-            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el granadino Pedro Rincón y una inspiraciónn para Heldu.Puedes copiar el siguiente enlace: shorturl.at/kEZ17'
+            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el granadino Pedro Rincón Cardoso, y una inspiración para Heldu.'
             break;
         case 2:
             return 'Heldu nace desde y para el desempleado. La idea surgió estando ambos fundadores en paro, conociendo las dificultades que supone no tener ingresos.'
             break;
         case 3:
-            return 'Nuevos tiempos requieren nuevas medidas: en Mayo de 2020 Zara, Stradivarius y Uterque anunciaron "Special Prices" con rebajas de hasta el 50% en las dos primeras y del 30%, en el caso de la tercera.'
+            return 'Nuevos tiempos requieren nuevas medidas: en Mayo de 2020 Zara, Stradivarius y Uterque anunciaron "Special Prices" con rebajas de hasta el 50%.'
             break;
         case 4:
             return '¿Sabías que una cultura de responsabilidad social crea un concepción positiva de la marca, atrae más público y fideliza futuros clientes?  Fuente: Investopedia.'
             break;
         case 5:
-            return 'Heldu surge con el objetivo de generar un impacto positivo y una situación Win-to-Win. Por un lado la persona desempleada pueda tenere acceso a un consumo común. Y por otro lado, los comercios puedan llegar a usuarios que de otra manera no podrían.'
+            return 'Heldu propone una situación Win-to-Win: la persona desempleada tiene acceso a un consumo con descuento, y por otro lado, los comercios pueden llegar a usuarios que de otra manera no podrían.'
             break;
         default:
             break;

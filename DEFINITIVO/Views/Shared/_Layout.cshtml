@@ -10,11 +10,12 @@
 @inject IVendedoresService VendedorService
 @inject ICategoriasService CategoriasService
 @{
-    ViewData["Title"] = "Productos";
+    //ViewData["Title"] = "Productos";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
 }
 <head>
     <!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+    <!--
     <script type="text/javascript" async=true>
         (function () {
             var host = window.location.hostname;
@@ -176,6 +177,7 @@
             }
         })();
     </script>
+        -->
     <!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
 
     <meta charset="utf-8" />
@@ -184,8 +186,6 @@
     <meta name="application-name" content="Heldu" />
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    @*<link href="//fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">*@
-    @*<link href="//fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">*@
     <link href="//fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="~/css/site.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="~/favicon-32x32.png" sizes="32x32" />
@@ -216,12 +216,12 @@
                         </li>
                         @if (User.IsInRole("admin"))
                         {
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
-                            </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
+                        </li>
                         }
                     </ul>
                 </div>
@@ -238,9 +238,9 @@
                 </li>
                 @foreach (Categoria categoria in listaCategorias)
                 {
-                    <li class="col itemCategoria">
-                        <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3" id="Categoria_@categoria.Id">@categoria.Nombre.ToUpper()</a>
-                    </li>
+                <li class="col itemCategoria">
+                    <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3" id="Categoria_@categoria.Id">@categoria.Nombre.ToUpper()</a>
+                </li>
                 }
             </ul>
         </div>
@@ -270,7 +270,7 @@
                     <input type="hidden" name="actualPath" value="@actualPath">
                     @if (activeUser != null)
                     {
-                        <input type="hidden" name="userId" value="@activeUser.Id">
+                    <input type="hidden" name="userId" value="@activeUser.Id">
                     }
                 </div>
                 <div class="right section">
@@ -292,7 +292,7 @@
         </div>
     </header>
     <div class="container" id="mainContainerLayout">
-        <main role="main" class="pb-5">
+        <main role="main" class="pb-5 pt-2 mb-3">
             @RenderBody()
         </main>
     </div>

@@ -2,6 +2,7 @@
 
     Colores:
         Rosa principal: #F21B6D 
+	Violeta principal: #714eee
         Negro Navbar: #1C2229
         Fondo subNavbar: #363537
         Fondo cards: #F7F6F2

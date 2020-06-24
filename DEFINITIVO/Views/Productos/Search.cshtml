@@ -8,7 +8,7 @@
 }
 <link href="~/css/Producto_Categoria.css" rel="stylesheet" type="text/css">
 
-<h2>Se han encontrado @Model.Count() resultados para '@palabraBuscada' </h2>
+<p class="py-2" id="resultsTitle">Se han encontrado @Model.Count() resultados para <i>'@palabraBuscada'</i> </p>
 
 <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3">
     @foreach (Producto producto in Model)
@@ -44,5 +44,3 @@
         </div>
     }
 </div>
-
-<script src="~/js/Producto_Categoria.js"></script>

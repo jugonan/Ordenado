@@ -29,7 +29,7 @@ namespace DEFINITIVO
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            StripeConfiguration.ApiKey = Configuration["Stripe:ApiKey"];
+            //StripeConfiguration.ApiKey = Configuration["Stripe:ApiKey"];
             services.AddMemoryCache();
             services.AddOutputCaching();
             services.AddMvc();

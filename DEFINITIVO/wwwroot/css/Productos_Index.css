@@ -141,7 +141,7 @@
     text-align:center;
 }
     .ver-mas a {
-        color: #2B9720;
+        color: #714eee;
         font-size: 0.9rem;
     }
 /* CSS del carousel inicial  */
@@ -261,6 +261,7 @@ a.floating-button:hover + div.label-container {
 
 #ubicacion {
     text-align: center;
+    margin-top: -15px;
 }
 
 

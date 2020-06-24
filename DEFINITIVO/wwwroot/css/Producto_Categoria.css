@@ -122,3 +122,8 @@
         border:1px 1px!important;
         border-color:white!important;
     }
+
+#resultsTitle {
+    font-size: 1.5rem;
+    color: #714eee;
+}

@@ -96,6 +96,7 @@ a.navbar-brand {
 
 #div-cabecera-salir a{
     font-size: medium;
+    z-index:9999;
 }
 
 #div-cabecera-salir:hover  {

@@ -36,6 +36,7 @@
     <None Remove="Views\Condiciones\**" />
     <None Remove="wwwroot\lib\**" />
     <Content Remove="Views\Home\Index.cshtml" />
+    <Content Remove="Views\Shared\_Layout _Old.cshtml" />
     <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
     <Content Remove="wwwroot\css\Contacto.css" />
     <Content Remove="wwwroot\css\popup_banner.css" />
@@ -49,6 +50,7 @@
     <Compile Remove="Services\Manejo_Productos.cs" />
     <Content Remove="Views\Home\JasFASFAS.cshtml" />
     <Content Remove="Views\Productos\Index.cshtml" />
+    <Content Remove="wwwroot\js\Producto_Categoria.js" />
   </ItemGroup>
 
 

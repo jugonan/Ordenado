@@ -10,7 +10,7 @@
 @inject IHelperService HelperService
 @inject IProductosService ProductosService
 @{
-    ViewData["Title"] = "Productos";
+    ViewData["Title"] = "Ofertas";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
     List<Categoria> categorias = ViewBag.Categorias;
     string postalCode = ViewBag.PostalCode;
