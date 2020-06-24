@@ -1,4 +1,136 @@
-﻿
+﻿* {
+    font-family: 'Roboto', sans-serif;
+}
+/* CSS del segundo carousel  */
+.ofertas-destacadas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.ofertas-destacadas div{
+    width: 18rem;
+}
+
+.titulo-categorias {
+    color: #F21B6D;
+    text-align: center;
+    font-size: 30px;
+}
+
+.ofertas-no-destacadas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.titulo-oferta {
+    margin: 0;
+    height: 3vw;
+    text-align: center;
+}
+
+.valoracion-y-visitas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.media-de-producto{
+    opacity: 0.7;
+}
+
+.checked {
+    color: #ffbf00;
+}
+
+.visitas-a-producto {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    opacity: 0.7;
+}
+
+.visitas-a-producto img{
+    width: 25%;
+    height: inherit !important;
+}
+
+.texto-oferta {
+    font-weight: 100;
+    font-size: smaller;
+}
+
+.precios-carta-index {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 1.5vw;
+}
+
+.precios-carta-index p {
+    padding: 0vw 0.5vw;
+}
+.precio-final-carta {
+    color: #2B9720;
+}
+
+.precio-inicial-carta {
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    padding: 0vw 1vw;
+    opacity: 0.7;
+}
+
+.descuento-carta {
+    color: #f3317b;
+}
+
+.carta-modificada {
+    width: 22%;
+    height: 25vw;
+    margin-bottom: 2vw;
+    box-shadow: 2px 2px 4px #888888;
+}
+
+.carta-modificada:hover {
+    box-shadow: 0;
+    transition: box-shadow 0.4s;
+    box-shadow: 5px 5px 14px #888888;
+}
+
+.carta-modificada img{
+    height: 40%;
+}
+
+.carta-modificada div{
+    padding: 0.25rem 0.75rem;
+}
+
+.div-boton-lo-quiero {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.boton-lo-quiero {
+    font-weight: 500;
+    box-shadow: 1px -1px 2px 1px #F679A9;
+    background-color: #F21B6D;
+    opacity: 0.9;
+    color: white !important;
+}
+
+.boton-lo-quiero:hover {
+    box-shadow: none;
+    background-color: #F21B6D;
+    opacity: 1;
+    color: white;
+}
+/* CSS del carousel inicial  */
 .cta-100 {
     margin-top: 30px;
     padding: 0;
@@ -10,21 +142,6 @@
 
 .col-md-4 {
     padding-bottom: 20px;
-}
-
-.btnLoQuiero {
-    font-weight: 700;
-    box-shadow: 1px -1px 2px 1px #F679A9;
-    background-color: #F21B6D;
-    opacity: 0.9;
-    color: white;
-}
-
-.btnLoQuiero:hover {
-    box-shadow: none;
-    background-color: #F21B6D;
-    opacity: 1;
-    color: white;
 }
 
 figure img {
@@ -40,168 +157,6 @@ figure img {
     top: -35px;
     height: 1%;
 }
-
-
-/* The colour of the indicators */
-
-.blog .carousel-indicators li {
-   background: #708198;
-   border-radius: 50%;
-   height: 25px;
-   cursor: pointer;
-}
-
-.blog .carousel-indicators .active {
-    background: #F679A9;
-}
-
-.item-carousel-blog-block {
-    outline: medium none;
-    padding: 15px;
-}
-
-.div-boton-comprar {
-    display: flex;
-    justify-content: center;
-}
-
-.div-boton-comprar a{
-    margin-bottom: 1vw;
-    width: 40%;
-}
-
-.item-box {
-    height: 26.5rem;
-    padding-bottom: 0;
-    padding-top: 0;
-}
-
-.item-box-blog {
-    border: 1px solid #dadada;
-    text-align: center;
-    height: inherit;
-    position: absolute;
-    width: 90%;
-    border-radius: 5%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    height: 27vw;
-}
-
-.item-box-blog-image {
-    position: relative;
-    height: 12rem;
-}
-
-.item-box-blog-image figure img {
-    width: auto;
-    max-width: 100%;
-    max-height: 12rem;
-    height: 12rem;
-    border-top-right-radius: 5%;
-    border-top-left-radius: 5%;
-}
-
-.item-box-blog-date {
-    position: inherit;
-    width: 45%;
-    margin: 0vw auto;
-    color: #F21B6D;
-    place-content:center;
-}
-
-.item-box-blog-date span {
-    display: block;
-    text-align: center;
-    line-height: 1.2;
-}
-
-.item-box-blog-date span.mon {
-    font-size: 1.7vw;
-}
-
-.item-box-blog-date span.day {
-    font-size: 16px;
-}
-
-.item-box-blog-body {
-    padding: 2px;
-}
-
-.item-heading-blog a h5 {
-    margin: 0;
-    line-height: 1;
-    text-decoration: none;
-    transition: color 0.3s;
-    margin-bottom: 0.3rem;
-}
-
-.item-box-blog-headig {
-    height: 4vw;
-}
-
-.item-box-blog-heading a {
-    font-weight: 700;
-    font-size: 1.2vw;
-    color: #1C2229;
-}
-
-.item-box-blog-data p {
-    font-size: 0.75rem;
-    font-family: 'Segoe UI', sans-serif;
-    color: #363537;
-}
-
-.item-box-blog-data p i {
-    font-size: 1rem;
-    color: #363537;
-}
-
-.item-box-blog-text {
-    overflow: hidden;
-    text-align: justify;
-    font-family: 'Segoe UI', sans-serif;
-    font-weight: 300;
-    color: #363537;
-}
-
-.item-box-blog-text p{
-    margin-top: 2vw;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    max-width: 40ch;
-    max-height: 6ch;
-    margin: 2rem 0.5rem 1rem 0.5rem;
-}
-
-.mt-10 {
-    float: left;
-    margin-top: -10px;
-    padding-top: 10px;
-}
-
-.btn.bg-blue-ui.white.read {
-    cursor: pointer;
-    padding: 0.3rem 0rem;
-    position: absolute;
-    bottom: -0.85rem;
-    width: 88%;
-}
-
-
-.category_name {
-    font-size: 2rem;
-    color: #F21B6D !important;
-    opacity: 0.8;
-    text-decoration: none;
-}
-
-.category_name:hover {
-    font-weight: 600;
-    color: #F21B6D !important;
-    opacity: 1;
-    text-decoration: none;
-}
-
 
 /*
     Botón de "Agregar producto"
@@ -277,9 +232,9 @@ a.floating-button:hover + div.label-container {
     opacity: 0.9;
 }
 
-    .add-producto-bubble:hover {
-        text-decoration: none;
-    }
+.add-producto-bubble:hover {
+   text-decoration: none;
+}
 
 #modificarCiudad {
     cursor: pointer;
@@ -322,28 +277,28 @@ a.floating-button:hover + div.label-container {
     justify-content: center;
 }
 
-    .modal-header h4 {
-        color: #fff;
-        font-weight: 600;
-        font-size: 2rem;
-        text-align: center;
-    }
+.modal-header h4 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+}
 
-    .modal-header button {
-        position: absolute;
-        right: 25px;
-        top: 10px;
-        color: #fff;
-    }
+.modal-header button {
+    position: absolute;
+    right: 25px;
+    top: 10px;
+    color: #fff;
+}
 
 .modal-body {
     font-family: 'Segoe UI', sans-serif;
     padding: 40px 50px;
 }
 
-    .modal-body h5 {
-        font-weight: 600;
-        font-size: 1.2rem;
-        text-align: justify;
-        margin-bottom: 1.5rem;
-    }
+.modal-body h5 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}

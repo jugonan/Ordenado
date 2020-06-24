@@ -18,6 +18,8 @@
 }
 <!-- CSS particular para esta vista. Los script están en el layout-->
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
+<!-- CSS para que las estrellas de valoración funcionen-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 @if (User.IsInRole("vendedor"))
@@ -35,122 +37,326 @@
 {
     <p id="ubicacion" class="alert-light">Mostrando productos para <span id="locationCity">@city</span> - CP <span id="inputModalPostalCode">@postalCode</span><span> <a id="modificarCiudad" data-toggle="modal" data-target="#myModal"> (Modificar)</a></span> </p>
 }
-
-<!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
-@{
-    int indexCategorias = 0;
-    foreach (List<Producto> listaProducto in Model.ListasProductos)
+<!-- CAROUSEL DE PRUEBAS -->
+<div class="cta-100">
+    <p class="titulo-categorias">Ofertas destacadas</p>
+    <div class="ofertas-destacadas">
+        <div class="card carta-modificada" onclick="generarSpinnerProducto()">
+            <img loading="lazy" class="card-img-top" src="https://resizer.elcorreo.com/resizer/resizer.php?imagen=https%3A%2F%2Foferplan.elcorreo.com%2F%2Fimages%2Fsized%2Fimages%2FOFERPLAN_PINTORESBIZKAIA_01-497x280.jpg&nuevoancho=323&nuevoalto=182&crop=1" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <div class="card-body">
+                <p class="titulo-oferta">Oferta destacada nº1</p>
+                <div class="valoracion-y-visitas">
+                    <div class="row media-de-producto" style="align-items: baseline;">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="visitas-a-producto">
+                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                        <p></p>
+                    </div>
+                </div>
+                <div class="precios-carta-index">
+                    <p class="precio-final-carta">149€</p>
+                    <p class="precio-inicial-carta">250€</p>
+                    <p class="descuento-carta">40%</p>
+                </div>
+                <div class="div-boton-lo-quiero">
+                    <a onclick="generarSpinnerProducto()" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                </div>
+            </div>
+        </div>
+        <div class="card carta-modificada" onclick="generarSpinnerProducto()">
+            <img loading="lazy" class="card-img-top" src="https://resizer.elcorreo.com/resizer/resizer.php?imagen=https%3A%2F%2Foferplan.elcorreo.com%2F%2Fimages%2Fsized%2Fimages%2F154-497x280.jpg&nuevoancho=323&nuevoalto=182&crop=1" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <div class="card-body">
+                <p class="titulo-oferta">Oferta destacada nº2</p>
+                <div class="valoracion-y-visitas">
+                    <div class="row media-de-producto" style="align-items: baseline;">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="visitas-a-producto">
+                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                        <p></p>
+                    </div>
+                </div>
+                <div class="precios-carta-index">
+                    <p class="precio-final-carta">19.90€</p>
+                    <p class="precio-inicial-carta">36€</p>
+                    <p class="descuento-carta">45%</p>
+                </div>
+                <div class="div-boton-lo-quiero">
+                    <a onclick="generarSpinnerProducto()" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                </div>
+            </div>
+        </div>
+        <div class="card carta-modificada" onclick="generarSpinnerProducto()">
+            <img loading="lazy" class="card-img-top" src="https://resizer.elcorreo.com/resizer/resizer.php?imagen=https%3A%2F%2Foferplan.elcorreo.com%2F%2Fimages%2Fsized%2Fimages%2FOFERPLAN_KAYAK-URDAIBAI-KIROL_1-497x280.jpg&nuevoancho=323&nuevoalto=182&crop=1" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <div class="card-body">
+                <p class="titulo-oferta">Oferta destacada nº3</p>
+                <div class="valoracion-y-visitas">
+                    <div class="row media-de-producto" style="align-items: baseline;">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="visitas-a-producto">
+                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                        <p></p>
+                    </div>
+                </div>
+                <div class="precios-carta-index">
+                    <p class="precio-final-carta">13€</p>
+                    <p class="precio-inicial-carta">45€</p>
+                    <p class="descuento-carta">71%</p>
+                </div>
+                <div class="div-boton-lo-quiero">
+                    <a onclick="generarSpinnerProducto()" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Categoría de salud y belleza-->
+<p class="titulo-categorias">@categorias[0].Nombre</p>
+<div class="ofertas-no-destacadas">
+    @foreach (Producto producto in Model.ListasProductos[0])
     {
-        var cantProductos = listaProducto.Count();
+        <div class="card carta-modificada">
+            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <div class="card-body">
+                <p class="titulo-oferta">@producto.Titulo</p>
+                <div class="valoracion-y-visitas">
+                    <div class="row media-de-producto" style="align-items: baseline;">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="visitas-a-producto">
+                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                        <p></p>
+                    </div>
+                </div>
+                <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
+                    <p class="precio-final-carta">@producto.PrecioFinal€</p>
+                    <p class="precio-inicial-carta">@producto.Precio€</p>
+                    @{
+                        double descuento = Math.Round((Convert.ToDouble(producto.PrecioFinal) * 100) / Convert.ToDouble(producto.Precio));
+                    }
+                    <p class="descuento-carta">@descuento%</p>
+                </div>
+                <div class="div-boton-lo-quiero">
+                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- Categoría de gastronomía-->
+<p class="titulo-categorias">@categorias[1].Nombre</p>
+<div class="ofertas-no-destacadas">
+    @foreach (Producto producto in Model.ListasProductos[1])
+    {
+        <div class="card carta-modificada">
+            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <div class="card-body">
+                <p class="titulo-oferta">@producto.Titulo</p>
+                <div class="valoracion-y-visitas">
+                    <div class="row media-de-producto" style="align-items: baseline;">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="visitas-a-producto">
+                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                        <p></p>
+                    </div>
+                </div>
+                <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
+                    <p class="precio-final-carta">@producto.PrecioFinal€</p>
+                    <p class="precio-inicial-carta">@producto.Precio€</p>
+                    @{
+                        double descuento = Math.Round((Convert.ToDouble(producto.PrecioFinal) * 100) / Convert.ToDouble(producto.Precio));
+                    }
+                    <p class="descuento-carta">@descuento%</p>
+                </div>
+                <div class="div-boton-lo-quiero">
+                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- Categoría de formación-->
+<p class="titulo-categorias">@categorias[3].Nombre</p>
+<div class="ofertas-no-destacadas">
 
-        @if (cantProductos > 5)
+    @foreach (Producto producto in Model.ListasProductos[3])
+    {
+        <div class="card carta-modificada">
+            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <div class="card-body">
+                <p class="titulo-oferta">@producto.Titulo</p>
+                <div class="valoracion-y-visitas">
+                    <div class="row media-de-producto" style="align-items: baseline;">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <p class="visitas-a-producto">
+                        <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                    </p>
+                </div>
+                <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
+                    <p class="precio-final-carta">@producto.PrecioFinal€</p>
+                    <p class="precio-inicial-carta">@producto.Precio€</p>
+                    @{
+                        double descuento = Math.Round((Convert.ToDouble(producto.PrecioFinal) * 100) / Convert.ToDouble(producto.Precio));
+                    }
+                    <p class="descuento-carta">@descuento%</p>
+                </div>
+                <div class="div-boton-lo-quiero">
+                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@* CAROUSEL INICIAL
+
+    <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
+    @{
+        int indexCategorias = 0;
+        foreach (List<Producto> listaProducto in Model.ListasProductos)
         {
-            List<int> randomProducto = HelperService.RandomProductos(cantProductos);
-            <div class="cta-100 ">
-                <div>
-                    <a asp-action="Categoria" asp-route-id="@categorias[indexCategorias].Id" class="category_name">@categorias[indexCategorias].Nombre</a>
-                    <div class="row blog">
-                        <div class="col-md-12">
-                            @{string nombreCat = $"categoria_{indexCategorias}";}
-                            <div id="@nombreCat" class="carousel slide container-blog blogCarousel" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#@nombreCat" data-slide-to="0" class="active"></li>
-                                    <li data-target="#@nombreCat" data-slide-to="1"></li>
-                                </ol>
-                                <!-- Carousel items -->
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <div class="row">
-                                            @for (int index1 = 0; index1 < 3; index1++)
-                                            {
-                                                int j = randomProducto[index1];
-                                                <div class="col-md-4 item-box">
-                                                    <div class="item-box-blog">
-                                                        <div class="item-box-blog-image">
-                                                            <!--Imagen-->
-                                                            <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                <figure> <img class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
-                                                            </a>
-                                                        </div>
-                                                        <div class="item-box-blog-body">
-                                                            <!--Título-->
-                                                            <div class="item-box-blog-heading">
-                                                                <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                    @listaProducto[j].Titulo
+            var cantProductos = listaProducto.Count();
+
+            @if (cantProductos > 5)
+            {
+                List<int> randomProducto = HelperService.RandomProductos(cantProductos);
+                <div class="cta-100 ">
+                    <div>
+                        <a asp-action="Categoria" asp-route-id="@categorias[indexCategorias].Id" class="category_name">@categorias[indexCategorias].Nombre</a>
+                        <div class="row blog">
+                            <div class="col-md-12">
+                                @{string nombreCat = $"categoria_{indexCategorias}";}
+                                <div id="@nombreCat" class="carousel slide container-blog blogCarousel" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#@nombreCat" data-slide-to="0" class="active"></li>
+                                        <li data-target="#@nombreCat" data-slide-to="1"></li>
+                                    </ol>
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="row">
+                                                @for (int index1 = 0; index1 < 4; index1++)
+                                                {
+                                                    int j = randomProducto[index1];
+                                                    <div class="item-box">
+                                                        <div class="item-box-blog">
+                                                            <div class="item-box-blog-image">
+                                                                <!--Imagen-->
+                                                                <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
+                                                                    <figure> <img onclick="generarSpinnerProducto()" class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
                                                                 </a>
                                                             </div>
-                                                            <!--Precio-->
-                                                            <div class="row item-box-blog-date white">
-                                                                <span class="mon"><small><strike style="opacity:0.7;">@listaProducto[j].Precio &#8364 </strike></small> &nbsp; &nbsp;</span>
-                                                                <span class="mon"> @listaProducto[j].PrecioFinal &#8364 </span>
+                                                            <div class="item-box-blog-body">
+                                                                <!--Título-->
+                                                                <div class="item-box-blog-heading">
+                                                                    <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
+                                                                        @listaProducto[j].Titulo
+                                                                    </a>
+                                                                </div>
+                                                                <!--Precio-->
+                                                                <div class="row item-box-blog-date white">
+                                                                    <span class="mon"><small><strike style="opacity:0.7;">@listaProducto[j].Precio &#8364 </strike></small> &nbsp; &nbsp;</span>
+                                                                    <span class="mon"> @listaProducto[j].PrecioFinal &#8364 </span>
+                                                                </div>
+                                                                <!--Descripción-->
+                                                                <div class="item-box-blog-text">
+                                                                    <p>@listaProducto[j].Descripcion</p>
+                                                                </div>
+                                                                <div class="div-boton-comprar">
+                                                                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a>
+                                                                </div>
+                                                                <!--Comprar-->
                                                             </div>
-                                                            <!--Descripción-->
-                                                            <div class="item-box-blog-text">
-                                                                <p>@listaProducto[j].Descripcion</p>
-                                                            </div>
-                                                            <div class="div-boton-comprar"> <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a> </div>
-                                                            <!--Comprar-->
                                                         </div>
                                                     </div>
-                                                </div>
-                                            }
+                                                }
+                                                <!--.row-->
+                                            </div>
+                                        </div>
+                                        <!--.item-->
+                                        <div class="carousel-item ">
+                                            <div class="row">
+                                                @for (int index2 = 0; index2 < 4; index2++)
+                                                {
+                                                    int j = randomProducto[index2];
+                                                    <div class="item-box">
+                                                        <div class="item-box-blog">
+                                                            <div class="item-box-blog-image">
+                                                                <!--Imagen-->
+                                                                <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
+                                                                    <figure> <img onclick="generarSpinnerProducto()" class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
+                                                                </a>
+                                                            </div>
+                                                            <div class="item-box-blog-body">
+                                                                <!--Título-->
+                                                                <div class="item-box-blog-heading">
+                                                                    <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
+                                                                        @listaProducto[j].Titulo
+                                                                    </a>
+                                                                </div>
+                                                                <!--Precio-->
+                                                                <div class="row item-box-blog-date white">
+                                                                    <span class="mon"><small><strike style="opacity:0.7;">@listaProducto[j].Precio &#8364 </strike></small> &nbsp;  &nbsp;</span>
+                                                                    <span class="mon"> @listaProducto[j].PrecioFinal &#8364 </span>
+                                                                </div>
+
+                                                                <!--Descripción-->
+                                                                <div class="item-box-blog-text">
+                                                                    <p>@listaProducto[j].Descripcion</p>
+                                                                </div>
+                                                                <div class="div-boton-comprar">
+                                                                <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a>
+                                                                </div>
+                                                                <!--Comprar-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
                                             <!--.row-->
                                         </div>
+                                        <!--.item-->
                                     </div>
-                                    <!--.item-->
-                                    <div class="carousel-item ">
-                                        <div class="row">
-                                            @for (int index2 = 3; index2 < 6; index2++)
-                                            {
-                                                int j = randomProducto[index2];
-                                                <div class="col-md-4 item-box">
-                                                    <div class="item-box-blog">
-                                                        <div class="item-box-blog-image">
-                                                            <!--Imagen-->
-                                                            <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                <figure> <img class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
-                                                            </a>
-                                                        </div>
-                                                        <div class="item-box-blog-body">
-                                                            <!--Título-->
-                                                            <div class="item-box-blog-heading">
-                                                                <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                    @listaProducto[j].Titulo
-                                                                </a>
-                                                            </div>
-                                                            <!--Precio-->
-                                                            <div class="row item-box-blog-date white">
-                                                                <span class="mon"><small><strike style="opacity:0.7;">@listaProducto[j].Precio &#8364 </strike></small> &nbsp;  &nbsp;</span>
-                                                                <span class="mon"> @listaProducto[j].PrecioFinal &#8364 </span>
-                                                            </div>
-
-                                                            <!--Descripción-->
-                                                            <div class="item-box-blog-text">
-                                                                <p>@listaProducto[j].Descripcion</p>
-                                                            </div>
-                                                            <div class="div-boton-comprar"> <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a> </div>
-                                                            <!--Comprar-->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                        <!--.row-->
-                                    </div>
-                                    <!--.item-->
+                                    <!--.carousel-inner-->
                                 </div>
-                                <!--.carousel-inner-->
+                                <!--.Carousel-->
                             </div>
-                            <!--.Carousel-->
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+            indexCategorias++;
         }
-        indexCategorias++;
     }
-}
-
+*@
 @if (MessagesService.GetShowMessage())
 {
     MessagesService.SetShowMessage(false);
@@ -185,14 +391,6 @@
             banner.parentNode.removeChild(banner);
         });</script>
 }
-@*<script>
-    ifUserVendedor()
-    function ifUserVendedor() {
-        let div = document.getElementById('producto-vendedor-vacio');
-        div.classList.remove('d-none');
-    }</script>*@
-
-
 
 <!-- Modal de ubicación del usuario (Cuando ingresa por primera vez)-->
 <div id="modal-root">

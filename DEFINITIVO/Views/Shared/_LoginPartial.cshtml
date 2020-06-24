@@ -8,26 +8,11 @@
         <div class="col-2 offset-1" id="div-cabecera-salir">
             @if (User.IsInRole("cliente"))
             {
-                <div id="anchor-miperfil">
-                    <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">@User.Identity.Name!</a>
-                </div>
-                <div class="desplegable-salir">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout">
-                        <button type="submit" class="nav-link btn btn-link"><p class="boton-salir-usuario">Salir</p></button>
-                    </form>
-                </div>
+                <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">@User.Identity.Name!</a>
             }
             @if (User.IsInRole("vendedor"))
             {
-                <div id="anchor-miperfil">
-                    <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">@User.Identity.Name!</a>
-                </div>
-                <div class="desplegable-salir">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout">
-                        <button type="submit" class="nav-link btn btn-link textType2"><p class="boton-salir-usuario">Salir</p></button>
-                    </form>
-                    <a asp-area="" asp-controller="Vendedores" asp-action="Misproductos2">Gestionar Productos</a>
-                </div>
+                <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">@User.Identity.Name!</a>
             }
             @if (User.IsInRole("admin"))
             {

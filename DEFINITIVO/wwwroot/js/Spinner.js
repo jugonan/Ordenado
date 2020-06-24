@@ -1,5 +1,6 @@
 ﻿/* Variables */
 let imagenSpinner;
+let imagenSpinnerProducto;
 let bodySpinner;
 let aClicarSpinner;
 let aClicar2Spinner;
@@ -33,6 +34,8 @@ function llenarVariablesSpinner() {
     divPadreSpinner = document.createElement('div');
     imagenSpinner = document.createElement('img');
     imagenSpinner.src = 'https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif';
+    imagenSpinnerProducto = document.createElement('img');
+    imagenSpinnerProducto.src = 'https://i.pinimg.com/originals/b8/c8/d8/b8c8d8b7f26bfd7e065f6fc82a4cc13e.gif';
 }
 
 function generarSpinner() {
@@ -61,6 +64,26 @@ function sleep(ms){
     var end = now + ms;
     while(Date.now() < end){
     }
+}
+
+function generarSpinnerProducto() {
+    let fondoPaginaEliminar = document.getElementById('mainContainerLayout');
+    divPadreSpinner.classList.add('div-spinner');
+    imagenSpinnerProducto.classList.add('imagen-spinner');
+    textoSpinner.classList.add('texto-spinner');
+    textoSpinner.innerText = 'Cargando el producto';
+    divPadreSpinner.appendChild(textoSpinner);
+    divPadreSpinner.appendChild(imagenSpinnerProducto);
+    bodySpinner.appendChild(divPadreSpinner);
+    textoSpinner.appendChild(textoVelocidad);
+    fondoPaginaEliminar.remove();
+    window.scrollTo(0, 0);
+    setTimeout(function () {
+        textoSpinner.classList.add('texto-spinner-opaco');
+    }, 100)
+    setTimeout(function () {
+        sleep(4000);
+    }, 500)
 }
 
 function getText() {

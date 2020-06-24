@@ -1,4 +1,4 @@
-﻿//window.addEventListener('load', ponerBonitasCards)
+﻿window.addEventListener('load', ponerBonitasCards)
 
 
 document.addEventListener('scroll', function () {
@@ -55,16 +55,42 @@ function GestionarModal() {
 }
 
 function ponerBonitasCards() {
-    let descripciones = Array.from(document.getElementsByClassName('item-box-blog-text'));
-    for (let i = 10; i < descripciones.length; i++) {
-        if (descripciones[i].innerText.length > 100) {
+    rellenarEstrellas();
+    rellenarVisitas();
+    let descripciones = Array.from(document.getElementsByClassName('texto-oferta'));
+    for (let i = 0; i < descripciones.length; i++) {
+        if (descripciones[i].innerText.length > 40) {
             let original = descripciones[i].innerText;
-            let acotado = original.substring(0, 100);
+            let acotado = original.substring(0, 40);
             console.log(acotado);
             let nuevo = acotado + '...';
             descripciones[i].innerHTML = nuevo;
         }
     }
+}
+
+function rellenarEstrellas() {
+    let divEstrellas = Array.from(document.getElementsByClassName('media-de-producto'));
+    divEstrellas.forEach(estrella => {
+        let random = calcularRandom(3,5);
+        let estrellas = estrella.children;
+        for (i = 0; i < random; i++) {
+            estrellas[i].classList.add('checked');
+        }
+    })
+}
+
+function rellenarVisitas() {
+    let visitas = Array.from(document.getElementsByClassName('visitas-a-producto'));
+    visitas.forEach(visita => {
+        let random = calcularRandom(22, 89);
+        let imagen = visita.innerHTML;
+        visita.innerHTML = imagen + random;
+    })
+}
+
+function calcularRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
