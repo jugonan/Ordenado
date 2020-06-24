@@ -8,15 +8,20 @@
     justify-content: space-evenly;
 }
 
-.ofertas-destacadas div{
-    width: 18rem;
-}
+    .ofertas-destacadas > div {
+        width: 18rem;
+    }
 
 .titulo-categorias {
-    color: #F21B6D;
     text-align: center;
-    font-size: 30px;
+    color: #F21B6D;
+    font-size: 2rem;
 }
+
+    .titulo-categorias a {
+        color: #F21B6D;
+        font-size: 2rem;
+    }
 
 .ofertas-no-destacadas {
     display: flex;
@@ -38,7 +43,7 @@
     justify-content: space-between;
 }
 
-.media-de-producto{
+.media-de-producto {
     opacity: 0.7;
 }
 
@@ -54,10 +59,10 @@
     opacity: 0.7;
 }
 
-.visitas-a-producto img{
-    width: 25%;
-    height: inherit !important;
-}
+    .visitas-a-producto img {
+        width: 25%;
+        height: inherit !important;
+    }
 
 .texto-oferta {
     font-weight: 100;
@@ -71,9 +76,10 @@
     font-size: 1.5vw;
 }
 
-.precios-carta-index p {
-    padding: 0vw 0.5vw;
-}
+    .precios-carta-index p {
+        padding: 0vw 0.5vw;
+    }
+
 .precio-final-carta {
     color: #2B9720;
 }
@@ -96,24 +102,24 @@
     box-shadow: 2px 2px 4px #888888;
 }
 
-.carta-modificada:hover {
-    box-shadow: 0;
-    transition: box-shadow 0.4s;
-    box-shadow: 5px 5px 14px #888888;
-}
+    .carta-modificada:hover {
+        box-shadow: 0;
+        transition: box-shadow 0.4s;
+        box-shadow: 5px 5px 14px #888888;
+    }
 
-.carta-modificada img{
-    height: 40%;
-}
+    .carta-modificada img {
+        height: 40%;
+    }
 
-.carta-modificada div{
-    padding: 0.25rem 0.75rem;
-}
+    .carta-modificada div {
+        padding: 0.25rem 0.75rem;
+    }
 
 .div-boton-lo-quiero {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    position: relative;
+    bottom: -10%;
+    right: -25%;
 }
 
 .boton-lo-quiero {
@@ -124,12 +130,20 @@
     color: white !important;
 }
 
-.boton-lo-quiero:hover {
-    box-shadow: none;
-    background-color: #F21B6D;
-    opacity: 1;
-    color: white;
+    .boton-lo-quiero:hover {
+        box-shadow: none;
+        background-color: #F21B6D;
+        opacity: 1;
+        color: white;
+    }
+
+.ver-mas {
+    text-align:center;
 }
+    .ver-mas a {
+        color: #2B9720;
+        font-size: 0.9rem;
+    }
 /* CSS del carousel inicial  */
 .cta-100 {
     margin-top: 30px;
@@ -175,9 +189,9 @@ figure img {
     opacity: 0.7;
 }
 
-.floating-button:hover {
-    opacity: 1;
-}
+    .floating-button:hover {
+        opacity: 1;
+    }
 
 .my-float {
     margin-top: 22px;
@@ -186,10 +200,10 @@ figure img {
     z-index: 99;
 }
 
-.my-float:hover {
-    color: ghostwhite;
-    opacity: 1;
-}
+    .my-float:hover {
+        color: ghostwhite;
+        opacity: 1;
+    }
 
 .label-container {
     position: fixed;
@@ -232,17 +246,18 @@ a.floating-button:hover + div.label-container {
     opacity: 0.9;
 }
 
-.add-producto-bubble:hover {
-   text-decoration: none;
-}
+    .add-producto-bubble:hover {
+        text-decoration: none;
+    }
 
 #modificarCiudad {
     cursor: pointer;
     color: darkblue;
 }
-#modificarCiudad:hover{
-    font-weight:600;
-}
+
+    #modificarCiudad:hover {
+        font-weight: 600;
+    }
 
 #ubicacion {
     text-align: center;
@@ -277,28 +292,28 @@ a.floating-button:hover + div.label-container {
     justify-content: center;
 }
 
-.modal-header h4 {
-    color: #fff;
-    font-weight: 600;
-    font-size: 2rem;
-    text-align: center;
-}
+    .modal-header h4 {
+        color: #fff;
+        font-weight: 600;
+        font-size: 2rem;
+        text-align: center;
+    }
 
-.modal-header button {
-    position: absolute;
-    right: 25px;
-    top: 10px;
-    color: #fff;
-}
+    .modal-header button {
+        position: absolute;
+        right: 25px;
+        top: 10px;
+        color: #fff;
+    }
 
 .modal-body {
     font-family: 'Segoe UI', sans-serif;
     padding: 40px 50px;
 }
 
-.modal-body h5 {
-    font-weight: 600;
-    font-size: 1.2rem;
-    text-align: justify;
-    margin-bottom: 1.5rem;
-}
+    .modal-body h5 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-align: justify;
+        margin-bottom: 1.5rem;
+    }

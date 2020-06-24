@@ -8,12 +8,25 @@
         Color de separación complementaria suave: #BAC1B8 (text?)
         Color de separación complementaria fuerte: #02A669
 	Color "alert-danger" (rojo anaranjado): #e46464 
-	
+	Color verde precio actual: #2B9720
     Alternativos:
 	Rosa 2 tonos más claro: #F33F84
 	Rosa 5 tonos más claro: #F679A9
 
-    Fuente principal: 
+    
+  Fuente Principal: 
+        font-family: 'Roboto', sans-serif;
+        [100, 300, 400, 500, 700, 900]
+        {Thin 100, Thin 100 italic
+        Light 300, Light 300 italic
+        Regular 400, Regular 400 italic
+        Medium 500, Medium 500 italic
+        Bold 700, Bold 700 italic
+        Black 900, Black 900 italic}
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+    Ex Fuente principal: 
         font-family: 'Open Sans Condensed', sans-serif;
         weight: 300 - 700;
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">

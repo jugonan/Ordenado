@@ -14,12 +14,14 @@
 }
 
 .copies {
-    font-size: 1.5vw;
+    font-size: 1.3rem;
+    text-align: justify;
 }
 
 li {
-    list-style: disclosure-closed;
-    font-size: 1.3vw;
+    font-size: 1.3rem;
+    text-align: justify;
+    padding: 1rem 0rem;
 }
 
 .call-to-action-landing {
@@ -29,7 +31,7 @@ li {
 
 .call-to-action-landing p{
 text-align: center;
-font-size: 1.3vw;
+font-size: 1.3rem;
 }
 
 #continuarNav {
@@ -41,7 +43,7 @@ font-size: 1.3vw;
 }
 
 #continuarNav:hover {
-    color: white;
+    color: white !important;
     font-size:1.35rem;
     box-shadow: 1px 1px 2px 1px #F679A9;
 }
