@@ -47,7 +47,6 @@ body {
 }
 
 #footerInfo {
-    padding-top: 20px;
     margin: 0;
     overflow: hidden;
 }
@@ -66,12 +65,12 @@ body {
 
 #footerLeft {
     float: left;
-    padding-left: 20%;
+    padding-left: 18%;
 }
 
 #footerRight {
     float: right;
-    padding-right: 25%;
+    padding-right: 20%;
 }
     #footerRight a {
         font-weight: 300;
