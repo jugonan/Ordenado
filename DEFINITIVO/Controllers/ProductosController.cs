@@ -357,7 +357,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> GetImage1(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetMainImage(id);
-            if (imagen.Length != 0)
+            if (imagen != null)
                 return File(imagen, "image/jpeg");
             else
                 return null;
@@ -365,7 +365,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> GetImage2(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetSecondImage(id);
-            if (imagen.Length != 0)
+            if (imagen != null)
                 return File(imagen, "image/jpeg");
             else
                 return null;
@@ -373,7 +373,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> GetImage3(int id)
         {
             byte[] imagen = await _imagenesProductosService.GetThirdImage(id);
-            if (imagen.Length != 0)
+            if (imagen != null)
                 return File(imagen, "image/jpeg");
             else
                 return null;

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es-es">
 @using Microsoft.AspNetCore.Identity
 @using DEFINITIVO.Services
 @using Heldu.Logic.Interfaces
@@ -216,18 +216,18 @@
                         </li>
                         @if (User.IsInRole("admin"))
                         {
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
-                        </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
+                            </li>
                         }
                     </ul>
                 </div>
             </nav>
         </cache>
-        <!-- Categorias ocultas que se despliegan al hacer click en "Categorías" -->
+        <!-- Sub Navbar de Categorias -->
         @{
             List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
         }
@@ -238,24 +238,23 @@
                 </li>
                 @foreach (Categoria categoria in listaCategorias)
                 {
-                <li class="col itemCategoria">
-                    <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3" id="Categoria_@categoria.Id">@categoria.Nombre.ToUpper()</a>
-                </li>
+                    <li class="col itemCategoria">
+                        <a asp-area="" asp-controller="Productos" asp-action="Categoria" asp-route-id="@categoria.Id" class="textType3" id="Categoria_@categoria.Id">@categoria.Nombre.ToUpper()</a>
+                    </li>
                 }
             </ul>
         </div>
+
         <!-- Detalles de Heldu ocultos. Se muestran al hacer click en "Conocenos!"-->
         <div class="collapse" id="divDetallesHeldu" data-parent="#mainDiv">
             <ul class="row subMenuCon">
                 <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
                 <li class="col itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
                 <li class="col itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
-                @*<li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Contacto">Contáctanos</a></li>*@
                 <li class="col itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
             </ul>
         </div>
         <!-- Formulario de contacto con su CSS -->
-        @*<link href="/css/ContactFormModal.css" rel="stylesheet" type="text/css">*@
         <input type="checkbox" name="showForm" id="showForm" class="showForm">
         <div class="formContacto">
             <h2>Contáctanos!</h2>
@@ -270,7 +269,7 @@
                     <input type="hidden" name="actualPath" value="@actualPath">
                     @if (activeUser != null)
                     {
-                    <input type="hidden" name="userId" value="@activeUser.Id">
+                        <input type="hidden" name="userId" value="@activeUser.Id">
                     }
                 </div>
                 <div class="right section">
@@ -280,17 +279,8 @@
                 <label for="showForm" class="closeFormLabel left">CANCELAR</label>
             </form>
         </div>
-        <!-- Buscador oculto que se desplega al hacer click en "Buscar" -->
-        <div class="collapse" id="divBuscador" data-parent="#mainDiv">
-            @{ List<SelectListItem> catSelect = await CategoriasService.GetSelectListCategorias(); }
-            <form asp-controller="Productos" asp-action="Search" id="formBuscador" class="form-inline">
-                <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="Ingrese lo que desea buscar" aria-label="Search" required minlength="3" /><span style="color:white;"> en </span>
-                <select id="selecListBuscar" name="catSelected" asp-items="catSelect" class="form-control">
-                </select>
-                <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>
-            </form>
-        </div>
     </header>
+
     <div class="container" id="mainContainerLayout">
         <main role="main" class="pb-5 pt-2 mb-3">
             @RenderBody()

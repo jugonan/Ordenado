@@ -8,7 +8,18 @@
 }
 <link href="~/css/Producto_Categoria.css" rel="stylesheet" type="text/css">
 
-<p class="py-2" id="resultsTitle">Se han encontrado @Model.Count() resultados para <i>'@palabraBuscada'</i> </p>
+@if (Model.Count() != 0)
+{
+    <p class="py-2" id="resultsTitle">Se han encontrado @Model.Count() resultados para <i>'@palabraBuscada'</i> </p>
+}
+else
+{
+<p class="py-2" id="resultsTitle">¡Ups! No hemos encontrado resultados para <i>'@palabraBuscada'</i> &#128546; </p>
+    <p class="py-2" id="noResults">¿Nos ayudas a mejorar?</p>
+    <p>Envíanos un mensaje con el producto o servicio que te gustaría encontrar en Heldu. </p>
+    <p>Haremos todo lo posible para conseguirlo!</p>
+    <label for="showForm" class="btn btn-info mb-3">Enviar Mensaje</label>
+}
 
 <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3">
     @foreach (Producto producto in Model)

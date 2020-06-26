@@ -1,13 +1,14 @@
 ﻿#titulo-categoria {
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 700;
-    font-size:1.5rem;
+    font-size: 1.5rem;
     color: #F21B6D;
 }
 
 .contenedor-carta {
     padding: 0px 15px 15px 15px;
 }
+
 .divCarta {
     background-color: #F7F6F2;
 }
@@ -30,19 +31,21 @@
     padding: 0.5rem;
     margin-top: 0.5rem;
 }
+
     .cuerpo-carta a {
         font-family: 'Open Sans Condensed', sans-serif;
         font-weight: 700;
         font-size: 1.2rem;
         color: #1C2229;
-        text-align:center;
+        text-align: center;
     }
+
     .cuerpo-carta p {
         font-family: 'Segoe UI', sans-serif;
         font-weight: 200;
         font-size: 0.8rem;
         color: #363537;
-        text-align:justify;
+        text-align: justify;
     }
 
 .item-box-blog-date {
@@ -90,9 +93,9 @@
 
 .texto-carta {
     font-size: 0.8rem;
-    max-height:6rem;
-    overflow:hidden;
-    margin-bottom:2rem;
+    max-height: 6rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
 }
 
 .texto-stock {
@@ -104,26 +107,36 @@
     max-width: 50%;
     max-height: 8%;
     font-size: small;
-    color: #F679A9!important;
+    color: #F679A9 !important;
 }
 
 .btnComprar {
-    font-family: 'Open Sans Condensed', sans-serif!important;
-    font-weight: 700!important;
-    font-size: 1.2rem!important;
-    text-align:center;
-    background-color: #F33F84!important;
-    color: lightgray!important;
+    font-family: 'Open Sans Condensed', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+    text-align: center;
+    background-color: #F33F84 !important;
+    color: lightgray !important;
 }
+
     .btnComprar:hover {
-        box-shadow:none!important;
-        background-color: #F21B6D!important;
-        color: white!important;
-        border:1px 1px!important;
-        border-color:white!important;
+        box-shadow: none !important;
+        background-color: #F21B6D !important;
+        color: white !important;
+        border: 1px 1px !important;
+        border-color: white !important;
     }
 
 #resultsTitle {
     font-size: 1.5rem;
     color: #714eee;
+}
+#noResults {
+    font-size: 1.3rem;
+    color: #1C2229;
+    font-weight:500;
+}
+#noResults > p {
+    color: #1C2229;
+    font-size: 1rem;
 }
