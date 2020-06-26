@@ -38,22 +38,48 @@
     margin-top: 0.5rem;
 }
 
-#forgot-password {
-}
-
 #keep-session {
     align-self: flex-end;
     text-align: left;
 }
+.div-botones-EL {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-botones-EL button{
+    color: white;
+    display: flex;
+    height: 3vw;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.imagenes-el {
+    width: 2vw;
+}
+
+button p{
+    width: 100%;
+    text-align: center;
+}
 
 #boton-google {
-    color: white;
-    background-color: #F8C537;
+    color: black;
+    border: 1px solid #0000001c;
+    margin-bottom: 1vw;
+    opacity: 0.6;
+    transition: 0.3s;
 }
 
 #boton-facebook {
-    color: white;
-    background-color: rgb(75, 115, 184);
+    background: #4267b2;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+#boton-google:hover, #boton-facebook:hover {
+    opacity: 1;
 }
 
 #logoHeldu {
@@ -76,6 +102,6 @@
     margin: 2vw 1vw;
 }
 
-    #divAsk h4 {
-        margin-bottom: 1.5rem;
-    }
+#divAsk h4 {
+    margin-bottom: 1.5rem;
+}

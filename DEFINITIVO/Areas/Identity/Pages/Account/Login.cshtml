@@ -65,11 +65,7 @@
                 <hr />
             </div>
         </section>
-
         <section>
-            <div>
-                <p>O ingresa con una de las siguientes opciones</p>
-            </div>
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
@@ -83,10 +79,13 @@
                 else
                 {
                     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
+                        <div class="div-botones-EL">
                             @foreach (var provider in Model.ExternalLogins)
                             {
-                                <button type="submit" style="width:auto;" class="btn btn-login" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                <button type="submit" style="width:auto;" class="btn btn-login" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                    <img class="imagenes-el" />
+                                    <p>Regístrate con @provider.DisplayName</p>
+                                </button>
                             }
                         </div>
                     </form>
@@ -104,8 +103,10 @@
     for (let i = 0; i < botones.length; i++) {
         if (botones[i].value === 'Google') {
             botones[i].setAttribute('id', 'boton-google');
+            botones[i].children[0].setAttribute('src', 'https://image.flaticon.com/icons/svg/2702/2702602.svg');
         }
         if (botones[i].value === 'Facebook') {
             botones[i].setAttribute('id', 'boton-facebook');
+            botones[i].children[0].setAttribute('src', 'https://image.flaticon.com/icons/svg/1384/1384053.svg');
         }
     }</script>

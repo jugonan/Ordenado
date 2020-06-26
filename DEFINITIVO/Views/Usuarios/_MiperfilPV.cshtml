@@ -21,4 +21,9 @@
     <div class="botones-PV">
         <a asp-action="Rewards" asp-route-id="@Model.Id" class="btn">Rewards</a>
     </div>
+    <div class="botones-PV">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="usuario-saliendo">
+            <button type="submit" class="btn boton-cerrar-sesion"><p>Salir</p></button>
+        </form>
+    </div>
 </div>

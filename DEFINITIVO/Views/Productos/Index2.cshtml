@@ -267,127 +267,6 @@
     <a asp-controller="Productos" asp-action="Categoria" asp-route-id="@categorias[3].Id">Ver más productos de @categorias[3].Nombre</a>
 </div>
 
-@* CAROUSEL INICIAL
-
-    <!-- UNA CATEGORÍA DEBE TENER AL MENOS 6 PRODUCTOS, SI NO EL CARROUSEL NO FUNCIONA!!!!-->
-    @{
-        int indexCategorias = 0;
-        foreach (List<Producto> listaProducto in Model.ListasProductos)
-        {
-            var cantProductos = listaProducto.Count();
-
-            @if (cantProductos > 5)
-            {
-                List<int> randomProducto = HelperService.RandomProductos(cantProductos);
-                <div class="cta-100 ">
-                    <div>
-                        <a asp-action="Categoria" asp-route-id="@categorias[indexCategorias].Id" class="category_name">@categorias[indexCategorias].Nombre</a>
-                        <div class="row blog">
-                            <div class="col-md-12">
-                                @{string nombreCat = $"categoria_{indexCategorias}";}
-                                <div id="@nombreCat" class="carousel slide container-blog blogCarousel" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#@nombreCat" data-slide-to="0" class="active"></li>
-                                        <li data-target="#@nombreCat" data-slide-to="1"></li>
-                                    </ol>
-                                    <!-- Carousel items -->
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <div class="row">
-                                                @for (int index1 = 0; index1 < 4; index1++)
-                                                {
-                                                    int j = randomProducto[index1];
-                                                    <div class="item-box">
-                                                        <div class="item-box-blog">
-                                                            <div class="item-box-blog-image">
-                                                                <!--Imagen-->
-                                                                <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                    <figure> <img onclick="generarSpinnerProducto()" class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
-                                                                </a>
-                                                            </div>
-                                                            <div class="item-box-blog-body">
-                                                                <!--Título-->
-                                                                <div class="item-box-blog-heading">
-                                                                    <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                        @listaProducto[j].Titulo
-                                                                    </a>
-                                                                </div>
-                                                                <!--Precio-->
-                                                                <div class="row item-box-blog-date white">
-                                                                    <span class="mon"><small><strike style="opacity:0.7;">@listaProducto[j].Precio &#8364 </strike></small> &nbsp; &nbsp;</span>
-                                                                    <span class="mon"> @listaProducto[j].PrecioFinal &#8364 </span>
-                                                                </div>
-                                                                <!--Descripción-->
-                                                                <div class="item-box-blog-text">
-                                                                    <p>@listaProducto[j].Descripcion</p>
-                                                                </div>
-                                                                <div class="div-boton-comprar">
-                                                                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a>
-                                                                </div>
-                                                                <!--Comprar-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                                <!--.row-->
-                                            </div>
-                                        </div>
-                                        <!--.item-->
-                                        <div class="carousel-item ">
-                                            <div class="row">
-                                                @for (int index2 = 0; index2 < 4; index2++)
-                                                {
-                                                    int j = randomProducto[index2];
-                                                    <div class="item-box">
-                                                        <div class="item-box-blog">
-                                                            <div class="item-box-blog-image">
-                                                                <!--Imagen-->
-                                                                <a class="item-image" asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                    <figure> <img onclick="generarSpinnerProducto()" class="imagen-producto-index2" loading="lazy" alt="Producto @listaProducto[j].Titulo" src="~/Productos/GetImage1/@listaProducto[j].Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'> </figure>
-                                                                </a>
-                                                            </div>
-                                                            <div class="item-box-blog-body">
-                                                                <!--Título-->
-                                                                <div class="item-box-blog-heading">
-                                                                    <a asp-action="Detalles" asp-route-id="@listaProducto[j].Id">
-                                                                        @listaProducto[j].Titulo
-                                                                    </a>
-                                                                </div>
-                                                                <!--Precio-->
-                                                                <div class="row item-box-blog-date white">
-                                                                    <span class="mon"><small><strike style="opacity:0.7;">@listaProducto[j].Precio &#8364 </strike></small> &nbsp;  &nbsp;</span>
-                                                                    <span class="mon"> @listaProducto[j].PrecioFinal &#8364 </span>
-                                                                </div>
-
-                                                                <!--Descripción-->
-                                                                <div class="item-box-blog-text">
-                                                                    <p>@listaProducto[j].Descripcion</p>
-                                                                </div>
-                                                                <div class="div-boton-comprar">
-                                                                <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@listaProducto[j].Id" class="btn bg-blue-ui white read btnLoQuiero">Lo quiero!</a>
-                                                                </div>
-                                                                <!--Comprar-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            </div>
-                                            <!--.row-->
-                                        </div>
-                                        <!--.item-->
-                                    </div>
-                                    <!--.carousel-inner-->
-                                </div>
-                                <!--.Carousel-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            indexCategorias++;
-        }
-    }
-*@
 @if (MessagesService.GetShowMessage())
 {
     MessagesService.SetShowMessage(false);
@@ -435,8 +314,8 @@
                     <h4><span class="glyphicon glyphicon-lock"></span> Mejoramos tu experiencia!</h4>
                 </div>
                 <div class="modal-body">
-                    <h5>Te estamos mostrando productos para @city</h5>
-                    <h5>Si no es correcto, indícanos tu código postal </h5>
+                    <p>Te estamos mostrando productos para @city</p>
+                    <p>Si no es correcto, indícanos tu <strong>código postal</strong></p>
                     <form role="form" asp-controller="Productos" asp-action="LocateVisitor">
                         <div class="form-group">
                             <label for="postaCode"><span class="glyphicon glyphicon-user"></span> Código Postal</label>

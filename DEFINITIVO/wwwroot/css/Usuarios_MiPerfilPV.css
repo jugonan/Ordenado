@@ -38,5 +38,6 @@
  width: 100%;
 }
 
-body {
+.botones-PV form {
+    justify-content: center;
 }

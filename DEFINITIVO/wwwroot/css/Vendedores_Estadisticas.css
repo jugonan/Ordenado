@@ -22,3 +22,7 @@
     color: white;
     width: 100%;
 }
+
+.botones-PV form {
+    justify-content: center;
+}

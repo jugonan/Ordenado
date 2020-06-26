@@ -32,12 +32,12 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
             _memoryCache.Remove("ProductosForIndex2");
             _memoryCache.Remove("Categorias");
-            _logger.LogInformation("User logged out.");
-            if (returnUrl == "saleYEntra")
+            if (returnUrl == "usuario-saliendo")
             {
-                return LocalRedirect("/Identity/Account/Login");
+                return LocalRedirect("/Identity/Account/Logout");
             }
             else
             {
