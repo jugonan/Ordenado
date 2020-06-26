@@ -14,7 +14,7 @@ namespace Heldu.Entities.Models
         public string Apellido { get; set; }
         [Required]
         public string NombreUsuario { get; set; }
-        public bool Darde { get; set; }
+        public byte[] Darde { get; set; }
         [Required]
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         public DateTime FechaNacimiento { get; set; }

@@ -7,7 +7,7 @@ namespace Heldu.Logic.ViewModels
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string NombreUsuario { get; set; }
-        public bool Darde { get; set; }
+        public byte[] Darde { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public byte[] FotoUsuario { get; set; }
         public string IdentityUserId { get; set; }
