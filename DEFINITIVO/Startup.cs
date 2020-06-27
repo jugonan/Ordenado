@@ -47,7 +47,7 @@ namespace DEFINITIVO
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 8;
-                options.Password.RequireLowercase = false;
+                options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = true;
             })

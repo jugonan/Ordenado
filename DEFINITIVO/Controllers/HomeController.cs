@@ -10,6 +10,8 @@ using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Http;
 using DEFINITIVO.Services;
 using Heldu.Logic.Interfaces;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DEFINITIVO.Controllers
 {
@@ -22,14 +24,15 @@ namespace DEFINITIVO.Controllers
         private readonly MessagesService _messagesService;
         private readonly IHelperService _helperService;
         private readonly IUsuariosService _usuariosService;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
         public HomeController(ILogger<HomeController> logger,
             ApplicationDbContext context,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            MessagesService messagesService,
-            IHelperService helperService,
-            IUsuariosService usuariosService)
+            MessagesService messagesService,            IHelperService helperService,
+            IUsuariosService usuariosService,
+            IHostingEnvironment hostingEnvironment)
         {
             _logger = logger;
             _context = context;
@@ -38,6 +41,7 @@ namespace DEFINITIVO.Controllers
             _messagesService = messagesService;
             _helperService = helperService;
             _usuariosService = usuariosService;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public async Task<IActionResult> Index()

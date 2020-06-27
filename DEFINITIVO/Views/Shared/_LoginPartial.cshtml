@@ -8,11 +8,11 @@
     <div class="col-2 offset-1" id="div-cabecera-salir">
         @if (User.IsInRole("cliente"))
         {
-            <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">@User.Identity.Name!</a>
+            <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">@User.Identity.Name</a>
         }
         @if (User.IsInRole("vendedor"))
         {
-            <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">@User.Identity.Name!</a>
+            <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">@User.Identity.Name</a>
         }
         @if (User.IsInRole("admin"))
         {

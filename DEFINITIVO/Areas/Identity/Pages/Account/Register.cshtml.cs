@@ -52,7 +52,7 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
+            [StringLength(20, ErrorMessage = "La longitud ha de ser entre {2} y {1} caracteres.", MinimumLength = 8)]
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña")]
             public string Password { get; set; }
@@ -67,7 +67,7 @@ namespace DEFINITIVO.Areas.Identity.Pages.Account
             public string Apellido { get; set; }
             [Display(Name = "Nombre de usuario")]
             public string NombreUsuario { get; set; }
-            public bool Darde { get; set; }
+            public byte[] Darde { get; set; }
             [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
             [Display(Name = "Fecha de nacimiento")]
             public DateTime FechaNacimiento { get; set; }

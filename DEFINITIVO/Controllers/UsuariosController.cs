@@ -63,7 +63,7 @@ namespace DEFINITIVO.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Create(UsuarioUbicacionVM usuarioUbicacionVM, List<IFormFile> FotoUsuario)
+        public async Task<IActionResult> Create(UsuarioUbicacionVM usuarioUbicacionVM, List<IFormFile> FotoUsuario, List<IFormFile> Darde)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,6 @@ namespace DEFINITIVO.Controllers
                     Nombre = usuarioUbicacionVM.Nombre,
                     Apellido = usuarioUbicacionVM.Apellido,
                     NombreUsuario = usuarioUbicacionVM.NombreUsuario,
-                    Darde = usuarioUbicacionVM.Darde,
                     FechaNacimiento = usuarioUbicacionVM.FechaNacimiento,
                     IdentityUserId = usuarioUbicacionVM.IdentityUserId
                 };
@@ -84,6 +83,17 @@ namespace DEFINITIVO.Controllers
                         {
                             await item.CopyToAsync(stream);
                             usuario.FotoUsuario = stream.ToArray();
+                        }
+                    }
+                }
+                foreach (var item in Darde)
+                {
+                    if(item.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await item.CopyToAsync(stream);
+                            usuario.Darde = stream.ToArray();
                         }
                     }
                 }
@@ -126,11 +136,34 @@ namespace DEFINITIVO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,NombreUsuario,Darde,FechaNacimiento,IdentityUserId,FotoPerfil")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id,Usuario usuario,List<IFormFile> FotoUsuario,List<IFormFile> Darde)
         {
             if (id != usuario.Id)
             {
                 return NotFound();
+            }
+
+            foreach (var item in FotoUsuario)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        usuario.FotoUsuario = stream.ToArray();
+                    }
+                }
+            }
+            foreach (var item in Darde)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        usuario.Darde = stream.ToArray();
+                    }
+                }
             }
 
             if (ModelState.IsValid)
@@ -243,6 +276,17 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> GestionarUsuarios()
         {
             return View(await _usuariosService.GestionarUsuarios());
+        }
+
+        public async Task<IActionResult> GetDarde()
+        {
+            string userManagerId = _userManager.GetUserId(User);
+            Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(userManagerId);
+            byte[] darde = usuario.Darde;
+            if (darde != null)
+                return File(darde, "image/jpeg");
+            else
+                return null;
         }
     }
 }
