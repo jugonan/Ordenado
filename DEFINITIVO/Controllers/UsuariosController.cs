@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Heldu.Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Heldu.Logic.ViewModels;
+using Tesseract;
 using System;
-using Json.Net;
 
 namespace DEFINITIVO.Controllers
 {
@@ -280,9 +280,30 @@ namespace DEFINITIVO.Controllers
             return View(await _usuariosService.GestionarUsuarios());
         }
 
-        public IActionResult LeerPdf()
+        public async Task<IActionResult> LeerPDF()
         {
-            return View();
+            string pathImage = @"/Users/jonanderfidalgo/Desktop";
+            string text = " ";
+            try
+            {
+                using (var engine = new TesseractEngine(@"./tessdata", "eng", EngineMode.Default))
+                {
+                    using (var img = Pix.LoadFromFile(pathImage))
+                    {
+                        using(var page = engine.Process(img))
+                        {
+                            text = page.GetText();
+                        }
+                    }
+                }
+            }
+            catch(Exception excp)
+            {
+                Console.WriteLine(excp.Message);
+            }
+            Console.WriteLine(text);
+            Console.ReadLine();
+            return View(text);
         }
 
         public async Task<IActionResult> GetDarde()
