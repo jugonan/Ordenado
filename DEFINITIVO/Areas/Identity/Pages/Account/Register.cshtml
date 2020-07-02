@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Password"></label>
-                        <input id="first-password" placeholder="Introduce al menos 8 dígitos" asp-for="Input.Password" class="form-control" />
+                        <input id="first-password" placeholder="Introduce al menos 8 dígitos y 1 mayúscula" asp-for="Input.Password" class="form-control" />
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                         <p id="mensaje-error" class="mensaje-error d-none">La contraseña debe de tener 8 caracteres, una letra mayúscula, una minúscula, un número y un carácter especial</p>
                     </div>
@@ -30,39 +30,15 @@
                         <input id="confirm-password" placeholder="Confirma tu contraseña" asp-for="Input.ConfirmPassword" class="form-control" />
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
+                    <div class="form-group d-none">
+                        <input asp-for="Input.IsCliente" value="true" checked class="form-control" />
+                        <span asp-validation-for="Input.IsCliente" class="text-danger"></span>
+                    </div>
                     <div id="div-boton-register">
                         <button id="btn-register" type="submit" class="btn btn-primary">Registarme</button>
                     </div>
                 </div>
             </form>
-            @*<section class="d-none" id="botones-autenticacion-registro">
-                <h5>Regístrate con una de las siguentes opciones</h5>
-                <hr />
-                @{
-                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                    {
-                        <div>
-                            <p>
-                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                                for details on setting up this ASP.NET application to support logging in via external services.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                            <div>
-                                <p id="parrafo-superior-er">
-                                    @foreach (var provider in Model.ExternalLogins)
-                                    {
-                                        <button type="submit" style="width:auto;" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                    }
-                                </p>
-                            </div>
-                        </form>
-                    }
-                }
-            </section>*@
         </div>
     </div>
 </div>

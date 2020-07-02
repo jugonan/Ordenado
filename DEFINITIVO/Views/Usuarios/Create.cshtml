@@ -41,14 +41,14 @@
                     <span asp-validation-for="NombreUsuario" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group form-check d-none">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Darde" /> @Html.DisplayNameFor(model => model.Darde)
-                </label>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input type="file" id="files-darde" asp-for="Darde" class="form-control" />
+                <span asp-validation-for="Darde" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="form-group col-4">
-                    <label class="control-label"></label>
+                    <label class="control-label">Foto de perfil</label>
                     <input type="file" id="files " asp-for="FotoUsuario" class="form-control" />
                     <span asp-validation-for="FotoUsuario" class="text-danger"></span>
                 </div>
