@@ -138,7 +138,8 @@ namespace DEFINITIVO
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=LandingBeta}/{id?}");
+                    //pattern: "{controller=Home}/{action=LandingBeta}/{id?}");
+                    pattern: "{controller=-Checkout}/{action=Confirmar}/{id=12}");
                 endpoints.MapRazorPages();
             });
 

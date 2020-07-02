@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +13,7 @@ using System;
 using Microsoft.AspNetCore.Http;
 using System.Diagnostics;
 using Microsoft.Extensions.Caching.Memory;
+
 
 namespace DEFINITIVO.Controllers
 {
@@ -36,7 +36,6 @@ namespace DEFINITIVO.Controllers
         private readonly IMemoryCache _memoryCache;
 
         public ProductosController(
-            ApplicationDbContext context,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             MessagesService messagesService,

@@ -139,7 +139,8 @@
                     </div>
                 </div>
                 <div class="div-boton-comprar">
-                    <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-action="Checkout">Comprar</a>
+                    <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-controller="Checkout" asp-action="Confirmar" asp-route-id="@Model.Id">Comprar</a>
+                    @*<input type="hidden" name="opcion" value="Titulo de la Opcion"/>*@
                 </div>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
