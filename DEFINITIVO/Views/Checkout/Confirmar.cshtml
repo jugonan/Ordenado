@@ -148,13 +148,13 @@
                 }
             }).then(function (result) {
                 if (result.error) {
-                    // Show error to your customer (e.g., insufficient funds)
+                    /* Show error to your customer (e.g., insufficient funds)*/
                     console.log(result.error.message);
                     console.log("Error se debería mostrar acá");
                     boton.disabled = false;
 
                 } else {
-                    // The payment has been processed!
+                    /* The payment has been processed!*/
                     if (result.paymentIntent.status === 'succeeded') {
                         console.log("Pago Exitoso!!!");
                         // Show a success message to your customer
