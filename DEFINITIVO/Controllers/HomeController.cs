@@ -24,15 +24,14 @@ namespace DEFINITIVO.Controllers
         private readonly MessagesService _messagesService;
         private readonly IHelperService _helperService;
         private readonly IUsuariosService _usuariosService;
-        private readonly IHostingEnvironment _hostingEnvironment;
 
         public HomeController(ILogger<HomeController> logger,
             ApplicationDbContext context,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             MessagesService messagesService,            IHelperService helperService,
-            IUsuariosService usuariosService,
-            IHostingEnvironment hostingEnvironment)
+            IUsuariosService usuariosService
+            )
         {
             _logger = logger;
             _context = context;
@@ -41,7 +40,6 @@ namespace DEFINITIVO.Controllers
             _messagesService = messagesService;
             _helperService = helperService;
             _usuariosService = usuariosService;
-            _hostingEnvironment = hostingEnvironment;
         }
 
         public async Task<IActionResult> Index()

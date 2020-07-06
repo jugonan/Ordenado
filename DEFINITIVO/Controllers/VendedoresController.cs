@@ -64,7 +64,6 @@ namespace DEFINITIVO.Controllers
         // GET: Vendedores/Create
         public IActionResult Create()
         {
-            //ViewData["CategoriaId"] = new SelectList(_context.Categoria, "Id", "Nombre");
             return View();
 
         }
@@ -78,10 +77,11 @@ namespace DEFINITIVO.Controllers
                 Vendedor vendedor = new Vendedor()
                 {
                     NombreDeEmpresa = vendedorUbicacionVM.NombreDeEmpresa,
-                    NumeroTiendas = vendedorUbicacionVM.NumeroTiendas,
                     Paginaweb = vendedorUbicacionVM.Paginaweb,
                     Telefono = vendedorUbicacionVM.Telefono,
                     DescripcionEmpresa = vendedorUbicacionVM.DescripcionEmpresa,
+                    CIF = vendedorUbicacionVM.CIF,
+                    IBAN = vendedorUbicacionVM.IBAN,
                     IdentityUserId = vendedorUbicacionVM.IdentityUserId
                 };
                 await _vendedoresService.CreateVendedor(vendedor);
@@ -122,7 +122,7 @@ namespace DEFINITIVO.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDeEmpresa,Direccion,Ciudad,CodigoPostal,PaginaWeb,NumeroTiendas,Telefono,IdentityUserId")] Vendedor vendedor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDeEmpresa,CIF,IBAN,DescripcionEmpresa,PaginaWeb,Telefono,IdentityUserId")] Vendedor vendedor)
         {
             if (id != vendedor.Id)
             {

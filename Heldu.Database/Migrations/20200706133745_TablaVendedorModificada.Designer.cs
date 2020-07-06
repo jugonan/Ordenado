@@ -3,14 +3,16 @@ using System;
 using Heldu.Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DEFINITIVO.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200706133745_TablaVendedorModificada")]
+    partial class TablaVendedorModificada
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -427,17 +429,8 @@ namespace DEFINITIVO.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CIF")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("DescripcionEmpresa")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IBAN")
-                        .IsRequired()
-                        .HasColumnType("varchar(24) CHARACTER SET utf8mb4")
-                        .HasMaxLength(24);
 
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");

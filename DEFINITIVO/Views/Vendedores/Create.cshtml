@@ -22,10 +22,21 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="CIF" class="control-label">¿Cuál es el nombre de la empresa?</label>
+                <input asp-for="CIF" class="form-control" />
+                <span asp-validation-for="CIF" class="text-danger"></span>
+            </div>             
+            <div class="form-group">
                 <label asp-for="NombreDeEmpresa" class="control-label">¿Cuál es el nombre de la empresa?</label>
                 <input asp-for="NombreDeEmpresa" class="form-control" />
                 <span asp-validation-for="NombreDeEmpresa" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="IBAN" class="control-label">¿Cuál es el nombre de la empresa?</label>
+                <input asp-for="IBAN" id="inputIBAN" class="form-control" required />
+                <span asp-validation-for="IBAN" id="spanIBAN" class="text-danger"></span>
+                <span><button class="btn btn-primary" disabled id="btnValidar">Validar IBAN</button></span>
+            </div>            
             <div class="d-none">
                 <label asp-for="Pais" class="control-label"></label>
                 <input type="text" asp-for="Pais" class="form-control" />
@@ -67,27 +78,14 @@
                 </div>
             </div>
             <div>
+                <label asp-for="Telefono" class="control-label">Teléfono de contacto</label>
+                <input type="text" minlength="9" maxlength="9" asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div>
                 <label asp-for="Paginaweb" class="control-label">Página web</label>
                 <input asp-for="Paginaweb" class="form-control" />
                 <span asp-validation-for="Paginaweb" class="text-danger"></span>
-            </div>
-            <br />
-            <h4>Cuéntanos, ¿cuántas tiendas tienes?</h4>
-            <div>
-                <div class="row">
-                    <label class="col-2" for="male">Una</label>
-                    <input type="radio" asp-for="NumeroTiendas" value="una" class="form-control col-1">
-                    <br>
-                </div>
-                <div class="row">
-                    <label class="col-2" for="female">Múltiples</label><br>
-                    <input type="radio" asp-for="NumeroTiendas" value="varias" class="form-control col-1">
-                </div>
-                <div class="row">
-                    <label class="col-2" for="other">Ninguna (e.g. sólo online</label>
-                    <input type="radio" asp-for="NumeroTiendas" value="online" class="form-control col-1">
-                </div>
-                <span asp-validation-for="NumeroTiendas" class="text-danger"></span>
             </div>
             <br />
             <h4>Y para terminar, nos gustaría saber algo más acerca de ti</h4>
@@ -102,11 +100,6 @@
                 <label asp-for="DescripcionEmpresa" class="control-label">Descripción de empresa</label>
                 <input asp-for="DescripcionEmpresa" class="form-control" />
                 <span asp-validation-for="DescripcionEmpresa" class="text-danger"></span>
-            </div>
-            <div>
-                <label asp-for="Telefono" class="control-label">Teléfono de contacto</label>
-                <input type="text" minlength="9" maxlength="9" asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="hidden" asp-for="IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />

@@ -6,13 +6,11 @@ namespace Heldu.Logic.ViewModels
         // Model de vendedor
         public int VendedorId { get; set; }
         public string NombreDeEmpresa { get; set; }
-        public string NumeroTiendas { get; set; }
-        public string Direccion { get; set; }
-        public string Ciudad { get; set; }
-        public string CodigoPostal { get; set; }
         public string Paginaweb { get; set; }
         public string Telefono { get; set; }
         public string DescripcionEmpresa { get; set; }
+        public string CIF { get; set; }
+        public string IBAN { get; set; }
         public string IdentityUserId { get; set; }
         // Model de ubicación
         public string Pais { get; set; }

@@ -280,7 +280,7 @@ namespace DEFINITIVO.Controllers
             return View(await _usuariosService.GestionarUsuarios());
         }
 
-        public async Task<IActionResult> LeerPDF()
+        public IActionResult LeerPDF()
         {
             string pathImage = @"/Users/jonanderfidalgo/Desktop";
             string text = " ";

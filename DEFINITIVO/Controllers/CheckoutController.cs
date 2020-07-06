@@ -74,7 +74,7 @@ namespace DEFINITIVO.Controllers
             return View(modelo);
         }
 
-        public async Task<IActionResult> Pagar(string stripeToken)
+        public IActionResult Pagar(string stripeToken)
         {
             StripeConfiguration.ApiKey = "sk_test_51GvJEQL9UURBAADxXJtmn6ZmPepnp0Bkt4Hwl3y53I7rjWCQKa4wj3FSfkm2V4ZOIV67I6LQDmfvPmZ16eMh9LcE0057FViwnl";
 

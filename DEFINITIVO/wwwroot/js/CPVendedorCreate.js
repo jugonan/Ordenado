@@ -7,10 +7,12 @@ let estado;
 if (document.readyState !== 'loading') {
     console.log('document is already ready, just execute code here');
     myInitCode();
+    validateIBAN();
 } else {
     document.addEventListener('DOMContentLoaded', function () {
         console.log('document was not ready, place code here');
         myInitCode();
+        validateIBAN();
     });
 }
 
@@ -26,13 +28,13 @@ function myInitCode() {
     escribir.addEventListener('input', function () {
         let seleccion = this.value;
         if (seleccion.length === 4) {
-        /*Se activa cuando el CP es 5 y modifica la url original añadiendo el CP introducido al final como KEY */
+            /*Se activa cuando el CP es 5 y modifica la url original añadiendo el CP introducido al final como KEY */
             let urlBusqueda = (url + `${seleccion}`);
 
             fetch(urlBusqueda)
                 .then(datos => datos.json())
                 .then(datos => crearContenido(datos))
-            }
+        }
     })
 }
 
@@ -46,7 +48,7 @@ function crearContenido(datos) {
 
 function crearPoblaciones(datos) {
     for (i = 0; i < datos.places.length; i++) {
-    /* Por cada Población en el CP introducido genera un optio con el nombre como InnerText y value */
+        /* Por cada Población en el CP introducido genera un optio con el nombre como InnerText y value */
         let option = document.createElement('option');
         option.innerText = datos.places[i]["place name"];
         appendOption.appendChild(option);
@@ -61,3 +63,57 @@ function limpiarCampos() {
         appendOption.removeChild(appendOption.firstChild);
     }
 }
+
+
+//Validación del IBAN
+//https://bankcodesapi.com/users/api-iban/
+//API Key: 07b1ca15082a6d485c93fecad6055dbe
+
+function validateIBAN() {
+
+    let urlBase = "https://bankcodesapi.com/iban/";
+    let format = "json";
+    let apiKey = "9fc53b3db09ca830488d19546a4fc2a1";
+    let iban = "";
+
+    let btnValidar = document.getElementById('btnValidar');
+    let iban = document.getElementById('inputIBAN');
+    let errorSpan = document.getElementById('spanIBAN');
+    iban.addEventListener('change', function () {
+        if (iban.length == 24) {
+            btnValidar.disabled = false;
+        }
+    });
+
+
+    btnValidar.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        btnValidar.disabled = true;
+        let ibanNumber = iban.value;
+        let urlFull = (urlBase + format + "/" + apiKey + "/" + ibanNumber);
+
+        fetch(urlFull)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+            });
+
+        let respuesta = JSON.parse(response);
+        if (respuesta.result.validation.iban_validity == "Valid") {
+            btnValidar.style("background-color: green; color: white;");
+            btnValidar.innerText("IBAN OK");
+        }
+        else {
+            btnValidar.disabled = false;
+            errorSpan.style("background-color: darkgray; color: red;");
+            errorSpan.innerText("IBAN Incorrecto");
+        }
+            
+    });
+
+}
+
+
