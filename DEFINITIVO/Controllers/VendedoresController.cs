@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DEFINITIVO.Controllers
 {
@@ -82,6 +83,7 @@ namespace DEFINITIVO.Controllers
                     DescripcionEmpresa = vendedorUbicacionVM.DescripcionEmpresa,
                     CIF = vendedorUbicacionVM.CIF,
                     IBAN = vendedorUbicacionVM.IBAN,
+                    Fee = vendedorUbicacionVM.Fee,
                     IdentityUserId = vendedorUbicacionVM.IdentityUserId
                 };
                 await _vendedoresService.CreateVendedor(vendedor);
@@ -122,7 +124,7 @@ namespace DEFINITIVO.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDeEmpresa,CIF,IBAN,DescripcionEmpresa,PaginaWeb,Telefono,IdentityUserId")] Vendedor vendedor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreDeEmpresa,CIF,IBAN,Fee,DescripcionEmpresa,PaginaWeb,Telefono,IdentityUserId")] Vendedor vendedor)
         {
             if (id != vendedor.Id)
             {
@@ -261,5 +263,38 @@ namespace DEFINITIVO.Controllers
             return View(vendedor);
         }
 
+        [Authorize(Roles ="admin")]
+        [HttpGet]
+        public async Task<IActionResult> CambiarFee(int id)
+        {
+            Vendedor vendedor = await _vendedoresService.GetVendedorById(id);
+            return View(vendedor);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CambiarFee(int id, int fee)
+        {
+            Vendedor vendedor = await _vendedoresService.GetVendedorById(id);
+            vendedor.Fee = fee;
+            try
+            {
+                await _vendedoresService.EditVendedorPost(vendedor);
+                ViewData["VendedorId"] = id;
+                return RedirectToAction("FeeModificado", "Vendedores");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VendedorExists(vendedor.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

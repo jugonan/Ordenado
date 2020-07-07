@@ -3,14 +3,16 @@ using System;
 using Heldu.Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DEFINITIVO.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200707104553_TablaVendedorConFee")]
+    partial class TablaVendedorConFee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -397,9 +399,6 @@ namespace DEFINITIVO.Migrations
                     b.Property<byte[]>("Darde")
                         .HasColumnType("longblob");
 
-                    b.Property<DateTime>("FechaAltaUsuario")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("datetime(6)");
 
@@ -750,7 +749,7 @@ namespace DEFINITIVO.Migrations
                         .IsRequired();
 
                     b.HasOne("Heldu.Entities.Models.Usuario", "Usuario")
-                        .WithMany()
+                        .WithMany("Mercados")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

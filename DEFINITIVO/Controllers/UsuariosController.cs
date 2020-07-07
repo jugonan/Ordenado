@@ -75,28 +75,25 @@ namespace DEFINITIVO.Controllers
                     Apellido = usuarioUbicacionVM.Apellido,
                     NombreUsuario = usuarioUbicacionVM.NombreUsuario,
                     FechaNacimiento = usuarioUbicacionVM.FechaNacimiento,
-                    IdentityUserId = usuarioUbicacionVM.IdentityUserId
-                };
+                    IdentityUserId = usuarioUbicacionVM.IdentityUserId,
+                    FechaAltaUsuario = DateTime.Now
+            };
                 foreach (var item in FotoUsuario)
                 {
                     if (item.Length > 0)
                     {
-                        using (var stream = new MemoryStream())
-                        {
-                            await item.CopyToAsync(stream);
-                            usuario.FotoUsuario = stream.ToArray();
-                        }
+                        using var stream = new MemoryStream();
+                        await item.CopyToAsync(stream);
+                        usuario.FotoUsuario = stream.ToArray();
                     }
                 }
                 foreach (var item in Darde)
                 {
                     if(item.Length > 0)
                     {
-                        using (var stream = new MemoryStream())
-                        {
-                            await item.CopyToAsync(stream);
-                            usuario.Darde = stream.ToArray();
-                        }
+                        using var stream = new MemoryStream();
+                        await item.CopyToAsync(stream);
+                        usuario.Darde = stream.ToArray();
                     }
                 }
                 await _usuariosService.CreateUsuario(usuario);
@@ -149,22 +146,18 @@ namespace DEFINITIVO.Controllers
             {
                 if (item.Length > 0)
                 {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        usuario.FotoUsuario = stream.ToArray();
-                    }
+                    using var stream = new MemoryStream();
+                    await item.CopyToAsync(stream);
+                    usuario.FotoUsuario = stream.ToArray();
                 }
             }
             foreach (var item in Darde)
             {
                 if (item.Length > 0)
                 {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        usuario.Darde = stream.ToArray();
-                    }
+                    using var stream = new MemoryStream();
+                    await item.CopyToAsync(stream);
+                    usuario.Darde = stream.ToArray();
                 }
             }
 
@@ -286,16 +279,10 @@ namespace DEFINITIVO.Controllers
             string text = " ";
             try
             {
-                using (var engine = new TesseractEngine(@"./tessdata", "eng", EngineMode.Default))
-                {
-                    using (var img = Pix.LoadFromFile(pathImage))
-                    {
-                        using(var page = engine.Process(img))
-                        {
-                            text = page.GetText();
-                        }
-                    }
-                }
+                using var engine = new TesseractEngine(@"./tessdata", "eng", EngineMode.Default);
+                using var img = Pix.LoadFromFile(pathImage);
+                using var page = engine.Process(img);
+                text = page.GetText();
             }
             catch(Exception excp)
             {

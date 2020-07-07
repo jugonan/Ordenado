@@ -5,7 +5,7 @@
 @inject UserManager<IdentityUser> UserManager
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Alta Vendedor";
 }
 <script src="~/js/CPVendedorCreate.js"></script>
 
@@ -103,6 +103,9 @@
             </div>
             <div class="form-group">
                 <input type="hidden" asp-for="IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
+            </div>            
+            <div class="form-group">
+                <input type="hidden" asp-for="Fee" class="form-control" value="22" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -27,12 +27,6 @@
                     <p class="card-text">@categoria.Categoria.Nombre</p>
                     <br />
                 }
-                @foreach (Mercado mercado in usuario.Mercados)
-                {
-                    <h5>Cursos inscritos:</h5>
-                    <p class="card-text">@mercado.Producto.Titulo</p>
-                    <br />
-                }
                 @if (User.IsInRole("admin"))
                 {
                     <a asp-action="Edit" asp-route-id="@usuario.Id">Editar</a>

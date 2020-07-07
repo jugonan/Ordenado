@@ -18,7 +18,7 @@
                 <h5>NºRegistro:</h5>
                 <h6 class="card-text"></h6>
                 <br />
-                @foreach (ProductoVendedor productoVendedor in vendedor.ProductoVendedor)
+                @*@foreach (ProductoVendedor productoVendedor in vendedor.ProductoVendedor)
                 {
                     <h5>Nombre del producto:</h5>
                     <p class="card-text">@productoVendedor.Producto.Titulo</p>
@@ -29,7 +29,7 @@
                     <p style="color:green;">Precio:</p>
                     <p class="card-text">@productoVendedor.Producto.Precio €</p>
                     <br />
-                }
+                }*@
                 @if (User.IsInRole("admin"))
                 {
                     <a asp-action="Edit" asp-route-id="@vendedor.Id">Editar</a>

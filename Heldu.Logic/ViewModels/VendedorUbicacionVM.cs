@@ -11,6 +11,7 @@ namespace Heldu.Logic.ViewModels
         public string DescripcionEmpresa { get; set; }
         public string CIF { get; set; }
         public string IBAN { get; set; }
+        public int Fee { get; set; }
         public string IdentityUserId { get; set; }
         // Model de ubicación
         public string Pais { get; set; }

@@ -52,8 +52,6 @@ namespace Heldu.Logic.Services
         public async Task<Usuario> MisCursosUsuario(string userManagerId)
         {
             return await _context.Usuario
-                                .Include(v => v.Mercados)
-                                .ThenInclude(p => p.Producto)
                                 .FirstOrDefaultAsync(x => x.IdentityUserId == userManagerId);
         }
         public bool ExistUsuario(int id)
@@ -73,8 +71,6 @@ namespace Heldu.Logic.Services
         {
             List<Usuario> usuarios = await _context.Usuario.Include(x=>x.Categorias)
                                                                 .ThenInclude(y=>y.Categoria)
-                                                           .Include(x=>x.Mercados)
-                                                                 .ThenInclude(y=>y.Producto)
                                                            .ToListAsync();
             return usuarios;
         }

@@ -31,8 +31,13 @@ namespace Heldu.Entities.Models
         [MaxLength(24)]
         public string IBAN { get; set; }
 
-
+        [Required]
+        [Display(Name ="Fee Heldu")]
+        [MaxLength(2)]
+        public int Fee { get; set; }
         public string DescripcionEmpresa { get; set; }
+
+
         public UbicacionVendedor UbicacionVendedor { get; set; }
 
         public string IdentityUserId { get; set; }
