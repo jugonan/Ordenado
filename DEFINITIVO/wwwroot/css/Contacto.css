@@ -1,18 +1,33 @@
-﻿/*.formContacto{
-    width: 90%;
-    max-width:800px;
-    position:center;
+﻿* {
+    font-family: 'Roboto', sans-serif;
 }
 
-.firstRow{
+h2 {
+    text-align: center;
+}
 
+input {
+    height: 3vw;
+    background-color: #80808021;
+    border-radius: 6px;
+    border: 0px;
 }
-.inputText{
-    width:45%;
-    align-self:center;
+
+textarea {
+    background-color: #80808021;
+    border-radius: 7px;
+    border: 0px;
 }
-.inputMessage {
-    width: 90%;
-    align-self: center;
+
+.div-formulario-contacto {
+    padding: 1.5vw;
 }
-*/
+
+.boton-enviar-formulario {
+    background-color: #F21B6D;
+    color: white;
+    opacity: 0.8;
+    border: 0px;
+    border-radius: 5px;
+    height: 3vw;
+}

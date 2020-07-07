@@ -100,6 +100,11 @@ namespace DEFINITIVO.Controllers
             return View();
         }
 
+        public IActionResult Contacto()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Contacto(string userId, string nombre, string email, string tel, string mensaje, string actualPath)

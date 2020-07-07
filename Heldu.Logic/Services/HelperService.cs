@@ -81,8 +81,8 @@ namespace Heldu.Logic.Services
                 // This email will be sent from you
                 msg.From = new MailAddress(sender);
                 // Your target email address
-                msg.To.Add(new MailAddress(address1));
-                msg.CC.Add(new MailAddress(address2));
+                msg.To.Add(new MailAddress(address2));
+                msg.CC.Add(new MailAddress(address1));
                 msg.Subject = asunto;
                
                 // Build the body of your email using the Body property of your message

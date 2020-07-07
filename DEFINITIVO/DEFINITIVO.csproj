@@ -40,7 +40,6 @@
     <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
     <Content Remove="Views\Usuarios\Miscursos.cshtml" />
     <Content Remove="Views\Vendedores\Eliminado.cshtml" />
-    <Content Remove="wwwroot\css\Contacto.css" />
     <Content Remove="wwwroot\css\popup_banner.css" />
     <Content Remove="wwwroot\css\Usuarios_MiPeriflPV.css" />
     <Content Remove="wwwroot\js\Carrito_Layout.js" />
@@ -108,7 +107,6 @@
     <Content Remove="Views\Favoritos\Create.cshtml" />
     <Content Remove="Views\Favoritos\Index.cshtml" />
     <Content Remove="Views\Favoritos\Details.cshtml" />
-    <Content Remove="Views\Home\Contacto.cshtml" />
     <Content Remove="wwwroot\css\.editorconfig" />
     <Content Remove="wwwroot\js\Create_Usuario.js" />
     <Content Remove="wwwroot\ImagenesUsuarios\4867123c-6f94-4e79-b74a-5442b85e858c_foto2.png" />

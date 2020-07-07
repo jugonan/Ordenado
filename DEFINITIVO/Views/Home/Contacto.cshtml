@@ -2,7 +2,6 @@
 @using DEFINITIVO.Services
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
-@inject HelperService HelperService
 @inject MessagesService MessagesService
 @{
     ViewData["Title"] = "Productos";
@@ -11,79 +10,24 @@
 
 <link href="~/css/Contacto.css" rel="stylesheet" type="text/css">
 
-<h2>Póngase en contacto con nosotros!</h2>
-<h4>Le responderemos a la brevedad</h4>
-<br />
-<br />
-<br />
-
 <div class="row">
-    <div class="col-8 formContacto">
-        <form asp-action="Contacto">
-            <div class="firstRow">
-                <input id="nombre" name="nombre" type="text" class="inputText" placeholder="Nombre" required>
-                <input id="email" name="email" type="email" class="inputText" placeholder="E-Mail" required>
-                @if (activeUser != null)
-                {
-                    <input type="hidden" name="userId" value="@activeUser.Id">
-                }
+    <div class="col-lg-12 col-xl-12">
+        <div class="caja-contacto">
+            <h2>¿Cómo podemos ayudarte?</h2>
+            <hr />
+            <div class="row div-formulario-contacto">
+                <input placeholder="Introduce tu nombre" class="col-lg-6 col-xl-6 offset-lg-3 offset-xl-3" />
             </div>
-            <div class="">
-                <textarea id="mensaje" name="mensaje" class="inputMessage" placeholder="Escriba su mensaje aquí" rows="7" required></textarea>
+            <div class="row div-formulario-contacto">
+                <input placeholder="Teléfono" class="col-lg-6 col-xl-6 offset-lg-3 offset-xl-3"  />
             </div>
-
-            <div class="">
-                <button id="contactoSubmit" type="submit" class="btn btn-primary input-medium pull-right">ENVIAR</button>
+            <div class="row div-formulario-contacto">
+                <input placeholder="Tu dirección de correo electrónico" class="col-lg-6 col-xl-6 offset-lg-3 offset-xl-3"  />
             </div>
-        </form>
+            <div class="row div-formulario-contacto">
+                <textarea placeholder="Somos todo oídos &#128037" class="col-lg-6 col-xl-6 offset-lg-3 offset-xl-3" rows="9"></textarea>
+            </div>
+            <button class="col-lg-2 col-xl-2 offset-lg-5 offset-xl-5 boton-enviar-formulario">Enviar formulario</button>
+        </div>
     </div>
 </div>
-
-
-
-
-@if (MessagesService.GetShowMessage())
-{
-    MessagesService.SetShowMessage(false);
-    //https://love2dev.com/blog/custom-javascript-alert/
-    <script type="x-template" id="banner-template">
-        <div class="banner banner-top alert-primary active" role="alert">
-            @MessagesService.GetMessage()
-            <span class="banner-close"></span>
-        </div>
-    </script>
-    <script>
-        function getBannerTemplate() {
-            var template = document.querySelector("#banner-template");
-            return template.innerHTML;
-        }
-
-        function createFragment(htmlStr) {
-            var frag = document.createDocumentFragment(),
-                temp = document.createElement('div');
-            temp.innerHTML = htmlStr;
-            while (temp.firstChild) {
-                frag.appendChild(temp.firstChild);
-            }
-            return frag;
-        }
-
-        function injectTemplate(template) {
-            document.body.appendChild(createFragment(template));
-        }
-        var simpleAlert = document.querySelector(".simple-alert");
-        injectTemplate(getBannerTemplate());
-        var btnClose = document.querySelector(".banner-close");
-        btnClose.addEventListener("click", function (closeEvt) {
-            var banner = document.querySelector(".banner");
-            banner.parentNode.removeChild(banner);
-        });
-
-    </script>
-}
-
-@section Scripts {
-
-    <link href="@Url.Content("~/css/popup_banner.css")" rel="stylesheet" type="text/css" />
-    <link href="~/css/popup_banner.css" rel="stylesheet" type="text/css" />
-}

@@ -167,6 +167,14 @@ nav {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+.conocenos-responsive {
+    width: 100%;
+}
+
+.conocenos-responsive a {
+    color: whitesmoke !important;
+    opacity: 0.9;
+}
 
 @keyframes moveInBottom {
     0% {
@@ -607,15 +615,33 @@ input.showForm {
     .formulario-buscador-noCollapsed {
         display: none;
     }
+    .formulario-buscador-collapsed {
+        display: inherit;
+    }
+
     #divCategorias {
         display: none;
     }
+
     .imagen-top-ingresar {
         width: 10%;
     }
 
-    .formulario-buscador-collapsed {
+    .itemCategoria {
+        display: none;
+    }
+
+    .conocenos-responsive {
         display: inherit;
+    }
+
+    #ubicacion {
+        margin-top: 0px !important;
+        font-size: 9px;
+    }
+
+    #modificarCiudad {
+        font-size: 9px;
     }
 }
 
@@ -623,8 +649,12 @@ input.showForm {
     .formulario-buscador-noCollapsed {
         display: inherit;
     }
-
     .formulario-buscador-collapsed {
         display: none;
     }
+
+    .conocenos-responsive {
+        display: none;
+    }
+
 }

@@ -11,6 +11,7 @@
 @inject ICategoriasService CategoriasService
 @{
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
+    List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
 }
 <head>
     <!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
@@ -213,6 +214,9 @@
                         <div class="nav-item buscador formulario-buscador-noCollapsed col-lg-7 col-xl-7 offset-lg-1 offset-xl-1">
                             <partial name="_SearchPartial" />
                         </div>
+                        <div class="conocenos-responsive">
+                            <a class="nav-link" for="showForm">Contacto</a>
+                        </div>
                         <div class="nav-item div-navbar-ingreso col-lg-2 col-xl-2">
                             <partial name="_LoginPartial" />
                         </div>
@@ -224,9 +228,6 @@
             </div>
         </cache>
         <!-- Sub Navbar de Categorias -->
-        @{
-            List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
-        }
         <div id="divCategorias">
             <ul class="row subMenuCat">
                 <li class="col itemCategoria">
@@ -244,14 +245,14 @@
         <!-- Detalles de Heldu ocultos. Se muestran al hacer click en "Conocenos!"-->
         <div class="collapse" id="divDetallesHeldu" data-parent="#mainDiv">
             <ul class="row subMenuCon">
-                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
-                <li class="col itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
-                <li class="col itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
-                <li class="col itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
             </ul>
         </div>
         <!-- Formulario de contacto con su CSS -->
-        <input type="checkbox" name="showForm" id="showForm" class="showForm">
+        @*<input type="checkbox" name="showForm" id="showForm" class="showForm">
         <div class="formContacto">
             <h2>Contáctanos!</h2>
             <form asp-controller="Home" asp-action="Contacto">
@@ -274,7 +275,7 @@
                 <button type="submit" class="sendForm left" id="contactoSubmit">ENVIAR</button>
                 <label for="showForm" class="closeFormLabel left">CANCELAR</label>
             </form>
-        </div>
+        </div>*@
     </header>
 
     <div class="container" id="mainContainerLayout">
