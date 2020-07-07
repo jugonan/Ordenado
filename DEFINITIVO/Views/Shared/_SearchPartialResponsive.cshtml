@@ -1,0 +1,14 @@
+﻿@using Heldu.Logic.Interfaces
+@inject ICategoriasService CategoriasService
+
+@{
+    List<SelectListItem> catSelect = await CategoriasService.GetSelectListCategorias();
+}
+
+
+<cache enabled="false">
+    <form asp-controller="Productos" asp-action="Search" id="formBuscador2" class="form-inline">
+        <input id="inputBuscar2" name="inputBuscar" class="form-control" type="search" placeholder="¿Qué estás buscando?" aria-label="Search" required minlength="3" />
+        <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>
+    </form>
+</cache>

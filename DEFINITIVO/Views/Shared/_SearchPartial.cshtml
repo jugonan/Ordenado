@@ -7,12 +7,10 @@
 
 
 <cache enabled="false">
-    <div class="navbar-nav col-6">
-        <form asp-controller="Productos" asp-action="Search" id="formBuscador" class="form-inline">
-            <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="¿Qué estás buscando?" aria-label="Search" required minlength="3" />
-            <select id="selecListBuscar" name="catSelected" asp-items="catSelect" class="form-control">
-            </select>
-            <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>
-        </form>
-    </div>
+    <form asp-controller="Productos" asp-action="Search" id="formBuscador" class="form-inline">
+        <input id="inputBuscar" name="inputBuscar" class="form-control" type="search" placeholder="¿Qué estás buscando?" aria-label="Search" required minlength="3" />
+        <select id="selecListBuscar" name="catSelected" asp-items="catSelect" class="form-control">
+        </select>
+        <button type="submit" value="Create" class="btn btn-buscar btn-buscar-animate">Buscar!</button>
+    </form>
 </cache>
