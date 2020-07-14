@@ -81,11 +81,11 @@ function rellenarEstrellas() {
 }
 
 function rellenarVisitas() {
-    let visitas = Array.from(document.getElementsByClassName('visitas-a-producto'));
+    let visitas = Array.from(document.getElementsByClassName('texto-visitas-a-producto'));
     visitas.forEach(visita => {
         let random = calcularRandom(22, 89);
-        let imagen = visita.innerHTML;
-        visita.innerHTML = imagen + random;
+        let imagen = visita.innerText;
+        visita.innerText = imagen + random;
     })
 }
 

@@ -215,7 +215,7 @@
                             <partial name="_SearchPartial" />
                         </div>
                         <div class="conocenos-responsive">
-                            <a class="nav-link" for="showForm">Contacto</a>
+                            <a asp-controller="Home" asp-action="Contacto" class="nav-link" for="showForm">Contacto</a>
                         </div>
                         <div class="nav-item div-navbar-ingreso col-lg-2 col-xl-2">
                             <partial name="_LoginPartial" />
@@ -248,7 +248,7 @@
                 <li class="col-lg-3 col-xl-3 itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
                 <li class="col-lg-3 col-xl-3 itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
                 <li class="col-lg-3 col-xl-3 itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
-                <li class="col-lg-3 col-xl-3 itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><label for="showForm" class="showFormLabel textType3"><a style="pointer-events:none;" class="textType3" asp-controller="Home" asp-action="Contacto">Contacto</a></label></li>
             </ul>
         </div>
         <!-- Formulario de contacto con su CSS -->

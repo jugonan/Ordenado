@@ -63,10 +63,10 @@ namespace Heldu.Logic.Services
         {
             {
                 // Your hard-coded email values (where the email will be sent from), this could be define in a config file, etc.
-                string sender = _configuration["SendEmail:emailAccount"];
-                string password = _configuration["SendEmail:passAccount"];
-                string server = _configuration["SendEmail:Server"];
-                int port = Convert.ToInt32(_configuration["SendEmail:Port"]);
+                string sender = _configuration["SendEmailGmail:emailAccount"];
+                string password = _configuration["SendEmailGmail:passAccount"];
+                string server = _configuration["SendEmailGmail:Server"];
+                int port = Convert.ToInt32(_configuration["SendEmailGmail:Port"]);
 
 
                 // Your target (you may want to ensure that you have a property within your form so that you know who to send the email to

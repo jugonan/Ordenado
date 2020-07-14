@@ -48,7 +48,7 @@
 <div class="cta-100">
     <p class="titulo-categorias">Ofertas Destacadas</p>
     <div class="ofertas-destacadas">
-        <div class="card carta-modificada">
+        <div class="col-4 col-lg-3 col-xl-3 offset-lg-1 offset-xl-1 card carta-modificada">
             <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@productoDestacado1.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
                 <p class="titulo-oferta">@productoDestacado1.Titulo</p>
@@ -60,9 +60,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado1.Id" class="precios-carta-index">
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="card carta-modificada">
+        <div class="col-4 col-lg-3 col-xl-3 offset-lg-1 offset-xl-1 card carta-modificada">
             <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@productoDestacado2.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
                 <p class="titulo-oferta">@productoDestacado2.Titulo</p>
@@ -90,9 +90,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado2.Id" class="precios-carta-index">
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div class="card carta-modificada">
+        <div class="col-4 col-lg-3 col-xl-3 offset-lg-1 offset-xl-1 card carta-modificada">
             <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@productoDestacado3.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
                 <p class="titulo-oferta">@productoDestacado3.Titulo</p>
@@ -120,9 +120,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado3.Id" class="precios-carta-index">
@@ -160,9 +160,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
@@ -203,9 +203,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
@@ -247,9 +247,10 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <p class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                    </p>
+                        <p class="texto-visitas-a-producto"></p>
+                    </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
                     <p class="precio-final-carta">@producto.PrecioFinal&#8364;</p>

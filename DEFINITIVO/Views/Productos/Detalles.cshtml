@@ -19,11 +19,11 @@
 <div class="row">
     <div class="col-10 offset-1" style="padding-left:0;">
         <div class="titulo-producto-detalles">
-            <h1>@Model.Titulo</h1>
+            <h2>@Model.Titulo</h2>
             <div>
                 <div class="row ubicacion-del-vendedor">
                     <img src="https://image.flaticon.com/icons/svg/684/684908.svg" />
-                    <p class="col-7">Fisioimpacto centro estético; Luis Power 23, 48014, Bilbao</p>
+                    <p>Fisioimpacto centro estético; Luis Power 23, 48014, Bilbao</p>
                 </div>
                 <div class="row media-de-vendedor" style="align-items: baseline;">
                     <span class="fa fa-star checked"></span>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-7 contenido-producto">
+            <div class="col-lg-7 col-md-7 contenido-producto">
                 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-lg-5 col-md-5">
                 <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
                 @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
                     {
@@ -93,34 +93,34 @@
                     <p id="fecha-validez">Hasta el @Model.FechaValidez |</p>
                     <div>
                         <img class="imagen-visitas-detalles" src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p id="cantidad-temporal-visitas" class="col-3"></p>
+                        <p id="cantidad-temporal-visitas"></p>
                     </div>
                 </div>
                 <div class="input-opciones-productos">
                     <form>
                         @if (opcionesProductos.Count == 0 || opcionesProductos.Count == 1)
                         {
-                            <div class="row" style="align-items:center;">
-                                <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
-                                <label for="">@Model.Titulo</label><br>
+                            <div class="row div-opciones-producto" style="align-items:center;">
+                                <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <label class="col-lg-10" for="">@Model.Titulo</label><br>
                             </div>
                         }
                         @if (opcionesProductos.Count > 1)
                         {
-                            <div class="row" style="align-items:center;">
-                                <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
-                                <label for="">@opcionesProductos[0].Titulo</label><br>
+                            <div class="row div-opciones-producto" style="align-items:center;">
+                                <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <label class="col-lg-10" for="">@opcionesProductos[0].Titulo</label><br>
                             </div>
-                            <div class="row" style="align-items:center;">
-                                <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
-                                <label for="">@opcionesProductos[1].Titulo</label><br>
+                            <div class="row div-opciones-producto" style="align-items:center;">
+                                <input class="col-lg-1" type="radio" id="opcion-producto-2" name="opciones-productos" value="">
+                                <label class="col-lg-10" for="">@opcionesProductos[1].Titulo</label><br>
                             </div>
                         }
                         @if (opcionesProductos.Count > 2)
                         {
-                            <div class="row">
-                                <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
-                                <label for="">@opcionesProductos[2].Titulo</label>
+                            <div class="row div-opciones-producto" style="align-items:center;">
+                                <input class="col-lg-1" type="radio" id="opcion-producto-3" name="opciones-productos" value="">
+                                <label class="col-lg-10" for="">@opcionesProductos[2].Titulo</label>
                             </div>
                         }
                     </form>
@@ -149,8 +149,8 @@
 </div>
 <div class="row seccion-inferior">
     <div class="col-10 offset-1">
-        <div class="row">
-            <div class="col-7 barra-opciones-producto">
+        <div class="falso-rou">
+            <div class="col-lg-7 barra-opciones-producto">
                 <div class="navegador-condiciones-productos">
                     <a class="col-4 anclas-opciones">Condiciones</a>
                     <a class="col-4 anclas-opciones">Opiniones(3)</a>
@@ -201,10 +201,10 @@
                             }*@
                         <!-- 1er comentario Hard Codeado-->
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 imagen-comentario-producto">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 texto-comentario-producto">
                                 <div style="display:flex; flex-direction:row;">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
@@ -218,10 +218,10 @@
                         </div>
                         <!-- 2do comentario Hard Codeado-->
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 imagen-comentario-producto">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 texto-comentario-producto">
                                 <div style="display:flex; flex-direction:row;">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
@@ -235,10 +235,10 @@
                         </div>
                         <!-- 3er comentario Hard Codeado-->
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col-lg-2 imagen-comentario-producto">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 texto-comentario-producto">
                                 <div style="display:flex; flex-direction:row;">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
@@ -255,9 +255,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 offset-1 barra-informacion-vendedor">
+            <div class="col-lg-4 offset-lg-1 barra-informacion-vendedor">
                     <h6>@vendedor.NombreDeEmpresa</h6>
-                    <p>@vendedor.Paginaweb</p>
+                    <a href="@vendedor.Paginaweb">@vendedor.Paginaweb</a>
                     <p>@vendedor.Telefono</p>
                 <div class="div-mapa">
                     <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=506&height=400&hl=en&q=Luis%20Power%2023%20Bilbao+(Ubicacion)&t=&z=12&ie=UTF8&iwloc=B&output=embed" width="auto" height="auto" frameborder="0">
