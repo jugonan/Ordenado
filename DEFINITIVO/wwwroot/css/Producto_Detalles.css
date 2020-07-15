@@ -471,18 +471,23 @@ a {
     .barra-informacion-vendedor {
         text-align: left;
         margin-left: 1vw;
+        margin-top: 1vw;
     }
     .barra-informacion-vendedor h6{
         font-weight: 300;
+        padding-left:2vw;
+        margin: 0vw;
     }
     .barra-informacion-vendedor p{
         font-size: 2vw;
         margin-bottom: 0vw;
+        padding-left:2vw;
     }
     .barra-informacion-vendedor a{
         font-size: 2vw;
         margin-bottom: 0vw;
-       color: #09F;
+        color: #09F;
+        padding-left:2vw;
     }
 
     .div-mapa {
@@ -490,6 +495,7 @@ a {
     }
     iframe {
         height: 40vw !important;
+        width: 100% !important;
     }
 
 }

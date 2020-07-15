@@ -3,6 +3,9 @@
     justify-content: center;
     text-align: center !important;
 }
+h2 {
+    font-size: 2.5rem;
+}
 
 .form-group {
     justify-content: space-between;
@@ -104,4 +107,51 @@ button p{
 
 #divAsk h4 {
     margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 992px) {
+    #logoHeldu {
+        display: none;
+    }
+    #divClaim h4{
+        font-size: 6vw;
+        font-weight: 400;
+    }
+    #divAsk h4 {
+        font-size: 4vw;
+        font-weight: 400;
+        font-style: italic;
+        margin: 8vw;
+    }
+    .my-5 {
+        margin-top: 1rem !important;
+    }
+
+    #izquierda {
+        border: none;
+    }
+    .hr-temporal-registro {
+        margin: 5vw 0vw 1vw 0vw;
+    }
+    .hr-temporal-registro hr {
+        width: 45%;
+    }
+    #div-boton-login button {
+        position: initial;
+    }
+    .barra-hr-el {
+        margin-top: 7vw;
+    }
+    .div-botones-EL {
+        opacity: 1;
+    }
+    #boton-google{
+        height: 11vw !important;
+    }
+    #boton-facebook {
+        height: 11vw !important;
+    }
+    .imagenes-el {
+        width: 7vw;
+    }
 }

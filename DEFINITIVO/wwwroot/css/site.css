@@ -46,6 +46,8 @@ footer {
     background-color: #343a40 !important;
     color: #6c757d !important;
     margin-left: 0 !important;
+    height: 4vw;
+    padding-top: 1vw;
 }
 /* Parte del nav bar */
 
@@ -206,6 +208,7 @@ nav {
     background-color: #363537;
     transition: ease;
     transition-duration: 0.3s;
+    height: 3vw;
 }
 
 #divDetallesHeldu {
@@ -222,6 +225,7 @@ nav {
 .subMenuCat {
     width: 95%;
     text-align: center;
+    padding-top: 0.5vw;
 }
 /*Salud y Belleza*/
 #Categoria_1 {
@@ -585,7 +589,7 @@ input.showForm {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 6vw;
+    margin-top: 8vw;
     background-color: white;
     z-index: 903;
 }
@@ -658,6 +662,16 @@ input.showForm {
 /* Parte Responsive en la que, en base a cierto tamaño, ocultamos y mostramos */
 
 @media screen and (max-width: 992px) {
+    footer {
+        height: inherit;
+    }
+    footer div {
+        font-size: 4vw;
+        height: inherit;
+    }
+    div h5{
+        font-size: 4vw;
+    }
     .formulario-buscador-noCollapsed {
         display: none;
     }
@@ -688,6 +702,20 @@ input.showForm {
 
     #modificarCiudad {
         font-size: 9px;
+    }
+    #formBuscador2 {
+        margin: 4vw 0vw;
+        padding-left: 15px;
+    }
+    #formBuscador2 input{
+        font-size: 3vw;
+        height: 6vw;
+    }
+    #formBuscador2 button {
+        font-size: 3vw;
+        height: 6vw;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
     .div-spinner {
         margin-top: 16vw;
