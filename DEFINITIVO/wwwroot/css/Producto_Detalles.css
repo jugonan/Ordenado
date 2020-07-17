@@ -13,6 +13,11 @@ ul {
     padding-left: 1vw;
 }
 
+h2 {
+    font-size: 3vw;
+    font-weight: 200;
+}
+
 h6 {
     font-weight: 600;
 }
@@ -54,7 +59,8 @@ h6 {
 }
 
 .fecha-y-visitas {
-    margin: 2vw auto 3vw auto;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
     align-items: center;
     justify-content: flex-start;
     color: gray;
@@ -164,10 +170,10 @@ a {
     justify-content: center;
 }
 
-.div-boton-comprar a{
+.boton-comprar-producto {
     width: 50%;
     font-weight: 600;
-    text-transform:uppercase;
+    text-transform: uppercase;
     background: #F21B6D;
     opacity: 0.9;
     color: whitesmoke;
@@ -214,12 +220,22 @@ a {
     margin-top: 3vw;
 }
 
+.falso-rou {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 .navegador-condiciones-productos {
     background-color: #F7F6F2;
     border-bottom: 1px solid gray;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     text-align: center;
     align-items: center;
     font-size: 1.5vw;
@@ -323,4 +339,163 @@ a {
     color: #1C2229;
     font-size: 1.5rem;
     font-weight: 500;
+}
+
+@media screen and (max-width: 993px) {
+    .titulo-producto-detalles h2{
+        font-size: 5vw;
+    }
+    .ubicacion-del-vendedor {
+        font-size: 2vw;
+        width: 100%;
+        height: 4vw;
+    }
+    .ubicacion-del-vendedor img{
+        width: 20%;
+        height: 3vw;
+        bottom: -2vw;
+    }
+
+    .ubicacion-del-vendedor p{
+        width: 80%;
+    }
+    .media-de-vendedor {
+        justify-content: flex-start;
+        font-size: 2vw;
+        height: 4vw;
+        padding-left: 4vw;
+    }
+    .imagenes-carousel {
+        height: 50vw;
+    }
+    #descripcion-de-producto {
+        font-size: 2vw;
+        margin: 2vw 5vw;
+    }
+    #fecha-validez {
+        font-size: 2vw;
+    }
+    .fecha-y-visitas {
+        justify-content: space-around;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+        height: 4vw;
+    }
+    .imagen-visitas-detalles {
+        width: 2.4vw !important;
+        height: 2.4vw !important;
+    }
+    #cantidad-temporal-visitas {
+        font-size: 2vw;
+    }
+    label {
+        margin-bottom: 0vw;
+    }
+    form div {
+        height: 3vw;
+        align-items: unset;
+    }
+    .descuento-opciones {
+        font-size: 3vw;
+    }
+    .div-opciones-producto input {
+        width: 4%;
+        margin-left: 20%;
+        height: 2vw;
+    }
+    .div-opciones-producto label {
+        width: 40%;
+        margin-left: 0;
+        padding-left: 0;
+        font-size: 2vw;
+    }
+    .precios-producto-detalles {
+        margin-top: 3vw;
+        font-size: 3vw;
+        margin-bottom: 6vw;
+    }
+    .div-boton-comprar {
+        margin-top: 3vw;
+    }
+    .boton-comprar-producto {
+        font-size: 1.3vw;
+    }
+    .icono-carousel {
+        display: none;
+    }
+    #reportarProblema {
+        display: none;
+    }
+    .boton-comprar-producto {
+        align-items: center;
+        width: 20%;
+        font-size: 2vw;
+    }
+    .navegador-condiciones-productos {
+
+    }
+    .anclas-opciones {
+        font-size: 3vw;
+        font-weight: 300;
+    }
+    li {
+        font-weight: 300;
+    }
+    .texto-ocultar h5 {
+        text-align: left;
+        font-size: 3vw;
+        padding-left: 1vw;
+        font-weight: 400;
+    }
+    .contenedor-texto-ocultar {
+        height: auto;
+    }
+    .condiciones-del-cupon {
+        font-size: 2vw;
+    }
+    .imagen-comentario-producto {
+        width: 20%;
+    }
+    .imagen-comentario-producto img{
+        width: 70% !important;
+    }
+    .texto-comentario-producto {
+        width: 80%;
+    }
+    .texto-comentario-producto div{
+        font-size: 3vw;
+    }
+    .texto-comentario-producto p{
+        font-size: 2.3vw;
+    }
+    .barra-informacion-vendedor {
+        text-align: left;
+        margin-left: 1vw;
+        margin-top: 1vw;
+    }
+    .barra-informacion-vendedor h6{
+        font-weight: 300;
+        padding-left:2vw;
+        margin: 0vw;
+    }
+    .barra-informacion-vendedor p{
+        font-size: 2vw;
+        margin-bottom: 0vw;
+        padding-left:2vw;
+    }
+    .barra-informacion-vendedor a{
+        font-size: 2vw;
+        margin-bottom: 0vw;
+        color: #09F;
+        padding-left:2vw;
+    }
+
+    .div-mapa {
+        height: 50vw;
+    }
+    iframe {
+        height: 40vw !important;
+        width: 100% !important;
+    }
+
 }

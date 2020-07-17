@@ -33,7 +33,7 @@ function llenarVariablesSpinner() {
     aClicar3Spinner = document.getElementById('link-ofertas-navbar');
     divPadreSpinner = document.createElement('div');
     imagenSpinner = document.createElement('img');
-    imagenSpinner.src = 'https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif';
+    imagenSpinner.src = 'https://cdn140.picsart.com/301568770156201.gif?to=min&r=1024';
     imagenSpinnerProducto = document.createElement('img');
     imagenSpinnerProducto.src = 'https://i.pinimg.com/originals/b8/c8/d8/b8c8d8b7f26bfd7e065f6fc82a4cc13e.gif';
 }
@@ -90,7 +90,7 @@ function getText() {
     numero = Math.floor(Math.random() * 5)+1;
     switch (numero) {
         case 1:
-            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el granadino Pedro Rincón Cardoso, y una inspiración para Heldu.'
+            return '¿Te suena "Tarifas Blancas"? Fue una iniciativa liderada por el sevillano Pedro Rincón Cardoso, y una inspiración para Heldu.'
             break;
         case 2:
             return 'Heldu nace desde y para el desempleado. La idea surgió estando ambos fundadores en paro, conociendo las dificultades que supone no tener ingresos.'

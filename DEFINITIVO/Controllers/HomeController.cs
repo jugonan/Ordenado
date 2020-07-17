@@ -52,7 +52,7 @@ namespace DEFINITIVO.Controllers
             else
             {
                 var user = _context.Users.FirstOrDefault(u => u.Id == id);
-                
+
                 if (user != null)
                 {
                     //Comprobar si es usuario o vendedor o administrador
@@ -100,42 +100,27 @@ namespace DEFINITIVO.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Contacto(string userId, string nombre, string email, string tel, string mensaje, string actualPath)
+        [HttpGet]
+        public IActionResult Contacto()
         {
-            Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(userId);
-            string asunto = "[No especificado] ha enviado un mensaje desde la web";
-            if (!String.IsNullOrEmpty(nombre))
-            {
-                asunto = $"{nombre} ha enviado un mensaje desde la web";
-            }
+            return View();
+        }
 
-            string mensajeCompuesto = "Mensaje vacío. Revisar el código.";
-            if (usuario != null)
-            {
-                mensajeCompuesto = $"El usuario {usuario.Nombre} {usuario.Apellido} (ID: {usuario.Id}) envía el siguiente mensaje:" +
-                    $"\n\b{mensaje}" +
-                    $"\n" +
-                    $"\nCon los siguientes datos de contacto:" +
-                    $"\n\bE-Mail: {email}   |  Teléfono: {tel}" +
-                    $"\n" +
-                    $"\n Mensaje enviado el {DateTime.Now} desde la URL: {actualPath}";
-            }
-            else
-            {
-                mensajeCompuesto = $"Un usuario no logueado/registrado envía el siguiente mensaje" +
-                    $"\n\b{mensaje}" +
-                    $"\n" +
-                    $"\nCon los siguientes datos de contacto:" +
-                    $"\n\bE-Mail: {email}   |  Teléfono: {tel}" +
-                    $"\n" +
-                    $"\n Mensaje enviado el {DateTime.Now} desde la URL: {actualPath}";
-            }
+        [HttpPost]
+        public async Task<IActionResult> Contacto(string nombreContacto, string telefonoContacto, string emailContacto, string asuntoContacto, string mensajeContacto)
+        {
+            string mensajeCompuesto = $"Un usuario no logueado/registrado envía el siguiente mensaje" +
+                $"\n\bMensaje: {mensajeContacto}" +
+                $"\n" +
+                $"\nCon los siguientes datos de contacto:" +
+                $"\n\bE-Mail: {emailContacto}   |  Teléfono: {telefonoContacto}" +
+                $"\n\bNombre: {nombreContacto}" +
+                $"\n" +
+                $"\n Mensaje enviado el {DateTime.Now} desde";
 
             try
             {
-                _helperService.EnviarEmail(asunto, mensajeCompuesto);
+                _helperService.EnviarEmail(asuntoContacto, mensajeCompuesto);
                 _messagesService.SetShowMessage(true);
                 _messagesService.SetMessage($"Su mensaje ha sido enviado, gracias por contactarnos! Le responderemos a la brevedad");
                 return RedirectToAction("Index2", "Productos");
@@ -147,8 +132,55 @@ namespace DEFINITIVO.Controllers
                 return RedirectToAction("Index2", "Productos");
                 throw;
             }
-
         }
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Contacto(string userId, string nombre, string email, string tel, string mensaje, string actualPath)
+        //{
+        //    Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(userId);
+        //    string asunto = "[No especificado] ha enviado un mensaje desde la web";
+        //    if (!String.IsNullOrEmpty(nombre))
+        //    {
+        //        asunto = $"{nombre} ha enviado un mensaje desde la web";
+        //    }
+
+        //    string mensajeCompuesto = "Mensaje vacío. Revisar el código.";
+        //    if (usuario != null)
+        //    {
+        //        mensajeCompuesto = $"El usuario {usuario.Nombre} {usuario.Apellido} (ID: {usuario.Id}) envía el siguiente mensaje:" +
+        //            $"\n\b{mensaje}" +
+        //            $"\n" +
+        //            $"\nCon los siguientes datos de contacto:" +
+        //            $"\n\bE-Mail: {email}   |  Teléfono: {tel}" +
+        //            $"\n" +
+        //            $"\n Mensaje enviado el {DateTime.Now} desde la URL: {actualPath}";
+        //    }
+        //    else
+        //    {
+        //        mensajeCompuesto = $"Un usuario no logueado/registrado envía el siguiente mensaje" +
+        //            $"\n\b{mensaje}" +
+        //            $"\n" +
+        //            $"\nCon los siguientes datos de contacto:" +
+        //            $"\n\bE-Mail: {email}   |  Teléfono: {tel}" +
+        //            $"\n" +
+        //            $"\n Mensaje enviado el {DateTime.Now} desde la URL: {actualPath}";
+        //    }
+
+        //    try
+        //    {
+        //        _helperService.EnviarEmail(asunto, mensajeCompuesto);
+        //        _messagesService.SetShowMessage(true);
+        //        _messagesService.SetMessage($"Su mensaje ha sido enviado, gracias por contactarnos! Le responderemos a la brevedad");
+        //        return RedirectToAction("Index2", "Productos");
+        //    }
+        //    catch (Exception)
+        //    {
+        //        _messagesService.SetShowMessage(true);
+        //        _messagesService.SetMessage($"No hemos podido gestionar su mensaje. Por favor contáctenos a:  jon@heldu.eus | Gracias!");
+        //        return RedirectToAction("Index2", "Productos");
+        //        throw;
+        //    }
+
+        //}
         public IActionResult LandingBeta()
         {
             return View();

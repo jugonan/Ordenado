@@ -11,6 +11,7 @@
 @inject ICategoriasService CategoriasService
 @{
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
+    List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
 }
 <head>
     <!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
@@ -195,41 +196,38 @@
 <body id="mainDiv" class="accordion">
     <header>
         <cache enabled="false">
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm" id="navbarPrincipal">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img id="navbar-logo" src="~/img/helduLogo.png" alt="Home Logo" />
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon" style="background-image: url(https://image.flaticon.com/icons/svg/561/561245.svg)"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <partial name="_SearchPartial" />
-                    <ul class="navbar-nav flex-grow-1 col-3">
-                        <li class="nav-item">
-                            <a id="link-ofertas-navbar" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ofertas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#divDetallesHeldu" aria-controls="divDetallesHeldu" aria-expanded="false" aria-label="Toggle navigation">Conócenos</a>
-                        </li>
-                        @if (User.IsInRole("admin"))
-                        {
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Usuarios" asp-action="GestionarUsuarios">Gestionar usuarios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Productos" asp-action="GestionarProductos">Gestionar Productos</a>
-                            </li>
-                        }
-                    </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-nav mr-auto div-row-navbar">
+                        <div class="nav-item col-lg-1 col-xl-1">
+                            <a id="link-ofertas-navbar" class="nav-link" asp-controller="Home" asp-action="Index">Ofertas</a>
+                        </div>
+                        <div class="nav-item col-lg-1 col-xl-1">
+                            <a class="nav-link" data-toggle="collapse" href="#divDetallesHeldu">Conócenos</a>
+                        </div>
+                        <div class="nav-item buscador formulario-buscador-noCollapsed col-lg-7 col-xl-7 offset-lg-1 offset-xl-1">
+                            <partial name="_SearchPartial" />
+                        </div>
+                        <div class="conocenos-responsive">
+                            <a asp-controller="Home" asp-action="Contacto" class="nav-link" for="showForm">Contacto</a>
+                        </div>
+                        <div class="nav-item div-navbar-ingreso col-lg-2 col-xl-2">
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
                 </div>
             </nav>
+            <div class="buscador formulario-buscador-collapsed">
+                <partial name="_SearchPartialResponsive" />
+            </div>
         </cache>
         <!-- Sub Navbar de Categorias -->
-        @{
-            List<Categoria> listaCategorias = await CategoriasService.GetCategorias();
-        }
         <div id="divCategorias">
             <ul class="row subMenuCat">
                 <li class="col itemCategoria">
@@ -247,14 +245,14 @@
         <!-- Detalles de Heldu ocultos. Se muestran al hacer click en "Conocenos!"-->
         <div class="collapse" id="divDetallesHeldu" data-parent="#mainDiv">
             <ul class="row subMenuCon">
-                <li class="col itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
-                <li class="col itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
-                <li class="col itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
-                <li class="col itemCategoria"><label for="showForm" class="showFormLabel textType3">Contacto</label></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><a class="textType3" asp-area="" asp-controller="Home" asp-action="Heldu">¿Qué es Heldu?</a></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="Funcionamiento">¿Cómo funciona?</a></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><a style="pointer-events:none;" class="textType3" asp-area="" asp-controller="Home" asp-action="FAQ">Preguntas Frecuentes</a></li>
+                <li class="col-lg-3 col-xl-3 itemCategoria"><label for="showForm" class="showFormLabel textType3"><a style="pointer-events:none;" class="textType3" asp-controller="Home" asp-action="Contacto">Contacto</a></label></li>
             </ul>
         </div>
         <!-- Formulario de contacto con su CSS -->
-        <input type="checkbox" name="showForm" id="showForm" class="showForm">
+        @*<input type="checkbox" name="showForm" id="showForm" class="showForm">
         <div class="formContacto">
             <h2>Contáctanos!</h2>
             <form asp-controller="Home" asp-action="Contacto">
@@ -277,7 +275,7 @@
                 <button type="submit" class="sendForm left" id="contactoSubmit">ENVIAR</button>
                 <label for="showForm" class="closeFormLabel left">CANCELAR</label>
             </form>
-        </div>
+        </div>*@
     </header>
 
     <div class="container" id="mainContainerLayout">
@@ -292,28 +290,29 @@
         <span><a asp-controller="Home" asp-action="Privacy">Política de Privacidad</a><span> | </span><a asp-controller="Home" asp-action="Cookies">Política de Cookies</a></span>
     </div>
 
-    <footer class="border-top footer text-muted bg-dark pt-3">
-        <div id="footerInfo">
-            <div id="footerLeft">
-                <h5>
-                    Copyright &copy; Heldu 2020  -
-                    <span><a href="https://www.linkedin.com/in/jon-ander-fidalgo/"> JAF </a></span>
-                    <span>   &   </span>
-                    <span><a href="https://www.linkedin.com/in/galo-garcia-pugliese/"> GGP </a></span>
-                    <span> | Contactos: jon@heldu.eus  -  galo@heldu.eus </span>
-                </h5>
-            </div>
-            <div id="footerRight">
-                <a asp-area="" asp-controller="Home" asp-action="Privacy">Políticas de privacidad</a>
-            </div>
+    <footer class="row">
+        <div class="col-md-3 col-xl-3">
+            <h5>Copyright &copy; Heldu 2020  -</h5>
+        </div>
+        <div class="col-md-3 col-xl-3">
+            <span>
+                <a href="https://www.linkedin.com/in/jon-ander-fidalgo/"> JAF </a>
+                &
+                <a href="https://www.linkedin.com/in/galo-garcia-pugliese/"> GGP </a>
+            </span>
+        </div>
+        <div class="col-md-3 col-xl-3">
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Políticas de privacidad</a>
+        </div>
+        <div class="col-md-3 col-xl-3">
+            <p>contacto: jon@heldu.eus</p>
         </div>
     </footer>
 
     <script defer src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
     <script src="~/js/Spinner.js"></script>
-    <script>
-        var cookieOK = sessionStorage.getItem('cookiesAccepted');
+    <script>var cookieOK = sessionStorage.getItem('cookiesAccepted');
         var divCookies = document.getElementById('divCookies');
         var okCookies = document.getElementById('okCookies');
 
@@ -325,8 +324,7 @@
         okCookies.addEventListener('click', function () {
             divCookies.classList = 'd-none';
             sessionStorage.setItem('cookiesAccepted', 'true');
-        })
-    </script>
+        })</script>
 
     @RenderSection("Scripts", required: false)
 </body>

@@ -10,7 +10,7 @@
 
 
 <div class="row my-5">
-    <div class="offset-1 col-5" id="izquierda">
+    <div class="col-lg-5 offset-lg-1" id="izquierda">
         <div><img src="/img/helduLogo.png" id="logoHeldu" alt="Heldu_Logo" /></div>
         <div id="divClaim">
             <h4>
@@ -20,12 +20,17 @@
         <div id="divAsk">
             <h4>¿No estás registrado aún?</h4>
             <a href="/Identity/Account/Register" class="btn btn-primary">¡Regístrate!</a>
+            <div class="hr-temporal-registro row">
+                <hr />
+                <p>o</p>
+                <hr />
+            </div>
         </div>
     </div>
 
-    <div class="col-5">
+    <div class="col-lg-5">
         <section>
-            <h1>@ViewData["Title"]</h1>
+            <h2>Ingresa</h2>
             <form id="account" method="post">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="row inputs">
@@ -46,7 +51,7 @@
                     </div>
                 </div>
                 <div class="row" id="div-boton-login">
-                    <div class="form-group col-9" id="keep-session">
+                    <div class="form-group col-lg-9" id="keep-session">
                         <div class="checkbox">
                             <label asp-for="Input.RememberMe">
                                 <input asp-for="Input.RememberMe" />
@@ -54,7 +59,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-3">
+                    <div class="form-group col-lg-3">
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
                 </div>
@@ -84,7 +89,7 @@
                             {
                                 <button type="submit" style="width:auto;" class="btn btn-login" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                     <img class="imagenes-el" />
-                                    <p>Regístrate con @provider.DisplayName</p>
+                                    <p>Ingresa con @provider.DisplayName</p>
                                 </button>
                             }
                         </div>
@@ -99,7 +104,10 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-<script defer>let botones = document.getElementsByClassName('btn-login');
+<script defer>
+    let buscador = document.getElementById('formBuscador2');
+    buscador.classList.add('d-none');
+    let botones = document.getElementsByClassName('btn-login');
     for (let i = 0; i < botones.length; i++) {
         if (botones[i].value === 'Google') {
             botones[i].setAttribute('id', 'boton-google');

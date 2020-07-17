@@ -29,7 +29,10 @@
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
 <!-- CSS para que las estrellas de valoración funcionen-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<!-- Desactiva la funcionaladidad de los smartphones de renderizar la web al máximo y permite hacer Zoom-->
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
 
 @if (User.IsInRole("vendedor"))
 {
@@ -50,7 +53,7 @@
 <div class="cta-100">
     <p class="titulo-categorias">Ofertas Destacadas</p>
     <div class="ofertas-destacadas">
-        <div class="card carta-modificada">
+        <div class="col-4 col-lg-3 col-xl-3 offset-lg-1 offset-xl-1 card carta-modificada">
             <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@productoDestacado1.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
                 <p class="titulo-oferta">@productoDestacado1.Titulo</p>
@@ -62,9 +65,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado1.Id" class="precios-carta-index">
@@ -80,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div class="card carta-modificada">
+        <div class="col-4 col-lg-3 col-xl-3 offset-lg-1 offset-xl-1 card carta-modificada">
             <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@productoDestacado2.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
                 <p class="titulo-oferta">@productoDestacado2.Titulo</p>
@@ -92,9 +95,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado2.Id" class="precios-carta-index">
@@ -110,7 +113,7 @@
                 </div>
             </div>
         </div>
-        <div class="card carta-modificada">
+        <div class="col-4 col-lg-3 col-xl-3 offset-lg-1 offset-xl-1 card carta-modificada">
             <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@productoDestacado3.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
                 <p class="titulo-oferta">@productoDestacado3.Titulo</p>
@@ -122,9 +125,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado3.Id" class="precios-carta-index">
@@ -162,9 +165,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@item.producto.Id" class="precios-carta-index">
@@ -173,7 +176,7 @@
                     @{
                         double descuento = Math.Round(((item.opcionProducto.PrecioInicial - item.opcionProducto.PrecioFinal) / item.opcionProducto.PrecioInicial)*100);
                     }
-                <p class="descuento-carta">&#8595;@descuento&#37;</p>
+                    <p class="descuento-carta">&#8595;@descuento&#37;</p>
                 </div>
                 <div class="div-boton-lo-quiero">
                     <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
@@ -205,9 +208,9 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <div class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                        <p></p>
+                        <p class="texto-visitas-a-producto"></p>
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@item.producto.Id" class="precios-carta-index">
@@ -216,7 +219,7 @@
                     @{
                         double descuento = Math.Round(((item.opcionProducto.PrecioInicial - item.opcionProducto.PrecioFinal) / item.opcionProducto.PrecioInicial) * 100);
                     }
-                <p class="descuento-carta">&#8595;@descuento&#37;</p>
+                    <p class="descuento-carta">&#8595;@descuento&#37;</p>
                 </div>
                 <div class="div-boton-lo-quiero">
                     <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
@@ -249,9 +252,10 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                     </div>
-                    <p class="visitas-a-producto">
+                    <div class="row visitas-a-producto">
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
-                    </p>
+                        <p class="texto-visitas-a-producto"></p>
+                    </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@item.producto.Id" class="precios-carta-index">
                     <p class="precio-final-carta">@item.opcionProducto.PrecioFinal&#8364;</p>
@@ -259,7 +263,7 @@
                     @{
                         double descuento = Math.Round(((item.opcionProducto.PrecioInicial - item.opcionProducto.PrecioFinal) / item.opcionProducto.PrecioInicial) * 100);
                     }
-                <p class="descuento-carta">&#8595;@descuento&#37;</p>
+                    <p class="descuento-carta">&#8595;@descuento&#37;</p>
                 </div>
                 <div class="div-boton-lo-quiero">
                     <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
@@ -282,8 +286,7 @@
             <span class="banner-close"></span>
         </div>
     </script>
-    <script>
-        function getBannerTemplate() {
+    <script>function getBannerTemplate() {
             var template = document.querySelector("#banner-template");
             return template.innerHTML;
         }

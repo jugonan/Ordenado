@@ -5,34 +5,30 @@
 <cache enabled="false">
     @if (SignInManager.IsSignedIn(User))
     {
-    <div class="col-2 offset-1" id="div-cabecera-salir">
-        @if (User.IsInRole("cliente"))
-        {
-            <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">@User.Identity.Name</a>
-        }
-        @if (User.IsInRole("vendedor"))
-        {
-            <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">@User.Identity.Name</a>
-        }
-        @if (User.IsInRole("admin"))
-        {
-            <div>
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                    <button type="submit" class="nav-link btn btn-link textType2">Salir</button>
-                </form>
-            </div>
-        }
-    </div>
+        <div class="col-2 offset-1" id="div-cabecera-salir">
+            @if (User.IsInRole("cliente"))
+            {
+                <a class="nav-link anchor-miperfil" asp-controller="Usuarios" asp-action="MiCuenta">@User.Identity.Name</a>
+            }
+            @if (User.IsInRole("vendedor"))
+            {
+                <a class="nav-link anchor-miperfil" asp-controller="Vendedores" asp-action="Miperfil">@User.Identity.Name</a>
+            }
+            @if (User.IsInRole("admin"))
+            {
+                <div>
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-link textType2">Salir</button>
+                    </form>
+                </div>
+            }
+        </div>
     }
     else
     {
-        <div class="col-3 nav-item">
-            <div class="boton-de-ingresar">
-                <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
-                    <img src="~/img/UI-18-512.png" alt="Logo Usuario" />
-                    Ingresar
-                </a>
-            </div>
+        <div>
+            <img class="imagen-top-ingresar" src="~/img/UI-18-512.png" alt="Logo Usuario" />
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
         </div>
     }
 </cache>
