@@ -20,18 +20,21 @@ namespace DEFINITIVO.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IManejoProductosService _manejoProductosService;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IOpcionesProductosService _opcionesProductosService;
 
         public UsuariosController(IUsuariosService usuariosService,
                                   UserManager<IdentityUser> userManager,
                                   IUbicacionesUsuariosService ubicacionesUsuariosService,
                                   IManejoProductosService manejoProductosService,
-                                  SignInManager<IdentityUser> signInManager)
+                                  SignInManager<IdentityUser> signInManager,
+                                  IOpcionesProductosService opcionesProductosController)
         {
             _usuariosService = usuariosService;
             _userManager = userManager;
             _ubicacionesUsuarioService = ubicacionesUsuariosService;
             _manejoProductosService = manejoProductosService;
             _signInManager = signInManager;
+            _opcionesProductosService = opcionesProductosController;
         }
         // GET: Usuarios
         public async Task<IActionResult> Index()
@@ -77,7 +80,7 @@ namespace DEFINITIVO.Controllers
                     FechaNacimiento = usuarioUbicacionVM.FechaNacimiento,
                     IdentityUserId = usuarioUbicacionVM.IdentityUserId,
                     FechaAltaUsuario = DateTime.Now
-            };
+                };
                 foreach (var item in FotoUsuario)
                 {
                     if (item.Length > 0)
@@ -89,7 +92,7 @@ namespace DEFINITIVO.Controllers
                 }
                 foreach (var item in Darde)
                 {
-                    if(item.Length > 0)
+                    if (item.Length > 0)
                     {
                         using var stream = new MemoryStream();
                         await item.CopyToAsync(stream);
@@ -135,7 +138,7 @@ namespace DEFINITIVO.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,Usuario usuario,List<IFormFile> FotoUsuario,List<IFormFile> Darde)
+        public async Task<IActionResult> Edit(int id, Usuario usuario, List<IFormFile> FotoUsuario, List<IFormFile> Darde)
         {
             if (id != usuario.Id)
             {
@@ -237,8 +240,22 @@ namespace DEFINITIVO.Controllers
         {
             string userManagerId = _userManager.GetUserId(User);
             Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
-            ViewData["ProductosVistos"] = await _manejoProductosService.GetProductosVistosPorUsuario(usuario.Id);
-            return View(usuario);
+            List<Visita> visitados = await _manejoProductosService.GetProductosVistosPorUsuario(usuario.Id);
+            List<ProductoPrimeraOpcionProductoVM> productosVisitados = new List<ProductoPrimeraOpcionProductoVM>();
+
+            foreach (Visita item in visitados)
+            {
+                ProductoPrimeraOpcionProductoVM productoOpcion = new ProductoPrimeraOpcionProductoVM()
+                {
+                    producto = item.Producto,
+                    opcionProducto = await _opcionesProductosService.GetFirstOpcionProductoByProductoId(item.ProductoId)
+                };
+                productosVisitados.Add(productoOpcion);
+            }
+
+            ViewData["Usuario"] = usuario;
+
+            return View(productosVisitados);
         }
 
 
@@ -284,7 +301,7 @@ namespace DEFINITIVO.Controllers
                 using var page = engine.Process(img);
                 text = page.GetText();
             }
-            catch(Exception excp)
+            catch (Exception excp)
             {
                 Console.WriteLine(excp.Message);
             }

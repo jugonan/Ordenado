@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Text.Json;
 using Echovoice.JSON;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DEFINITIVO.Controllers
 {
@@ -137,6 +138,7 @@ namespace DEFINITIVO.Controllers
             return View(opcionProductoCreateVM);
         }
 
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -154,7 +156,7 @@ namespace DEFINITIVO.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descripcion,PrecioInicial,PrecioFinal,Descuento")] OpcionProducto opcionProducto)
+        public async Task<IActionResult> Edit(int? id, [Bind("Id,Descripcion,PrecioInicial,PrecioFinal,Descuento,StockInicial,CantidadVendida")] OpcionProducto opcionProducto)
         {
             if (id != opcionProducto.Id)
             {
@@ -184,6 +186,7 @@ namespace DEFINITIVO.Controllers
         }
 
         // GET: OpcionesProductos/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -203,6 +206,7 @@ namespace DEFINITIVO.Controllers
 
         // POST: OpcionesProductos/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

@@ -2,7 +2,23 @@
 let imagenesCarousel,
     imagenesThumbnail,
     anclasClickUsuario,
-    condicionesProducto;
+    condicionesProducto,
+
+/*Desde aquí son para gestionar las opciones y mostrar precios*/
+    cantOpciones,
+    radio1,
+    radio2,
+    radio3,
+    precioInicialOpcion1,
+    precioInicialOpcion2,
+    precioInicialOpcion3,
+    precioFinalOpcion1,
+    precioFinalOpcion2,
+    precioFinalOpcion3,
+    precioInicialProducto,
+    precioFinalProducto,
+    opcionElegida;
+
 
 window.addEventListener('DOMContentLoaded', function () {
     llenarVariables();
@@ -24,6 +40,26 @@ function llenarVariables() {
     arregloImagenesThumbnail.forEach(elemento => {
         imagenesThumbnail.push(elemento.firstElementChild);
     })
+
+    /*Desde aquí son para gestionar las opciones y mostrar precios*/
+    cantOpciones = document.getElementById('cantOpciones').value;
+    radio1 = document.getElementById('opcion-producto-1');
+    precioInicialOpcion1 = document.getElementById('precioInicialOpcion1');
+    precioFinalOpcion1 = document.getElementById('precioFinalOpcion1');
+    precioInicialProducto = document.getElementById('precioInicialProducto');
+    precioFinalProducto = document.getElementById('precioFinalProducto');
+
+    if (cantOpciones > 1) {
+        radio2 = document.getElementById('opcion-producto-2');
+        precioInicialOpcion2 = document.getElementById('precioInicialOpcion2');
+        precioFinalOpcion2 = document.getElementById('precioFinalOpcion2');
+    }
+    if (cantOpciones > 2) {
+        radio3 = document.getElementById('opcion-producto-3');
+        precioInicialOpcion3 = document.getElementById('precioInicialOpcion3');
+        precioFinalOpcion3 = document.getElementById('precioFinalOpcion3');
+    }
+    opcionElegida = document.getElementById('opcionElegida');
 }
 
 function addEvents() {
@@ -44,6 +80,20 @@ function addEvents() {
             ocultarTodasCondiciones();
             condicionesProducto[i].classList.remove('d-none');
         })
+    }
+
+    radio1.addEventListener('click', function () {
+        mostrarprecios(precioInicialOpcion1.value, precioFinalOpcion1.value, 1);
+    });
+    if (radio2 != null) {
+        radio2.addEventListener('click', function () {
+            mostrarprecios(precioInicialOpcion2.value, precioFinalOpcion2.value, 2);
+        });
+    }
+    if (radio3 != null) {
+        radio3.addEventListener('click', function () {
+            mostrarprecios(precioInicialOpcion3.value, precioFinalOpcion3.value, 3);
+        });
     }
 }
 
@@ -80,3 +130,8 @@ function TEMPORALAddCantidadVisitas() {
     visitas.innerText = `+${random}`;
 }
 
+function mostrarprecios(precioInicial, precioFinal, opc) {
+    precioInicialProducto.innerText = precioInicial;
+    precioFinalProducto.innerText = precioFinal;
+    opcionElegida.value = opc;
+}

@@ -27,6 +27,11 @@ namespace Heldu.Logic.Services
         {
             return await _context.OpcionProducto.Where(m => m.ProductoId == id).ToListAsync();
         }
+        // Devuelve una sola opcionProducto para un determinado ProductoId
+        public async Task<OpcionProducto> GetFirstOpcionProductoByProductoId(int? id)
+        {
+            return await _context.OpcionProducto.Where(m => m.ProductoId == id).FirstOrDefaultAsync();
+        }
         // Recibe una única opción de producto por el Id de estea
         public async Task<OpcionProducto> GetOpcionProductoByHisId(int? id)
         {
@@ -65,24 +70,26 @@ namespace Heldu.Logic.Services
             string descripcionVM = descripcion.ToString();
 
             var precioInicial = algo.GetProperty("precioInicio");
-            string precioInicialVM = precioInicial.ToString();
+            float precioInicialVM = float.Parse(precioInicial.ToString());
 
             var precioFinal = algo.GetProperty("precioFin");
-            string precioFinalVM = precioFinal.ToString();
+            float precioFinalVM = float.Parse(precioFinal.ToString());
 
             var descuento = algo.GetProperty("descuento");
             string descuentoVM = descuento.ToString();
 
-            var unidades = algo.GetProperty("unidades");
+            var unidades = algo.GetProperty("stockInicial");
             string unidadesVM = unidades.ToString();
 
             OpcionProducto opcionProducto = new OpcionProducto()
             {
                 ProductoId = productoId,
                 Descripcion = descripcionVM,
-                PrecioInicial = Convert.ToDecimal(precioInicialVM),
-                PrecioFinal = Convert.ToDecimal(precioFinalVM),
+                PrecioInicial = precioInicialVM,
+                PrecioFinal = precioFinalVM,
                 Descuento = descuentoVM,
+                StockInicial = Convert.ToInt32(unidades),
+                CantidadVendida = 0,
             };
             return opcionProducto;
         }

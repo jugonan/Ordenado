@@ -1,5 +1,6 @@
-﻿@model Heldu.Entities.Models.Usuario
+﻿@model List<ProductoPrimeraOpcionProductoVM>
 
+@using Heldu.Logic.ViewModels
 @using Microsoft.AspNetCore.Identity
 @using Heldu.Logic.Interfaces
 
@@ -7,9 +8,9 @@
 @inject UserManager<IdentityUser> UserManager
 @inject IManejoProductosService ManejoProductosService
 @{
-    List<Producto> comprados = ManejoProductosService.GetProductosComprados(Model.Id);
-    List<Producto> disponibles = ManejoProductosService.GetProductosDisponibles(Model.Id);
-    List<Visita> vistos = ViewBag.ProductosVistos;
+    Usuario usuario = ViewBag.Usuario;
+    List<Producto> comprados = ManejoProductosService.GetProductosComprados(usuario.Id);
+    List<Producto> disponibles = ManejoProductosService.GetProductosDisponibles(usuario.Id);
     // Pendiente de añadir productos canjeados
     //List<Producto> canjeados = servicios.GetProductosCanjeados(Model.Id);
 }
@@ -89,30 +90,30 @@
             </div>
             <div class="row">
                 @{
-                    if (!vistos.Any())
+                    if (!Model.Any())
                     {
                         <h5>¡Vaya, parece que aún no has visitado ningún producto!</h5>
                         <p>Échale un vistazo a nuestros productos haciendo clic <a>aquí</a></p>
                     }
                     else
                     {
-                        if (vistos.Count < 3)
+                        if (Model.Count < 3)
                         {
-                            foreach (Visita visto in vistos)
+                            foreach (ProductoPrimeraOpcionProductoVM item in Model)
                             {
                                 <div class="card col-4" style="width: 18rem;">
                                     <div class="row" style="justify-content:space-around">
                                         <div>
-                                            <h5 style="text-decoration:line-through">@visto.Producto.Precio €</h5>
+                                            <h5 style="text-decoration:line-through">@item.opcionProducto.PrecioInicial €</h5>
                                         </div>
                                         <div>
-                                            <h5>@visto.Producto.PrecioFinal €</h5>
+                                            <h5>@item.opcionProducto.PrecioFinal €</h5>
                                         </div>
                                     </div>
-                                    <img src="~/Productos/GetImage1/@visto.Producto.Id" class="card-img-top" alt="@visto.Producto.Titulo">
+                                    <img src="~/Productos/GetImage1/@item.producto.Id" class="card-img-top" alt="@item.producto.Titulo">
                                     <div class="card-body">
-                                        <h5 class="card-title">@visto.Producto.Titulo"</h5>
-                                        <p class="card-text">@visto.Producto.Descripcion"</p>
+                                        <h5 class="card-title">@item.producto.Titulo"</h5>
+                                        <p class="card-text">@item.producto.Descripcion"</p>
                                         <a href="#" class="btn btn-primary">Inactivo</a>
                                     </div>
                                 </div>
@@ -125,16 +126,16 @@
                                 <div class="card col-4" style="width: 18rem;">
                                     <div class="row" style="justify-content:space-around">
                                         <div>
-                                            <h5 style="text-decoration:line-through">@vistos[i].Producto.Precio €</h5>
+                                            <h5 style="text-decoration:line-through">@Model[i].opcionProducto.PrecioInicial €</h5>
                                         </div>
                                         <div>
-                                            <h5>@vistos[i].Producto.PrecioFinal €</h5>
+                                            <h5>@Model[i].opcionProducto.PrecioFinal €</h5>
                                         </div>
                                     </div>
-                                    <img src="~/Productos/GetImage1/@vistos[i].Producto.Id" class="card-img-top" alt="@vistos[i].Producto.Titulo">
+                                    <img src="~/Productos/GetImage1/@Model[i].producto.Id" class="card-img-top" alt="@Model[i].producto.Titulo">
                                     <div class="card-body">
-                                        <h5 class="card-title">@vistos[i].Producto.Titulo"</h5>
-                                        <p class="card-text">@vistos[i].Producto.Descripcion"</p>
+                                        <h5 class="card-title">@Model[i].producto.Titulo"</h5>
+                                        <p class="card-text">@Model[i].producto.Descripcion"</p>
                                         <a href="#" class="btn btn-primary">Inactivo</a>
                                     </div>
                                 </div>

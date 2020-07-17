@@ -109,7 +109,7 @@ h6 {
     color: #2B9720;
 }
 
-#precio-final-producto {
+#precioFinalProducto {
     border-left: 1px solid gray;
     padding-left: 1vw;
 }
@@ -123,7 +123,7 @@ h6 {
     align-items: center;
 }
 
-#precio-inicial-producto {
+#precioInicialProducto {
     border-left: 1px solid gray;
     padding-left: 1vw;
 }

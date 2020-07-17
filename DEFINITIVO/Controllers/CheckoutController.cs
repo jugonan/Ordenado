@@ -17,29 +17,45 @@ namespace DEFINITIVO.Controllers
         private readonly IProductosService _productosService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUsuariosService _usuariosService;
+        private readonly IVendedoresService _vendedoresService;
+        private readonly IProductosVendedoresService _productosVendedoresService;
+        private readonly IOpcionesProductosService _opcionesProductosService;
 
-        public CheckoutController(IProductosService productosService, IUsuariosService usuariosService, UserManager<IdentityUser> userManager)
+        public CheckoutController(IProductosService productosService,
+                                  IUsuariosService usuariosService,
+                                  UserManager<IdentityUser> userManager,
+                                  IVendedoresService vendedoresService,
+                                  IProductosVendedoresService productosVendedoresService,
+                                  IOpcionesProductosService opcionesProductosService)
         {
             _productosService = productosService;
             _usuariosService = usuariosService;
             _userManager = userManager;
+            _vendedoresService = vendedoresService;
+            _productosVendedoresService = productosVendedoresService;
+            _opcionesProductosService = opcionesProductosService;
         }
 
+
         [Authorize(Roles = "cliente")]
-        public async Task<IActionResult> Confirmar(int? id)
+        public async Task<IActionResult> Confirmar(int? id, int opcionElegida)
         {
-            Producto producto = await _productosService.GetProductoById(id);
             Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
-            var opcionProducto = "opcion";
+            Producto producto = await _productosService.GetProductoById(id);
+            List<OpcionProducto> opciones = await _opcionesProductosService.GetOpcionProductoById(id);
+            OpcionProducto opcion = opciones[opcionElegida-1];
+            ProductoVendedor productoVendedor = producto.ProductoVendedor[0];
+            Vendedor vendedor = await _vendedoresService.GetVendedorById(productoVendedor.VendedorId);
 
             UsuarioProductoVM modelo = new UsuarioProductoVM
             {
                 producto = producto,
                 usuario = usuario,
-                opcion = opcionProducto
+                opcion = opcion
             };
-            int precioFinal = Convert.ToInt32(Convert.ToDouble(producto.PrecioFinal) * 100);
-            int helduFee = Convert.ToInt32(precioFinal * 0.22);
+            int precioFinal = Convert.ToInt32(opcion.PrecioFinal * 100);
+            int fee = vendedor.Fee;
+            int helduFee = Convert.ToInt32(precioFinal * (fee/100));
 
             StripeConfiguration.ApiKey = "sk_test_51GvJEQL9UURBAADxXJtmn6ZmPepnp0Bkt4Hwl3y53I7rjWCQKa4wj3FSfkm2V4ZOIV67I6LQDmfvPmZ16eMh9LcE0057FViwnl";
 
@@ -59,8 +75,13 @@ namespace DEFINITIVO.Controllers
                 {
                     { "ProductoId", Convert.ToString(producto.Id)},
                     { "Producto", producto.Titulo },
+                    { "OpcionId", opcion.Id.ToString() },
+                    { "Opcion", opcion.Descripcion},
+                    { "PrecioOriginal", opcion.PrecioInicial.ToString() },
                     { "UsuarioId", Convert.ToString(usuario.Id) },
                     { "Usuario", usuario.NombreUsuario },
+                    { "VendedorId", vendedor.Id.ToString() },
+                    { "Vendedor", vendedor.NombreDeEmpresa }
                 },
                 TransferData = new PaymentIntentTransferDataOptions() { Destination = "acct_1H08zjLhTBm3kv5q" },
                 //TransferData = new PaymentIntentTransferDataOptions

@@ -65,32 +65,53 @@ namespace Heldu.Logic.Services
             await _context.SaveChangesAsync();
         }
         //Método que devuelve una lista de productos que contienen un string en su título o descripción
-        public async Task<List<Producto>> BuscarProductosPorString(string inputBuscar)
+        public async Task<List<ProductoPrimeraOpcionProductoVM>> BuscarProductosPorString(string inputBuscar)
         {
             List<Producto> listaProductos = new List<Producto>();
             listaProductos = await GetProductos();
-            List<Producto> listaProductosEncontrados = new List<Producto>();
+            List<ProductoPrimeraOpcionProductoVM> listaProductosEncontrados = new List<ProductoPrimeraOpcionProductoVM>();
 
             foreach (Producto producto in listaProductos)
             {
                 if (producto.Titulo.ToLower().Contains(inputBuscar.ToLower()))
-                    listaProductosEncontrados.Add(producto);
+                {
+                    ProductoPrimeraOpcionProductoVM nuevo = new ProductoPrimeraOpcionProductoVM()
+                    {
+                        producto = producto,
+                        opcionProducto = await _context.OpcionProducto.Where(m => m.ProductoId == producto.Id).FirstOrDefaultAsync()
+                    };
+                    listaProductosEncontrados.Add(nuevo);
+                }
                 else if (producto.Descripcion != null && producto.Descripcion.ToLower().Contains(inputBuscar.ToLower()))
-                    listaProductosEncontrados.Add(producto);
+                {
+                    ProductoPrimeraOpcionProductoVM nuevo = new ProductoPrimeraOpcionProductoVM()
+                    {
+                        producto = producto,
+                        opcionProducto = await _context.OpcionProducto.Where(m => m.ProductoId == producto.Id).FirstOrDefaultAsync()
+                    };
+                    listaProductosEncontrados.Add(nuevo);
+                }
             }
             return listaProductosEncontrados;
         }
         //Método que devuelve una lista de productos que contienen un string en su título o descripción para una sola categoría
-        public async Task<List<Producto>> BuscarProductosPorStringYCategoria(string inputBuscar, int categoriaId)
+        public async Task<List<ProductoPrimeraOpcionProductoVM>> BuscarProductosPorStringYCategoria(string inputBuscar, int categoriaId)
         {
             List<Producto> listaProductos = new List<Producto>();
             listaProductos = await GetProductosByCategoriaId(categoriaId);
-            List<Producto> listaProductosEncontrados = new List<Producto>();
+            List<ProductoPrimeraOpcionProductoVM> listaProductosEncontrados = new List<ProductoPrimeraOpcionProductoVM>();
 
             foreach (Producto producto in listaProductos)
             {
                 if (producto.Titulo.ToLower().Contains(inputBuscar.ToLower()) || producto.Descripcion.ToLower().Contains(inputBuscar.ToLower()))
-                    listaProductosEncontrados.Add(producto);
+                {
+                    ProductoPrimeraOpcionProductoVM nuevo = new ProductoPrimeraOpcionProductoVM()
+                    {
+                        producto = producto,
+                        opcionProducto = await _context.OpcionProducto.Where(m => m.ProductoId == producto.Id).FirstOrDefaultAsync()
+                    };
+                    listaProductosEncontrados.Add(nuevo);
+                }
             }
             return listaProductosEncontrados;
         }
@@ -119,18 +140,27 @@ namespace Heldu.Logic.Services
             return productos;
         }
         //Método que devuelve n listas de Productos por Categoria.
-        public ProductosForIndex2VM GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias)
+        public async Task<ProductosForIndex2VM> GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias)
         {
             ProductosForIndex2VM listasProductosForIndex2 = new ProductosForIndex2VM();
-            listasProductosForIndex2.ListasProductos = new List<List<Producto>>();
+            listasProductosForIndex2.ListasProductos = new List<List<ProductoPrimeraOpcionProductoVM>>();
 
             foreach (Categoria categoria in listaCategorias)
             {
-                List<Producto> newListaProducto = new List<Producto>();
+                List<ProductoPrimeraOpcionProductoVM> newListaProducto = new List<ProductoPrimeraOpcionProductoVM>();
                 foreach (ProductoCategoria productoCategoria in listaProductosCategorias)
                 {
                     if (productoCategoria.CategoriaId == categoria.Id)
-                        newListaProducto.Add(productoCategoria.Producto);
+                    {
+                        OpcionProducto opcion = await _context.OpcionProducto.Where(m => m.ProductoId == productoCategoria.ProductoId).FirstOrDefaultAsync();
+                        ProductoPrimeraOpcionProductoVM productoConOpcion = new ProductoPrimeraOpcionProductoVM()
+                        {
+                            producto = productoCategoria.Producto,
+                            opcionProducto = opcion
+                        };
+                        newListaProducto.Add(productoConOpcion);
+                    }
+
                 }
                 listasProductosForIndex2.ListasProductos.Add(newListaProducto);
             }

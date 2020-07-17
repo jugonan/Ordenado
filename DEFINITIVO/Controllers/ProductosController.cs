@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Http;
 using System.Diagnostics;
 using Microsoft.Extensions.Caching.Memory;
 
-
 namespace DEFINITIVO.Controllers
 {
     public class ProductosController : Controller
@@ -111,7 +110,7 @@ namespace DEFINITIVO.Controllers
                 listaCategorias = await _categoriasService.GetCategorias();
                 listaProductos = await _productosService.GetProductos();
                 listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
-                listasListaProductos = _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+                listasListaProductos = await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
                 _memoryCache.Set("Categorias", listaCategorias);
                 _memoryCache.Set("ProductosForIndex2", listasListaProductos);
             }
@@ -289,6 +288,7 @@ namespace DEFINITIVO.Controllers
             return View(producto);
         }
 
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -306,6 +306,7 @@ namespace DEFINITIVO.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -325,23 +326,33 @@ namespace DEFINITIVO.Controllers
         [ResponseCache(Duration = 2592000, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> Categoria(int id)
         {
+            List<ProductoPrimeraOpcionProductoVM> listaProductosOpcion = new List<ProductoPrimeraOpcionProductoVM>();
             List<Producto> nuevaLista = await _productosService.GetProductosByCategoriaId(id);
+            int i = 0;
+            foreach (Producto item in nuevaLista)
+            {
+                listaProductosOpcion[i].producto = item;
+                listaProductosOpcion[i].opcionProducto = await _opcionesProductosService.GetFirstOpcionProductoByProductoId(item.Id);
+                i++;
+            }
             ViewData["Categoria"] = await _categoriasService.GetCategoriaById(id);
-            return View(nuevaLista);
+            return View(listaProductosOpcion);
         }
 
         public async Task<IActionResult> Search(string inputBuscar, string catSelected)
         {
+            List<ProductoPrimeraOpcionProductoVM> output = new List<ProductoPrimeraOpcionProductoVM>();
+
             ViewData["inputBuscar"] = inputBuscar;
             if (catSelected == "-1")
             {
-                List<Producto> output = await _productosService.BuscarProductosPorString(inputBuscar);
+                output = await _productosService.BuscarProductosPorString(inputBuscar);
                 return View(output);
             }
             else
             {
                 int categoriaId = Convert.ToInt32(catSelected);
-                List<Producto> output = await _productosService.BuscarProductosPorStringYCategoria(inputBuscar, categoriaId);
+                output = await _productosService.BuscarProductosPorStringYCategoria(inputBuscar, categoriaId);
                 return View(output);
             }
         }
@@ -379,13 +390,15 @@ namespace DEFINITIVO.Controllers
         }
         public async Task<IActionResult> Detalles(int? id)
         {
+            ProductoDetallesVM productoDetalles = new ProductoDetallesVM();
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            Producto producto = await _productosService.GetProductoById(id);
-            if (producto == null)
+            productoDetalles.producto = await _productosService.GetProductoById(id);
+            if (productoDetalles.producto == null)
             {
                 return NotFound();
             }
@@ -401,11 +414,15 @@ namespace DEFINITIVO.Controllers
 
             //Modifico el producto actual agregando una unidad a la columa "CantidadVisitas" de la tabla
             await _productosService.AddCantidadVisitasProductoById(id);
-            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdeProducto(id);
-            List<OpcionProducto> opcionesProductos = await _opcionesProductosService.GetOpcionProductoById(id);
-            ViewData["Vendedor"] = vendedor;
-            ViewData["OpcionesProductos"] = opcionesProductos;
-            return View(producto);
+
+            //ViewModel a pasar a la vista
+            productoDetalles.vendedor = await _vendedoresService.ObtenerVendedorDesdeProducto(id);
+            productoDetalles.opcionesProducto = await _opcionesProductosService.GetOpcionProductoById(id);
+            productoDetalles.reviews = await _reviewsService.ObtenerReviewsByProductoId(id);
+            productoDetalles.valoracionMedia = await _reviewsService.ObtenerValoracionMediaByProductoId(id);
+            productoDetalles.totalComentarios = _reviewsService.CantidadComentariosByReviewList(productoDetalles.reviews);
+
+            return View(productoDetalles);
         }
         public IActionResult Checkout()
         {

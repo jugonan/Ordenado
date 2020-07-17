@@ -1,15 +1,8 @@
-﻿@model Heldu.Entities.Models.Producto
-@using Microsoft.AspNetCore.Identity
-@using Heldu.Logic.Interfaces
-@inject IReviewsService ReviewsService
+﻿@model Heldu.Logic.ViewModels.ProductoDetallesVM
+
 @{
     ViewData["Title"] = "Detalles";
-    List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
-    int totalComentarios = ReviewsService.CantidadComentariosByReviewList(reviews);
-    int valoracionMedia = await ReviewsService.ObtenerValoracionMediaByProductoId(Model.Id);
-    Vendedor vendedor = ViewBag.Vendedor;
     Usuario usuario = ViewBag.Usuario;
-    List<OpcionProducto> opcionesProductos = ViewBag.OpcionesProductos;
 }
 
 <!-- Link que habilita las estrellas de valoración -->
@@ -19,7 +12,7 @@
 <div class="row">
     <div class="col-10 offset-1" style="padding-left:0;">
         <div class="titulo-producto-detalles">
-            <h1>@Model.Titulo</h1>
+            <h1>@Model.producto.Titulo</h1>
             <div>
                 <div class="row ubicacion-del-vendedor">
                     <img src="https://image.flaticon.com/icons/svg/684/684908.svg" />
@@ -40,13 +33,13 @@
                 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <img class="d-block imagenes-carousel" src="~/Productos/GetImage1/@Model.Id" alt="First slide">
+                            <img class="d-block imagenes-carousel" src="~/Productos/GetImage1/@Model.producto.Id" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block imagenes-carousel" src="~/Productos/GetImage2/@Model.Id" onerror="this.parentElement.classList='d-none'" alt="Second slide">
+                            <img class="d-block imagenes-carousel" src="~/Productos/GetImage2/@Model.producto.Id" onerror="this.parentElement.classList='d-none'" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block imagenes-carousel" src="~/Productos/GetImage3/@Model.Id" onerror="this.parentElement.classList='d-none'" alt="Third slide">
+                            <img class="d-block imagenes-carousel" src="~/Productos/GetImage3/@Model.producto.Id" onerror="this.parentElement.classList='d-none'" alt="Third slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
@@ -59,20 +52,20 @@
                     </a>
                     <div class="carousel-indicators">
                         <a class="normal-thumbnail-carousel active" data-target="#carousel-thumb" data-slide-to="0">
-                            <img src="~/Productos/GetImage1/@Model.Id" onerror="this.parentElement.classList='d-none'">
+                            <img src="~/Productos/GetImage1/@Model.producto.Id" onerror="this.parentElement.classList='d-none'">
                         </a>
                         <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="1">
-                            <img src="~/Productos/GetImage2/@Model.Id" onerror="this.parentElement.classList='d-none'">
+                            <img src="~/Productos/GetImage2/@Model.producto.Id" onerror="this.parentElement.classList='d-none'">
                         </a>
                         <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="2">
-                            <img src="~/Productos/GetImage3/@Model.Id" onerror="this.parentElement.classList='d-none'">
+                            <img src="~/Productos/GetImage3/@Model.producto.Id" onerror="this.parentElement.classList='d-none'">
                         </a>
                     </div>
                 </div>
             </div>
             <div class="col-5">
                 <!-- La parte comentada es como deberá estár una vez todos los productos tengan opciones-->
-                @*@foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+                @*@foreach (OpcionProducto opcionesDeProducto in Model.opcionesProducto)
                     {
                         <div class="row precios-producto-detalles d-none">
                             <p class="col-4 precio-inicial-opciones">@opcionesDeProducto.PrecioInicial€</p>
@@ -82,45 +75,54 @@
                     }*@
                 <div class="row">
                     @*
-                        @foreach (OpcionProducto opcionesDeProducto in opcionesProductos)
+                        @foreach (OpcionProducto opcionesDeProducto in Model.opcionesProducto)
                         {
                             <p>@opcionesDeProducto.Descripcion</p>
                         }
                     *@
-                    <p id="descripcion-de-producto">@Model.Descripcion</p>
+                    <p id="descripcion-de-producto">@Model.producto.Descripcion</p>
                 </div>
                 <div class="row fecha-y-visitas">
-                    <p id="fecha-validez">Hasta el @Model.FechaValidez |</p>
+                    <p id="fecha-validez">Hasta el @Model.producto.FechaValidez |</p>
                     <div>
                         <img class="imagen-visitas-detalles" src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
                         <p id="cantidad-temporal-visitas" class="col-3"></p>
                     </div>
                 </div>
                 <div class="input-opciones-productos">
+                    <p class="d-none" value="@Model.opcionesProducto.Count" id="cantOpciones"></p>
                     <form>
-                        @if (opcionesProductos.Count == 0 || opcionesProductos.Count == 1)
+                        @if (Model.opcionesProducto.Count == 0 || Model.opcionesProducto.Count == 1)
                         {
                             <div class="row" style="align-items:center;">
                                 <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
-                                <label for="">@Model.Titulo</label><br>
+                                <label for="">@Model.opcionesProducto[0].Descripcion</label><br>
+                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="PrecioInicialOpcion1"></span>
+                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="PrecioFinalOpcion1"></span>
                             </div>
                         }
-                        @if (opcionesProductos.Count > 1)
+                        @if (Model.opcionesProducto.Count > 1)
                         {
                             <div class="row" style="align-items:center;">
                                 <input type="radio" id="opcion-producto-1" name="opciones-productos" value="">
-                                <label for="">@opcionesProductos[0].Titulo</label><br>
+                                <label for="">@Model.opcionesProducto[0].Descripcion</label><br>
+                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="PrecioInicialOpcion1"></span>
+                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="PrecioFinalOpcion1"></span>
                             </div>
                             <div class="row" style="align-items:center;">
                                 <input type="radio" id="opcion-producto-2" name="opciones-productos" value="">
-                                <label for="">@opcionesProductos[1].Titulo</label><br>
+                                <label for="">@Model.opcionesProducto[1].Descripcion</label><br>
+                                <span class="d-none" value="@Model.opcionesProducto[1].PrecioInicial" id="PrecioInicialOpcion2"></span>
+                                <span class="d-none" value="@Model.opcionesProducto[1].PrecioFinal" id="PrecioFinalOpcion2"></span>
                             </div>
                         }
-                        @if (opcionesProductos.Count > 2)
+                        @if (Model.opcionesProducto.Count > 2)
                         {
                             <div class="row">
                                 <input type="radio" id="opcion-producto-3" name="opciones-productos" value="">
-                                <label for="">@opcionesProductos[2].Titulo</label>
+                                <label for="">@Model.opcionesProducto[2].Descripcion</label>
+                                <span class="d-none" value="@Model.opcionesProducto[2].PrecioInicial" id="PrecioInicialOpcion3"></span>
+                                <span class="d-none" value="@Model.opcionesProducto[2].PrecioFinal" id="PrecioFinalOpcion3"></span>
                             </div>
                         }
                     </form>
@@ -130,17 +132,18 @@
                         <p class="descuento-opciones"></p>
                     </div>
                     <div class="precio-inicial-opciones">
-                        <p id="precio-inicial-producto">@Model.Precio </p>
+                        <p id="precioInicialProducto">  </p>
                         <p> &#8364 </p>
                     </div>
                     <div class="precio-final-opciones">
-                        <p id="precio-final-producto">@Model.PrecioFinal </p>
+                        <p id="precioFinalProducto">  </p>
                         <p> &#8364 </p>
                     </div>
                 </div>
                 <div class="div-boton-comprar">
-                    <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-controller="Checkout" asp-action="Confirmar" asp-route-id="@Model.Id">Comprar</a>
-                    @*<input type="hidden" name="opcion" value="Titulo de la Opcion"/>*@
+                    <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-controller="Checkout" asp-action="Confirmar" asp-route-id="@Model.producto.Id">Comprar</a>
+                    @* Envío la opción elegida al controlador. el "Value" se coloca desde JS *@
+                    <input type="hidden" name="opcionElegida" id="opcionElegida" value="1"/>
                 </div>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
@@ -181,9 +184,9 @@
                     </div>
                     <div class="texto-ocultar d-none">
                         <!-- Este es el código correspondiete, ahora para el MVP es hard code -->
-                        @*@if (reviews.Count() != 0)
+                        @*@if (Model.reviews.Count() != 0)
                             {
-                                foreach (Review review in reviews)
+                                foreach (Review review in Model.reviews)
                                 {
                                     <p>@review.Comentario</p>
                                     <p>@review.Fecha</p>
@@ -256,9 +259,9 @@
                 </div>
             </div>
             <div class="col-4 offset-1 barra-informacion-vendedor">
-                    <h6>@vendedor.NombreDeEmpresa</h6>
-                    <p>@vendedor.Paginaweb</p>
-                    <p>@vendedor.Telefono</p>
+                <h6>@Model.vendedor.NombreDeEmpresa</h6>
+                <p>@Model.vendedor.Paginaweb</p>
+                <p>@Model.vendedor.Telefono</p>
                 <div class="div-mapa">
                     <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=506&height=400&hl=en&q=Luis%20Power%2023%20Bilbao+(Ubicacion)&t=&z=12&ie=UTF8&iwloc=B&output=embed" width="auto" height="auto" frameborder="0">
                     </iframe>
@@ -291,7 +294,7 @@
 @if (User.IsInRole("admin"))
 {
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Edit" asp-route-id="@Model.producto.Id">Edit</a> |
         <a asp-action="Index2">Volver</a>
     </div>
 }

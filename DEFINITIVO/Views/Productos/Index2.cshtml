@@ -1,4 +1,5 @@
 ﻿@model ProductosForIndex2VM
+
 @using Microsoft.AspNetCore.Identity
 @using Heldu.Logic.Interfaces
 @using Heldu.Logic.ViewModels
@@ -9,6 +10,7 @@
 @inject MessagesService MessagesService
 @inject IHelperService HelperService
 @inject IProductosService ProductosService
+@inject IOpcionesProductosService OpcionesProductosService
 @{
     ViewData["Title"] = "Ofertas";
     IdentityUser activeUser = await UserManager.GetUserAsync(User);
@@ -17,8 +19,11 @@
     string city = ViewBag.City;
     <!-- Productos destacados-->
     Producto productoDestacado1 = await ProductosService.GetProductoById(31);
+    OpcionProducto opcionDestacado1 = await OpcionesProductosService.GetFirstOpcionProductoByProductoId(31);
     Producto productoDestacado2 = await ProductosService.GetProductoById(5);
+    OpcionProducto opcionDestacado2 = await OpcionesProductosService.GetFirstOpcionProductoByProductoId(5);
     Producto productoDestacado3 = await ProductosService.GetProductoById(24);
+    OpcionProducto opcionDestacado3 = await OpcionesProductosService.GetFirstOpcionProductoByProductoId(24);
 }
 <!-- CSS particular para esta vista. Los script están en el layout-->
 <link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
@@ -63,10 +68,10 @@
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado1.Id" class="precios-carta-index">
-                    <p class="precio-final-carta">@productoDestacado1.PrecioFinal&#8364;</p>
-                    <p class="precio-inicial-carta">@productoDestacado1.Precio&#8364;</p>
+                    <p class="precio-final-carta">@opcionDestacado1.PrecioFinal&#8364;</p>
+                    <p class="precio-inicial-carta">@opcionDestacado1.PrecioInicial&#8364;</p>
                     @{
-                        double descuento1 = Math.Round(((Convert.ToDouble(productoDestacado1.Precio) - Convert.ToDouble(productoDestacado1.PrecioFinal)) / Convert.ToDouble(productoDestacado1.Precio)) * 100);
+                        double descuento1 = Math.Round(((opcionDestacado1.PrecioInicial - opcionDestacado1.PrecioFinal) /opcionDestacado1.PrecioInicial) * 100);
                     }
                     <p class="descuento-carta">&#8595;@descuento1&#37;</p>
                 </div>
@@ -93,10 +98,10 @@
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado2.Id" class="precios-carta-index">
-                    <p class="precio-final-carta">@productoDestacado2.PrecioFinal&#8364;</p>
-                    <p class="precio-inicial-carta">@productoDestacado2.Precio&#8364;</p>
+                    <p class="precio-final-carta">@opcionDestacado2.PrecioFinal&#8364;</p>
+                    <p class="precio-inicial-carta">@opcionDestacado2.PrecioInicial&#8364;</p>
                     @{
-                        double descuento2 = Math.Round(((Convert.ToDouble(productoDestacado2.Precio) - Convert.ToDouble(productoDestacado2.PrecioFinal)) / Convert.ToDouble(productoDestacado2.Precio)) * 100);
+                        double descuento2 = Math.Round(((opcionDestacado2.PrecioInicial - opcionDestacado2.PrecioFinal) / opcionDestacado2.PrecioInicial) * 100);
                     }
                     <p class="descuento-carta">&#8595;@descuento2&#37;</p>
                 </div>
@@ -123,10 +128,10 @@
                     </div>
                 </div>
                 <div asp-action="Detalles" asp-route-id="@productoDestacado3.Id" class="precios-carta-index">
-                    <p class="precio-final-carta">@productoDestacado3.PrecioFinal&#8364;</p>
-                    <p class="precio-inicial-carta">@productoDestacado3.Precio&#8364;</p>
+                    <p class="precio-final-carta">@opcionDestacado3.PrecioFinal&#8364;</p>
+                    <p class="precio-inicial-carta">@opcionDestacado3.PrecioInicial&#8364;</p>
                     @{
-                        double descuento3 = Math.Round(((Convert.ToDouble(productoDestacado3.Precio) - Convert.ToDouble(productoDestacado3.PrecioFinal)) / Convert.ToDouble(productoDestacado3.Precio)) * 100);
+                        double descuento3 = Math.Round(((opcionDestacado3.PrecioInicial - opcionDestacado3.PrecioFinal) / opcionDestacado3.PrecioInicial) * 100);
                     }
                     <p class="descuento-carta">&#8595;@descuento3&#37;</p>
                 </div>
@@ -143,12 +148,12 @@
     <a asp-controller="Productos" asp-action="Categoria" asp-route-id="@categorias[0].Id">@categorias[0].Nombre</a>
 </div>
 <div class="ofertas-no-destacadas">
-    @foreach (Producto producto in Model.ListasProductos[0].Take(8))
+    @foreach (ProductoPrimeraOpcionProductoVM item in Model.ListasProductos[0].Take(8))
     {
         <div class="card carta-modificada">
-            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@item.producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
-                <p class="titulo-oferta">@producto.Titulo</p>
+                <p class="titulo-oferta">@item.producto.Titulo</p>
                 <div class="valoracion-y-visitas">
                     <div class="row media-de-producto" style="align-items: baseline;">
                         <span class="fa fa-star"></span>
@@ -162,16 +167,16 @@
                         <p></p>
                     </div>
                 </div>
-                <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
-                    <p class="precio-final-carta">@producto.PrecioFinal&#8364;</p>
-                    <p class="precio-inicial-carta">@producto.Precio&#8364;</p>
+                <div asp-action="Detalles" asp-route-id="@item.producto.Id" class="precios-carta-index">
+                    <p class="precio-final-carta">@item.opcionProducto.PrecioFinal&#8364;</p>
+                    <p class="precio-inicial-carta">@item.opcionProducto.PrecioInicial&#8364;</p>
                     @{
-                        double descuento = Math.Round(((Convert.ToDouble(producto.Precio) - Convert.ToDouble(producto.PrecioFinal)) / Convert.ToDouble(producto.Precio))*100);
+                        double descuento = Math.Round(((item.opcionProducto.PrecioInicial - item.opcionProducto.PrecioFinal) / item.opcionProducto.PrecioInicial)*100);
                     }
                 <p class="descuento-carta">&#8595;@descuento&#37;</p>
                 </div>
                 <div class="div-boton-lo-quiero">
-                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
                 </div>
             </div>
         </div>
@@ -186,12 +191,12 @@
     <a asp-controller="Productos" asp-action="Categoria" asp-route-id="@categorias[1].Id">@categorias[1].Nombre</a>
 </div>
 <div class="ofertas-no-destacadas">
-    @foreach (Producto producto in Model.ListasProductos[1].Take(8))
+    @foreach (ProductoPrimeraOpcionProductoVM item in Model.ListasProductos[1].Take(8))
     {
         <div class="card carta-modificada">
-            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@item.producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
-                <p class="titulo-oferta">@producto.Titulo</p>
+                <p class="titulo-oferta">@item.producto.Titulo</p>
                 <div class="valoracion-y-visitas">
                     <div class="row media-de-producto" style="align-items: baseline;">
                         <span class="fa fa-star"></span>
@@ -205,16 +210,16 @@
                         <p></p>
                     </div>
                 </div>
-                <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
-                    <p class="precio-final-carta">@producto.PrecioFinal&#8364;</p>
-                    <p class="precio-inicial-carta">@producto.Precio&#8364;</p>
+                <div asp-action="Detalles" asp-route-id="@item.producto.Id" class="precios-carta-index">
+                    <p class="precio-final-carta">@item.opcionProducto.PrecioFinal&#8364;</p>
+                    <p class="precio-inicial-carta">@item.opcionProducto.PrecioInicial&#8364;</p>
                     @{
-                        double descuento = Math.Round(((Convert.ToDouble(producto.Precio) - Convert.ToDouble(producto.PrecioFinal)) / Convert.ToDouble(producto.Precio)) * 100);
+                        double descuento = Math.Round(((item.opcionProducto.PrecioInicial - item.opcionProducto.PrecioFinal) / item.opcionProducto.PrecioInicial) * 100);
                     }
                 <p class="descuento-carta">&#8595;@descuento&#37;</p>
                 </div>
                 <div class="div-boton-lo-quiero">
-                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
                 </div>
             </div>
         </div>
@@ -230,12 +235,12 @@
 </div>
 <div class="ofertas-no-destacadas">
 
-    @foreach (Producto producto in Model.ListasProductos[3].Take(8))
+    @foreach (ProductoPrimeraOpcionProductoVM item in Model.ListasProductos[3].Take(8))
     {
         <div class="card carta-modificada">
-            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
+            <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@item.producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
             <div class="card-body">
-                <p class="titulo-oferta">@producto.Titulo</p>
+                <p class="titulo-oferta">@item.producto.Titulo</p>
                 <div class="valoracion-y-visitas">
                     <div class="row media-de-producto" style="align-items: baseline;">
                         <span class="fa fa-star"></span>
@@ -248,16 +253,16 @@
                         <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
                     </p>
                 </div>
-                <div asp-action="Detalles" asp-route-id="@producto.Id" class="precios-carta-index">
-                    <p class="precio-final-carta">@producto.PrecioFinal&#8364;</p>
-                    <p class="precio-inicial-carta">@producto.Precio&#8364;</p>
+                <div asp-action="Detalles" asp-route-id="@item.producto.Id" class="precios-carta-index">
+                    <p class="precio-final-carta">@item.opcionProducto.PrecioFinal&#8364;</p>
+                    <p class="precio-inicial-carta">@item.opcionProducto.PrecioInicial&#8364;</p>
                     @{
-                        double descuento = Math.Round(((Convert.ToDouble(producto.Precio) - Convert.ToDouble(producto.PrecioFinal)) / Convert.ToDouble(producto.Precio)) * 100);
+                        double descuento = Math.Round(((item.opcionProducto.PrecioInicial - item.opcionProducto.PrecioFinal) / item.opcionProducto.PrecioInicial) * 100);
                     }
                 <p class="descuento-carta">&#8595;@descuento&#37;</p>
                 </div>
                 <div class="div-boton-lo-quiero">
-                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                    <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
                 </div>
             </div>
         </div>

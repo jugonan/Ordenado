@@ -3,14 +3,16 @@ using System;
 using Heldu.Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DEFINITIVO.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200716155639_TablasProductoYOpcionProductoModificadas")]
+    partial class TablasProductoYOpcionProductoModificadas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,6 +193,9 @@ namespace DEFINITIVO.Migrations
 
                     b.Property<string>("LimiteProducto")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("OpcionProductoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Titulo")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

@@ -11,7 +11,7 @@ let btnCreate;
 let descripcion;
 let precioInicio;
 let precioFin;
-let unidades;
+let stockInicial;
 let labelOpciones;
 
 /* Objecto del tipo de Opción producto. Cada vez que añada uno, creo uno nuevo y lo guardo en una lista */
@@ -20,7 +20,8 @@ let opcion = {
     precioInicio: '',
     precioFin: '',
     descuento: '',
-    unidades: ''
+    stockInicial: '',
+    cantVendida: '',
 };
 
 /* Arreglo en el que voy añadiendo las diferentes opciones de producto */
@@ -40,7 +41,8 @@ function crearOpcion() {
         precioInicio: precioInicio.value,
         precioFin: precioFin.value,
         descuento: calcularDescuento(precioInicio.value, precioFin.value),
-        unidades: unidades.value
+        stockInicial: stockInicial.value,
+        cantVendida: 0
     };
     /* Añado el objeto con los atributos con la información que acaba de introducir a la lista de objetos
      * que luego volcaré en las opciones productos*/
@@ -132,7 +134,7 @@ function llenarVariablesOpcionProducto() {
     descripcion = document.getElementById('descripcion-introducida');
     precioInicio = document.getElementById('precioInicial-introducido');
     precioFin = document.getElementById('precioFinal-introducido');
-    unidades = document.getElementById('unidades-introducidas');
+    stockInicial = document.getElementById('unidades-introducidas');
 }
 
 /* Limpio las variables para que pueda crear un nuevo objeto */
@@ -140,7 +142,7 @@ function vaciarVariablesOpcionProducto() {
     descripcion.value = '';
     precioInicio.value = '';
     precioFin.value = '';
-    unidades.value = '';
+    stockInicial.value = '';
 }
 
 function pasarVM() {

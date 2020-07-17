@@ -5,10 +5,9 @@ using System.Text;
 
 namespace Heldu.Logic.ViewModels
 {
-    public class UsuarioProductoVM
+    public class ProductoPrimeraOpcionProductoVM
     {
         public Producto producto { get; set; }
-        public Usuario usuario { get; set; }
-        public OpcionProducto opcion { get; set; }
+        public OpcionProducto opcionProducto { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,51 +18,23 @@ namespace Heldu.Entities.Models
         [Display(Name = "Fecha de validez de la oferta")]
         public DateTime FechaValidez { get; set; }
 
-        public ImagenesProducto ImagenesProducto { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime FechaAltaProducto { get; set; }
 
-        [Display(Name = "Precio original del producto")]
-        [DataType(DataType.Currency)]
-        public double Precio { get; set; }
 
-        [Display(Name = "Precio final del producto")]
-        [DataType(DataType.Currency)]
-        public string PrecioFinal { get; set; }
 
-        [DataType(DataType.Currency)]
-        public string Descuento { get; set; }
-
-        //Cuantos cupones pueden comprar, está en string porque puede ser una frase
         public string LimiteProducto { get; set; }
 
-        //Dónde y cómo hacerlas
-        public string Reservas { get; set; }
-
-        //Opcional
-        public string InformaciónAdicional { get; set; }
-
-        public int OpcionProductoId { get; set; }
-
-        public List<OpcionProducto> OpcionProducto { get; set; }
-
-        public List<Mercado> Mercados { get; set; }
-        public List<ProductoCategoria> ProductoCategoria { get; set; }
-        public List<ProductoVendedor> ProductoVendedor { get; set; }
-
-        // En desuso a fecha de 29/04
-        // Añadidos el 9/04
         [Display(Name = "Estado")]
         public bool Estado { get; set; }
-
-
-        [Display(Name = "¿Cuántas unidades quieres anunciar?")]
-        public int UnidadesStock { get; set; }
-
         public int CantidadVisitas { get; set; }
-
         public string Condiciones { get; set; }
-        public string Reserva { get; set; }
-        public string Horario { get; set; }
-        public string Entrega { get; set; }
-        public string Recogida { get; set; }
+
+
+
+        public ImagenesProducto ImagenesProducto { get; set; }
+        public List<OpcionProducto> OpcionProducto { get; set; }
+        public List<ProductoCategoria> ProductoCategoria { get; set; }
+        public List<ProductoVendedor> ProductoVendedor { get; set; }
     }
 }

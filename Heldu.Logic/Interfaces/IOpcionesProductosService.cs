@@ -9,6 +9,7 @@ namespace Heldu.Logic.Interfaces
     {
         public Task<List<OpcionProducto>> GetOpcionesProductos();
         public Task<List<OpcionProducto>> GetOpcionProductoById(int? id);
+        public Task<OpcionProducto> GetFirstOpcionProductoByProductoId(int? id);
         public Task<OpcionProducto> GetOpcionProductoByHisId(int? id);
         public Task CreateOpcionProductoPost(OpcionProducto opcionProducto);
         public Task<OpcionProducto> EditOpcionProductoGet(int? id);

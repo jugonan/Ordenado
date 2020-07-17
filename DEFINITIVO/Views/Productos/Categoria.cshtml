@@ -1,7 +1,8 @@
-﻿@model List<Producto>
+﻿@model List<ProductoPrimeraOpcionProductoVM>
 
 @using Microsoft.AspNetCore.Identity
 @using DEFINITIVO.Services
+@using Heldu.Logic.ViewModels
 @inject UserManager<IdentityUser> UserManager
 @inject SignInManager<IdentityUser> SignInManager
 @inject MessagesService MessagesService
@@ -14,24 +15,25 @@
 <p id="titulo-categoria">@categoria.Nombre</p>
 
 <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3">
-    @foreach (Producto producto in Model)
+    @foreach (ProductoPrimeraOpcionProductoVM item in Model)
     {
         <div class="col-3 contenedor-carta">
             <div class="card h-100 divCarta">
-                <img src="~/Productos/GetImage1/@producto.Id" onerror="this.onerror=null;this.src='https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png';" class="imagen-carta" alt="Imagen 1 del producto">
+                <img src="~/Productos/GetImage1/@item.producto.Id" onerror="this.onerror=null;this.src='https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png';" class="imagen-carta" alt="Imagen 1 del producto">
                 <div class="item-box-blog-date bg-blue-ui white">
-                    <span class="mon"> <strike class="oldPrice">@producto.Precio &#8364 </strike><span class="precio-destacado"> @producto.PrecioFinal &#8364 </span></span>
+                    <span class="mon"> <strike class="oldPrice">@item.opcionProducto.PrecioInicial &#8364 </strike><span class="precio-destacado"> @item.opcionProducto.PrecioFinal &#8364 </span></span>
                 </div>
                 <div class="cuerpo-carta">
-                    <a class="card-title" asp-action="Detalles" asp-route-id="@producto.Id">
-                        @producto.Titulo
+                    <a class="card-title" asp-action="Detalles" asp-route-id="@item.producto.Id">
+                        @item.producto.Titulo
                     </a>
-                    <p class="texto-carta">@producto.Descripcion</p>
+                    <p class="texto-carta">@item.producto.Descripcion</p>
                     <div class="row">
                         <div class="texto-stock">
-                            @if (producto.UnidadesStock > 3)
+                            @{int stock = item.opcionProducto.StockInicial - item.opcionProducto.CantidadVendida;}  
+                            @if (stock > 3)
                             {
-                                <p>Quedan @producto.UnidadesStock!</p>
+                                <p>Quedan @stock!</p>
                             }
                             else
                             {
@@ -39,7 +41,7 @@
                             }
                         </div>
                         <div class="mt">
-                            <a asp-action="Detalles" asp-route-id="@producto.Id" id="btnComprar" class="btn bg-blue-ui white read btnComprar">Comprar!</a>
+                            <a asp-action="Detalles" asp-route-id="@item.producto.Id" id="btnComprar" class="btn bg-blue-ui white read btnComprar">Comprar!</a>
                         </div>
                     </div>
                 </div>

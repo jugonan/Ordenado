@@ -60,7 +60,7 @@ namespace Heldu.Logic.Services
             return reviews.Count();
         }
         // Acompaña a la anterior para sacar la valoración media
-        public async Task<int> ObtenerValoracionMediaByProductoId(int id)
+        public async Task<int> ObtenerValoracionMediaByProductoId(int? id)
         {
             List<Review> reviews = await ObtenerReviewsByProductoId(id);
             int mediaValoracion;

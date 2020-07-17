@@ -6,7 +6,7 @@
 @inject UserManager<IdentityUser> UserManager
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear";
 }
 
 <!-- Link cogido para hacer que las estrellas estén rellenas -->
@@ -26,22 +26,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger">(*) Campos obligatorios</div>
             <div class="form-group">
                 <label class="control-label">Descripción</label>
-                <input class="form-control" id="descripcion-introducida" />
+                <input class="form-control" id="descripcion-introducida" required/>
                 <span class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Precio inicial</label>
-                <input class="form-control" id="precioInicial-introducido" />
+                <input class="form-control" id="precioInicial-introducido" readonly/>
                 <span class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Precio final</label>
-                <input class="form-control" id="precioFinal-introducido" />
+                <input class="form-control" id="precioFinal-introducido" required/>
                 <span class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">¿Cuántas unidades?</label>
-                <input class="form-control" id="unidades-introducidas" />
+                <input class="form-control" id="unidades-introducidas" required/>
                 <span class="text-danger"></span>
             </div>
             <!-- Div ocultos en los que le envío los opcionesProductos generados al controlador-->

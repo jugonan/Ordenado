@@ -35,7 +35,10 @@
     <None Remove="ViewModel\**" />
     <None Remove="Views\Condiciones\**" />
     <None Remove="wwwroot\lib\**" />
+    <Content Remove="Views\Checkout\Confirmar__Old.cshtml" />
     <Content Remove="Views\Home\Index.cshtml" />
+    <Content Remove="Views\Productos\Delete.cshtml" />
+    <Content Remove="Views\Productos\Details.cshtml" />
     <Content Remove="Views\Shared\_Layout _Old.cshtml" />
     <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
     <Content Remove="Views\Usuarios\Miscursos.cshtml" />
