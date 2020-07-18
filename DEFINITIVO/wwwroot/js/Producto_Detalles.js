@@ -17,6 +17,7 @@ let imagenesCarousel,
     precioFinalOpcion3,
     precioInicialProducto,
     precioFinalProducto,
+    descuento,
     opcionElegida;
 
 
@@ -24,7 +25,6 @@ window.addEventListener('DOMContentLoaded', function () {
     llenarVariables();
     addEvents();
     TEMPORALquitarMinutosDeFecha();
-    TEMPORALlPrecioTotal();
     TEMPORALAddCantidadVisitas();
 });
 
@@ -43,6 +43,7 @@ function llenarVariables() {
 
     /*Desde aquí son para gestionar las opciones y mostrar precios*/
     cantOpciones = document.getElementById('cantOpciones').value;
+    descuento = document.getElementById('descuento');
     radio1 = document.getElementById('opcion-producto-1');
     precioInicialOpcion1 = document.getElementById('precioInicialOpcion1');
     precioFinalOpcion1 = document.getElementById('precioFinalOpcion1');
@@ -83,16 +84,22 @@ function addEvents() {
     }
 
     radio1.addEventListener('click', function () {
+        console.log(precioInicialOpcion1.value);
+        console.log(precioFinalOpcion1.value);
         mostrarprecios(precioInicialOpcion1.value, precioFinalOpcion1.value, 1);
     });
     if (radio2 != null) {
         radio2.addEventListener('click', function () {
             mostrarprecios(precioInicialOpcion2.value, precioFinalOpcion2.value, 2);
+            console.log(precioInicialOpcion2.value);
+            console.log(precioFinalOpcion2.value);
         });
     }
     if (radio3 != null) {
         radio3.addEventListener('click', function () {
             mostrarprecios(precioInicialOpcion3.value, precioFinalOpcion3.value, 3);
+            console.log(precioInicialOpcion3.value);
+            console.log(precioFinalOpcion3.value);
         });
     }
 }
@@ -103,19 +110,6 @@ function ocultarTodasCondiciones() {
     }
 }
 
-/* Esta así hasta que tengamos opciones por producto, ahí desaparecerá */
-function TEMPORALlPrecioTotal() {
-    /*let precioTotal = document.getElementById('precio-compra');*/
-    let precioFinal = document.getElementById('precio-final-producto').innerText;
-    let precioInicial = document.getElementById('precio-inicial-producto').innerText;
-    let click = document.getElementById('opcion-producto-1').addEventListener('click', function () {
-        /*precioTotal.innerText = `Total: ${precioFinal}€`;*/
-        let placesDescuento = document.getElementsByClassName('descuento-opciones');
-        let placeDescuento = placesDescuento[0];
-        let cantidadDescuento = 100 - (precioFinal * 100 / precioInicial);
-        placeDescuento.innerText = `${cantidadDescuento.toFixed(0)}%`;
-    })
-}
 
 function TEMPORALquitarMinutosDeFecha() {
     let fecha = document.getElementById('fecha-validez');
@@ -133,5 +127,6 @@ function TEMPORALAddCantidadVisitas() {
 function mostrarprecios(precioInicial, precioFinal, opc) {
     precioInicialProducto.innerText = precioInicial;
     precioFinalProducto.innerText = precioFinal;
+    descuento.innerText = Math.round(((precioInicial - precioFinal) / precioInicial) * 100);
     opcionElegida.value = opc;
 }

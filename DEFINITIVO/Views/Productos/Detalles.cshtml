@@ -90,15 +90,15 @@
                     </div>
                 </div>
                 <div class="input-opciones-productos">
-                    <p class="d-none" value="@Model.opcionesProducto.Count" id="cantOpciones"></p>
+                    <input class="d-none" value="@Model.opcionesProducto.Count" id="cantOpciones">
                     <form>
                         @if (Model.opcionesProducto.Count == 0 || Model.opcionesProducto.Count == 1)
                         {
                             <div class="row div-opciones-producto" style="align-items:center;">
                                 <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="">
                                 <label class="col-lg-10" for="">@Model.opcionesProducto[0].Descripcion</label><br>
-                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="PrecioInicialOpcion1"></span>
-                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="PrecioFinalOpcion1"></span>
+                                <input class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="precioInicialOpcion1">
+                                <input class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="precioFinalOpcion1">
                             </div>
                         }
                         @if (Model.opcionesProducto.Count > 1)
@@ -106,14 +106,14 @@
                             <div class="row div-opciones-producto" style="align-items:center;">
                                 <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="">
                                 <label class="col-lg-10" for="">@Model.opcionesProducto[0].Descripcion</label><br>
-                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="PrecioInicialOpcion1"></span>
-                                <span class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="PrecioFinalOpcion1"></span>
+                                <input class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="precioInicialOpcion1">
+                                <input class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="precioFinalOpcion1">
                             </div>
                             <div class="row div-opciones-producto" style="align-items:center;">
                                 <input class="col-lg-1" type="radio" id="opcion-producto-2" name="opciones-productos" value="">
                                 <label class="col-lg-10" for="">@Model.opcionesProducto[1].Descripcion</label><br>
-                                <span class="d-none" value="@Model.opcionesProducto[1].PrecioInicial" id="PrecioInicialOpcion2"></span>
-                                <span class="d-none" value="@Model.opcionesProducto[1].PrecioFinal" id="PrecioFinalOpcion2"></span>
+                                <input class="d-none" value="@Model.opcionesProducto[1].PrecioInicial" id="precioInicialOpcion2">
+                                <input class="d-none" value="@Model.opcionesProducto[1].PrecioFinal" id="precioFinalOpcion2">
                             </div>
                         }
                         @if (Model.opcionesProducto.Count > 2)
@@ -122,8 +122,8 @@
                             <div class="row div-opciones-producto" style="align-items:center;">
                                 <input class="col-lg-1" type="radio" id="opcion-producto-3" name="opciones-productos" value="">
                                 <label class="col-lg-10" for="">@Model.opcionesProducto[2].Descripcion</label>
-                                                                <span class="d-none" value="@Model.opcionesProducto[2].PrecioInicial" id="PrecioInicialOpcion3"></span>
-                                                                <span class="d-none" value="@Model.opcionesProducto[2].PrecioFinal" id="PrecioFinalOpcion3"></span>
+                                <input class="d-none" value="@Model.opcionesProducto[2].PrecioInicial" id="precioInicialOpcion3">
+                                <input class="d-none" value="@Model.opcionesProducto[2].PrecioFinal" id="precioFinalOpcion3">
 
                             </div>
                         }
@@ -131,7 +131,7 @@
                 </div>
                 <div class="precios-producto-detalles">
                     <div>
-                        <p class="descuento-opciones"></p>
+                        <p class="descuento-opciones">&#8595; <span id="descuento"></span> &#37;</p>
                     </div>
                     <div class="precio-inicial-opciones">
                         <p id="precioInicialProducto">  </p>
@@ -145,7 +145,7 @@
                 <div class="div-boton-comprar">
                     <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-controller="Checkout" asp-action="Confirmar" asp-route-id="@Model.producto.Id">Comprar</a>
                     @* Envío la opción elegida al controlador. el "Value" se coloca desde JS *@
-                    <input type="hidden" name="opcionElegida" id="opcionElegida" value="1"/>
+                    <input type="hidden" name="opcionElegida" id="opcionElegida" value="1" />
                 </div>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>
