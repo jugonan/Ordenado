@@ -12,6 +12,7 @@ using DEFINITIVO.Services;
 using Heldu.Logic.Interfaces;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading;
 
 namespace DEFINITIVO.Controllers
 {
@@ -183,6 +184,11 @@ namespace DEFINITIVO.Controllers
         //}
         public IActionResult LandingBeta()
         {
+            //var backgroundProductsLoading = new Thread(_helperService.LoadProductsTask);
+            //backgroundProductsLoading.IsBackground = true;
+            //backgroundProductsLoading.Priority = ThreadPriority.Lowest;
+            //backgroundProductsLoading.Start();
+
             return View();
         }
     }

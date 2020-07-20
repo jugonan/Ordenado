@@ -20,6 +20,10 @@ namespace Heldu.Logic.Services
         public async Task<List<Categoria>> GetCategorias()
         {
             return await _context.Categoria.ToListAsync();
+        }        
+        public List<Categoria> GetCategoriasSync()
+        {
+            return _context.Categoria.ToList();
         }
 
         public async Task<Categoria> GetCategoriaById(int? id)

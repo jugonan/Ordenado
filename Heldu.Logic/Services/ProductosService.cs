@@ -30,6 +30,15 @@ namespace Heldu.Logic.Services
                             .ThenInclude(a => a.Vendedor)
                             .ToListAsync();
         }
+        public List<Producto> GetProductosSync()
+        {
+            return _context.Producto
+                            .Include(p => p.ProductoCategoria)
+                            .ThenInclude(a => a.Categoria)
+                            .Include(p => p.ProductoVendedor)
+                            .ThenInclude(a => a.Vendedor)
+                            .ToList();
+        }
         public async Task<Producto> GetProductoById(int? id)
         {
             return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);

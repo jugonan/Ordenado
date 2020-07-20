@@ -7,11 +7,14 @@ using System.Net.Mail;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Heldu.Database.Data;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
+using Heldu.Logic.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -21,11 +24,25 @@ namespace Heldu.Logic.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IMemoryCache _memoryCache;
+        private readonly IProductosService _productosService;
+        private readonly ICategoriasService _categoriasService;
+        private readonly IProductoCategoriasService _productoCategoriasService;
 
-        public HelperService(ApplicationDbContext context, IConfiguration configuration)
+        public HelperService(ApplicationDbContext context,
+                             IConfiguration configuration,
+                             IMemoryCache memoryCache,
+                             IProductosService productosService,
+                             ICategoriasService categoriasService,
+                             IProductoCategoriasService productoCategoriasService,
+                             IOpcionesProductosService opcionesProductosService)
         {
             _context = context;
             _configuration = configuration;
+            _memoryCache = memoryCache;
+            _productosService = productosService;
+            _categoriasService = categoriasService;
+            _productoCategoriasService = productoCategoriasService;
         }
 
         //Genero una lista de 6 índices random entre 0 y la cantidad de productos de una categoría
@@ -276,6 +293,27 @@ namespace Heldu.Logic.Services
             }
 
             return city;
+        }
+
+
+        //Servicio para carga el ViewModel "ProductosForIndex2" en el background y guardarlo en el caché del servidor
+        public async void LoadProductsTask()
+        {
+            List<Categoria> listaCategorias;
+            List<Producto> listaProductos;
+            List<ProductoCategoria> listaProductosCategorias;
+            ProductosForIndex2VM listasListaProductos;
+
+            if (!_memoryCache.TryGetValue("ProductosForIndex2", out listasListaProductos))
+            {
+                Thread.Sleep(5000);
+                listaCategorias = _categoriasService.GetCategoriasSync();
+                listaProductos = _productosService.GetProductosSync();
+                listaProductosCategorias = _productoCategoriasService.GetProductosCategoriasSync();
+                listasListaProductos = await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+                _memoryCache.Set("Categorias", listaCategorias);
+                _memoryCache.Set("ProductosForIndex2", listasListaProductos);
+            }
         }
     }
 }
