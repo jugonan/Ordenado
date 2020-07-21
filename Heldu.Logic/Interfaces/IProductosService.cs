@@ -9,7 +9,6 @@ namespace Heldu.Logic.Interfaces
     public interface IProductosService
     {
         public Task<List<Producto>> GetProductos();
-        public List<Producto> GetProductosSync();
         public Task<Producto> GetProductoById(int? id);
         public Task CreateProductoPost(Producto producto);
         public Task<Producto> EditProductoGet(int? id);
@@ -21,6 +20,7 @@ namespace Heldu.Logic.Interfaces
         public Task<List<ProductoPrimeraOpcionProductoVM>> BuscarProductosPorStringYCategoria(string inputBuscar, int categoriaId);
         public Task<List<Producto>> GetProductosByCategoriaId(int categoriaId);
         public Task<ProductosForIndex2VM> GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias);
+        public Task<ProductosForIndex2VM> GetProductosForIndex2();
         public Task<byte[]> AgregarImagenesBlob(List<IFormFile> ImagenProducto);
     }
 }

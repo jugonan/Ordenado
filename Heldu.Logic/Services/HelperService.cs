@@ -34,8 +34,7 @@ namespace Heldu.Logic.Services
                              IMemoryCache memoryCache,
                              IProductosService productosService,
                              ICategoriasService categoriasService,
-                             IProductoCategoriasService productoCategoriasService,
-                             IOpcionesProductosService opcionesProductosService)
+                             IProductoCategoriasService productoCategoriasService)
         {
             _context = context;
             _configuration = configuration;
@@ -101,12 +100,12 @@ namespace Heldu.Logic.Services
                 msg.To.Add(new MailAddress(address2));
                 msg.CC.Add(new MailAddress(address1));
                 msg.Subject = asunto;
-               
+
                 // Build the body of your email using the Body property of your message
                 msg.Body = mensaje;
 
                 // Wires up and send the email
-                smtpClient.EnableSsl = true;                
+                smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = loginInfo;
                 smtpClient.Send(msg);
@@ -297,22 +296,21 @@ namespace Heldu.Logic.Services
 
 
         //Servicio para carga el ViewModel "ProductosForIndex2" en el background y guardarlo en el caché del servidor
-        public async void LoadProductsTask()
+        public async Task LoadProductsTask()
         {
-            List<Categoria> listaCategorias;
-            List<Producto> listaProductos;
-            List<ProductoCategoria> listaProductosCategorias;
+            Console.WriteLine("Entra el Task");
             ProductosForIndex2VM listasListaProductos;
 
             if (!_memoryCache.TryGetValue("ProductosForIndex2", out listasListaProductos))
             {
-                Thread.Sleep(5000);
-                listaCategorias = _categoriasService.GetCategoriasSync();
-                listaProductos = _productosService.GetProductosSync();
-                listaProductosCategorias = _productoCategoriasService.GetProductosCategoriasSync();
-                listasListaProductos = await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
-                _memoryCache.Set("Categorias", listaCategorias);
+                listasListaProductos = await _productosService.GetProductosForIndex2();
+                //_memoryCache.Set("Categorias", listaCategorias);
                 _memoryCache.Set("ProductosForIndex2", listasListaProductos);
+                Console.WriteLine("Productos cargados en background");
+            }
+            else
+            {
+                Console.WriteLine("Productos ya estaban en caché");
             }
         }
     }

@@ -17,6 +17,6 @@ namespace Heldu.Logic.Interfaces
         public Task<string> GetCityAndRegionFromIP();
         public Task<string> GetPostalCodeFromIP();
         public Task<string> GetCityFromPostalCode(string postalCode);
-        public void LoadProductsTask();
+        public Task LoadProductsTask();
     }
 }

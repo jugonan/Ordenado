@@ -30,15 +30,6 @@ namespace Heldu.Logic.Services
                             .ThenInclude(a => a.Vendedor)
                             .ToListAsync();
         }
-        public List<Producto> GetProductosSync()
-        {
-            return _context.Producto
-                            .Include(p => p.ProductoCategoria)
-                            .ThenInclude(a => a.Categoria)
-                            .Include(p => p.ProductoVendedor)
-                            .ThenInclude(a => a.Vendedor)
-                            .ToList();
-        }
         public async Task<Producto> GetProductoById(int? id)
         {
             return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
@@ -151,6 +142,38 @@ namespace Heldu.Logic.Services
         //Método que devuelve n listas de Productos por Categoria.
         public async Task<ProductosForIndex2VM> GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias)
         {
+            List<OpcionProducto> opcionesProductos = await _context.OpcionProducto.ToListAsync();
+            ProductosForIndex2VM listasProductosForIndex2 = new ProductosForIndex2VM();
+            listasProductosForIndex2.ListasProductos = new List<List<ProductoPrimeraOpcionProductoVM>>();
+
+            foreach (Categoria categoria in listaCategorias)
+            {
+                List<ProductoPrimeraOpcionProductoVM> newListaProducto = new List<ProductoPrimeraOpcionProductoVM>();
+                foreach (ProductoCategoria productoCategoria in listaProductosCategorias)
+                {
+                    if (productoCategoria.CategoriaId == categoria.Id)
+                    {
+                        OpcionProducto opcion = opcionesProductos.Where(m => m.ProductoId == productoCategoria.ProductoId).FirstOrDefault();
+                        ProductoPrimeraOpcionProductoVM productoConOpcion = new ProductoPrimeraOpcionProductoVM()
+                        {
+                            producto = productoCategoria.Producto,
+                            opcionProducto = opcion
+                        };
+                        newListaProducto.Add(productoConOpcion);
+                    }
+
+                }
+                listasProductosForIndex2.ListasProductos.Add(newListaProducto);
+            }
+            return listasProductosForIndex2;
+        }
+        public async Task<ProductosForIndex2VM> GetProductosForIndex2()
+        {
+            
+            List<ProductoCategoria> listaProductosCategorias = await _context.ProductoCategoria.ToListAsync();
+            List<Producto> listaProductos = await GetProductos();
+            List<Categoria> listaCategorias = await _context.Categoria.ToListAsync();
+
             ProductosForIndex2VM listasProductosForIndex2 = new ProductosForIndex2VM();
             listasProductosForIndex2.ListasProductos = new List<List<ProductoPrimeraOpcionProductoVM>>();
 
@@ -175,6 +198,7 @@ namespace Heldu.Logic.Services
             }
             return listasProductosForIndex2;
         }
+
         public async Task<byte[]> AgregarImagenesBlob(List<IFormFile> ImagenProducto)
         {
             byte[] toAdd = new byte[] { };

@@ -114,8 +114,20 @@ namespace DEFINITIVO.Controllers
                 _memoryCache.Set("Categorias", listaCategorias);
                 _memoryCache.Set("ProductosForIndex2", listasListaProductos);
             }
-            listasListaProductos = _memoryCache.Get("ProductosForIndex2") as ProductosForIndex2VM;
-            listaCategorias = _memoryCache.Get("Categorias") as List<Categoria>;
+            else
+            {
+                listasListaProductos = _memoryCache.Get("ProductosForIndex2") as ProductosForIndex2VM;
+            }
+
+            if (!_memoryCache.TryGetValue("Categorias", out listaCategorias))
+            {
+                listaCategorias = await _categoriasService.GetCategorias();
+                _memoryCache.Set("Categorias", listaCategorias);
+            }
+            else
+            {
+                listaCategorias = _memoryCache.Get("Categorias") as List<Categoria>;
+            }
 
             ViewData["Categorias"] = listaCategorias;
             stopwatch.Stop();
@@ -288,7 +300,7 @@ namespace DEFINITIVO.Controllers
             return View(producto);
         }
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
