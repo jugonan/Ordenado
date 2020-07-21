@@ -140,7 +140,7 @@ namespace Heldu.Logic.Services
             return productos;
         }
         //Método que devuelve n listas de Productos por Categoria.
-        public async Task<ProductosForIndex2VM> GetProductosForIndex2(List<Categoria> listaCategorias, List<Producto> listaProductos, List<ProductoCategoria> listaProductosCategorias)
+        public async Task<ProductosForIndex2VM> GetProductosForIndex2(List<Categoria> listaCategorias, List<ProductoCategoria> listaProductosCategorias)
         {
             List<OpcionProducto> opcionesProductos = await _context.OpcionProducto.ToListAsync();
             ProductosForIndex2VM listasProductosForIndex2 = new ProductosForIndex2VM();
@@ -161,7 +161,6 @@ namespace Heldu.Logic.Services
                         };
                         newListaProducto.Add(productoConOpcion);
                     }
-
                 }
                 listasProductosForIndex2.ListasProductos.Add(newListaProducto);
             }

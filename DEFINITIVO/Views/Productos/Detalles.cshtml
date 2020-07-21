@@ -131,19 +131,19 @@
                 </div>
                 <div class="precios-producto-detalles">
                     <div>
-                        <p class="descuento-opciones">&#8595; <span id="descuento"></span> &#37;</p>
+                        <p class="descuento-opciones">&#8595; <span id="descuento">0</span> &#37;</p>
                     </div>
                     <div class="precio-inicial-opciones">
-                        <p id="precioInicialProducto">  </p>
+                        <p id="precioInicialProducto"> 0 </p>
                         <p> &#8364 </p>
                     </div>
                     <div class="precio-final-opciones">
-                        <p id="precioFinalProducto">  </p>
+                        <p id="precioFinalProducto"> 0 </p>
                         <p> &#8364 </p>
                     </div>
                 </div>
                 <div class="div-boton-comprar">
-                    <a class="btn boton-comprar-producto" onclick="this.disabled=true" asp-controller="Checkout" asp-action="Confirmar" asp-route-id="@Model.producto.Id">Comprar</a>
+                    <a class="btn boton-comprar-producto" id="btnComprar" disabled="true" asp-controller="Checkout" asp-action="Confirmar" asp-route-id="@Model.producto.Id">Comprar</a>
                     @* Envío la opción elegida al controlador. el "Value" se coloca desde JS *@
                     <input type="hidden" name="opcionElegida" id="opcionElegida" value="1" />
                 </div>

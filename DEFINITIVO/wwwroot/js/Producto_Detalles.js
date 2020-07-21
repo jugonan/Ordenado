@@ -18,7 +18,8 @@ let imagenesCarousel,
     precioInicialProducto,
     precioFinalProducto,
     descuento,
-    opcionElegida;
+    opcionElegida,
+    btnComprar;
 
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -49,6 +50,8 @@ function llenarVariables() {
     precioFinalOpcion1 = document.getElementById('precioFinalOpcion1');
     precioInicialProducto = document.getElementById('precioInicialProducto');
     precioFinalProducto = document.getElementById('precioFinalProducto');
+    btnComprar = document.getElementById('btnComprar');
+    btnComprar.disabled = true;
 
     if (cantOpciones > 1) {
         radio2 = document.getElementById('opcion-producto-2');
@@ -84,24 +87,24 @@ function addEvents() {
     }
 
     radio1.addEventListener('click', function () {
-        console.log(precioInicialOpcion1.value);
-        console.log(precioFinalOpcion1.value);
+        btnComprar.disabled = false;
         mostrarprecios(precioInicialOpcion1.value, precioFinalOpcion1.value, 1);
     });
     if (radio2 != null) {
         radio2.addEventListener('click', function () {
             mostrarprecios(precioInicialOpcion2.value, precioFinalOpcion2.value, 2);
-            console.log(precioInicialOpcion2.value);
-            console.log(precioFinalOpcion2.value);
+            btnComprar.disabled = false;
         });
     }
     if (radio3 != null) {
         radio3.addEventListener('click', function () {
             mostrarprecios(precioInicialOpcion3.value, precioFinalOpcion3.value, 3);
-            console.log(precioInicialOpcion3.value);
-            console.log(precioFinalOpcion3.value);
+            btnComprar.disabled = false;
         });
     }
+    btnComprar.addEventListener('click', function () {
+        this.disabled = true;
+    })
 }
 
 function ocultarTodasCondiciones() {

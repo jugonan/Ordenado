@@ -101,16 +101,14 @@ namespace DEFINITIVO.Controllers
             stopwatch.Start();
 
             List<Categoria> listaCategorias;
-            List<Producto> listaProductos;
             List<ProductoCategoria> listaProductosCategorias;
             ProductosForIndex2VM listasListaProductos;
 
             if (!_memoryCache.TryGetValue("ProductosForIndex2", out listasListaProductos))
             {
                 listaCategorias = await _categoriasService.GetCategorias();
-                listaProductos = await _productosService.GetProductos();
                 listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
-                listasListaProductos = await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
+                listasListaProductos = await _productosService.GetProductosForIndex2(listaCategorias, listaProductosCategorias);
                 _memoryCache.Set("Categorias", listaCategorias);
                 _memoryCache.Set("ProductosForIndex2", listasListaProductos);
             }

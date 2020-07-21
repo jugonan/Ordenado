@@ -498,4 +498,7 @@ a {
         width: 100% !important;
     }
 
+    a.disabled{
+        cursor:not-allowed;
+    }
 }
