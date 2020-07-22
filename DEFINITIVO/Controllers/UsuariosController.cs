@@ -294,24 +294,9 @@ namespace DEFINITIVO.Controllers
             return View(await _usuariosService.GestionarUsuarios());
         }
 
-        public IActionResult LeerPDF()
+        public IActionResult MiDarde()
         {
-            string pathImage = @"/Users/jonanderfidalgo/Desktop";
-            string text = " ";
-            try
-            {
-                using var engine = new TesseractEngine(@"./tessdata", "eng", EngineMode.Default);
-                using var img = Pix.LoadFromFile(pathImage);
-                using var page = engine.Process(img);
-                text = page.GetText();
-            }
-            catch (Exception excp)
-            {
-                Console.WriteLine(excp.Message);
-            }
-            Console.WriteLine(text);
-            Console.ReadLine();
-            return View(text);
+            return View();
         }
 
         public async Task<IActionResult> GetDarde()
