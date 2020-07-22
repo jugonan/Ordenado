@@ -1,22 +1,23 @@
 ﻿/* Creo el objeto de condición con todas las varibles como nulas para después añadirle
  * los arreglos con valores en su Value */
 let condicion;
-let clicksHorarios = 0;
-let clicksReservas = 0;
-let clicksEntregas = 0;
-let clicksRecogidas = 0;
+let clicksDescripciones = 0;
 let clicksCondiciones = 0;
 let crearProductoBTN;
 let anclasClickUsuario;
 let condicionesProducto;
 let ulCondiciones;
+let botonAddCondicion;
+let botonDeleteCondicion;
+let botonDescripcion;
+let botonDescripcionEliminar
 
 
 /* Primer evento para ejecutar toda la carga del JS cuando la página está cargada */
 window.addEventListener('DOMContentLoaded', function () {
     /* Estas funciones se ejecutan en Productos/Create */
-    /* Declaro el UL sobre el que crearé el resto de condiciones */
-    ulCondiciones = document.getElementById('lista-condiciones');
+/* Declaro el UL sobre el que crearé el resto de condiciones */
+    llenarVariables();
     unableEnterKey();
     obtenerTitulo();
     obtenerDescripcion();
@@ -26,8 +27,8 @@ window.addEventListener('DOMContentLoaded', function () {
     obtenerImagen3();
     obtenerCondiciones();
     enableAnclasOpciones();
-    /*crearProductoBTN = document.getElementById('boton-crear-producto');
-    crearProductoBTN.addEventListener('click', crearVM);*/
+    crearProductoBTN = document.getElementById('boton-crear-producto');
+    crearProductoBTN.addEventListener('click', crearVM);
 
 });
 
@@ -48,21 +49,39 @@ function obtenerTitulo() {
     });
 }
 
+function llenarVariables() {
+    ulCondiciones = document.getElementById('lista-condiciones');
+    botonAddCondicion = document.getElementById('condicion-introducidaBtn');
+    botonDeleteCondicion = document.getElementById('condicion-introducida-borrar');
+    botonDescripcion = document.getElementById('descripcion-introducidaBtn');
+    botonDescripcionEliminar = document.getElementById('descripcion-introducida-borrar');
+}
+
 function obtenerDescripcion() {
-    let botonDescripcion = document.getElementById('descripcion-introducidaBtn');
+    comprobarClicksDescripcion();
     botonDescripcion.addEventListener('click', function () {
+        clicksDescripciones++;
+        comprobarClicksDescripcion();
         let descripcionIntroducida = document.getElementById('descripcion-introducida');
         let descripcionDemo = document.getElementById('descripcion-demo');
         descripcionDemo.innerText = descripcionIntroducida.value;
         descripcionIntroducida.value = '';
     });
-    let botonDescripcionEliminar = document.getElementById('descripcion-introducida-borrar');
     botonDescripcionEliminar.addEventListener('click', function () {
-
+        clicksDescripciones--;
+        comprobarClicksDescripcion();
         let descripcionDemo = document.getElementById('descripcion-demo');
         descripcionDemo.innerText = '';
     })
+}
 
+function comprobarClicksDescripcion() {
+    if (clicksDescripciones === 0) {
+        botonDescripcionEliminar.disabled = true;
+    }
+    else {
+        botonDescripcionEliminar.disabled = false;
+    }
 }
 
 function obtenerFecha() {
@@ -117,25 +136,6 @@ function obtenerImagen3() {
         thumbnail[2].src = Blob;
         imagenes[1].classList.remove('active');
         imagenes[2].classList.add('active');
-    }
-}
-
-function obtenerCondiciones() {
-    let botonAddCondicion = document.getElementById('condicion-introducidaBtn');
-    let botonDeleteCondicion = document.getElementById('condicion-introducida-borrar');
-    botonAddCondicion.addEventListener('click', addCondicion);
-}
-
-function addCondicion() {
-    clicksCondiciones++;
-    if (clicksCondiciones < 11) {
-        let condicion = document.getElementById('condiciones-introducidas').value;
-        let li = document.createElement('li');
-        li.innerHTML = condicion;
-        ulCondiciones.appendChild(li);
-    }
-    else {
-        crearModal();
     }
 }
 
@@ -245,6 +245,59 @@ function ocultarTodasCondiciones() {
     }
 }
 
-function crearModal() {
+function obtenerCondiciones() {
+    reviewClicks();
+    botonAddCondicion.addEventListener('click', addCondicion);
+    botonDeleteCondicion.addEventListener('click', deleteCodicion);
+}
+
+function addCondicion() {
+    clicksCondiciones++;
+    reviewClicks();
+    if (clicksCondiciones < 8) {
+        let inputCondicion = document.getElementById('condiciones-introducidas');
+        let condicion = inputCondicion.value;
+        let li = document.createElement('li');
+        li.className = 'lista-condiciones';
+        li.innerHTML = condicion;
+        ulCondiciones.appendChild(li);
+        inputCondicion.value = '';
+    }
+    else {
+        showModal();
+    }
+}
+
+function deleteCodicion() {
+    clicksCondiciones--;
+    ulCondiciones.removeChild(ulCondiciones.lastChild);
+    reviewClicks();
+}
+
+function reviewClicks() {
+    if (clicksCondiciones === 0) {
+        botonDeleteCondicion.disabled = true;
+    }
+    else {
+        botonDeleteCondicion.disabled = false;
+    }
+}
+
+function showModal() {
+    $('#myModal').modal('show');
+}
+
+function crearVM() {
+    let descripcionIntroducida = document.getElementById('descripcion-introducida');
+    let descripcionDemo = document.getElementById('descripcion-demo');
+    descripcionIntroducida.value = descripcionDemo.innerText;
+    let listas = document.getElementsByClassName('lista-condiciones');
+    let condiciones = [];
+    for (let i = 0; i < listas.length; i++) {
+        condiciones.push(listas[i].innerText);
+    }
+    let condicionesSend = JSON.stringify(condiciones);
+    let sender = document.getElementById('condiciones-sender');
+    sender.value = condicionesSend;
 }
 
