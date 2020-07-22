@@ -21,8 +21,6 @@ namespace Heldu.Entities.Models
         [DataType(DataType.Date)]
         public DateTime FechaAltaProducto { get; set; }
 
-
-
         public string LimiteProducto { get; set; }
 
         [Display(Name = "Estado")]

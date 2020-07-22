@@ -147,11 +147,16 @@ button p{
     }
     #boton-google{
         height: 11vw !important;
+        opacity: 1;
     }
     #boton-facebook {
         height: 11vw !important;
+        opacity: 1;
     }
     .imagenes-el {
         width: 7vw;
+    }
+    .barra-hr-el {
+        display: none;
     }
 }
