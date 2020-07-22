@@ -10,13 +10,4 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Heldu.Database\Heldu.Database.csproj" />
-    <ProjectReference Include="..\Heldu.Entities\Heldu.Entities.csproj" />
-    <ProjectReference Include="..\Heldu.Logic\Heldu.Logic.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-  </ItemGroup>
-
-
 </Project>

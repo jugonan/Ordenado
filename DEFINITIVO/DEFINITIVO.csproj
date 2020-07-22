@@ -132,7 +132,6 @@
     <Content Remove="wwwroot\css\Vendedor_Create.css" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\API\API.csproj" />
     <ProjectReference Include="..\Heldu.Entities\Heldu.Entities.csproj" />
     <ProjectReference Include="..\Heldu.Logic\Heldu.Logic.csproj" />
     <ProjectReference Include="..\Heldu.Database\Heldu.Database.csproj">

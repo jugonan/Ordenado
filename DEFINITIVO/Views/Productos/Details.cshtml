@@ -1,0 +1,244 @@
+@model Heldu.Entities.Models.Producto
+@using Microsoft.AspNetCore.Identity
+@using Heldu.Logic.Interfaces
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject IHelperService HelperService
+@inject IVendedoresService VendedoresService
+@inject IUsuariosService UsuariosService
+@inject IReviewsService ReviewsService
+@{
+    ViewData["Title"] = "Detalles";
+    Vendedor vendedor = await VendedoresService.ObtenerVendedorDesdeProducto(Model.Id);
+    IdentityUser activeUser = await UserManager.GetUserAsync(User);
+    Usuario usuario = new Usuario();
+    if (User.IsInRole("cliente"))
+    {
+        usuario = await UsuariosService.GetUsuarioByActiveIdentityUser(activeUser.Id);
+    }
+    else
+    {
+        usuario = null;
+    }
+    List<Review> reviews = await ReviewsService.ObtenerReviewsByProductoId(Model.Id);
+    int totalComentarios = ReviewsService.CantidadComentariosByReviewList(reviews);
+    int valoracionMedia = await ReviewsService.ObtenerValoracionMediaByProductoId(Model.Id);
+}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/css/Producto_Details.css" rel="stylesheet" type="text/css">
+
+
+<div class="card">
+    <div class="container-fliud">
+        <div class="wrapper row">
+            <div class="preview col-md-7">
+                <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div title="1" class="carousel-item active">
+                            <img src="~/Productos/GetImage1/@Model.Id" class="d-block w-100" alt="Imagen número 1 del producto">
+                        </div>
+                        @*@if (Model.ImagenesProducto.Imagen2 != null)*@
+
+                        <div title="2" class="carousel-item">
+                            <img src="~/Productos/GetImage2/@Model.Id" class="d-block w-100" alt="Imagen número 2 del producto">
+                        </div>
+
+                        @*@if (Model.ImagenesProducto.Imagen3 != null)*@
+
+                        <div title="3" class="carousel-item">
+                            <img src="~/Productos/GetImage3/@Model.Id" class="d-block w-100" alt="Imagen número 3 del producto">
+                        </div>
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="row" id="div-de-thumbNails">
+                    <img title="1" src="~/Productos/GetImage1/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 1 del producto" class="img-thumbnail-carousel">
+
+                    @*@if (Model.ImagenesProducto.Imagen2 != null)*@
+                    <img title="2" src="~/Productos/GetImage2/@Model.Id" style="width:150px; height:150px;" alt="Imagen número 2 del producto" class="img-thumbnail-carousel">
+
+                    @*@if (Model.ImagenesProducto.Imagen3 != null)*@
+
+                    <img title="3" src="~/Productos/GetImage3/@Model.Id" onerror="this.onerror = null; this.class = 'd-none'"; style="width:150px; height:150px;" alt="Imagen número 3 del producto" class="img-thumbnail-carousel">
+
+                </div>
+                <div>
+                    <h5>El producto</h5>
+                    <p>@Model.Descripcion</p>
+                </div>
+                <div style="align-self:center; margin-bottom:5%;">
+                    <h5>Condiciones</h5>
+                    <p><strong>Fecha de validez: </strong>@Model.FechaValidez</p><br />
+                </div>
+                <!-- Div que incluye todos los comentarios existentes-->
+                @foreach (Review review in reviews)
+                {
+                    <div>
+                        <div class="row">
+                            <div class="col-2">
+                                <img style="width:60%; border-radius:50%;" class="img-responsive user-photo" src="data:image/png;base64,@System.Convert.ToBase64String(review.Usuario.FotoUsuario)">
+                            </div>
+                            <div class="col-3">
+                                <h6>@review.Usuario.NombreUsuario</h6>
+                                <p>Miembro desde: 01/01/2020</p>
+                            </div>
+                        </div>
+                        <div class="row" style="justify-content:start;">
+                            <div title="@review.Valoracion" class="stars-comentarios col-3">
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <div class="col-4">
+                                <p>@review.Fecha</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>@review.Comentario</p>
+                        </div>
+                    </div>
+                }
+                @if (reviews.Count == 0)
+                {
+                    <div>
+                        <h4>Aún no hay comentarios. ¡Sé el primero!</h4>
+                    </div>
+                }
+                <div class='container'>
+                    <div class="row media comment-box">
+                        @if (usuario != null)
+                        {
+                            <div class="media-left col-3">
+                                <a href="#">
+                                    <img style="width:80%" class="img-responsive user-photo" src="data:image/png;base64,@System.Convert.ToBase64String(usuario.FotoUsuario)">
+                                </a>
+                            </div>
+                            <div class="media-body col-9">
+                                <h4 class="media-heading">@usuario.NombreUsuario</h4>
+                                <div>
+                                    <p>¿Has probado este producto?</p>
+                                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Añadir comentario</button>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="media-left col-3">
+                                <a href="#">
+                                    <img style="width:80%" class="img-responsive user-photo" src="~/img/default-user.jpg">
+                                </a>
+                            </div>
+                            <div class="media-body col-9">
+                                <div>
+                                    <p>Sólo los usuarios registrados pueden dejar comentarios</p>
+                                    <button type="button" disabled class="btn btn-outline-info" data-toggle="modal" data-target=".bd-example-modal-lg">Añadir comentario</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="details col-md-5">
+                <div>
+                    <h6>@vendedor.NombreDeEmpresa</h6>
+                    <div class="rating row">
+                        <div class="col-4">
+                            <p>(nº de visitas)</p>
+                        </div>
+                        @if (valoracionMedia != 0)
+                        {
+                            <div title="@valoracionMedia" class="stars-fijas col-8">
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <p>@totalComentarios reviews</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="stars-fijas col-8">
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <p>0 reviews</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <h4 style="text-transform:capitalize" id="activeProductTitle">@Model.Titulo</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 offset-6">
+                            <div>
+                                <div class="row">
+                                    <div class="col-6" style="display:flex;">
+                                        <h4><strike>&#8364<span id="precio-inicial">@Model.Precio</span></strike></h4>
+                                    </div>
+                                    <div class="col-6" style="display:flex;">
+                                        <h4 style="color: green;"><strong>&#8364<span id="precio-final">@Model.PrecioFinal</span></strong></h4>
+                                    </div>
+                                </div>
+                                <p id="resultado-descuento"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:grid">
+                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-carrito" class="btn btn-outline-success">Comprar producto</a>
+                        <a href="#" style="margin: 2% 0%" name="@Model.Id" id="boton-agregar-favorito" class="btn btn-outline-warning">Añadir a mi lista de favoritos<img style="width:6%; margin-left: 4%;" id="imagen-favorito" class="d-none" /></a>
+                        <label id="reportarProblema" for="showForm">Reportar un problema</label>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PARA AÑADIR COMENTARIOS-->
+@if (usuario != null)
+{
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="background: white;">
+            <p>¿Qué te ha parecido el producto?</p>
+            <div class="modal-content" style="display:flex; flex-direction:row;" id="div-estrellas-modal">
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            </div>
+            <div class="modal-content">
+                <form method="post" asp-action="CrearReview" asp-route-ProductoId="@Model.Id" asp-route-UsuarioId="@usuario.IdentityUserId">
+                    <input type="text" placeholder="Añada su comentario" name="ComentarioUsuario" asp-action="CrearReview" rows="6" style="width:100%" />
+                    <input class="d-none" name="valoracionUsuario" type="text" id="incluir-valoracion" asp-action="CrearReview" />
+                    <input type="submit" value="Enviar comentario" />
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@if (User.IsInRole("admin"))
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index2">Volver</a>
+    </div>
+}
+<script defer src="~/js/Producto_Details.js"></script>

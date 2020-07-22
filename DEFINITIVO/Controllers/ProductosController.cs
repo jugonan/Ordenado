@@ -170,8 +170,11 @@ namespace DEFINITIVO.Controllers
         [Authorize(Roles = "admin,vendedor")]
         public async Task<IActionResult> Create()
         {
+            string idUsuario = _userManager.GetUserId(User);
+            ViewData["VendedorActivo"] = await _vendedoresService.GetVendedorByIdentityUserId(idUsuario);
             ViewData["NombreCategoria"] = new SelectList(await _categoriasService.GetCategorias(), "Id", "Nombre");
             return View();
+            //Nuevo
         }
 
         [HttpPost]

@@ -15,7 +15,7 @@ ul {
 
 h2 {
     font-size: 3vw;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 h6 {
@@ -273,8 +273,6 @@ a {
     background-color: white;
 }
 
-
-
 /* CSS para Checkout/Confirmar */
 
 #checkoutTitle {
@@ -437,9 +435,6 @@ a {
         align-items: center;
         width: 20%;
         font-size: 2vw;
-    }
-    .navegador-condiciones-productos {
-
     }
     .anclas-opciones {
         font-size: 3vw;

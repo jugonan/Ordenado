@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DEFINITIVO", "DEFINITIVO\DEFINITIVO.csproj", "{36FF59A8-245A-4A9C-93F0-FE6F0CB13B2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEFINITIVO", "DEFINITIVO\DEFINITIVO.csproj", "{36FF59A8-245A-4A9C-93F0-FE6F0CB13B2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Entities", "0.Entities", "{8EF6C7F9-2FE9-45E0-A1EF-7E733BFF1FB5}"
 EndProject
@@ -12,11 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Logic", "2.Logic", "{45E7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Database", "1.Database", "{21D84535-D297-4A61-8663-BFFA9B819D0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heldu.Database", "Heldu.Database\Heldu.Database.csproj", "{CBD57594-EBE0-40DF-991A-7D3BD1085935}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heldu.Database", "Heldu.Database\Heldu.Database.csproj", "{CBD57594-EBE0-40DF-991A-7D3BD1085935}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heldu.Entities", "Heldu.Entities\Heldu.Entities.csproj", "{D3F34F3F-FA2B-4299-8590-D863F3EE6181}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heldu.Entities", "Heldu.Entities\Heldu.Entities.csproj", "{D3F34F3F-FA2B-4299-8590-D863F3EE6181}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heldu.Logic", "Heldu.Logic\Heldu.Logic.csproj", "{0D5535DF-51E6-4C3F-9F3A-32F3375D5FED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heldu.Logic", "Heldu.Logic\Heldu.Logic.csproj", "{0D5535DF-51E6-4C3F-9F3A-32F3375D5FED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{2CED72C2-FB28-4D08-A2FB-22CA10F69E37}"
 EndProject
@@ -43,7 +43,6 @@ Global
 		{0D5535DF-51E6-4C3F-9F3A-32F3375D5FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D5535DF-51E6-4C3F-9F3A-32F3375D5FED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2CED72C2-FB28-4D08-A2FB-22CA10F69E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CED72C2-FB28-4D08-A2FB-22CA10F69E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CED72C2-FB28-4D08-A2FB-22CA10F69E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CED72C2-FB28-4D08-A2FB-22CA10F69E37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
