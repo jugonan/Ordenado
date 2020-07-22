@@ -47,26 +47,6 @@ namespace Heldu.Logic.Services
         {
             return _context.UbicacionVendedor.Any(e => e.Id == id);
         }
-        public VendedorUbicacionVM CrearVendedorUbicacionVM(Vendedor vendedor, UbicacionVendedor ubicacionVendedor)
-        {
-            VendedorUbicacionVM vendedorUbicacionVM = new VendedorUbicacionVM()
-            {
-                VendedorId = vendedor.Id,
-                NombreDeEmpresa = vendedor.NombreDeEmpresa,
-                Paginaweb = vendedor.Paginaweb,
-                Telefono = vendedor.Telefono,
-                DescripcionEmpresa = vendedor.DescripcionEmpresa,
-                IdentityUserId = vendedor.IdentityUserId,
-                Pais = ubicacionVendedor.Pais,
-                CCAA = ubicacionVendedor.CCAA,
-                Provincia = ubicacionVendedor.Provincia,
-                Poblacion = ubicacionVendedor.Poblacion,
-                CP = ubicacionVendedor.CP,
-                Calle = ubicacionVendedor.Calle,
-                Numero = ubicacionVendedor.Numero,
-                Letra = ubicacionVendedor.Letra
-            };
-            return vendedorUbicacionVM;
-        }
+        
     }
 }

@@ -22,39 +22,39 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CIF" class="control-label">¿Cuál es el nombre de la empresa?</label>
-                <input asp-for="CIF" class="form-control" />
-                <span asp-validation-for="CIF" class="text-danger"></span>
+                <label asp-for="vendedor.CIF" class="control-label">¿Cuál es el nombre de la empresa?</label>
+                <input asp-for="vendedor.CIF" class="form-control" />
+                <span asp-validation-for="vendedor.CIF" class="text-danger"></span>
             </div>             
             <div class="form-group">
-                <label asp-for="NombreDeEmpresa" class="control-label">¿Cuál es el nombre de la empresa?</label>
-                <input asp-for="NombreDeEmpresa" class="form-control" />
-                <span asp-validation-for="NombreDeEmpresa" class="text-danger"></span>
+                <label asp-for="vendedor.NombreDeEmpresa" class="control-label">¿Cuál es el nombre de la empresa?</label>
+                <input asp-for="vendedor.NombreDeEmpresa" class="form-control" />
+                <span asp-validation-for="vendedor.NombreDeEmpresa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IBAN" class="control-label">¿Cuál es el nombre de la empresa?</label>
-                <input asp-for="IBAN" id="inputIBAN" class="form-control" required />
-                <span asp-validation-for="IBAN" id="spanIBAN" class="text-danger"></span>
+                <label asp-for="vendedor.IBAN" class="control-label">¿Cuál es el nombre de la empresa?</label>
+                <input asp-for="vendedor.IBAN" id="inputIBAN" class="form-control" required />
+                <span asp-validation-for="vendedor.IBAN" id="spanIBAN" class="text-danger"></span>
                 <span><button class="btn btn-primary" disabled id="btnValidar">Validar IBAN</button></span>
             </div>            
             <div class="d-none">
-                <label asp-for="Pais" class="control-label"></label>
-                <input type="text" asp-for="Pais" class="form-control" />
-                <span asp-validation-for="Pais" class="text-danger"></span>
+                <label asp-for="ubicacion.Pais" class="control-label"></label>
+                <input type="text" asp-for="ubicacion.Pais" class="form-control" />
+                <span asp-validation-for="ubicacion.Pais" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="col-3">
-                    <label asp-for="CP" class="control-label">Código Postal*</label>
-                    <input id="codigoPostal" type="text" minlength="5" maxlength="5" asp-for="CP" class="form-control" />
-                    <span asp-validation-for="CP" class="text-danger"></span>
+                    <label asp-for="ubicacion.CP" class="control-label">Código Postal*</label>
+                    <input id="codigoPostal" type="text" minlength="5" maxlength="5" asp-for="ubicacion.CP" class="form-control" />
+                    <span asp-validation-for="ubicacion.CP" class="text-danger"></span>
                 </div>
                 <div class="col-3">
-                    <label asp-for="CCAA" class="control-label">CCAA*</label>
-                    <input id="comunidadAutonoma" type="text" asp-for="CCAA" class="form-control" />
-                    <span asp-validation-for="CCAA" class="text-danger"></span>
+                    <label asp-for="ubicacion.CCAA" class="control-label">CCAA*</label>
+                    <input id="comunidadAutonoma" type="text" asp-for="ubicacion.CCAA" class="form-control" />
+                    <span asp-validation-for="ubicacion.CCAA" class="text-danger"></span>
                 </div>
                 <div class="col-6">
-                    <select id="poblacion" asp-for="Poblacion" class="form-control col-6"></select>
+                    <select id="poblacion" asp-for="ubicacion.Poblacion" class="form-control col-6"></select>
                     @*<label asp-for="Ciudad" class="control-label">Ciudad*</label>
             <input asp-for="Ciudad" class="form-control" />
             <span asp-validation-for="Ciudad" class="text-danger"></span>*@
@@ -62,30 +62,30 @@
             </div>
             <div class="row">
                 <div class="col-8">
-                    <label asp-for="Calle" class="control-label">Dirección de la calle*</label>
-                    <input placeholder="ej: Avenida Urquijo 33" asp-for="Calle" class="form-control" />
-                    <span asp-validation-for="Calle" class="text-danger"></span>
+                    <label asp-for="ubicacion.Calle" class="control-label">Dirección de la calle*</label>
+                    <input placeholder="ej: Avenida Urquijo" asp-for="ubicacion.Calle" class="form-control" />
+                    <span asp-validation-for="ubicacion.Calle" class="text-danger"></span>
                 </div>
                 <div class="col-2">
-                    <label asp-for="Numero" class="control-label">Nº</label>
-                    <input asp-for="Numero" class="form-control" />
-                    <span asp-validation-for="Numero" class="text-danger"></span>
+                    <label asp-for="ubicacion.Numero" class="control-label">Nº</label>
+                    <input asp-for="ubicacion.Numero" placeholder="3134" class="form-control" />
+                    <span asp-validation-for="ubicacion.Numero" class="text-danger"></span>
                 </div>
                 <div class="col-2">
-                    <label asp-for="Letra" class="control-label"></label>
-                    <input placeholder="A,B." asp-for="Letra" class="form-control" />
-                    <span asp-validation-for="Letra" class="text-danger"></span>
+                    <label asp-for="ubicacion.Letra" class="control-label"></label>
+                    <input placeholder="A,B." asp-for="ubicacion.Letra" class="form-control" />
+                    <span asp-validation-for="ubicacion.Letra" class="text-danger"></span>
                 </div>
             </div>
             <div>
-                <label asp-for="Telefono" class="control-label">Teléfono de contacto</label>
-                <input type="text" minlength="9" maxlength="9" asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
+                <label asp-for="vendedor.Telefono" class="control-label">Teléfono de contacto</label>
+                <input type="text" minlength="9" maxlength="9" asp-for="vendedor.Telefono" class="form-control" />
+                <span asp-validation-for="vendedor.Telefono" class="text-danger"></span>
             </div>
             <div>
-                <label asp-for="Paginaweb" class="control-label">Página web</label>
-                <input asp-for="Paginaweb" class="form-control" />
-                <span asp-validation-for="Paginaweb" class="text-danger"></span>
+                <label asp-for="vendedor.Paginaweb" class="control-label">Página web</label>
+                <input asp-for="vendedor.Paginaweb" class="form-control" />
+                <span asp-validation-for="vendedor.Paginaweb" class="text-danger"></span>
             </div>
             <br />
             <h4>Y para terminar, nos gustaría saber algo más acerca de ti</h4>
@@ -97,15 +97,15 @@
                 </i>
             </p>
             <div>
-                <label asp-for="DescripcionEmpresa" class="control-label">Descripción de empresa</label>
-                <input asp-for="DescripcionEmpresa" class="form-control" />
-                <span asp-validation-for="DescripcionEmpresa" class="text-danger"></span>
+                <label asp-for="vendedor.DescripcionEmpresa" class="control-label">Descripción de empresa</label>
+                <input asp-for="vendedor.DescripcionEmpresa" class="form-control" />
+                <span asp-validation-for="vendedor.DescripcionEmpresa" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="hidden" asp-for="IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
+                <input type="hidden" asp-for="vendedor.IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
             </div>            
             <div class="form-group">
-                <input type="hidden" asp-for="Fee" class="form-control" value="22" />
+                <input type="hidden" asp-for="vendedor.Fee" class="form-control" value="22" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

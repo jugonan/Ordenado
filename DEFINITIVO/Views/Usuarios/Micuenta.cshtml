@@ -4,26 +4,28 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@{ViewData["Title"] = "Confirmar"; }
+@{
+    ViewData["Title"] = "Mi Cuenta";
+}
 <!-- CSS Personalizado -->
 <link href="~/css/Usuarios_MiCuenta.css" rel="stylesheet" type="text/css">
 
 
 <div>
-    <div class="row titulo-datos" style="margin-top:10%;">
-        <a class="col-2 offset-7 ancla-editar" asp-action="Edit" asp-route-id="@Model.Id"><img alt="editar información" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
+    <div class="row titulo-datos" style="margin-top:7%;">
+        <a class="col-2 offset-9 ancla-editar" asp-action="Edit" asp-route-id="@Model.Id"><img alt="editar información" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
     </div>
     <div class="row">
         <partial name="_MiperfilPV" model="Model" />
-        <div class="col-7 offset-1 cuerpo-infor">
+        <div class="col-7 offset-1 mis-datos">
             <h3 class="col-6">Mis Datos</h3>
             <div class="row">
-                <div class="col-6 div-datos-usuario" justify-content:space-around;">
-                    <h5>Nombre</h5>
+                <div class="col-6 div-datos-usuario">
+                    <h5>Nombre(s)</h5>
                     <p class="texto-caja-perfil">@Model.Nombre</p>
                 </div>
                 <div class="col-6 div-datos-usuario" style="margin:0px; justify-content:space-around;">
-                    <h5>Apellido</h5>
+                    <h5>Apellido(s)</h5>
                     <p class="texto-caja-perfil">@Model.Apellido</p>
                 </div>
             </div>
@@ -38,15 +40,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-3 div-datos-usuario" justify-content:space-around;">
-                    <h5>Código postal</h5>
+                <div class="col-2 div-datos-usuario" justify-content:space-around;">
+                    <h5>C.P.</h5>
                     <p class="texto-caja-perfil">@Model.UbicacionUsuario.CP</p>
                 </div>
                 <div class="col-6 offset-1 div-datos-usuario" justify-content:space-around;">
                     <h5>Dirección</h5>
-                    <p class="texto-caja-perfil">Aquí irá la calle dónde vive</p>
+                    <p class="texto-caja-perfil">Biarritz Kalea</p>
                 </div>
-                <div class="col-1 offset-1 div-datos-usuario" justify-content:space-around;">
+                <div class="col-2 offset-1 div-datos-usuario" justify-content:space-around;">
                     <h5>Nº</h5>
                     <p class="texto-caja-perfil">72</p>
                 </div>

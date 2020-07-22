@@ -19,29 +19,36 @@
 }
 
 #imagen-usuario-pv {
- border-radius:50%;
- max-height:160px;
- padding-top: 2em;
+    border-radius: 50%;
+    max-height: 160px;
+    padding-top: 2em;
 }
 
 .botones-PV {
- width:50%;
- margin: 10px 0px;
+    width: 60%;
+    margin: 10px 0px;
 }
 
-.botones-PV a {
- background-color: #02A669;
- border-color: none;
- border: none;
- font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- color:white;
- width: 100%;
-}
+    .botones-PV a {
+        background-color: #02A669;
+        border-color: none;
+        border: none;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        width: 100%;
+        font-size:large;
+    }
 
-.botones-PV form {
-    justify-content: center;
-}
+    .botones-PV form {
+        justify-content: center;
+    }
 
 #menu-izquierda {
     text-align: -webkit-center;
+}
+
+#imagen-vendedor-pv {
+    border-radius: 5%;
+    max-height: 200px;
+    padding-top: 1em;
 }

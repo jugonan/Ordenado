@@ -3,26 +3,29 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Empresa";
+}
+<link href="~/css/Usuarios_MiPerfilPV.css" rel="stylesheet" type="text/css">
 
-<div class="col-3">
+<div class="col-3" id="menu-izquierda">
     <img id="imagen-vendedor-pv" src="https://image.flaticon.com/icons/svg/609/609752.svg" />
-    <h3>@Model.NombreDeEmpresa</h3>
     <br />
     <div class="botones-PV">
-        <a style="width:100%;" asp-action="Misproductos2" asp-route-id="@Model.Id" class="btn btn-warning">Productos</a>
+        <a asp-action="Miperfil" asp-route-id="@Model.Id" class="btn">Mi Perfil</a>
     </div>
     <div class="botones-PV">
-        <a style="width:100%;" asp-action="Estadisticas2" asp-route-id="@Model.Id" class="btn btn-warning">Estadísticas</a>
+        <a asp-action="Misproductos" asp-route-id="@Model.Id" class="btn">Productos</a>
     </div>
     <div class="botones-PV">
-        <a style="width:100%;" asp-action="Opiniones2" asp-route-id="@Model.Id" class="btn btn-warning">Opiniones</a>
+        <a asp-action="Estadisticas2" asp-route-id="@Model.Id" class="btn">Estadísticas</a>
     </div>
     <div class="botones-PV">
-        <a style="width:100%;" asp-action="Miperfil" asp-route-id="@Model.Id" class="btn btn-warning">Mi perfil</a>
+        <a asp-action="Opiniones2" asp-route-id="@Model.Id" class="btn">Opiniones</a>
     </div>
     <div class="botones-PV">
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="usuario-saliendo">
-            <button type="submit" class="btn boton-cerrar-sesion"><p>Salir</p></button>
+            <button type="submit" class="btn btn-danger">SALIR</button>
         </form>
     </div>
 </div>

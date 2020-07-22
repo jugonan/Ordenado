@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Heldu.Entities.Models
 {
@@ -7,6 +8,7 @@ namespace Heldu.Entities.Models
         public int Id { get; set; }
 
         [Display(Name = "País")]
+        [DefaultValue("España")]
         public string Pais { get; set; }
 
         [Display(Name = "Comunidad Autónoma")]

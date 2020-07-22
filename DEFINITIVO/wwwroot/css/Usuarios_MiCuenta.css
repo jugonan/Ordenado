@@ -18,20 +18,64 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.ancla-editar img{
+.ancla-editar img {
     width: 1.7vw;
     position: absolute;
-    right: 1vw;
+    right: 0.5vw;
+    top: 1rem;
+    z-index: 999;
 }
 
-.ancla-editar img:hover {
-    width: 2.3vw;
-    transition: width 0.3s linear;
+    .ancla-editar img:hover {
+        width: 2.3vw;
+        transition: width 0.3s linear;
+    }
+
+.div-datos-usuario {
+    justify-content: space-around;
 }
 
+    .div-datos-usuario p {
+        font-size: 1.6vw;
+        background-color: #A5ADB6;
+        margin: 0.8rem 0rem;
+        color: white;
+        padding: 0px 6px;
+    }
 
-.div-datos-usuario p {
-    font-size: 1.6vw;
-    background-color: #ffacac4f;
-    margin: 0px;
+.mis-datos {
+    background-color: #F7F6F2;
+    border-radius: 5%;
 }
+
+    .mis-datos h3 {
+        color: #F21B6D;
+        margin: 0px;
+        padding: 1rem 0rem;
+    }
+
+
+    /*vendedor*/
+
+.div-datos-vendedor {
+    justify-content: space-around;
+}
+
+    .div-datos-vendedor p {
+        font-size: 1.6vw;
+        background-color: #A5ADB6;
+        margin: 0.8rem 0rem;
+        color: white;
+        padding: 0px 6px;
+    }
+
+.datos-vendedor {
+    background-color: #F7F6F2;
+    border-radius: 5%;
+}
+
+    .datos-vendedor h3 {
+        color: #F21B6D;
+        margin: 0px;
+        padding: 1rem 0rem;
+    }

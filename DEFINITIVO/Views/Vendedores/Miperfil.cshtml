@@ -7,88 +7,92 @@
 @inject UserManager<IdentityUser> UserManager
 
 @{
+    IdentityUser user = await SignInManager.UserManager.GetUserAsync(User);
     VendedorUbicacionVM vendedorUbicacionVM = ViewBag.VendedorUbicacionVM;
+    ViewData["Title"] = "Mi Cuenta";
 }
-<link href="/css/Vendedores_MiPerfil.css" rel="stylesheet" type="text/css">
+<link href="~/css/Usuarios_MiCuenta.css" rel="stylesheet" type="text/css">
 
-<cache enabled="false">
 
-    <div style="padding-top:2vw">
-        <div class="row">
-            <h3 class="col-4 offset-4">Datos de empresa</h3>
-            <a class="col-3 ancla-editar" asp-action="Edit" asp-route-id="@Model.Id"><img src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
-        </div>
-        <div class="row">
-            <partial name="_MiperfilPV" model="Model" />
-            <div class="col-7 offset-1 cuadro-vendedor">
-                @*Cuadro blanco*@
-                <div class="row">
-                    <div class="col-4 div-datos-vendedor">
-                        <h5>Nombre de empresa</h5>
-                        <p class="texto-caja-perfil">@Model.NombreDeEmpresa</p>
-                    </div>
-                    <div class="col-4 div-datos-vendedor">
-                        <h5>Página web</h5>
-                        <p class="texto-caja-perfil">@Model.Paginaweb</p>
-                    </div>
-                    <div class="col-4 div-datos-vendedor">
-                        <h5>Teléfono</h5>
-                        <p class="texto-caja-perfil">@Model.Telefono</p>
-                    </div>
+<div>
+    <div class="row titulo-datos" style="margin-top:7%;">
+        <a class="col-2 offset-9 ancla-editar" asp-action="Edit" asp-route-id="@Model.Id"><img alt="editar información" src="https://image.flaticon.com/icons/svg/1159/1159633.svg" /></a>
+    </div>
+    <div class="row">
+        <partial name="_MiperfilPV" model="Model" />
+        <div class="col-8 offset-1 datos-vendedor">
+            <h3 class="col-6">Datos de Empresa</h3>
+            <div class="row">
+                <div class="col-6 div-datos-vendedor">
+                    <h5>Nombre de empresa</h5>
+                    <p class="texto-caja-perfil">@Model.NombreDeEmpresa</p>
                 </div>
-                <div class="row">
-                    <div class="col-3 div-datos-vendedor">
-                        <h5>País</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Pais</p>
-                    </div>
-                    <div class="col-3 div-datos-vendedor">
-                        <h5>Provincia</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Provincia</p>
-                    </div>
-                    <div class="col-3 div-datos-vendedor">
-                        <h5>Población</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Poblacion</p>
-                    </div>
-                    <div class="col-2 offset-1 div-datos-vendedor">
-                        <h5>CP</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.CP</p>
-                    </div>
+                <div class="col-6 div-datos-vendedor">
+                    <h5>Página web</h5>
+                    <p class="texto-caja-perfil">@Model.Paginaweb</p>
                 </div>
-                <div class="row">
-                    <div class="col-6 div-datos-vendedor">
-                        <h5>Calle</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Calle</p>
-                    </div>
-                    <div class="col-2 offset-1 div-datos-vendedor">
-                        <h5>Nº</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Numero</p>
-                    </div>
-                    <div class="col-2 offset-1 div-datos-vendedor">
-                        <h5>Letra</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.Letra</p>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-5 div-datos-vendedor">
+                    <h5>Teléfono</h5>
+                    <p class="texto-caja-perfil">@Model.Telefono</p>
                 </div>
-                <div class="row">
-                    <div class="col-4 offset-1 div-datos-vendedor">
-                        <h5>CIF</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.CIF</p>
-                    </div>
-                    <div class="col-5 offset-1 div-datos-vendedor">
-                        <h5>IBAN</h5>
-                        <p class="texto-caja-perfil">@vendedorUbicacionVM.IBAN</p>
-                    </div>
+                <div class="col-7 div-datos-vendedor">
+                    <h5>Email</h5>
+                    <p class="texto-caja-perfil">@user.Email</p>
                 </div>
-                <div class="row">
+            </div>
+            <div class="row">
+                <div class="col-3 div-datos-vendedor">
+                    <h5>País</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.ubicacion.Pais</p>
+                </div>
+                <div class="col-3 div-datos-vendedor">
+                    <h5>Provincia</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.ubicacion.Provincia</p>
+                </div>
+                <div class="col-4 div-datos-vendedor">
+                    <h5>Población</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.ubicacion.Poblacion</p>
+                </div>
+                <div class="col-2 div-datos-vendedor">
+                    <h5>CP</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.ubicacion.CP</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7 div-datos-vendedor">
+                    <h5>Calle</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.ubicacion.Calle</p>
+                </div>
+                <div class="col-3 div-datos-vendedor">
+                    <h5>Nº</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.ubicacion.Numero</p>
+                </div>
+                <div class="col-2 div-datos-vendedor">
+                    <h5>Letra</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.ubicacion.Letra</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 div-datos-vendedor">
+                    <h5>CIF</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.vendedor.CIF</p>
+                </div>
+                <div class="col-7 div-datos-vendedor">
+                    <h5>IBAN</h5>
+                    <p class="texto-caja-perfil">@vendedorUbicacionVM.vendedor.IBAN</p>
+                </div>
+            </div>
+            @*<div class="row">
                     <div class="col-5">
                         <img src="https://1.bp.blogspot.com/-yIhXlQfYN1E/WMksG192LLI/AAAAAAAAA9w/txsqdQfykVksDEFshayeN54c0Gu6C3AAwCLcB/s1600/glow.gif" />
                     </div>
                     <div class="col-5 offset-2">
                         <img src="https://1.bp.blogspot.com/-yIhXlQfYN1E/WMksG192LLI/AAAAAAAAA9w/txsqdQfykVksDEFshayeN54c0Gu6C3AAwCLcB/s1600/glow.gif" />
                     </div>
-                </div>
-            </div>
+                </div>*@
         </div>
     </div>
+</div>
 
-
-</cache>

@@ -75,30 +75,10 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                Vendedor vendedor = new Vendedor()
-                {
-                    NombreDeEmpresa = vendedorUbicacionVM.NombreDeEmpresa,
-                    Paginaweb = vendedorUbicacionVM.Paginaweb,
-                    Telefono = vendedorUbicacionVM.Telefono,
-                    DescripcionEmpresa = vendedorUbicacionVM.DescripcionEmpresa,
-                    CIF = vendedorUbicacionVM.CIF,
-                    IBAN = vendedorUbicacionVM.IBAN,
-                    Fee = vendedorUbicacionVM.Fee,
-                    IdentityUserId = vendedorUbicacionVM.IdentityUserId
-                };
+                Vendedor vendedor = vendedorUbicacionVM.vendedor;
                 await _vendedoresService.CreateVendedor(vendedor);
-                UbicacionVendedor ubicacionVendedor = new UbicacionVendedor()
-                {
-                    Pais = "España",
-                    CCAA = vendedorUbicacionVM.CCAA,
-                    Provincia = "Pendiente",
-                    Poblacion = vendedorUbicacionVM.Poblacion,
-                    CP = vendedorUbicacionVM.CP,
-                    Calle = vendedorUbicacionVM.Calle,
-                    Numero = vendedorUbicacionVM.Numero,
-                    Letra = vendedorUbicacionVM.Letra,
-                    VendedorId = vendedor.Id,
-                };
+
+                UbicacionVendedor ubicacionVendedor = vendedorUbicacionVM.ubicacion;
                 await _ubicacionesVendedoresService.CreateUbicacionVendedor(ubicacionVendedor);
                 return RedirectToAction("Inscrito", "Vendedores");
             }
@@ -185,10 +165,15 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Miperfil()
         {
             string vendedorId = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
-            UbicacionVendedor ubicacionVendedor = await _ubicacionesVendedoresService.GetUbicacionVendedorById(vendedor.Id);
-            ViewData["VendedorUbicacionVM"] = _ubicacionesVendedoresService.CrearVendedorUbicacionVM(vendedor, ubicacionVendedor);
-            return View(vendedor);
+            Vendedor nuevoVendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            UbicacionVendedor ubicacionVendedor = await _ubicacionesVendedoresService.GetUbicacionVendedorById(nuevoVendedor.Id);
+            VendedorUbicacionVM vendedorUbicacionVM = new VendedorUbicacionVM()
+            {
+                vendedor = nuevoVendedor,
+                ubicacion = ubicacionVendedor
+            };
+            ViewData["VendedorUbicacionVM"] = vendedorUbicacionVM;
+            return View(nuevoVendedor);
         }
 
         public async Task<IActionResult> Estadisticas()
