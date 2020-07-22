@@ -18,22 +18,22 @@ namespace DEFINITIVO.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUsuariosService _usuariosService;
         private readonly IVendedoresService _vendedoresService;
-        private readonly IProductosVendedoresService _productosVendedoresService;
         private readonly IOpcionesProductosService _opcionesProductosService;
+        private readonly IVisitasService _visitasService;
 
         public CheckoutController(IProductosService productosService,
                                   IUsuariosService usuariosService,
                                   UserManager<IdentityUser> userManager,
                                   IVendedoresService vendedoresService,
-                                  IProductosVendedoresService productosVendedoresService,
-                                  IOpcionesProductosService opcionesProductosService)
+                                  IOpcionesProductosService opcionesProductosService,
+                                  IVisitasService visitasService)
         {
             _productosService = productosService;
             _usuariosService = usuariosService;
             _userManager = userManager;
             _vendedoresService = vendedoresService;
-            _productosVendedoresService = productosVendedoresService;
             _opcionesProductosService = opcionesProductosService;
+            _visitasService = visitasService;
         }
 
 
@@ -43,7 +43,7 @@ namespace DEFINITIVO.Controllers
             Usuario usuario = await _usuariosService.GetUsuarioByActiveIdentityUser(_userManager.GetUserId(User));
             Producto producto = await _productosService.GetProductoById(id);
             List<OpcionProducto> opciones = await _opcionesProductosService.GetOpcionProductoById(id);
-            OpcionProducto opcion = opciones[opcionElegida-1];
+            OpcionProducto opcion = opciones[opcionElegida - 1];
             ProductoVendedor productoVendedor = producto.ProductoVendedor[0];
             Vendedor vendedor = await _vendedoresService.GetVendedorById(productoVendedor.VendedorId);
 
@@ -55,7 +55,7 @@ namespace DEFINITIVO.Controllers
             };
             int precioFinal = Convert.ToInt32(opcion.PrecioFinal * 100);
             float fee = vendedor.Fee;
-            int helduFee = Convert.ToInt32(precioFinal * (fee/100));
+            int helduFee = Convert.ToInt32(precioFinal * (fee / 100));
 
             StripeConfiguration.ApiKey = "sk_test_51GvJEQL9UURBAADxXJtmn6ZmPepnp0Bkt4Hwl3y53I7rjWCQKa4wj3FSfkm2V4ZOIV67I6LQDmfvPmZ16eMh9LcE0057FViwnl";
 
@@ -102,11 +102,22 @@ namespace DEFINITIVO.Controllers
             return View();
         }
 
-        public IActionResult Comprado(int? productoId, int usuarioId, int opcionId)
+        //Cuando el checkout es exitoso (se procesa el pago), se guarda la transacción en la tabla Visita con Cantidad=1
+        public async Task<IActionResult> Comprado(int? productoId, int opcionId, int usuarioId)
         {
+            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdeProducto(productoId);
+            Visita compra = new Visita()
+            {
+                FechaVisita = DateTime.Now,
+                OpcionProductoId = opcionId,
+                ProductoId = Convert.ToInt32(productoId),
+                UsuarioId = usuarioId,
+                VendedorId = vendedor.Id,
+                Unidades = 1
+            };
+            await _visitasService.CreateVisita(compra);
 
-            return RedirectToAction("Historico", "Usuarios");
+            return RedirectToAction("MiCuenta", "Usuarios");
         }
-
     }
 }

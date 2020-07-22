@@ -16,6 +16,7 @@
         listaRandom = HelperService.RandomList(4, visitados.Count);
     }
     Usuario usuario = ViewBag.Usuario;
+    List<Visita> visitas = ViewBag.Visitas;
     List<Producto> comprados = ManejoProductosService.GetProductosComprados(usuario.Id);
     List<Producto> disponibles = new List<Producto>();
     if (comprados.Count != 0)
@@ -47,22 +48,24 @@
             <!-- Bucle para crear una línea de cupón por cada cupón COMPRADO -->
             @foreach (Producto comprado in comprados)
             {
-                <div class="row seccion-comprados d-none seccion-cupones" style="margin:0px;">
+                Visita visita = visitas.Where(x => x.ProductoId == comprado.Id).FirstOrDefault();
+                <div class="row seccion-comprados d-none seccion-cupones mt-4">
                     <div class="col-3">
+                        <h6><strong>Comprado el: </strong></h6>
+                        <p>@visita.FechaVisita.ToShortDateString()</p>
                         <h6><strong>Fecha de validez: </strong></h6>
-                        <br />
-                        <p>@comprado.FechaValidez</p>
+                        <p>@comprado.FechaValidez.ToShortDateString()</p>
                     </div>
                     <div class="col-3">
-                        <img style="width:60%;" src="~/Productos/GetImage1/@comprado.Id" />
+                        <h6><strong>Cupón: </strong></h6>
+                        <p>@comprado.Titulo</p>
                     </div>
                     <div class="col-3">
-                        <h6>Comprado el: </h6>
-                        <p style="color:red;">Pendiente de añadir a la tabla</p>
+                        <img style="width:70%;" src="~/Productos/GetImage1/@comprado.Id" />
                     </div>
-                    <div class="col-3">
-                        <a class="btn">Boton para detalles</a>
-                        <a> Link para el documento</a>
+                    <div class="col-3 div-boton-lo-quiero ">
+                        <a class="btn boton-lo-quiero my-2" style="font-size:small;">Ver Detalles</a>
+                        <a class="btn boton-lo-quiero my-2" style="font-size:small;">Descargar PDF</a>
                     </div>
                 </div>
             }
@@ -70,22 +73,24 @@
             <!-- Bucle para crear una línea de cupón por cada cupón DISPONIBLE -->
             @foreach (Producto disponible in disponibles)
             {
-                <div class="row seccion-disponibles d-none seccion-cupones" style="margin:0px;">
+                Visita visita = visitas.Where(x => x.ProductoId == disponible.Id).FirstOrDefault();
+                <div class="row seccion-disponibles d-none seccion-cupones mt-4">
                     <div class="col-3">
+                        <h6><strong>Comprado el: </strong></h6>
+                        <p>@visita.FechaVisita.ToShortDateString()</p>
                         <h6><strong>Fecha de validez: </strong></h6>
-                        <br />
-                        <p>@disponible.FechaValidez</p>
+                        <p>@disponible.FechaValidez.ToShortDateString()</p>
                     </div>
                     <div class="col-3">
-                        <img style="width:60%;" src="~/Productos/GetImage1/@disponible.Id" />
+                        <h6><strong>Cupón: </strong></h6>
+                        <p>@disponible.Titulo</p>
                     </div>
                     <div class="col-3">
-                        <h6>Comprado el: </h6>
-                        <p style="color:red;">Pendiente de añadir a la tabla</p>
+                        <img style="width:70%;" src="~/Productos/GetImage1/@disponible.Id" />
                     </div>
-                    <div class="col-3">
-                        <a class="btn">Boton para detalles</a>
-                        <a> Link para el documento</a>
+                    <div class="col-3 div-boton-lo-quiero ">
+                        <a class="btn boton-lo-quiero my-2" style="font-size:small;">Ver Detalles</a>
+                        <a class="btn boton-lo-quiero my-2" style="font-size:small;">Descargar PDF</a>
                     </div>
                 </div>
             }
@@ -98,7 +103,7 @@
     <div class="row">
         <div class="offset-1 col-10">
             <div>
-                <h2 id="productos-vistos-titulo">Productos que has visto</h2>
+                <h2 id="productos-vistos-titulo">Cupones que has visto</h2>
             </div>
             <div class="row" style="justify-content: space-evenly;">
                 @{

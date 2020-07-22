@@ -79,9 +79,9 @@
         </div>
     </div>
 
-    <--!>Formulario oculto para guardar la información de compra exitosa en la BBDD desde un método en CheckoutController</--!>
+    <!-- Formulario oculto para guardar la información de compra exitosa en la BBDD desde un método en CheckoutController -->
     <form asp-controller="Checkout" asp-action="Comprado">
-        <input type="hidden" id="productoId" name="producoId" value="@Model.producto.Id"/>
+        <input type="hidden" id="productoId" name="productoId" value="@Model.producto.Id"/>
         <input type="hidden" id="vendedorId" name="opcionId" value="@Model.opcion.Id"/>
         <input type="hidden" id="usuarioId" name="usuarioId" value="@Model.usuario.Id"/>
         <button type="submit" id="btnOculto"></button>
@@ -157,7 +157,7 @@
                     console.log(result.error.message);
                     console.log("Error se debería mostrar acá");
                     boton.disabled = false;
-                    boton.innerText = 'Procesando';
+                    boton.innerText = 'Pagar';
                 } else {
                     /* The payment has been processed!*/
                     if (result.paymentIntent.status === 'succeeded') {

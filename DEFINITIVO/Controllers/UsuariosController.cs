@@ -258,7 +258,7 @@ namespace DEFINITIVO.Controllers
 
             ViewData["Usuario"] = usuario;
             ViewData["ProductosVisitados"] = productosVisitados;
-
+            ViewData["Visitas"] = visitados;
             return View(usuario);
         }
 

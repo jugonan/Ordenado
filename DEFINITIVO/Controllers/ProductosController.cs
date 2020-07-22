@@ -105,30 +105,10 @@ namespace DEFINITIVO.Controllers
 
 
             if (!_memoryCache.TryGetValue("ProductosForIndex2", out listasListaProductos))
-<<<<<<< Updated upstream
             {
                 listaCategorias = await _categoriasService.GetCategorias();
                 listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
                 listasListaProductos = await _productosService.GetProductosForIndex2(listaCategorias, listaProductosCategorias);
-=======
-            {
-                listaCategorias = await _categoriasService.GetCategorias();
-
-                var stopwatch3 = new Stopwatch();
-                stopwatch3.Start();
-                listaProductos = await _productosService.GetProductos();
-                stopwatch3.Stop();
-                Console.WriteLine("Función listaProductos" + stopwatch3.Elapsed);
-
-                listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
-
-                var stopwatch4 = new Stopwatch();
-                stopwatch4.Start();
-                listasListaProductos = await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
-                stopwatch4.Stop();
-                Console.WriteLine("Función listaListaProductos" + stopwatch4.Elapsed);
-
->>>>>>> Stashed changes
                 _memoryCache.Set("Categorias", listaCategorias);
                 _memoryCache.Set("ProductosForIndex2", listasListaProductos);
             }
