@@ -42,7 +42,7 @@ namespace API.Controllers
             List<Producto> listaProductos = await _context.Producto.ToListAsync();
             List<ProductoCategoria> listaProductosCategorias = await _productoCategoriasService.GetProductosCategorias();
             List<Categoria> listaCategorias = await _categoriasService.GetCategorias();
-            ProductosForIndex2VM productosForIndex2VMs = await _productosService.GetProductosForIndex2(listaCategorias,listaProductos, listaProductosCategorias);
+            ProductosForIndex2VM productosForIndex2VMs = await _productosService.GetProductosForIndex2(listaCategorias, listaProductos, listaProductosCategorias);
             return productosForIndex2VMs;
         }
     }

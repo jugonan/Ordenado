@@ -7,14 +7,15 @@
 
 @{
     ViewData["Title"] = "Crear Producto";
+    Vendedor vendedor = ViewBag.VendedorActivo;
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/css/Productos_Create.css" rel="stylesheet" type="text/css">
 <script src="~/js/Productos_Create.js"></script>
 
 <h1>Cargar producto</h1>
 
-<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,7 +23,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger">(*) Campos obligatorios</div>
             <div class="form-group">
                 <label asp-for="Producto.Titulo" class="control-label"></label>
-                <input asp-for="Producto.Titulo" class="form-control" id="titulo-introducido" placeholder="Introduce el título de tu producto" required/>
+                <input asp-for="Producto.Titulo" class="form-control" id="titulo-introducido" placeholder="Introduce el título de tu producto" required />
                 <span asp-validation-for="Producto.Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -64,47 +65,11 @@
             </div>
             <div class="form-group">
                 <label class="control-label"></label>
-                <input class="form-control" id="horario-introducida" placeholder="Lu-Vi de 8 a 18 hs..." />
+                <input class="form-control" id="condiciones-introducidas" placeholder="Lu-Vi de 8 a 18 hs..." />
                 <span class="text-danger"></span>
                 <div class="row">
-                    <button type="button" class="btn btn-link col-5" id="horario-introducidaBtn">+ añadir horario</button>
-                    <button type="button" class="btn btn-danger col-5 offset-1" id="horario-introducida-borrar">eliminar</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label"></label>
-                <input class="form-control" id="reserva-introducida" placeholder="Debe solicitarla 48hs antes..." />
-                <span class="text-danger"></span>
-                <div class="row">
-                    <button type="button" class="btn btn-link col-5" id="reserva-introducidaBtn">+ añadir reserva</button>
-                    <button type="button" class="btn btn-danger col-5 offset-1" id="reserva-introducida-borrar">eliminar</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label"></label>
-                <input class="form-control" id="entrega-introducida" placeholder="Envío no incluido..."/>
-                <span class="text-danger"></span>
-                <div class="row">
-                    <button type="button" class="btn btn-link col-5" id="entrega-introducidaBtn">+ añadir entrega</button>
-                    <button type="button" class="btn btn-danger col-5 offset-1" id="entrega-introducida-borrar">eliminar</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label"></label>
-                <input class="form-control" id="recogida-introducida" placeholder="En tienda física o punto de entrega..."/>
-                <span class="text-danger"></span>
-                <div class="row">
-                    <button type="button" class="btn btn-link col-5" id="recogida-introducidaBtn">+ añadir recogida</button>
-                    <button type="button" class="btn btn-danger col-5 offset-1" id="recogida-introducida-borrar">eliminar</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label"></label>
-                <input asp-for="Producto.Condiciones" class="form-control" id="otros-introducido" placeholder="Otra información importante..."/>
-                <span asp-validation-for="Producto.Condiciones" class="text-danger"></span>
-                <div class="row">
-                    <button type="button" class="btn btn-link col-5" id="otros-introducidoBtn">+ añadir</button>
-                    <button type="button" class="btn btn-danger col-5 offset-1" id="otros-introducida-borrar">eliminar</button>
+                    <button type="button" class="btn btn-link col-5" id="condicion-introducidaBtn">+ añadir horario</button>
+                    <button type="button" class="btn btn-danger col-5 offset-1" id="condicion-introducida-borrar">eliminar</button>
                 </div>
             </div>
             <div class="form-group">
@@ -114,133 +79,176 @@
     </div>
     <!-- Quiero poner aquí un layout de cómo se lucirá la oferta que está cargando-->
     <div class="col-md-8">
-        <h4 id="titulo-producto"></h4>
+        <h2 id="titulo-producto"></h2>
+        <div>
+            <div class="row ubicacion-del-vendedor">
+                <img src="https://image.flaticon.com/icons/svg/684/684908.svg">
+                <p>@vendedor.NombreDeEmpresa; Luis Power 23, 48014, Bilbao</p>
+            </div>
+            <div class="row media-de-vendedor" style="align-items: baseline;">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <p>(3 opiniones)</p>
+            </div>
+        </div>
         <div class="container-fliud">
             <div class="wrapper row">
                 <div class="preview col-md-7">
-                    <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">
-                        <div class="carousel-inner">
+                    <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-interval="false" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="">
+                                <img class="d-block imagenes-carousel" src="https://image.flaticon.com/icons/svg/2924/2924661.svg" alt="Primera imagen">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="">
+                                <img class="d-block imagenes-carousel" src="https://image.flaticon.com/icons/svg/2924/2924661.svg" onerror="this.parentElement.classList='d-none'" alt="Segunda imagen">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="">
+                                <img class="d-block imagenes-carousel" src="https://image.flaticon.com/icons/svg/2924/2924661.svg" onerror="this.parentElement.classList='d-none'" alt="Tercera imagen">
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon icono-carousel" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <a class="carousel-control-next" id="control-next-carousel" href="#carousel-thumb" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon icono-carousel" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </div>
-                    <div class="row">
-                        <!-- Modificar SRC con js-->
-                        <img alt="..." class="img-thumbnail">
-                        <!-- Modificar SRC con js-->
-                        <img alt="..." class="img-thumbnail">
-                        <!-- Modificar SRC con js-->
-                        <img alt="..." class="img-thumbnail">
-                    </div>
-                    <div>
-                        <h5>Descripción del producto</h5>
-                        <!-- Modificar Descripción con js-->
-                        <p id="descripcion-demo"> </p>
-                    </div>
-                    <div style="align-self:center; margin-bottom:5%;">
-                        <div>
-                            <h4>Fecha de validez:</h4>
-                            <!-- Modificar Fecha con js-->
-                            <p id="fecha-demo"></p>
-                            <br />
+                        <div class="carousel-indicators">
+                            <a class="normal-thumbnail-carousel active" data-target="#carousel-thumb" data-slide-to="0">
+                                <img class="img-thumbnail" src="https://image.flaticon.com/icons/svg/2924/2924661.svg" onerror="this.parentElement.classList='d-none'">
+                            </a>
+                            <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="1">
+                                <img class="img-thumbnail" src="https://image.flaticon.com/icons/svg/2924/2924661.svg" onerror="this.parentElement.classList='d-none'">
+                            </a>
+                            <a class="normal-thumbnail-carousel" data-target="#carousel-thumb" data-slide-to="2">
+                                <img class="img-thumbnail" src="https://image.flaticon.com/icons/svg/2924/2924661.svg" onerror="this.parentElement.classList='d-none'">
+                            </a>
                         </div>
-                        <h4>Condiciones</h4>
-                        <br />
-                        <label><strong>Horario</strong></label>
-                        <ul class="d-none" id="ul-horario">
-                        </ul>
-                        <br />
-                        <label><strong>Reserva</strong></label>
-                        <ul class="d-none" id="ul-reserva">
-                        </ul>
-                        <br />
-                        <label><strong>Entrega</strong></label>
-                        <ul class="d-none" id="ul-entrega">
-                        </ul>
-                        <br />
-                        <label><strong>Recogida</strong></label>
-                        <ul class="d-none" id="ul-recogida">
-                        </ul>
-                        <br />
-                        <label><strong>Otros</strong></label>
-                        <ul class="d-none" id="ul-otros">
-                        </ul>
                     </div>
-                    <!-- Div que incluye todos los comentarios existentes-->
                 </div>
                 <div class="details col-md-5">
                     <div>
                         <!-- Modificar Nombre de empresa con js-->
-                        <h6 id="nombreEmpresa-demo"></h6>
-                        <div class="rating row">
-                            <div class="col-4">
-                                <p>(nº de visitas)</p>
-                            </div>
-                            <div class="stars-fijas col-8">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <p>82 reviews</p>
+                        <p id="descripcion-demo"></p>
+                        <div class="row fecha-y-visitas">
+                            <p id="fecha-demo">fecha de validez|</p>
+                            <div>
+                                <img class="imagen-visitas-detalles" src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                                <p id="cantidad-temporal-visitas"></p>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <div class="row">
-                            <!-- Modificar Titulo de producto con js-->
-                            <h4 style="text-transform:capitalize"> </h4>
+                        <div>
+                            <h4>Opciones de producto: </h4>
+                            <form>
+                                <label class="radio-opciones"><input disabled="true" name="opcionesProducto" type="radio" />Opción 1</label><br>
+                                <label class="radio-opciones"><input disabled="true" name="opcionesProducto" type="radio" />Opción 2</label><br>
+                                <label class="radio-opciones"><input disabled="true" name="opcionesProducto" type="radio" />Opción 3</label><br>
+                            </form>
                         </div>
-                        <div class="row">
-                            <div class="col-6 offset-6">
-                                <div>
-                                    <div class="row">
-                                        <div class="col-6" style="display:flex;">
-                                            <!-- Modificar Precio inicial y mostrar símbolo de € con js-->
-                                            <h4><strike id="precioInicial-demo"></strike></h4>
-                                            <h4 class="simbolo-euro d-none"><strike>€</strike></h4>
-                                        </div>
-                                        <div class="col-6" style="display:flex;">
-                                            <!-- Modificar Precio final y mostrar símbolo de € con js-->
-                                            <h4 style="color: green;"><strong id="precioFinal-demo"></strong></h4>
-                                            <h4 class="simbolo-euro d-none" style="color: green;"><strong>€</strong></h4>
-                                        </div>
+                        <div class="precios-producto-detalles">
+                            <div>
+                                <p class="descuento-opciones">&#8595; <span id="descuento">0</span> &#37;</p>
+                            </div>
+                            <div class="precio-inicial-opciones">
+                                <p id="precioInicialProducto"> 0 </p>
+                                <p> &#8364 </p>
+                            </div>
+                            <div class="precio-final-opciones">
+                                <p id="precioFinalProducto"> 0 </p>
+                                <p> &#8364 </p>
+                            </div>
+                        </div>
+                        <div class="div-boton-comprar">
+                            <a class="btn boton-comprar-producto" id="btnComprar" disabled="true">Comprar</a>
+                            @* Envío la opción elegida al controlador. el "Value" se coloca desde JS *@
+                            <input type="hidden" value="1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row seccion-inferior">
+                <div class="col-lg-7 barra-opciones-producto">
+                    <div class="navegador-condiciones-productos">
+                        <a class="col-4 anclas-opciones">Condiciones</a>
+                        <a class="col-4 anclas-opciones">Opiniones(3)</a>
+                        <a class="col-4 anclas-opciones">Preguntas freq.</a>
+                    </div>
+                    <div class="contenedor-texto-ocultar">
+                        <div class="texto-ocultar" id="condiciones-del-cupon">
+                            <ul id="lista-condiciones">
+
+                            </ul>
+                        </div>
+                        <div class="texto-ocultar d-none">
+                            <!-- 1er comentario Hard Codeado-->
+                            <div class="row">
+                                <div class="col-lg-2 imagen-comentario-producto">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                                </div>
+                                <div class="col-lg-6 texto-comentario-producto">
+                                    <div style="display:flex; flex-direction:row;">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
                                     </div>
-                                    <p id="descuento-demo"></p>
+                                    <h5>Janire Rueda</h5>
+                                    <p>Un servicio rápido, agradable y de buena calidad.¡Volveremos sin duda!</p>
+                                </div>
+                            </div>
+                            <!-- 2do comentario Hard Codeado-->
+                            <div class="row">
+                                <div class="col-lg-2 imagen-comentario-producto">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                                </div>
+                                <div class="col-lg-6 texto-comentario-producto">
+                                    <div style="display:flex; flex-direction:row;">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <h5>Aitor Campos</h5>
+                                    <p>100% recomendable. Era la primera vez que acudíamos y Arantxa nos atendió y ayudó mucho. Muy profesionales.</p>
+                                </div>
+                            </div>
+                            <!-- 3er comentario Hard Codeado-->
+                            <div class="row">
+                                <div class="col-lg-2 imagen-comentario-producto">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQT7NvIfTyhEXEDqrGjBe6Vaak8FpF2sOThf6pkUGkhdvPeYJ-A&usqp=CAU" style="width:inherit;" />
+                                </div>
+                                <div class="col-lg-6 texto-comentario-producto">
+                                    <div style="display:flex; flex-direction:row;">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <h5>Miren Igartua</h5>
+                                    <p>Muy buena experiencia.</p>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <!-- Modificar Titulo de producto con js-->
-                            <h4>Opciones de producto: </h4>
-                            <form>
-                                <label class="radio-opciones"><input name="opcionesProducto" type="radio" />Opción 1</label><br>
-                                <label class="radio-opciones"><input name="opcionesProducto" type="radio" />Opción 2</label><br>
-                                <label class="radio-opciones"><input name="opcionesProducto" type="radio" />Opción 3</label><br>
-                            </form>
-                            <p id="descripcion-demo"></p>
-                        </div>
-                        <div style="display:grid">
-                            <a href="#" style="margin: 2% 0%" class="disabled btn btn-outline-success">Agregar a carrito</a>
-                            <a href="#" style="margin: 2% 0%" class="disabled btn btn-outline-danger">Añadir a favoritos<img style="width:6%; margin-left: 4%;" class="d-none" /></a>
+                        <div class="texto-ocultar d-none">
                         </div>
                     </div>
-                    <div>
+                </div>
+                <div class="col-lg-4 offset-lg-1 barra-informacion-vendedor">
+                    <h6>@vendedor.NombreDeEmpresa</h6>
+                    <p>@vendedor.Paginaweb</p>
+                    <p>@vendedor.Telefono</p>
+                    <div class="div-mapa">
+                        <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=506&height=400&hl=en&q=Luis%20Power%2023%20Bilbao+(Ubicacion)&t=&z=12&ie=UTF8&iwloc=B&output=embed" width="auto" height="auto" frameborder="0">
+                        </iframe>
                     </div>
                 </div>
             </div>
