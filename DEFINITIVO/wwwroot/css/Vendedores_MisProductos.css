@@ -39,8 +39,9 @@
     font-size: medium;
     padding: 1rem 0rem;
 }
+
     .crear img {
         max-width: 15%;
-        float:right;
+        float: right;
         padding-left: 5px;
     }

@@ -4,66 +4,74 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Opiniones";
+}
+
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="~/js/Opiniones_Vendedores.js"></script>
-<link href="/css/Vendedores_Opiniones.css" rel="stylesheet" type="text/css">
+<link href="/css/Usuarios_MiCuenta.css" rel="stylesheet" type="text/css">
 
-<div class="cuadro-vendedor">
-    <div class="row">
-        <h3 class="col-4 offset-4">Valoraciones de usuarios</h3>
-    </div>
-    <div class="row">
+<div>
+    <div class="row" style="margin-top:5%;">
         <partial name="_MiperfilPV" model="Model" />
-        <div class="col-7 offset-1">
-            <div class="container">
-                <div class="valoracion-media">
-                    <h5 id="titulo-media">Media total</h5>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+        <div class="col-7 offset-1 mis-datos">
+            <div class="row">
+                <div class="col-8">
+                <h3>Valoraciones de usuarios</h3>
                 </div>
-                <div class="valoraciones-individuales">
-                    <div id="row-de-prueba" class="row">
-                        <div class="card col-3">
-                            <div class="row valoracion-producto-individual">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
+            </div>
+            <div class="">
+                <div class="container">
+                    <div class="valoracion-media">
+                        <h5 id="titulo-media">Media total</h5>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div class="valoraciones-individuales">
+                        <div id="row-de-prueba" class="row">
+                            <div class="card col-3">
+                                <div class="row valoracion-producto-individual">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <div class="cuerpo-carta">
+                                    <p class="card-text">Genial atención al cliente, rápido servicio y un personal muy amable. ¡Volveremos sin duda!</p>
+                                    <p>Fecha: 01/06/2020</p>
+                                </div>
                             </div>
-                            <div class="cuerpo-carta">
-                                <p class="card-text">Genial atención al cliente, rápido servicio y un personal muy amable. ¡Volveremos sin duda!</p>
-                                <p>Fecha: 01/06/2020</p>
+                            <div class="card col-3 offset-1">
+                                <div class="row valoracion-producto-individual">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <div class="cuerpo-carta">
+                                    <p class="card-text">Un trato muy atento, además de una calidad y velocidad de servicio.</p>
+                                    <p>Fecha: 26/04/2020</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card col-3 offset-1">
-                            <div class="row valoracion-producto-individual">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <div class="cuerpo-carta">
-                                <p class="card-text">Un trato muy atento, además de una calidad y velocidad de servicio.</p>
-                                <p>Fecha: 26/04/2020</p>
-                            </div>
-                        </div>
-                        <div class="card col-3 offset-1">
-                            <div class="row valoracion-producto-individual">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <div class="cuerpo-carta">
-                                <p class="card-text">Buena calidad de producto y un precio imbatible, 100% recomendado.</p>
-                                <p>Fecha: 15/03/2020</p>
+                            <div class="card col-3 offset-1">
+                                <div class="row valoracion-producto-individual">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <div class="cuerpo-carta">
+                                    <p class="card-text">Buena calidad de producto y un precio imbatible, 100% recomendado.</p>
+                                    <p>Fecha: 15/03/2020</p>
+                                </div>
                             </div>
                         </div>
                     </div>

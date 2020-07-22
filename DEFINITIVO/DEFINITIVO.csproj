@@ -43,8 +43,11 @@
     <Content Remove="Views\Usuarios\GestionarUsuarios.cshtml" />
     <Content Remove="Views\Usuarios\Miscursos.cshtml" />
     <Content Remove="Views\Vendedores\Eliminado.cshtml" />
+    <Content Remove="Views\Vendedores\Misproductos2.cshtml" />
     <Content Remove="wwwroot\css\popup_banner.css" />
     <Content Remove="wwwroot\css\Usuarios_MiPeriflPV.css" />
+    <Content Remove="wwwroot\css\Vendedores_Estadisticas.css" />
+    <Content Remove="wwwroot\css\Vendedores_MiPerfil.css" />
     <Content Remove="wwwroot\js\Carrito_Layout.js" />
     <Content Remove="mono_crash.1cfb5decbf.0.json" />
     <Content Remove="mono_crash.1979963d15.0.json" />

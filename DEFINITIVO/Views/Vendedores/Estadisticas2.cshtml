@@ -5,36 +5,44 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Estadísticas";
+}
 
-<link href="/css/Vendedores_Estadisticas.css" rel="stylesheet" type="text/css">
+<link href="~/css/Usuarios_MiCuenta.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+
 <div>
-    <div class="row">
-        <div class="col-4 offset-4">
-            <h3>Estadísticas</h3>
-            <p>Estas son las visitas que han tenido tus producto</p>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row" style="margin-top:5%;">
         <partial name="_MiperfilPV" model="Model" />
-        <div class="col-7 offset-1" background-color: white;">
-            <canvas id="myChart"></canvas>
+        <div class="col-7 offset-1 mis-datos">
+            <div class="row">
+                <div class="col-4">
+                    <h3>Estadísticas</h3>
+                </div>
+            </div>
+            <p>Estas son las visitas que han tenido tus producto</p>
+            <br />
+            <div class="row">
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
     </div>
 </div>
 
 
-<script>var ctx = document.getElementById('myChart').getContext('2d');
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
     Chart.defaults.global.defaultFontSize = 18;
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels: ['2 sesiones de tratam...', 'Curso de Big Data', 'Menú hamburguesa + pat...','Kit blanqueamiento...','Pack 100 mascarillas','Curso de fotografía...',
+            labels: ['2 sesiones de tratam...', 'Curso de Big Data', 'Menú hamburguesa + pat...', 'Kit blanqueamiento...', 'Pack 100 mascarillas', 'Curso de fotografía...',
             ],
             datasets: [{
                 label: 'visitas/producto',
-                data: ['135', '97', '156','215','188','166',
+                data: ['135', '97', '156', '215', '188', '166',
                 ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -64,4 +72,5 @@
                 }]
             }
         }
-    });</script>
+    });
+</script>
