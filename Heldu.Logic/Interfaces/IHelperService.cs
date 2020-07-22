@@ -7,6 +7,7 @@ namespace Heldu.Logic.Interfaces
     public interface IHelperService
     {
         public List<int> RandomProductos(int largo);
+        public List<int> RandomList(int cantidadValores, int limiteSuperior);
         public void EnviarEmail(string asunto, string mensaje);
         public Task<List<Review>> ObtenerReviewsVendedor(Vendedor vendedor);
         public Task<int> ObtenerMediaReviewsParaVendedor(Vendedor vendedor);

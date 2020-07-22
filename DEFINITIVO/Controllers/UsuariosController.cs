@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Heldu.Logic.ViewModels;
 using Tesseract;
 using System;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DEFINITIVO.Controllers
 {
@@ -242,20 +244,22 @@ namespace DEFINITIVO.Controllers
             Usuario usuario = await _usuariosService.ObtenerUsuarioDesdedIdentity(userManagerId);
             List<Visita> visitados = await _manejoProductosService.GetProductosVistosPorUsuario(usuario.Id);
             List<ProductoPrimeraOpcionProductoVM> productosVisitados = new List<ProductoPrimeraOpcionProductoVM>();
+            List<OpcionProducto> opcionesProductos = await _opcionesProductosService.GetOpcionesProductos();
 
             foreach (Visita item in visitados)
             {
                 ProductoPrimeraOpcionProductoVM productoOpcion = new ProductoPrimeraOpcionProductoVM()
                 {
                     producto = item.Producto,
-                    opcionProducto = await _opcionesProductosService.GetFirstOpcionProductoByProductoId(item.ProductoId)
+                    opcionProducto = opcionesProductos.Where(x => x.ProductoId == item.ProductoId).FirstOrDefault()
                 };
                 productosVisitados.Add(productoOpcion);
             }
 
             ViewData["Usuario"] = usuario;
+            ViewData["ProductosVisitados"] = productosVisitados;
 
-            return View(productosVisitados);
+            return View(usuario);
         }
 
 

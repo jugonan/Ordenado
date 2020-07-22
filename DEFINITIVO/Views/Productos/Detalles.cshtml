@@ -95,7 +95,7 @@
                         @if (Model.opcionesProducto.Count == 0 || Model.opcionesProducto.Count == 1)
                         {
                             <div class="row div-opciones-producto" style="align-items:center;">
-                                <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="" checked>
                                 <label class="col-lg-10" for="">@Model.opcionesProducto[0].Descripcion</label><br>
                                 <input class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="precioInicialOpcion1">
                                 <input class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="precioFinalOpcion1">
@@ -104,7 +104,7 @@
                         @if (Model.opcionesProducto.Count > 1)
                         {
                             <div class="row div-opciones-producto" style="align-items:center;">
-                                <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="">
+                                <input class="col-lg-1" type="radio" id="opcion-producto-1" name="opciones-productos" value="" checked>
                                 <label class="col-lg-10" for="">@Model.opcionesProducto[0].Descripcion</label><br>
                                 <input class="d-none" value="@Model.opcionesProducto[0].PrecioInicial" id="precioInicialOpcion1">
                                 <input class="d-none" value="@Model.opcionesProducto[0].PrecioFinal" id="precioFinalOpcion1">
@@ -131,21 +131,27 @@
                 </div>
                 <div class="precios-producto-detalles">
                     <div>
-                        <p class="descuento-opciones">&#8595; <span id="descuento">0</span> &#37;</p>
+                        @{
+                            var descuento = Math.Round(((Model.opcionesProducto[0].PrecioInicial - Model.opcionesProducto[0].PrecioFinal) / Model.opcionesProducto[0].PrecioInicial) * 100);
+                        }
+                        <p class="descuento-opciones">&#8595; <span id="descuento">@descuento</span> &#37;</p>
                     </div>
                     <div class="precio-inicial-opciones">
-                        <p id="precioInicialProducto"> 0 </p>
+                        <p id="precioInicialProducto">@Model.opcionesProducto[0].PrecioInicial</p>
                         <p> &#8364 </p>
                     </div>
                     <div class="precio-final-opciones">
-                        <p id="precioFinalProducto"> 0 </p>
+                        <p id="precioFinalProducto">@Model.opcionesProducto[0].PrecioFinal</p>
                         <p> &#8364 </p>
                     </div>
                 </div>
                 <div class="div-boton-comprar">
-                    <a class="btn boton-comprar-producto" id="btnComprar" disabled="true" asp-controller="Checkout" asp-action="Confirmar" asp-route-id="@Model.producto.Id">Comprar</a>
-                    @* Envío la opción elegida al controlador. el "Value" se coloca desde JS *@
-                    <input type="hidden" name="opcionElegida" id="opcionElegida" value="1" />
+                    <form asp-controller="Checkout" asp-action="Confirmar">
+                        @* Envío la opción elegida al controlador. el "Value" se coloca desde JS *@
+                        <input type="hidden" name="opcionElegida" id="opcionElegida" value="1" />
+                        <input type="hidden" name="id" value="@Model.producto.Id" />
+                        <button type="submit" class="btn boton-comprar-producto" id="btnComprar" >Comprar</button>
+                    </form>
                 </div>
                 <label for="showForm" id="reportarProblema">Reportar un problema</label>
             </div>

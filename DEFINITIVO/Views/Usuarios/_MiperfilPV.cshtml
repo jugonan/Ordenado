@@ -9,7 +9,7 @@
 <!-- CSS Personalizado -->
 <link href="~/css/Usuarios_MiPerfilPV.css" rel="stylesheet" type="text/css">
 
-<div class="col-3">
+<div class="col-3" id="menu-izquierda">
     <img id="imagen-usuario-pv" src="data:image/png;base64,@System.Convert.ToBase64String(Model.FotoUsuario)" />
     <br />
     <div class="botones-PV">
@@ -23,7 +23,7 @@
     </div>
     <div class="botones-PV">
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="usuario-saliendo">
-            <button type="submit" class="btn boton-cerrar-sesion"><p>Salir</p></button>
+            <button type="submit" class="btn btn-danger">SALIR</button>
         </form>
     </div>
 </div>

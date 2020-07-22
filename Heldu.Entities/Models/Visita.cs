@@ -10,6 +10,8 @@ namespace Heldu.Entities.Models
         public Vendedor Vendedor { get; set; }
         public int ProductoId { get; set; }
         public Producto Producto { get; set; }
+        public int OpcionProductoId { get; set; }
+        public OpcionProducto OpcionProducto { get; set; }
         public DateTime FechaVisita { get; set; }
         public int Unidades { get; set; }
     }

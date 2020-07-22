@@ -171,12 +171,19 @@ a {
 }
 
 .boton-comprar-producto {
-    width: 50%;
     font-weight: 600;
     text-transform: uppercase;
     background: #F21B6D;
     opacity: 0.9;
     color: whitesmoke;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+}
+.boton-comprar-producto-clicked {
+    color: white;
+    text-transform: uppercase;
+    background-color: darkgray;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    cursor: not-allowed;
 }
 
 .div-boton-comprar a:hover {
@@ -498,7 +505,4 @@ a {
         width: 100% !important;
     }
 
-    a.disabled{
-        cursor:not-allowed;
-    }
 }

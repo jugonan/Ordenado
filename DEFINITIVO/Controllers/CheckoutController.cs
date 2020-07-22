@@ -54,7 +54,7 @@ namespace DEFINITIVO.Controllers
                 opcion = opcion
             };
             int precioFinal = Convert.ToInt32(opcion.PrecioFinal * 100);
-            int fee = vendedor.Fee;
+            float fee = vendedor.Fee;
             int helduFee = Convert.ToInt32(precioFinal * (fee/100));
 
             StripeConfiguration.ApiKey = "sk_test_51GvJEQL9UURBAADxXJtmn6ZmPepnp0Bkt4Hwl3y53I7rjWCQKa4wj3FSfkm2V4ZOIV67I6LQDmfvPmZ16eMh9LcE0057FViwnl";
@@ -100,6 +100,12 @@ namespace DEFINITIVO.Controllers
             StripeConfiguration.ApiKey = "sk_test_51GvJEQL9UURBAADxXJtmn6ZmPepnp0Bkt4Hwl3y53I7rjWCQKa4wj3FSfkm2V4ZOIV67I6LQDmfvPmZ16eMh9LcE0057FViwnl";
 
             return View();
+        }
+
+        public IActionResult Comprado(int? productoId, int usuarioId, int opcionId)
+        {
+
+            return RedirectToAction("Historico", "Usuarios");
         }
 
     }

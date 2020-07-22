@@ -41,3 +41,7 @@
 .botones-PV form {
     justify-content: center;
 }
+
+#menu-izquierda {
+    text-align: -webkit-center;
+}

@@ -13,6 +13,7 @@ using System;
 using Microsoft.AspNetCore.Http;
 using System.Diagnostics;
 using Microsoft.Extensions.Caching.Memory;
+using System.Linq;
 
 namespace DEFINITIVO.Controllers
 {
@@ -338,11 +339,16 @@ namespace DEFINITIVO.Controllers
         {
             List<ProductoPrimeraOpcionProductoVM> listaProductosOpcion = new List<ProductoPrimeraOpcionProductoVM>();
             List<Producto> nuevaLista = await _productosService.GetProductosByCategoriaId(id);
+            List<OpcionProducto> opcionesProductos = await _opcionesProductosService.GetOpcionesProductos();
             int i = 0;
             foreach (Producto item in nuevaLista)
             {
-                listaProductosOpcion[i].producto = item;
-                listaProductosOpcion[i].opcionProducto = await _opcionesProductosService.GetFirstOpcionProductoByProductoId(item.Id);
+                ProductoPrimeraOpcionProductoVM nuevo = new ProductoPrimeraOpcionProductoVM()
+                {
+                    producto = item,
+                    opcionProducto = opcionesProductos.Where(x => x.ProductoId == item.Id).FirstOrDefault()
+                };
+                listaProductosOpcion.Add(nuevo);
                 i++;
             }
             ViewData["Categoria"] = await _categoriasService.GetCategoriaById(id);

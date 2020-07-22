@@ -51,7 +51,6 @@ function llenarVariables() {
     precioInicialProducto = document.getElementById('precioInicialProducto');
     precioFinalProducto = document.getElementById('precioFinalProducto');
     btnComprar = document.getElementById('btnComprar');
-    btnComprar.disabled = true;
 
     if (cantOpciones > 1) {
         radio2 = document.getElementById('opcion-producto-2');
@@ -87,24 +86,23 @@ function addEvents() {
     }
 
     radio1.addEventListener('click', function () {
-        btnComprar.disabled = false;
         mostrarprecios(precioInicialOpcion1.value, precioFinalOpcion1.value, 1);
     });
     if (radio2 != null) {
         radio2.addEventListener('click', function () {
             mostrarprecios(precioInicialOpcion2.value, precioFinalOpcion2.value, 2);
-            btnComprar.disabled = false;
         });
     }
     if (radio3 != null) {
         radio3.addEventListener('click', function () {
             mostrarprecios(precioInicialOpcion3.value, precioFinalOpcion3.value, 3);
-            btnComprar.disabled = false;
         });
     }
+
     btnComprar.addEventListener('click', function () {
-        this.disabled = true;
-    })
+        btnComprar.classList.remove('boton-comprar-producto');
+        btnComprar.classList.add('boton-comprar-producto-clicked');
+    });
 }
 
 function ocultarTodasCondiciones() {
@@ -130,6 +128,6 @@ function TEMPORALAddCantidadVisitas() {
 function mostrarprecios(precioInicial, precioFinal, opc) {
     precioInicialProducto.innerText = precioInicial;
     precioFinalProducto.innerText = precioFinal;
-    descuento.innerText = Math.round(((precioInicial - precioFinal) / precioInicial) * 100);
+    descuento.innerText = Math.round(((parseFloat(precioInicial) - parseFloat(precioFinal)) / parseFloat(precioInicial)) * 100);
     opcionElegida.value = opc;
 }

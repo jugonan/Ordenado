@@ -75,6 +75,30 @@ namespace Heldu.Logic.Services
             }
         }
 
+        //Devuelve una lista de índices enteros entre 0 y el "limiteSuperior", siendo el largo de la lista la "CantidadValores"
+        public List<int> RandomList(int cantidadValores, int limiteSuperior)
+        {
+            Random random = new Random();
+            List<int> RandomProd = new List<int>();
+
+            for (int i = 0; i < cantidadValores; i++)
+            {
+                bool existe = false;
+                int nuevo = random.Next(0, limiteSuperior);
+                foreach (int item in RandomProd)
+                {
+                    if (nuevo == item)
+                    {
+                        existe = true;
+                    }
+                }
+                if (!existe)
+                {
+                    RandomProd.Add(nuevo);
+                }
+            }
+            return RandomProd;
+        }
         public void EnviarEmail(string asunto, string mensaje)
         {
             {

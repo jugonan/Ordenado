@@ -32,7 +32,7 @@ namespace Heldu.Logic.Services
         }
         public async Task<Producto> GetProductoById(int? id)
         {
-            return await _context.Producto.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Producto.Include(p=>p.ProductoVendedor).FirstOrDefaultAsync(x => x.Id == id);
         }
         public async Task CreateProductoPost(Producto producto)
         {

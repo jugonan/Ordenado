@@ -1,5 +1,4 @@
-﻿@model List<ProductoPrimeraOpcionProductoVM>
-
+﻿@model Heldu.Entities.Models.Usuario
 @using Heldu.Logic.ViewModels
 @using Microsoft.AspNetCore.Identity
 @using Heldu.Logic.Interfaces
@@ -7,21 +6,34 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 @inject IManejoProductosService ManejoProductosService
+@inject IHelperService HelperService
 @{
+    ViewData["Title"] = "Histórico";
+    List<ProductoPrimeraOpcionProductoVM> visitados = ViewBag.ProductosVisitados;
+    List<int> listaRandom = new List<int>();
+    if (visitados.Count > 3)
+    {
+        listaRandom = HelperService.RandomList(4, visitados.Count);
+    }
     Usuario usuario = ViewBag.Usuario;
     List<Producto> comprados = ManejoProductosService.GetProductosComprados(usuario.Id);
-    List<Producto> disponibles = ManejoProductosService.GetProductosDisponibles(usuario.Id);
+    List<Producto> disponibles = new List<Producto>();
+    if (comprados.Count != 0)
+    {
+        disponibles = ManejoProductosService.GetProductosDisponibles(comprados);
+    }
     // Pendiente de añadir productos canjeados
     //List<Producto> canjeados = servicios.GetProductosCanjeados(Model.Id);
 }
 
 <!-- CSS Personalizado -->
-<link href="~/css/Usuarios_Historico.css" rel="stylesheet" type="text/css">
+@*<link href="~/css/Usuarios_Historico.css" rel="stylesheet" type="text/css">*@
+<link href="~/css/Productos_Index.css" rel="stylesheet" type="text/css">
 
 
 <div class="row" style="margin-top:10%;">
     <partial name="_MiperfilPV" />
-    <div class="col-8 offset-1" style="width: 66%;background-color: aquamarine;">
+    <div class="col-8 offset-1" style="width: 66%;background-color: #F7F6F2;border-radius: 2%;">
         <h3>Histórico</h3>
         @*Cuadro blanco*@
         <label for="cupones-en-perfil">Tus cupones</label>
@@ -84,59 +96,87 @@
 <!------ Carousel productos recomendados y consumidos por amigos ---------->
 <div>
     <div class="row">
-        <div class="col-6">
+        <div class="offset-1 col-10">
             <div>
-                <h2>Productos que has visto</h2>
+                <h2 id="productos-vistos-titulo">Productos que has visto</h2>
             </div>
-            <div class="row">
+            <div class="row" style="justify-content: space-evenly;">
                 @{
-                    if (!Model.Any())
+                    if (!visitados.Any())
                     {
                         <h5>¡Vaya, parece que aún no has visitado ningún producto!</h5>
-                        <p>Échale un vistazo a nuestros productos haciendo clic <a>aquí</a></p>
+                        <p>Échale un vistazo a nuestros productos haciendo clic <a asp-controller="Productos" asp-action="Index2">aquí</a></p>
                     }
                     else
                     {
-                        if (Model.Count < 3)
+                        if (visitados.Count < 3)
                         {
-                            foreach (ProductoPrimeraOpcionProductoVM item in Model)
+                            foreach (ProductoPrimeraOpcionProductoVM item in visitados)
                             {
-                                <div class="card col-4" style="width: 18rem;">
-                                    <div class="row" style="justify-content:space-around">
-                                        <div>
-                                            <h5 style="text-decoration:line-through">@item.opcionProducto.PrecioInicial €</h5>
-                                        </div>
-                                        <div>
-                                            <h5>@item.opcionProducto.PrecioFinal €</h5>
-                                        </div>
-                                    </div>
-                                    <img src="~/Productos/GetImage1/@item.producto.Id" class="card-img-top" alt="@item.producto.Titulo">
+                                <div class="card carta-modificada">
+                                    <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@item.producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
                                     <div class="card-body">
-                                        <h5 class="card-title">@item.producto.Titulo"</h5>
-                                        <p class="card-text">@item.producto.Descripcion"</p>
-                                        <a href="#" class="btn btn-primary">Inactivo</a>
+                                        <p class="titulo-oferta">@item.producto.Titulo</p>
+                                        <div class="valoracion-y-visitas">
+                                            <div class="row media-de-producto" style="align-items: baseline;">
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                            <div class="row visitas-a-producto">
+                                                <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                                                <p class="texto-visitas-a-producto"></p>
+                                            </div>
+                                        </div>
+                                        <div asp-action="Detalles" asp-route-id="@item.producto.Id" class="precios-carta-index">
+                                            <p class="precio-final-carta">@item.opcionProducto.PrecioFinal&#8364;</p>
+                                            <p class="precio-inicial-carta">@item.opcionProducto.PrecioInicial&#8364;</p>
+                                            @{
+                                                double descuento = Math.Round(((item.opcionProducto.PrecioInicial - item.opcionProducto.PrecioFinal) / item.opcionProducto.PrecioInicial) * 100);
+                                            }
+                                            <p class="descuento-carta">&#8595;@descuento&#37;</p>
+                                        </div>
+                                        <div class="div-boton-lo-quiero">
+                                            <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Volver a ver!</a>
+                                        </div>
                                     </div>
                                 </div>
                             }
                         }
                         else
                         {
-                            for (int i = 0; i < 3; i++)
+                            foreach (int i in listaRandom)
                             {
-                                <div class="card col-4" style="width: 18rem;">
-                                    <div class="row" style="justify-content:space-around">
-                                        <div>
-                                            <h5 style="text-decoration:line-through">@Model[i].opcionProducto.PrecioInicial €</h5>
-                                        </div>
-                                        <div>
-                                            <h5>@Model[i].opcionProducto.PrecioFinal €</h5>
-                                        </div>
-                                    </div>
-                                    <img src="~/Productos/GetImage1/@Model[i].producto.Id" class="card-img-top" alt="@Model[i].producto.Titulo">
+                                <div class="card carta-modificada">
+                                    <img loading="lazy" class="card-img-top" src="~/Productos/GetImage1/@visitados[i].producto.Id" onerror='this.onerror=null;this.src="https://i.ibb.co/FXsjMng/Imagen-no-disponible-min.png";'>
                                     <div class="card-body">
-                                        <h5 class="card-title">@Model[i].producto.Titulo"</h5>
-                                        <p class="card-text">@Model[i].producto.Descripcion"</p>
-                                        <a href="#" class="btn btn-primary">Inactivo</a>
+                                        <p class="titulo-oferta">@visitados[i].producto.Titulo</p>
+                                        <div class="valoracion-y-visitas">
+                                            <div class="row media-de-producto" style="align-items: baseline;">
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                            <div class="row visitas-a-producto">
+                                                <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-512.png" />
+                                                <p class="texto-visitas-a-producto"></p>
+                                            </div>
+                                        </div>
+                                        <div asp-action="Detalles" asp-route-id="@visitados[i].producto.Id" class="precios-carta-index">
+                                            <p class="precio-final-carta">@visitados[i].opcionProducto.PrecioFinal&#8364;</p>
+                                            <p class="precio-inicial-carta">@visitados[i].opcionProducto.PrecioInicial&#8364;</p>
+                                            @{
+                                                double descuento = Math.Round(((visitados[i].opcionProducto.PrecioInicial - visitados[i].opcionProducto.PrecioFinal) / visitados[i].opcionProducto.PrecioInicial) * 100);
+                                            }
+                                            <p class="descuento-carta">&#8595;@descuento&#37;</p>
+                                        </div>
+                                        <div class="div-boton-lo-quiero">
+                                            <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@visitados[i].producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                                        </div>
                                     </div>
                                 </div>
                             }

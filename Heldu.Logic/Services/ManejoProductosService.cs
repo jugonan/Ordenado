@@ -16,7 +16,6 @@ namespace Heldu.Logic.Services
         public ManejoProductosService(ApplicationDbContext context)
         {
             _context = context;
-
         }
 
         public List<Producto> GetProductosComprados(int id)
@@ -35,10 +34,9 @@ namespace Heldu.Logic.Services
             return productos;
         }
 
-        public List<Producto> GetProductosDisponibles(int id)
+        public List<Producto> GetProductosDisponibles(List<Producto> comprados)
         {
             DateTime FechaDeHoy = DateTime.Today;
-            List<Producto> comprados = GetProductosComprados(id);
             List<Producto> disponibles = new List<Producto>();
             foreach (Producto comprado in comprados)
             {
