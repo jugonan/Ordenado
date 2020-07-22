@@ -147,7 +147,8 @@ h2 {
     font-weight: 400;
     text-transform: uppercase;
     background: #F21B6D;
-    opacity: 0.9;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
     color: whitesmoke !important;
 }
 

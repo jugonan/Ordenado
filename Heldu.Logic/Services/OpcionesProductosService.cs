@@ -88,9 +88,9 @@ namespace Heldu.Logic.Services
                 PrecioInicial = precioInicialVM,
                 PrecioFinal = precioFinalVM,
                 Descuento = descuentoVM,
-                StockInicial = Convert.ToInt32(unidades),
+                StockInicial = Convert.ToInt32(unidadesVM),
                 CantidadVendida = 0,
-            };
+            };            
             return opcionProducto;
         }
     }

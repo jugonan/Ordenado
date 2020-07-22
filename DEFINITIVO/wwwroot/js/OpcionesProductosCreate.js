@@ -1,8 +1,4 @@
 ﻿/* Variables que muestro con la información del Model */
-let ulReserva;
-let ulHorario;
-let ulEntrega;
-let ulRecogida;
 let ulOtros;
 let btnAdd;
 let btnCreate;
@@ -31,10 +27,14 @@ let opciones = [];
 let clicks = 0;
 
 /* Función inicial que se ejecuta con 'DOMContentLoaded' desed CArritoLayout.js */
-llenarVariablesModel();
-llenarListas();
+document.addEventListener('DOMContentLoaded', function () {
+    llenarVariablesModel();
+    enableAnclasOpciones();
+})
 
 function crearOpcion() {
+    clicks++;
+    comprobarClicks();
     llenarVariablesOpcionProducto();
     opcion = {
         descripcion: descripcion.value,
@@ -71,14 +71,9 @@ function revisarOpciones() {
  * y utilizo el id antes asignado al input, que es igual a la posición que tiene el objeto en el arreglo de objetos para
  * extraer sus parámetros */
 function cambiarPrecio() {
-    clicks++;
-    let euros = document.getElementsByClassName('simbolo-euro');
-    for (i = 0; i < euros.length; i++) {
-        euros[i].classList.remove('d-none');
-    }
-    let descuento = document.getElementById('descuento-demo');
-    let precioInicial = document.getElementById('precioInicial-demo');
-    let precioFinal = document.getElementById('precioFinal-demo');
+    let descuento = document.getElementById('descuento');
+    let precioInicial = document.getElementById('precioInicialProducto');
+    let precioFinal = document.getElementById('precioFinalProducto');
     precioInicial.innerText = opciones[this.id].precioInicio;
     precioFinal.innerText = opciones[this.id].precioFin;
     descuento.innerText = opciones[this.id].descuento;
@@ -93,40 +88,11 @@ function calcularDescuento(precioInicio, precioFin) {
 /* Identifico las variables a rellenar con la información del producto en la vista y les añado
  * su información */
 function llenarVariablesModel() {
-    ulReserva = document.getElementById('ulReserva');
-    ulHorario = document.getElementById('ulHorario');
-    ulEntrega = document.getElementById('ulEntrega');
-    ulRecogida = document.getElementById('ulRecogida');
-    ulOtros = document.getElementById('ulOtros');
     labelOpciones = document.getElementsByClassName('radio-opciones');
     btnAdd = document.getElementById('btnAddOpcion');
     btnCreate = document.getElementById('btnCreate');
     btnAdd.addEventListener('click', crearOpcion);
     btnCreate.addEventListener('click', pasarVM);
-}
-
-/* Creo un <li> por cada objeto en el Model de producto */
-function llenarListas() {
-    if (ulReserva.hasChildNodes(ulReserva)) {
-        mostrarHijos(ulReserva);
-    }
-    if (ulHorario.hasChildNodes(ulHorario)) {
-        mostrarHijos(ulHorario);
-    }
-    if (ulEntrega.hasChildNodes(ulEntrega)) {
-        mostrarHijos(ulEntrega);
-    }
-    if (ulRecogida.hasChildNodes(ulRecogida)) {
-        mostrarHijos(ulRecogida);
-    }
-    if (ulOtros.hasChildNodes(ulOtros)) {
-        mostrarHijos(ulOtros);
-    }
-}
-
-/* Quito la clase d-none para que se muestren  */
-function mostrarHijos(variable) {
-    variable.classList.remove('d-none');
 }
 
 /* Identifico las variables que utilizaré para crear el objeto */
@@ -152,4 +118,35 @@ function pasarVM() {
     opcion1.value = JSON.stringify(opciones[0]);
     opcion2.value = JSON.stringify(opciones[1]);
     opcion3.value = JSON.stringify(opciones[2]);
+}
+
+function comprobarClicks() {
+    if (clicks >= 3) {
+        descripcion.required = false;
+        descripcion.disabled = true;
+        precioInicio.required = false;
+        precioInicio.disabled = true;
+        precioFin.required = false;
+        precioFin.disabled = true;
+        stockInicial.required = false;
+        stockInicial.disabled = true;
+    }
+}
+
+function enableAnclasOpciones() {
+    anclasClickUsuario = document.getElementsByClassName('anclas-opciones');
+    condicionesProducto = document.getElementsByClassName('texto-ocultar ');
+    /* Cada vez que hago click oculto todas las condiciones y luego muestro la seleccionada */
+    for (let i = 0; i < anclasClickUsuario.length; i++) {
+        anclasClickUsuario[i].addEventListener('click', function () {
+            ocultarTodasCondiciones();
+            condicionesProducto[i].classList.remove('d-none');
+        })
+    }
+}
+
+function ocultarTodasCondiciones() {
+    for (let i = 0; i < condicionesProducto.length; i++) {
+        condicionesProducto[i].classList.add('d-none');
+    }
 }
