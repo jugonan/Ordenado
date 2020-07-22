@@ -106,6 +106,8 @@
 }
 <script defer>
     let buscador = document.getElementById('formBuscador2');
+    let barra = document.getElementsByClassName('hr-temporal-registro');
+    barra[0].classList.add('d-none');
     buscador.classList.add('d-none');
     let botones = document.getElementsByClassName('btn-login');
     for (let i = 0; i < botones.length; i++) {

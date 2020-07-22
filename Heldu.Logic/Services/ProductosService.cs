@@ -25,9 +25,9 @@ namespace Heldu.Logic.Services
         {
             return await _context.Producto
                             .Include(p => p.ProductoCategoria)
-                            .ThenInclude(a => a.Categoria)
+                                .ThenInclude(a => a.Categoria)
                             .Include(p => p.ProductoVendedor)
-                            .ThenInclude(a => a.Vendedor)
+                                .ThenInclude(a => a.Vendedor)
                             .ToListAsync();
         }
         public async Task<Producto> GetProductoById(int? id)
@@ -191,7 +191,6 @@ namespace Heldu.Logic.Services
                         };
                         newListaProducto.Add(productoConOpcion);
                     }
-
                 }
                 listasProductosForIndex2.ListasProductos.Add(newListaProducto);
             }

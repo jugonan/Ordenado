@@ -19,6 +19,9 @@ namespace DEFINITIVO
 {
     public class Startup
     {
+
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -97,8 +100,6 @@ namespace DEFINITIVO
             // Configure dependency injection for WebServiceClient
             services.AddHttpClient<WebServiceClient>();
             services.AddTransient<GeoLocationService>();
-
-
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
@@ -106,7 +107,15 @@ namespace DEFINITIVO
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                              builder =>
+                              {
+                                  builder.WithOrigins("https://localhost:6001/apicop",
+                                                      "/apicop");
+                              });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -129,6 +138,8 @@ namespace DEFINITIVO
 
             app.UseRouting();
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -145,7 +156,6 @@ namespace DEFINITIVO
 
             Seed seed = new Seed();
             seed.CrearRoles(serviceProvider).Wait();
-
         }
     }
 }
