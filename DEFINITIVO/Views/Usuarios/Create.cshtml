@@ -19,62 +19,79 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="form-group col-6">
-                    <label asp-for="Nombre" class="control-label"></label>
-                    <input asp-for="Nombre" class="form-control" required/>
-                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                    <label asp-for="usuario.Nombre" class="control-label"></label>
+                    <input asp-for="usuario.Nombre" class="form-control" required />
+                    <span asp-validation-for="usuario.Nombre" class="text-danger"></span>
                 </div>
                 <div class="form-group col-6">
-                    <label asp-for="Apellido" class="control-label"></label>
-                    <input asp-for="Apellido" class="form-control" required/>
-                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                    <label asp-for="usuario.Apellido" class="control-label"></label>
+                    <input asp-for="usuario.Apellido" class="form-control" required />
+                    <span asp-validation-for="usuario.Apellido" class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-6">
-                    <label asp-for="FechaNacimiento" class="control-label"></label>
-                    <input type="date" asp-for="FechaNacimiento" class="form-control" required/>
-                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    <label asp-for="usuario.FechaNacimiento" class="control-label"></label>
+                    <input type="date" asp-for="usuario.FechaNacimiento" class="form-control" required />
+                    <span asp-validation-for="usuario.FechaNacimiento" class="text-danger"></span>
                 </div>
                 <div class="form-group col-6">
                     <label class="control-label">Nombre de Usuario</label>
-                    <input asp-for="NombreUsuario" class="form-control" required/>
-                    <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                    <input asp-for="usuario.NombreUsuario" class="form-control" required />
+                    <span asp-validation-for="usuario.NombreUsuario" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label"></label>
-                <input type="file" id="files-darde" asp-for="Darde" class="form-control" required/>
-                <span asp-validation-for="Darde" class="text-danger"></span>
+                <label class="control-label">DARDE</label>
+                <input type="file" id="files-darde" asp-for="usuario.Darde" name="Darde" class="form-control" required />
+                <span asp-validation-for="usuario.Darde" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="form-group col-4">
                     <label class="control-label">Foto de perfil</label>
-                    <input type="file" id="files " asp-for="FotoUsuario" class="form-control" />
-                    <span asp-validation-for="FotoUsuario" class="text-danger"></span>
+                    <input type="file" id="files " asp-for="usuario.FotoUsuario" name="FotoUsuario" class="form-control" />
+                    <span asp-validation-for="usuario.FotoUsuario" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" asp-for="IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
+                    <input type="hidden" asp-for="usuario.IdentityUserId" class="form-control" value="@UserManager.GetUserId(User)" />
                 </div>
             </div>
             <!--Alimento el "Create" de Ubicaciones-->
             <div class="row">
+                <div class="form-group col-7">
+                    <label asp-for="ubicacion.Calle" class="control-label"></label>
+                    <input placeholder="Av. Urquijo" type="text" asp-for="ubicacion.Calle" class="form-control" required/>
+                    <span asp-validation-for="ubicacion.Calle" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <label asp-for="ubicacion.Numero" class="control-label"></label>
+                    <input placeholder="3221" type="text" asp-for="ubicacion.Numero" class="form-control" required/>
+                    <span asp-validation-for="ubicacion.Numero" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
+                    <label asp-for="ubicacion.Letra" class="control-label"></label>
+                    <input placeholder="B" type="text" asp-for="ubicacion.Letra" class="form-control" />
+                    <span asp-validation-for="ubicacion.Letra" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-6">
-                    <label asp-for="Pais" class="control-label"></label>
-                    <input type="text" asp-for="Pais" class="form-control" />
-                    <span asp-validation-for="Pais" class="text-danger"></span>
+                    <label asp-for="ubicacion.Pais" class="control-label"></label>
+                    <input type="text" asp-for="ubicacion.Pais" class="form-control" />
+                    <span asp-validation-for="ubicacion.Pais" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="CP" class="control-label"></label>
-                    <input id="codigoPostal" asp-for="CP" class="form-control" />
-                    <span asp-validation-for="CP" class="text-danger"></span>
+                    <label asp-for="ubicacion.CP" class="control-label"></label>
+                    <input id="codigoPostal" asp-for="ubicacion.CP" class="form-control" />
+                    <span asp-validation-for="ubicacion.CP" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group col-6">
-                <label asp-for="CCAA" class="control-label"></label>
-                <input id="comunidadAutonoma" asp-for="CCAA" class="form-control" />
-                <span asp-validation-for="CCAA" class="text-danger"></span>
+                <label asp-for="ubicacion.CCAA" class="control-label"></label>
+                <input id="comunidadAutonoma" asp-for="ubicacion.CCAA" class="form-control" />
+                <span asp-validation-for="ubicacion.CCAA" class="text-danger"></span>
             </div>
-            <select id="poblacion" asp-for="Poblacion" class="form-control col-6"></select>
+            <select id="poblacion" asp-for="ubicacion.Poblacion" class="form-control col-6"></select>
             <div class="form-group">
                 <br />
                 <input type="submit" value="Continuar" class="btn btn-primary" />

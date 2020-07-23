@@ -74,15 +74,9 @@ namespace DEFINITIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = new Usuario()
-                {
-                    Nombre = usuarioUbicacionVM.Nombre,
-                    Apellido = usuarioUbicacionVM.Apellido,
-                    NombreUsuario = usuarioUbicacionVM.NombreUsuario,
-                    FechaNacimiento = usuarioUbicacionVM.FechaNacimiento,
-                    IdentityUserId = usuarioUbicacionVM.IdentityUserId,
-                    FechaAltaUsuario = DateTime.Now
-                };
+                Usuario usuario = usuarioUbicacionVM.usuario;
+                usuario.FotoUsuario = null;
+                usuario.Darde = null;
                 foreach (var item in FotoUsuario)
                 {
                     if (item.Length > 0)
@@ -103,18 +97,8 @@ namespace DEFINITIVO.Controllers
                 }
                 await _usuariosService.CreateUsuario(usuario);
 
-                UbicacionUsuario ubicacionUsuario = new UbicacionUsuario()
-                {
-                    Pais = usuarioUbicacionVM.Pais,
-                    CCAA = usuarioUbicacionVM.CCAA,
-                    Provincia = usuarioUbicacionVM.Provincia,
-                    Poblacion = usuarioUbicacionVM.Poblacion,
-                    CP = usuarioUbicacionVM.CP,
-                    Calle = usuarioUbicacionVM.Calle,
-                    Numero = usuarioUbicacionVM.Numero,
-                    Letra = usuarioUbicacionVM.Letra,
-                    UsuarioId = usuario.Id
-                };
+                UbicacionUsuario ubicacionUsuario = usuarioUbicacionVM.ubicacion;
+                ubicacionUsuario.UsuarioId = usuario.Id;
                 await _ubicacionesUsuarioService.CreateUbicacionUsuario(ubicacionUsuario);
             }
             return RedirectToAction("Create", "GustoUsuarios");

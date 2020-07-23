@@ -80,12 +80,14 @@
     </div>
 
     <!-- Formulario oculto para guardar la información de compra exitosa en la BBDD desde un método en CheckoutController -->
+    <div style=" width: 0px; height: 0px; opacity: 0;">
     <form asp-controller="Checkout" asp-action="Comprado">
         <input type="hidden" id="productoId" name="productoId" value="@Model.producto.Id"/>
         <input type="hidden" id="vendedorId" name="opcionId" value="@Model.opcion.Id"/>
         <input type="hidden" id="usuarioId" name="usuarioId" value="@Model.usuario.Id"/>
         <button type="submit" id="btnOculto"></button>
     </form>
+    </div>
 
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">

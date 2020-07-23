@@ -144,7 +144,7 @@
                                             <p class="descuento-carta">&#8595;@descuento&#37;</p>
                                         </div>
                                         <div class="div-boton-lo-quiero">
-                                            <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Volver a ver!</a>
+                                            <a onclick="generarSpinnerProducto()" asp-controller="Productos" asp-action="Detalles" asp-route-id="@item.producto.Id" class="btn boton-lo-quiero">¡Volver a ver!</a>
                                         </div>
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@
                                             <p class="descuento-carta">&#8595;@descuento&#37;</p>
                                         </div>
                                         <div class="div-boton-lo-quiero">
-                                            <a onclick="generarSpinnerProducto()" asp-action="Detalles" asp-route-id="@visitados[i].producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
+                                            <a onclick="generarSpinnerProducto()" asp-controller="Productos" asp-action="Detalles" asp-route-id="@visitados[i].producto.Id" class="btn boton-lo-quiero">¡Lo quiero!</a>
                                         </div>
                                     </div>
                                 </div>

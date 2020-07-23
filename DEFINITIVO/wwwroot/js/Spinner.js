@@ -55,7 +55,7 @@ function generarSpinner() {
         textoSpinner.classList.add('texto-spinner-opaco');
     },100)
     setTimeout(function() {
-        sleep(4000);
+        sleep(3000);
     },500)
 }
 
@@ -82,7 +82,7 @@ function generarSpinnerProducto() {
         textoSpinner.classList.add('texto-spinner-opaco');
     }, 100)
     setTimeout(function () {
-        sleep(4000);
+        sleep(3000);
     }, 500)
 }
 
