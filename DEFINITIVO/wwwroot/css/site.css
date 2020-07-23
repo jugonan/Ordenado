@@ -74,18 +74,18 @@ nav {
     color: whitesmoke;
 }
 
-.nav-item a{
-    color: whitesmoke !important;
-    opacity: 0.9;
-}
+    .nav-item a {
+        color: whitesmoke !important;
+        opacity: 0.9;
+    }
 
 .div-row-navbar {
     display: flex;
-    justify-content:space-evenly;
-    align-items:center;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.div-navbar-ingreso div{
+.div-navbar-ingreso div {
     display: flex;
     flex-direction: row;
 }
@@ -115,7 +115,7 @@ nav {
     vertical-align: middle;
     font-size: medium;
     border-radius: 8px;
-    height:2rem;
+    height: 2rem;
 }
 
 #selecListBuscar {
@@ -144,6 +144,7 @@ nav {
 .imagen-top-ingresar {
     width: 22%;
 }
+
 .btn-buscar:link,
 .btn:visited {
     text-decoration: none;
@@ -153,30 +154,30 @@ nav {
 }
 
 .btn-buscar {
-    box-sizing:border-box;
+    box-sizing: border-box;
     background-color: #F21B6D !important;
     color: white !important;
     opacity: 0.8 !important;
     z-index: 902 !important;
 }
 
-.btn-buscar:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    opacity: 1 !important;
-}
+    .btn-buscar:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        opacity: 1 !important;
+    }
 
-.btn-buscar:active {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
+    .btn-buscar:active {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
 
 .conocenos-responsive {
     width: 100%;
 }
 
-.conocenos-responsive a {
-    color: whitesmoke !important;
-    opacity: 0.9;
-}
+    .conocenos-responsive a {
+        color: whitesmoke !important;
+        opacity: 0.9;
+    }
 
 @keyframes moveInBottom {
     0% {
@@ -270,10 +271,10 @@ nav {
     white-space: nowrap;
 }
 
-.textType3:hover, .textType3:focus {
-    font-weight: 500;
-    color: ghostwhite !important;
-}
+    .textType3:hover, .textType3:focus {
+        font-weight: 500;
+        color: ghostwhite !important;
+    }
 
 .subMenuCon {
     position: absolute;
@@ -622,8 +623,8 @@ input.showForm {
 
 
 /* -------------- CSS Políticas de Privacidad y Cookies --------------*/
-.privacyContent{
-    text-align:justify;
+.privacyContent {
+    text-align: justify;
 }
 
 
@@ -642,15 +643,17 @@ input.showForm {
     opacity: 0.92;
     font-size: 1.1rem;
 }
-.cookies:hover{
-    opacity:0.99;
-}
-.cookies a{
-    text-decoration:none;
-    cursor:pointer;
-    font-weight:600;
-    font-size:1rem;
-}
+
+    .cookies:hover {
+        opacity: 0.99;
+    }
+
+    .cookies a {
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+    }
 
 /* Fin Políticas de Privacidad y Cookies*/
 
@@ -660,16 +663,20 @@ input.showForm {
     footer {
         height: inherit;
     }
-    footer div {
+
+        footer div {
+            font-size: 4vw;
+            height: inherit;
+        }
+
+    div h5 {
         font-size: 4vw;
-        height: inherit;
     }
-    div h5{
-        font-size: 4vw;
-    }
+
     .formulario-buscador-noCollapsed {
         display: none;
     }
+
     .formulario-buscador-collapsed {
         display: inherit;
     }
@@ -698,23 +705,28 @@ input.showForm {
     #modificarCiudad {
         font-size: 9px;
     }
+
     #formBuscador2 {
         margin: 4vw 0vw;
         padding-left: 15px;
     }
-    #formBuscador2 input{
-        font-size: 3vw;
-        height: 6vw;
-    }
-    #formBuscador2 button {
-        font-size: 3vw;
-        height: 6vw;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
+
+        #formBuscador2 input {
+            font-size: 3vw;
+            height: 6vw;
+        }
+
+        #formBuscador2 button {
+            font-size: 3vw;
+            height: 6vw;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
     .div-spinner {
         margin-top: 16vw;
     }
+
     .texto-spinner-opaco {
         margin: 10px 30px -50px 30px;
         font-size: 4vw;
@@ -725,12 +737,13 @@ input.showForm {
         width: 80%;
         bottom: -13vw;
     }
+
     .imagen-spinner {
         width: 70%;
         margin-top: 16vw;
     }
 }
-	
+
 @-moz-document url-prefix() {
     .ff {
         color: red;
@@ -741,6 +754,7 @@ input.showForm {
     .formulario-buscador-noCollapsed {
         display: inherit;
     }
+
     .formulario-buscador-collapsed {
         display: none;
     }
@@ -749,3 +763,21 @@ input.showForm {
         display: none;
     }
 }
+
+.social-media {
+}
+
+    .social-media a {
+        color: lightgray;
+    }
+    .social-media a:hover {
+        color: white;
+        text-decoration:none;
+    }
+
+    .social-media #liLogo {
+        width: 32px;
+    }
+    .social-media #igLogo {
+        width: 22px;
+    }
