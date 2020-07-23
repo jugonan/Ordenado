@@ -252,32 +252,6 @@
             </ul>
         </div>
         <!-- Formulario de contacto con su CSS -->
-<<<<<<< Updated upstream
-        @*<input type="checkbox" name="showForm" id="showForm" class="showForm">
-            <div class="formContacto">
-                <h2>Contáctanos!</h2>
-                <form asp-controller="Home" asp-action="Contacto">
-                    @{
-                        string actualPath = Context.Request.Path;
-                    }
-                    <div class="left section">
-                        <input type="text" name="nombre" placeholder="Nombre(s) y Apellido(s)" required minlength="3">
-                        <input type="email" name="email" placeholder="E-Mail" required>
-                        <input type="tel" pattern="[0-9]{9}" maxlength="12" name="tel" placeholder="Teléfono">
-                        <input type="hidden" name="actualPath" value="@actualPath">
-                        @if (activeUser != null)
-                        {
-                            <input type="hidden" name="userId" value="@activeUser.Id">
-                        }
-                    </div>
-                    <div class="right section">
-                        <textarea name="mensaje" placeholder="Escribe tu mensaje aquí" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="sendForm left" id="contactoSubmit">ENVIAR</button>
-                    <label for="showForm" class="closeFormLabel left">CANCELAR</label>
-                </form>
-            </div>*@
-=======
         <input type="checkbox" name="showForm" id="showForm" class="showForm">
         <div class="formContacto">
             <h2>Contáctanos!</h2>
@@ -302,7 +276,6 @@
                 <label for="showForm" class="closeFormLabel left">CANCELAR</label>
             </form>
         </div>
->>>>>>> Stashed changes
     </header>
 
     <div class="container" id="mainContainerLayout">
