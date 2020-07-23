@@ -180,7 +180,6 @@ namespace DEFINITIVO.Controllers
         {
             string vendedorId = _userManager.GetUserId(User);
             Vendedor vendedor = await _vendedoresService.MisproductosVendedor(vendedorId);
-            // Obtengo una lista de VM en la que cada objeto tiene el ID de producto y cantidad de visitas
             ViewData["VisitasPorProducto"] = await _vendedoresService.GetProductosVistosDelVendedor(vendedor);
             return View(vendedor);
         }
@@ -232,7 +231,7 @@ namespace DEFINITIVO.Controllers
         public async Task<IActionResult> Estadisticas2()
         {
             string vendedorId = _userManager.GetUserId(User);
-            Vendedor vendedor = await _vendedoresService.ObtenerVendedorDesdedIdentity(vendedorId);
+            Vendedor vendedor = await _vendedoresService.MisproductosVendedor(vendedorId);
             return View(vendedor);
         }
         public async Task<IActionResult> Misproductos2()

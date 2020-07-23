@@ -38,7 +38,16 @@
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels: ['2 sesiones de tratam...', 'Curso de Big Data', 'Menú hamburguesa + pat...', 'Kit blanqueamiento...', 'Pack 100 mascarillas', 'Curso de fotografía...',
+            labels: [
+                @{
+                  foreach(ProductoVendedor productoVendedor in Model.ProductoVendedor)
+                  {
+                     string titulo = productoVendedor.Producto.Titulo;
+                     string abreviatura = titulo.Substring(0, 8);
+                     abreviatura.Insert(7, ".");
+                     <text>'</text>@abreviatura<text>',</text>
+                  }
+                }
             ],
             datasets: [{
                 label: 'visitas/producto',

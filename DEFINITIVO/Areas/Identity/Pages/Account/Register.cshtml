@@ -31,8 +31,12 @@
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
                     <div class="form-group d-none">
-                        <input asp-for="Input.IsCliente" value="true" checked class="form-control" />
+                        <input id="input-isCliente" asp-for="Input.IsCliente" value="" checked class="form-control" />
                         <span asp-validation-for="Input.IsCliente" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-none">
+                        <input id="input-isVendedor" asp-for="Input.IsVendedor" value="" checked class="form-control" />
+                        <span asp-validation-for="Input.IsVendedor" class="text-danger"></span>
                     </div>
                     <div id="div-boton-register">
                         <button id="btn-register" type="submit" class="btn btn-primary">Registarme</button>

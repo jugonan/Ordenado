@@ -3,6 +3,13 @@ let url = 'https://api.zippopotam.us/ES/';
 let appendOption;
 let escribir;
 let estado;
+let urlBase;
+let format;
+let apiKey;
+let iban;
+let btnValidar;
+let errorSpan;
+
 
 if (document.readyState !== 'loading') {
     console.log('document is already ready, just execute code here');
@@ -27,7 +34,7 @@ function myInitCode() {
     });
     escribir.addEventListener('input', function () {
         let seleccion = this.value;
-        if (seleccion.length === 4) {
+        if (seleccion.length === 5) {
             /*Se activa cuando el CP es 5 y modifica la url original añadiendo el CP introducido al final como KEY */
             let urlBusqueda = (url + `${seleccion}`);
 
@@ -71,14 +78,14 @@ function limpiarCampos() {
 
 function validateIBAN() {
 
-    let urlBase = "https://bankcodesapi.com/iban/";
-    let format = "json";
-    let apiKey = "9fc53b3db09ca830488d19546a4fc2a1";
-    let iban = "";
+    urlBase = "https://bankcodesapi.com/iban/";
+    format = "json";
+    apiKey = "9fc53b3db09ca830488d19546a4fc2a1";
+    iban = "";
 
-    let btnValidar = document.getElementById('btnValidar');
-    let iban = document.getElementById('inputIBAN');
-    let errorSpan = document.getElementById('spanIBAN');
+    btnValidar = document.getElementById('btnValidar');
+    iban = document.getElementById('inputIBAN');
+    errorSpan = document.getElementById('spanIBAN');
     iban.addEventListener('change', function () {
         if (iban.length == 24) {
             btnValidar.disabled = false;

@@ -7,6 +7,8 @@
 
 <link href="/css/Pagina_Login.css" rel="stylesheet" type="text/css">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="~/js/Login_Page.js"></script>
+
 
 
 <div class="row my-5">
@@ -19,7 +21,9 @@
         </div>
         <div id="divAsk">
             <h4>¿No estás registrado aún?</h4>
-            <a href="/Identity/Account/Register" class="btn btn-primary">¡Regístrate!</a>
+            <a id="anchor-isCliente" href="/Identity/Account/Register" class="btn btn-primary">¡Regístrate!</a>
+            <p class="texto-registro-comercio">¿Eres un comercio?</p>
+            <a id="anchor-isVendedor" href="/Identity/Account/Register" class="anchor-anunciar-negocio">Anúnciate</a>
             <div class="hr-temporal-registro row">
                 <hr />
                 <p>o</p>
@@ -27,7 +31,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-lg-5">
         <section>
             <h2>Ingresa</h2>
@@ -104,8 +107,7 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-<script defer>
-    let buscador = document.getElementById('formBuscador2');
+<script defer>let buscador = document.getElementById('formBuscador2');
     let barra = document.getElementsByClassName('hr-temporal-registro');
     barra[0].classList.add('d-none');
     buscador.classList.add('d-none');
