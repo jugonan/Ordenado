@@ -6,11 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
-using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Text.Json;
-using Echovoice.JSON;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 

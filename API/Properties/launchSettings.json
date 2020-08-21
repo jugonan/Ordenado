@@ -19,7 +19,7 @@
     },
     "API": {
       "commandName": "Project",
-      "launchUrl": "apicop",
+      "launchUrl": "api/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

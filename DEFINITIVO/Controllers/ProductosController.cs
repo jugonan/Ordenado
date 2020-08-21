@@ -11,7 +11,6 @@ using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
 using System;
 using Microsoft.AspNetCore.Http;
-using System.Diagnostics;
 using Microsoft.Extensions.Caching.Memory;
 using System.Linq;
 

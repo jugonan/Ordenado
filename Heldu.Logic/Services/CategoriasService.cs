@@ -77,6 +77,15 @@ namespace Heldu.Logic.Services
 
             return selectListCategorias;
         }
+
+        //Devuelve la Categoría para un producto por su Id
+        public async Task<Categoria> GetCategoriaByProductoId(int id)
+        {
+            var prodCat = await _context.ProductoCategoria.Where(x => x.ProductoId == id).FirstOrDefaultAsync();
+            Categoria categoria = await _context.Categoria.Where(x => x.Id == prodCat.CategoriaId).FirstOrDefaultAsync();
+
+            return categoria;
+        }
     }
 }
 

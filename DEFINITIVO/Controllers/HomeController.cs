@@ -109,7 +109,7 @@ namespace DEFINITIVO.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Contacto(string nombreContacto, string telefonoContacto, string emailContacto, string asuntoContacto, string mensajeContacto)
+        public IActionResult Contacto(string nombreContacto, string telefonoContacto, string emailContacto, string asuntoContacto, string mensajeContacto)
         {
             string mensajeCompuesto = $"Un usuario no logueado/registrado envía el siguiente mensaje" +
                 $"\n\bMensaje: {mensajeContacto}" +

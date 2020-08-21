@@ -28,7 +28,6 @@ namespace Heldu.Entities.Models
         
         [Required]
         [Display(Name ="IBAN (*)")]
-        [MaxLength(24)]
         public string IBAN { get; set; }
 
         [Required]

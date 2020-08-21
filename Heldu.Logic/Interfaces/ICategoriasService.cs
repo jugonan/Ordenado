@@ -17,6 +17,8 @@ namespace Heldu.Logic.Interfaces
         public bool ExistCategoria(int id);
         public Task<List<Categoria>> ListaCategorias();
         public Task<List<SelectListItem>> GetSelectListCategorias();
+        public Task<Categoria> GetCategoriaByProductoId(int id);
+
     }
 }
  
