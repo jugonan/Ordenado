@@ -35,7 +35,6 @@
     <None Remove="ViewModel\**" />
     <None Remove="Views\Condiciones\**" />
     <None Remove="wwwroot\lib\**" />
-    <Content Remove="manifest.json" />
     <Content Remove="Views\Checkout\Confirmar__Old.cshtml" />
     <Content Remove="Views\Home\Index.cshtml" />
     <Content Remove="Views\Productos\Delete.cshtml" />
@@ -90,7 +89,6 @@
     <PackageReference Include="WebEssentials.AspNetCore.OutputCaching" Version="1.0.28" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.65" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
