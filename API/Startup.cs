@@ -1,4 +1,5 @@
 using System;
+using System.Web.Http;
 using AutoMapper;
 using Heldu.Database.Data;
 using Heldu.Logic.Interfaces;
@@ -36,31 +37,37 @@ namespace API
                 x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 x.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddMemoryCache();
 
-            services.AddTransient<ICategoriasService, CategoriasService>();
-            services.AddTransient<IFavoritosService, FavoritosService>();
-            services.AddTransient<IGustosUsuariosService, GustosUsuariosService>();
-            services.AddTransient<IHelperService, HelperService>();
-            services.AddTransient<IManejoProductosService, ManejoProductosService>();
-            services.AddTransient<IMercadosService, MercadosService>();
-            services.AddTransient<IOpcionesProductosService, OpcionesProductosService>();
-            services.AddTransient<IProductoCategoriasService, ProductoCategoriasService>();
-            services.AddTransient<IProductosService, ProductosService>();
-            services.AddTransient<IProductosVendedoresService, ProductosVendedoresService>();
-            services.AddTransient<IReviewsService, ReviewsService>();
-            services.AddTransient<IVisitasService, VisitasService>();
-            services.AddTransient<IUbicacionesUsuariosService, UbicacionesUsuarioService>();
-            services.AddTransient<IUbicacionesVendedoresService, UbicacionesVendedoresService>();
-            services.AddTransient<IUsuariosService, UsuariosService>();
-            services.AddTransient<IVendedoresService, VendedoresService>();
-            services.AddTransient<IImagenesProductosService, ImagenesProductosService>();
+            services.AddCors(c=>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
 
-        }
+                services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+                services.AddMemoryCache();
+
+                services.AddTransient<ICategoriasService, CategoriasService>();
+                services.AddTransient<IFavoritosService, FavoritosService>();
+                services.AddTransient<IGustosUsuariosService, GustosUsuariosService>();
+                services.AddTransient<IHelperService, HelperService>();
+                services.AddTransient<IManejoProductosService, ManejoProductosService>();
+                services.AddTransient<IMercadosService, MercadosService>();
+                services.AddTransient<IOpcionesProductosService, OpcionesProductosService>();
+                services.AddTransient<IProductoCategoriasService, ProductoCategoriasService>();
+                services.AddTransient<IProductosService, ProductosService>();
+                services.AddTransient<IProductosVendedoresService, ProductosVendedoresService>();
+                services.AddTransient<IReviewsService, ReviewsService>();
+                services.AddTransient<IVisitasService, VisitasService>();
+                services.AddTransient<IUbicacionesUsuariosService, UbicacionesUsuarioService>();
+                services.AddTransient<IUbicacionesVendedoresService, UbicacionesVendedoresService>();
+                services.AddTransient<IUsuariosService, UsuariosService>();
+                services.AddTransient<IVendedoresService, VendedoresService>();
+                services.AddTransient<IImagenesProductosService, ImagenesProductosService>();
+            }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,7 +75,11 @@ namespace API
 
             app.UseHttpsRedirection();
 
+
             app.UseRouting();
+            //Es necesario que esté entre Use.Routing y Use.Authorization
+            app.UseCors(c => c.AllowAnyOrigin());
+
 
             app.UseAuthorization();
 

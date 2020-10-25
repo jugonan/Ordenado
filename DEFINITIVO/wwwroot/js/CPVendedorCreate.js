@@ -34,7 +34,7 @@ function myInitCode() {
     });
     escribir.addEventListener('input', function () {
         let seleccion = this.value;
-        if (seleccion.length === 5) {
+        if (seleccion.length === 5q) {
             /*Se activa cuando el CP es 5 y modifica la url original añadiendo el CP introducido al final como KEY */
             let urlBusqueda = (url + `${seleccion}`);
 

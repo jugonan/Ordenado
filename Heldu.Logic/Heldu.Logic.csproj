@@ -30,6 +30,7 @@
     <PackageReference Include="Stripe.net" Version="37.31.0" />
     <PackageReference Include="Tesseract" Version="3.3.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="ViewModels\UsuarioUbicacionVM.css" />

@@ -7,6 +7,7 @@ using AutoMapper;
 using Heldu.Entities.Models;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -127,14 +128,19 @@ namespace API.Controllers
             return Ok(productoDTO);
         }
 
-
-        // URI ...api/Productos/fake
-        // Endpoint para pruebas
-        [Route("fake")]
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Probando2()
+        [Route("ByCategory/{categoriaId}")]
+        [HttpGet("{id}", Name = "GetProductosByCategoryId")]
+        public async Task<List<Producto>> GetProductosByCategoryId(int categoriaId)
         {
-            return new string[] {"Esto", "era", "nuevo" };
+            List<Producto> productos = await _productosService.GetProductosByCategoriaId(categoriaId);
+
+            // Tengo que añadir un equivalente NOT FOUND o returnear un DTO para permitir el not found
+            //if (productos == null)
+            //{
+            //    return NotFound();
+            //}
+            return productos;
         }
+
     }
 }
