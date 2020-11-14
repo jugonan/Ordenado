@@ -22,6 +22,7 @@ namespace API.Controllers
         private readonly IOpcionesProductosService _opcionesProductosService;
         private readonly IReviewsService _reviewsService;
         private readonly ICategoriasService _categoriaService;
+        private readonly IImagenesProductosService _imagenesProductosService;
         private readonly IMapper _mapper;
 
         public ProductosController(IProductosService productosService,
@@ -29,6 +30,7 @@ namespace API.Controllers
                                    IOpcionesProductosService opcionesProductosService,
                                    IReviewsService reviewsService,
                                    ICategoriasService categoriasService,
+                                   IImagenesProductosService imagenesProductosService,
                                    IMapper mapper)
         {
             _productosService = productosService;
@@ -36,6 +38,7 @@ namespace API.Controllers
             _opcionesProductosService = opcionesProductosService;
             _reviewsService = reviewsService;
             _categoriaService = categoriasService;
+            _imagenesProductosService = imagenesProductosService;
             _mapper = mapper;
         }
 
@@ -142,5 +145,17 @@ namespace API.Controllers
             return productos;
         }
 
+        // URI: ...api/Productos/Image1/5
+        //Devuelve la primera imagen del producto cuyo id se pasa
+        [Route("Image1/{id}")]
+        [HttpGet("{id}", Name = "GetImage1")]
+        public async Task<ActionResult> GetImage1(int id)
+        {
+            byte[] imagen = await _imagenesProductosService.GetMainImage(id);
+            if (imagen != null)
+                return File(imagen, "image/jpeg");
+            else
+                return NotFound();
+        }
     }
 }

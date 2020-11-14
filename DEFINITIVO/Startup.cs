@@ -9,11 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DEFINITIVO.Services;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using MySql.Data.MySqlClient;
 using Heldu.Logic.Interfaces;
 using Heldu.Logic.Services;
 using HelperService = Heldu.Logic.Services.HelperService;
 using MaxMind.GeoIP2;
-using Stripe;
 
 namespace DEFINITIVO
 {
@@ -34,11 +34,12 @@ namespace DEFINITIVO
             services.AddMemoryCache();
             services.AddOutputCaching();
             services.AddMvc();
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection"), mysqlOptions =>
                     {
                         mysqlOptions
+                        .ServerVersion(new Version(8, 0, 21), ServerType.MySql)
                             .CharSetBehavior(CharSetBehavior.AppendToAllColumns);
                         //.AnsiCharSet(CharSet.Latin1)
                         //.UnicodeCharSet(CharSet.Utf8Mb4);
