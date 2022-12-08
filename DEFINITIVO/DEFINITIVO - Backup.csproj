@@ -87,7 +87,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.5" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Json.Net" Version="1.0.22" />
     <PackageReference Include="Echovoice.JSON" Version="2.0.15151.1" />
     <PackageReference Include="Stripe.net" Version="37.11.0" />
